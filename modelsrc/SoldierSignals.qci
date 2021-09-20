@@ -1,0 +1,83 @@
+
+// 
+// Macros for using Combine soldier signals as gestures or matched sequences.
+// 
+
+$weightlist "SignalWeightlist" {
+	"ValveBiped.Bip01_Pelvis" 0
+	"ValveBiped.Bip01_L_Clavicle" 1
+	"ValveBiped.Bip01_Spine2" 1
+	"ValveBiped.Bip01_R_Clavicle" 0.5
+	"ValveBiped.Bip01_Neck1" 0
+	"ValveBiped.Bip01_R_Hand" 0
+}
+
+$definemacro MakeSignalGesture Name Anim Activity StartFrame EndFrame NumFrames SignalFPS \\
+$sequence $Name$_layer hidden { \\
+	$Anim$ \\
+	fps $SignalFPS$ \\
+	weightlist SignalWeightlist \\
+} \\
+$sequence $Name$ $Anim$ { \\
+	noanimation numframes $NumFrames$ \\
+	blendlayer $Name$_layer 0 $StartFrame$ $EndFrame$ $NumFrames$ spline \\
+	fps $SignalFPS$ \\
+	activity $Activity$ 1 \\
+} \\
+$continue $Name$
+
+// This is what lets the gesture signals be usede in Faceposer.
+$definemacro DefaultSignalGestures_FaceposerKV Apex Accent Loop End Thumbnail \\
+	keyvalues \\
+	{ \\
+		faceposer \\
+		{ \\
+			"type" "gesture" \\
+			 "tags" \\
+			{ \\
+				"apex" $Apex$ \\
+				"accent" $Accent$ \\
+				"loop" $Loop$ \\
+				"end" $End$ \\
+			} \\
+			"entrytag" "apex" \\
+			"thumbnail_frame" $Thumbnail$ \\
+		} \\
+	} \\
+
+$definemacro DefaultSignalGestures FPS \\
+$MakeSignalGesture gesture_signal_advance "combine_soldier_anims_anims\signal_advance" "ACT_GESTURE_SIGNAL_ADVANCE" 7 28 38 $FPS$ \\
+$append gesture_signal_advance { $DefaultSignalGestures_FaceposerKV 9 14 24 27 24 } \\
+$MakeSignalGesture gesture_signal_forward "combine_soldier_anims_anims\signal_forward" "ACT_GESTURE_SIGNAL_FORWARD" 7 28 38 $FPS$ \\
+$append gesture_signal_forward { $DefaultSignalGestures_FaceposerKV 8 12 17 21 19 } \\
+$MakeSignalGesture gesture_signal_group "combine_soldier_anims_anims\signal_group" "ACT_GESTURE_SIGNAL_GROUP" 10 32 45 $FPS$ \\
+$append gesture_signal_group { $DefaultSignalGestures_FaceposerKV 8 12 14 32 23 } \\
+$MakeSignalGesture gesture_signal_halt "combine_soldier_anims_anims\signal_halt" "ACT_GESTURE_SIGNAL_HALT" 10 32 48 $FPS$ \\
+$append gesture_signal_halt { $DefaultSignalGestures_FaceposerKV 9 12 17 28 21 } \\
+$MakeSignalGesture gesture_signal_left "combine_soldier_anims_anims\signal_left" "ACT_GESTURE_SIGNAL_LEFT" 10 26 39 $FPS$ \\
+$append gesture_signal_left { $DefaultSignalGestures_FaceposerKV 9 15 16 26 16 } \\
+$MakeSignalGesture gesture_signal_right "combine_soldier_anims_anims\signal_right" "ACT_GESTURE_SIGNAL_RIGHT" 6 26 40 $FPS$ \\
+$append gesture_signal_right { $DefaultSignalGestures_FaceposerKV 6 12 14 24 19 } \\
+$MakeSignalGesture gesture_signal_takecover "combine_soldier_anims_anims\signal_takecover" "ACT_GESTURE_SIGNAL_TAKECOVER" 10 30 41 $FPS$ \\
+$append gesture_signal_takecover { $DefaultSignalGestures_FaceposerKV 8 12 14 30 24 } \\
+
+
+$definemacro MakeSignalFromGesture Name IdleAnim GestureName Activity NumFrames SignalFPS \\
+$sequence $Name$ { \\
+	$IdleAnim$ \\
+	numframes $NumFrames$ \\
+	addlayer $GestureName$ \\
+	activity $Activity$ 1 \\
+	fps $SignalFPS$ \\
+} \\
+$continue $Name$
+
+
+$definemacro DefaultSignalSequences BaseAnim FPS \\
+$MakeSignalFromGesture signal_advance $BaseAnim$ gesture_signal_advance "ACT_SIGNAL_ADVANCE" 38 $FPS$ \\
+$MakeSignalFromGesture signal_forward $BaseAnim$ gesture_signal_forward "ACT_SIGNAL_FORWARD" 38 $FPS$ \\
+$MakeSignalFromGesture signal_group $BaseAnim$ gesture_signal_group "ACT_SIGNAL_GROUP" 45 $FPS$ \\
+$MakeSignalFromGesture signal_halt $BaseAnim$ gesture_signal_halt "ACT_SIGNAL_HALT" 48 $FPS$ \\
+$MakeSignalFromGesture signal_left $BaseAnim$ gesture_signal_left "ACT_SIGNAL_LEFT" 39 $FPS$ \\
+$MakeSignalFromGesture signal_right $BaseAnim$ gesture_signal_right "ACT_SIGNAL_RIGHT" 40 $FPS$ \\
+$MakeSignalFromGesture signal_takecover $BaseAnim$ gesture_signal_takecover "ACT_SIGNAL_TAKECOVER" 41 $FPS$ \\

@@ -1,0 +1,46 @@
+
+// 
+// Dynamic interactions base, including macros.
+// 
+// To put existing interactions on other NPCs, most recompiled animations use special blending techniques
+// so interactions meant for one NPC (like Alyx) could transition into a more appropriate animation for another NPC.
+// Unfortunately, there does not appear to be a way to transition dynamically to a NPC's current weapon's aiming animation
+// without rewriting a great portion of the dynamic interaction code.
+// So, in order to determine which animation to blend from/into, global variables are declared before $including these QCIs:
+// 
+// Blend_SMD_Default - Their most common aiming anim. For example, citizens use the SMG aim while metrocops use the Pistol aim.
+// Blend_SMD_Pistol - Pistol aiming animation.
+// Blend_SMD_Rifle - SMG/AR2 aiming animation.
+// 
+// These are then called by each interaction based on which one they used to begin with.
+// For example, DI_Idle_Pistol is used for Alyx's pistol interactions while DI_Idle_Rifle is used for Alyx's shotgun interactions.
+// 
+// This technique is now used with other animation ports as well.
+// 
+	
+// This is the macro that makes the blended animation.
+// Activity and stuff should be added with $append.
+// This can be used with both dealing and receiving ends of the interaction.
+$definemacro MakeDynamicInteraction SeqName InteractionAnim IdleAnim InFrame OutFrame FrameNum \\
+$sequence $SeqName$_layer $InteractionAnim$ hidden \\
+$sequence $SeqName$ $IdleAnim$ { \\
+	blendlayer $SeqName$_layer 0 $InFrame$ $OutFrame$ $FrameNum$ spline \\
+	numframes $FrameNum$ \\
+	fps 30 \\
+	fadein 0.25 \\
+	fadeout 0.25 \\
+	cmdlist lockfeet \\
+} \\
+$continue $SeqName$
+
+// This makes a dynamic interaction from an existing layer.
+$definemacro MakeDynamicInteractionFromExistingSeq SeqName ExistingAnim IdleAnim InFrame OutFrame FrameNum \\
+$sequence $SeqName$ $IdleAnim$ { \\
+	blendlayer $ExistingAnim$ 0 $InFrame$ $OutFrame$ $FrameNum$ spline \\
+	numframes $FrameNum$ \\
+	fps 30 \\
+	fadein 0.25 \\
+	fadeout 0.25 \\
+	cmdlist lockfeet \\
+} \\
+$continue $SeqName$

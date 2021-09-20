@@ -1,0 +1,510 @@
+// Created by Crowbar 0.56
+// 
+// Includes Mapbase modifications.
+// 
+
+$declaresequence "idle_subtle"
+$declaresequence "idle_angry"
+$declaresequence "LineIdle01"
+$declaresequence "LineIdle02"
+$declaresequence "LineIdle03"
+$declaresequence "LineIdle04"
+$declaresequence "Crouch_idleD"
+$declaresequence "layer_crouch_walk_no_weapon"
+$declaresequence "layer_crouch_run_no_weapon"
+$declaresequence "walk_all_Moderate"
+
+//$declareanimation "a_WalkS"
+//$declareanimation "a_WalkSE"
+//$declareanimation "a_WalkE"
+//$declareanimation "a_WalkNE"
+//$declareanimation "a_WalkN"
+//$declareanimation "a_WalkNW"
+//$declareanimation "a_WalkW"
+//$declareanimation "a_WalkSW"
+
+$declaresequence "walk_all"
+
+//$declareanimation "a_RunS"
+//$declareanimation "a_RunSE"
+//$declareanimation "a_RunE"
+//$declareanimation "a_RunNE"
+//$declareanimation "a_RunN"
+//$declareanimation "a_RunNW"
+//$declareanimation "a_RunW"
+//$declareanimation "a_RunSW"
+
+$declaresequence "run_all"
+$declaresequence "sprint_all"
+$declaresequence "Crouch_walk_all"
+$declaresequence "crouch_run_all_delta"
+$declaresequence "crouchRUNALL1"
+$declaresequence "Stand_to_crouch"
+$declaresequence "Crouch_to_stand"
+$declaresequence "Open_door_away"
+$declaresequence "Open_door_towards_right"
+$declaresequence "Open_door_towards_left"
+$declaresequence "turnleft"
+$declaresequence "turnright"
+$declaresequence "gesture_turn_left_45default"
+$declaresequence "gesture_turn_left_45inDelta"
+$declaresequence "gesture_turn_left_45outDelta"
+$declaresequence "gesture_turn_left_45"
+$declaresequence "gesture_turn_left_90default"
+$declaresequence "gesture_turn_left_90inDelta"
+$declaresequence "gesture_turn_left_90outDelta"
+$declaresequence "gesture_turn_left_90"
+$declaresequence "gesture_turn_left_180default"
+$declaresequence "gesture_turn_left_180inDelta"
+$declaresequence "gesture_turn_left_180outDelta"
+$declaresequence "gesture_turn_left_180"
+$declaresequence "gesture_turn_right_45default"
+$declaresequence "gesture_turn_right_45inDelta"
+$declaresequence "gesture_turn_right_45outDelta"
+$declaresequence "gesture_turn_right_45"
+$declaresequence "gesture_turn_right_90default"
+$declaresequence "gesture_turn_right_90inDelta"
+$declaresequence "gesture_turn_right_90outDelta"
+$declaresequence "gesture_turn_right_90"
+$declaresequence "gesture_turn_right_180default"
+$declaresequence "gesture_turn_right_180inDelta"
+$declaresequence "gesture_turn_right_180outDelta"
+$declaresequence "gesture_turn_right_180"
+$declaresequence "gesture_turn_left_45_flatdefault"
+$declaresequence "gesture_turn_left_45_flatinDelta"
+$declaresequence "gesture_turn_left_45_flatoutDelta"
+$declaresequence "gesture_turn_left_45_flat"
+$declaresequence "gesture_turn_left_90_flatdefault"
+$declaresequence "gesture_turn_left_90_flatinDelta"
+$declaresequence "gesture_turn_left_90_flatoutDelta"
+$declaresequence "gesture_turn_left_90_flat"
+$declaresequence "gesture_turn_left_180_flatdefault"
+$declaresequence "gesture_turn_left_180_flatinDelta"
+$declaresequence "gesture_turn_left_180_flatoutDelta"
+$declaresequence "gesture_turn_left_180_flat"
+$declaresequence "gesture_turn_right_45_flatdefault"
+$declaresequence "gesture_turn_right_45_flatinDelta"
+$declaresequence "gesture_turn_right_45_flatoutDelta"
+$declaresequence "gesture_turn_right_45_flat"
+$declaresequence "gesture_turn_right_90_flatdefault"
+$declaresequence "gesture_turn_right_90_flatinDelta"
+$declaresequence "gesture_turn_right_90_flatoutDelta"
+$declaresequence "gesture_turn_right_90_flat"
+$declaresequence "gesture_turn_right_180_flatdefault"
+$declaresequence "gesture_turn_right_180_flatinDelta"
+$declaresequence "gesture_turn_right_180_flatoutDelta"
+$declaresequence "gesture_turn_right_180_flat"
+$declaresequence "Startle_behind"
+$declaresequence "photo_react_blind"
+$declaresequence "photo_react_startle"
+$declaresequence "ThrowItem"
+$declaresequence "Heal"
+$declaresequence "Wave"
+$declaresequence "Wave_close"
+$declaresequence "DuckUnder"
+$declaresequence "crouchidlehide"
+$declaresequence "standtocrouchhide"
+$declaresequence "crouchhidetostand"
+$declaresequence "scaredidle"
+$declaresequence "preSkewer"
+$declaresequence "Fear_Reaction"
+$declaresequence "Fear_Reaction_Idle"
+$declaresequence "cower"
+$declaresequence "cower_Idle"
+$declaresequence "layer_run_protected"
+$declaresequence "run_protected_all"
+$declaresequence "run_all_panicked"
+$declaresequence "layer_crouchwalk_panicked"
+$declaresequence "walk_panicked_all"
+$declaresequence "crouchIdle_panicked4"
+$declaresequence "layer_luggage_walk"
+$declaresequence "luggage_walk_all"
+$declaresequence "layer_pace"
+$declaresequence "pace_all"
+$declaresequence "layer_walk_midspeed"
+$declaresequence "plaza_walk_all"
+$declaresequence "deathpose_front"
+$declaresequence "deathpose_back"
+$declaresequence "deathpose_right"
+$declaresequence "deathpose_left"
+//$declaresequence "hunter_cit_throw_ground"
+//$declaresequence "hunter_cit_tackle_di"
+//$declaresequence "hunter_cit_stomp"
+//$declaresequence "hunter_cit_tackle"
+//$declaresequence "hunter_cit_tackle_postI"
+$declaresequence "cit_door"
+$declaresequence "injured1"
+$declaresequence "injured3"
+$declaresequence "injured1preidle"
+$declaresequence "injured1postidle"
+$declaresequence "injured4"
+$declaresequence "injured4_standing"
+$declaresequence "injured4_sit"
+$declaresequence "injured4_sitpostidle"
+$declaresequence "citizen2"
+$declaresequence "citizen2_stand"
+$declaresequence "citizen4_preaction"
+$declaresequence "citizen4_rise"
+$declaresequence "citizen4_valve"
+$declaresequence "gman_freeze_pose_shooting"
+$declaresequence "gman_freeze_pose_shot"
+$declaresequence "welder_idle"
+$declaresequence "welder_loop"
+$declaresequence "ss_alyx_move_pre"
+$declaresequence "ss_alyx_move"
+$declaresequence "ss_alyx_move_post"
+$declaresequence "ss_advisor"
+$declaresequence "silo_sit"
+$declaresequence "Idle_Angry_SMG1"
+
+// 
+// New shotgun animations based off of the Alyx/female animations.
+// 
+// We have to put the existing male animation over the female ones as a weighted layer
+// so they don't look like they're sucking their arms into their hips.
+// 
+$weightlist "ShotgunLayerWeightlist" {
+	"ValveBiped.Bip01_Pelvis" 0.5
+	//"ValveBiped.Bip01_L_Clavicle" 0
+	//"ValveBiped.Bip01_R_Clavicle" 0
+	//"ValveBiped.Bip01_L_UpperArm" 0
+	//"ValveBiped.Bip01_R_UpperArm" 0
+	//"ValveBiped.Bip01_L_Forearm" 0
+	//"ValveBiped.Bip01_R_Forearm" 0
+	//"ValveBiped.Bip01_L_Hand" 0
+	//"ValveBiped.Bip01_R_Hand" 0
+}
+
+$animation "a_shotgun_layer" "male_shared_anims\shoot_shotgun.smd" frame 0 0
+$sequence "shotgun_layer" "a_shotgun_layer" {
+	weightlist "ShotgunLayerWeightlist"
+	//delta
+	hidden
+}
+
+// 
+// New shotgun animation
+// (no longer using this)
+// 
+$declaresequence "Idle_Angry_Shotgun"
+//$animation "a_Idle_Angry_Shotgun" "female_shared_anims\shoot_shotgun.smd" frame 0 0
+//$sequence "Idle_Angry_Shotgun" a_Idle_Angry_Shotgun {
+//	activity "ACT_IDLE_SHOTGUN_AGITATED" 1
+//	numframes 30
+//	addlayer "shotgun_layer"
+//	node "standing"
+//	loop
+//	cmdlist lockfeetandlefthand
+//}
+
+$declaresequence "Idle_SMG1_Aim"
+$declaresequence "Idle_SMG1_Aim_Alert"
+$declaresequence "idle_angry_Ar2"
+$declaresequence "idle_ar2_aim"
+$declaresequence "shoot_smg1"
+$declaresequence "shoot_ar2"
+$declaresequence "shoot_ar2_alt"
+
+// 
+// New shotgun animation
+// 
+//$declaresequence "shoot_shotgun"
+$sequence "shoot_shotgun" {
+	"female_shared_anims\shoot_shotgun.smd"
+	activity "ACT_RANGE_ATTACK_SHOTGUN" 1
+	{ event AE_CL_PLAYSOUND 11 "Weapon_Alyx_Shotgun.Cock" }
+	addlayer "shotgun_layer"
+	addlayer "layer_Aim_all"
+	node "shooting"
+	cmdlist lockfeetandlefthand
+}
+
+$declaresequence "shoot_rpg"
+$declaresequence "reload_smg1"
+
+// 
+// New shotgun animation
+// 
+//$declaresequence "reload_shotgun1"
+$sequence "reload_shotgun1" {
+	"male_shared_anims\reload_shotgun1.smd"
+	activity "ACT_RELOAD_SHOTGUN" 1
+	{ event 3015 29 "" }
+	{ event AE_CL_PLAYSOUND 57 "Weapon_Shotgun.Special1" }
+	//blendlayer "Idle_Angry_Shotgun" 0 0 0 10 spline
+	//blendlayer "Idle_Angry_Shotgun" 59 75 75 75 spline
+	node "standing"
+	ikrule "lfoot" footstep
+	ikrule "rfoot" footstep
+	ikrule "rhand" release
+	ikrule "lhand" release
+}
+
+// 
+// Improved reload_ar2 that blends straight into aiming
+// 
+//$declaresequence "reload_ar2"
+$sequence "reload_ar2" {
+	"male_shared_anims\reload_ar2.smd"
+	activity "ACT_RELOAD_AR2" 1
+	{ event 3015 10 "" }
+	blendlayer "layer_Aim_AR2_all" 32 45 49 49 spline
+	node "shooting"
+	fps 25
+	cmdlist lockfeet
+}
+
+$declaresequence "gesture_reload_smg1spine"
+$declaresequence "gesture_reload_smg1arms"
+$declaresequence "gesture_reload_smg1"
+$declaresequence "gesture_reload_ar2spine"
+$declaresequence "gesture_reload_ar2arms"
+$declaresequence "gesture_reload_ar2"
+
+// 
+// This doesn't replace anything, but it fits in this spot.
+// 
+$makeweapongesture "gesture_reload_shotgun" "male_shared_anims\reload_shotgun1.smd" 10 60 75
+$append "gesture_reload_shotgun" {
+	activity "ACT_GESTURE_RELOAD_SHOTGUN" 1
+	{ event 3015 29 "" }
+	{ event AE_CL_PLAYSOUND 57 "Weapon_Shotgun.Special1" }
+}
+
+$declaresequence "gesture_shoot_ar2"
+$declaresequence "gesture_shoot_smg1"
+$declaresequence "gesture_shoot_shotgun"
+$declaresequence "gesture_shoot_rpg"
+$declaresequence "IdleAngryToShootDelta"
+$declaresequence "IdleAngryToShoot"
+$declaresequence "ShootToIdleAngryDelta"
+$declaresequence "ShootToIdleAngry"
+$declaresequence "IdleAngry_AR2_ToShootDelta"
+$declaresequence "IdleAngry_AR2_ToShoot"
+$declaresequence "Shoot_AR2_ToIdleAngryDelta"
+$declaresequence "Shoot_AR2_ToIdleAngry"
+$declaresequence "CrouchDToShoot"
+$declaresequence "ShootToCrouchD"
+$declaresequence "CrouchDToStand"
+$declaresequence "StandToCrouchD"
+$declaresequence "CrouchDToCrouchShoot"
+$declaresequence "CrouchShootToCrouchD"
+$declaresequence "Cover_R"
+$declaresequence "Cover_L"
+$declaresequence "CoverLow_R"
+$declaresequence "CoverLow_L"
+$declaresequence "Cover_LToShootSMG1"
+$declaresequence "Cover_RToShootSMG1"
+$declaresequence "CoverLow_LToShootSMG1"
+$declaresequence "CoverLow_RToShootSMG1"
+$declaresequence "ShootSMG1ToCover_L"
+$declaresequence "ShootSMG1ToCover_R"
+$declaresequence "ShootSMG1ToCoverLow_L"
+$declaresequence "ShootSMG1ToCoverLow_R"
+$declaresequence "crouch_shoot_smg1"
+$declaresequence "crouch_aim_smg1"
+$declaresequence "crouch_reload_smg1"
+
+$sequence "crouch_shoot_shotgun" {
+	"male_shared_anims\crouch_aim_smg1.smd"
+	activity "ACT_RANGE_ATTACK_SHOTGUN_LOW" 1
+	numframes 45
+	addlayer "gesture_shoot_shotgun"
+	addlayer "layer_Aim_all"
+	node "crouchShooting"
+	loop
+	ikrule "lfoot" footstep
+	ikrule "rfoot" footstep
+	ikrule "lhand" touch "ValveBiped.Bip01_R_Hand"
+	ikrule "rhand" release
+}
+
+$sequence "crouch_reload_shotgun" {
+	"male_shared_anims\Crouch_idleD.smd"
+	activity "ACT_RELOAD_SHOTGUN_LOW" -1
+	numframes 75
+	addlayer "gesture_reload_shotgun"
+	node "crouching"
+	loop
+	ikrule "lfoot" footstep
+	ikrule "rfoot" footstep
+	ikrule "lhand" touch "ValveBiped.Bip01_R_Hand"
+	ikrule "rhand" release
+}
+
+$declaresequence "shootp1"
+$declaresequence "gesture_shootp1"
+$declaresequence "reload_pistol"
+$declaresequence "crouch_shoot_pistol"
+$declaresequence "crouch_reload_pistol"
+$declaresequence "throw1"
+$declaresequence "swing"
+$declaresequence "idle_angry_melee"
+$declaresequence "MeleeAttack01"
+$declaresequence "pickup"
+$declaresequence "gunrack"
+$declaresequence "smgdraw"
+$declaresequence "Fear_Reaction_gesturespine"
+$declaresequence "Fear_Reaction_gesturearms"
+$declaresequence "Fear_Reaction_gesture"
+$declaresequence "Wave_SMG1"
+$declaresequence "layer_Aim_all"
+$declaresequence "layer_Aim_AR2_all"
+$declaresequence "layer_Aim_Alert_all"
+$declaresequence "layer_Aim_AR2_Alert_all"
+$declaresequence "layer_runAim_all"
+$declaresequence "layer_runAim_ar2_all"
+$declaresequence "layer_walkAlertAim_all"
+$declaresequence "layer_walkAlertAim_AR2_all"
+$declaresequence "layer_walk_aiming"
+$declaresequence "layer_walk_holding"
+$declaresequence "layer_run_aiming"
+$declaresequence "layer_crouch_run_aiming"
+$declaresequence "layer_crouch_walk_aiming"
+$declaresequence "layer_walk_AR2_aiming"
+$declaresequence "layer_walk_AR2_holding"
+$declaresequence "layer_run_AR2_aiming"
+$declaresequence "layer_walk_alert_holding"
+$declaresequence "walkAlertHOLDALL1"
+$declaresequence "layer_walk_alert_aiming"
+$declaresequence "walkAlertAimALL1"
+$declaresequence "layer_walk_alert_holding_AR2"
+$declaresequence "walkAlertHOLD_AR2_ALL1"
+$declaresequence "layer_walk_alert_aiming_AR2"
+$declaresequence "walkAlertAim_AR2_ALL1"
+$declaresequence "layer_run_alert_holding"
+$declaresequence "run_alert_holding_all"
+$declaresequence "layer_run_alert_holding_AR2"
+$declaresequence "run_alert_holding_AR2_all"
+$declaresequence "layer_run_alert_aiming"
+$declaresequence "run_alert_aiming_all"
+$declaresequence "layer_run_alert_aiming_ar2"
+$declaresequence "run_alert_aiming_ar2_all"
+$declaresequence "walkAIMALL1"
+$declaresequence "walkHOLDALL1"
+$declaresequence "walkAIMALL1_ar2"
+$declaresequence "walkHOLDALL1_ar2"
+$declaresequence "layer_run_holding"
+$declaresequence "run_holding_all"
+$declaresequence "run_aiming_all"
+$declaresequence "layer_run_holding_ar2"
+$declaresequence "run_holding_ar2_all"
+$declaresequence "run_aiming_ar2_all"
+$declaresequence "layer_crouch_run_holding"
+$declaresequence "crouchRUNHOLDINGALL1"
+$declaresequence "crouchRUNAIMINGALL1"
+$declaresequence "layer_crouch_walk_holding"
+$declaresequence "Crouch_walk_holding_all"
+$declaresequence "Crouch_walk_aiming_all"
+$declaresequence "Man_Gun_Aim_all"
+$declaresequence "Man_Gun"
+$declaresequence "Idle_SMG1_Relaxed"
+$declaresequence "layer_walk_holding_SMG1_Relaxed"
+$declaresequence "walk_SMG1_Relaxed_all"
+$declaresequence "layer_run_holding_SMG1_Relaxed"
+$declaresequence "run_SMG1_Relaxed_all"
+$declaresequence "Idle_AR2_Relaxed"
+$declaresequence "layer_walk_holding_AR2_Relaxed"
+$declaresequence "walk_AR2_Relaxed_all"
+$declaresequence "layer_run_holding_AR2_Relaxed"
+$declaresequence "run_AR2_Relaxed_all"
+$declaresequence "Idle_RPG_Relaxed"
+$declaresequence "Idle_Angry_RPG"
+$declaresequence "Idle_RPG_Aim"
+$declaresequence "Crouch_Idle_RPG"
+$declaresequence "StandToShootRPGfake"
+$declaresequence "ShootToStandRPGfake"
+$declaresequence "CrouchToShootRPGfake"
+$declaresequence "ShootToCrouchRPGfake"
+$declaresequence "layer_walk_holding_RPG"
+$declaresequence "walk_holding_RPG_all"
+$declaresequence "layer_run_holding_RPG"
+$declaresequence "run_holding_RPG_all"
+$declaresequence "layer_crouch_walk_holding_RPG"
+$declaresequence "Crouch_walk_holding_RPG_all"
+$declaresequence "layer_crouch_run_holding_RPG"
+$declaresequence "crouch_run_holding_RPG_all"
+$declaresequence "layer_Aim_RPG_all"
+$declaresequence "layer_walk_holding_RPG_Relaxed"
+$declaresequence "walk_RPG_Relaxed_all"
+$declaresequence "layer_run_holding_RPG_Relaxed"
+$declaresequence "run_RPG_Relaxed_all"
+$declaresequence "layer_walk_holding_package"
+$declaresequence "walk_holding_package_all"
+$declaresequence "idle_noise"
+$declaresequence "Idle_Relaxed_SMG1_1"
+$declaresequence "Idle_Relaxed_SMG1_2"
+$declaresequence "Idle_Relaxed_SMG1_3"
+$declaresequence "Idle_Relaxed_SMG1_4"
+$declaresequence "Idle_Relaxed_SMG1_5"
+$declaresequence "Idle_Relaxed_SMG1_6"
+$declaresequence "Idle_Relaxed_SMG1_7"
+$declaresequence "Idle_Relaxed_SMG1_8"
+$declaresequence "Idle_Relaxed_SMG1_9"
+$declaresequence "Idle_Relaxed_AR2_1"
+$declaresequence "Idle_Relaxed_AR2_2"
+$declaresequence "Idle_Relaxed_AR2_3"
+$declaresequence "Idle_Relaxed_AR2_4"
+$declaresequence "Idle_Relaxed_AR2_5"
+$declaresequence "Idle_Relaxed_AR2_6"
+$declaresequence "Idle_Relaxed_AR2_7"
+$declaresequence "Idle_Relaxed_AR2_8"
+$declaresequence "Idle_Relaxed_AR2_9"
+$declaresequence "Idle_Alert_SMG1_1"
+$declaresequence "Idle_Alert_SMG1_2"
+$declaresequence "Idle_Alert_SMG1_3"
+$declaresequence "Idle_Alert_SMG1_4"
+$declaresequence "Idle_Alert_SMG1_5"
+$declaresequence "Idle_Alert_SMG1_6"
+$declaresequence "Idle_Alert_SMG1_7"
+$declaresequence "Idle_Alert_SMG1_8"
+$declaresequence "Idle_Alert_SMG1_9"
+$declaresequence "Idle_Alert_AR2_1"
+$declaresequence "Idle_Alert_AR2_2"
+$declaresequence "Idle_Alert_AR2_3"
+$declaresequence "Idle_Alert_AR2_4"
+$declaresequence "Idle_Alert_AR2_5"
+$declaresequence "Idle_Alert_AR2_6"
+$declaresequence "Idle_Alert_AR2_7"
+$declaresequence "Idle_Alert_AR2_8"
+$declaresequence "Idle_Alert_AR2_9"
+$declaresequence "Idle_Relaxed_Shotgun_1"
+$declaresequence "Idle_Relaxed_Shotgun_2"
+$declaresequence "Idle_Relaxed_Shotgun_3"
+$declaresequence "Idle_Relaxed_Shotgun_4"
+$declaresequence "Idle_Relaxed_Shotgun_5"
+$declaresequence "Idle_Relaxed_Shotgun_6"
+$declaresequence "Idle_Relaxed_Shotgun_7"
+$declaresequence "Idle_Relaxed_Shotgun_8"
+$declaresequence "Idle_Relaxed_Shotgun_9"
+$declaresequence "Idle_Alert_Shotgun_1"
+$declaresequence "Idle_Alert_Shotgun_2"
+$declaresequence "Idle_Alert_Shotgun_3"
+$declaresequence "Idle_Alert_Shotgun_4"
+$declaresequence "Idle_Alert_Shotgun_5"
+$declaresequence "Idle_Alert_Shotgun_6"
+$declaresequence "Idle_Alert_Shotgun_7"
+$declaresequence "Idle_Alert_Shotgun_8"
+$declaresequence "Idle_Alert_Shotgun_9"
+$declaresequence "jump_holding_jump"
+$declaresequence "jump_holding_glide"
+$declaresequence "jump_holding_land"
+$declaresequence "Seafloor_Poses"
+$declaresequence "Idle_to_Lean_Left"
+$declaresequence "Lean_Left"
+$declaresequence "Lean_Left_to_Idle"
+$declaresequence "Idle_to_Lean_Back"
+$declaresequence "Lean_Back"
+$declaresequence "Lean_Back_to_Idle"
+$declaresequence "Idle_to_Sit_Ground"
+$declaresequence "Sit_Ground"
+$declaresequence "Sit_Ground_to_Idle"
+$declaresequence "Idle_to_Sit_Chair"
+$declaresequence "Sit_Chair"
+$declaresequence "Sit_Chair_to_Idle"
+$declaresequence "body_rot_z"
+$declaresequence "spine_rot_z"
+$declaresequence "neck_trans_x"
+$declaresequence "head_rot_z"
+$declaresequence "head_rot_y"
+$declaresequence "head_rot_x"

@@ -1,0 +1,161 @@
+
+//$include "hl2mp_ported_anims/standardikchains.qci"
+
+
+
+
+// 
+// Make sure to include BaseDI.qci before using!
+// 
+	
+
+//$pushd "AlyxDIAnimations"
+
+$MakeDynamicInteraction alyx_zombie_fight1 "AlyxDIAnimations/alyx_zombie_fight1" $Blend_SMD_Default$ 12 45 75
+$append alyx_zombie_fight1 {
+	activity "ACT_DI_ALYX_ZOMBIE_MELEE" 1
+	node $Blend_Node_Default$
+	{ event AE_NPC_RESPONSE 8 "DI_Alyx01_Struggle" }
+	//{ event AE_NPC_RESPONSE 38 "DI_Alyx01_Struggle" }
+}
+
+$MakeDynamicInteraction alyx_zombie_fight2 "AlyxDIAnimations/alyx_zombie_fight2" $Blend_SMD_Pistol$ 12 60 86
+$append alyx_zombie_fight2 {
+	activity "ACT_DI_ALYX_ZOMBIE_SHOTGUN26" 1
+	node $Blend_Node_Pistol$
+	{ event AE_CL_PLAYSOUND 38 "Flesh.Break" }
+	{ event AE_NPC_RESPONSE 32 "DI_Alyx01_KarateQuiet" }
+	{ event AE_NPC_WEAPON_FIRE 73 "0" }
+	{ event AE_NPC_WEAPON_SET_ACTIVITY 73 "ACT_RANGE_ATTACK1" }
+	{ event AE_NPC_WEAPON_SET_ACTIVITY 74 "ACT_RANGE_ATTACK1" }
+	ikrule rhand touch "valvebiped.Bip01_R_Hand" usesource
+	ikrule lhand touch "valvebiped.Bip01_L_Hand" usesource
+}
+
+$MakeDynamicInteraction alyx_zombie_kick1 "AlyxDIAnimations/alyx_zombie_kick1" $Blend_SMD_Default$ 12 21 50
+$append alyx_zombie_kick1 {
+	activity "ACT_DI_ALYX_ZOMBIE_MELEE" 1
+	node $Blend_Node_Default$
+	{ event AE_NPC_RESPONSE 15 "DI_Alyx01_Karate" }
+	{ event AE_CL_PLAYSOUND 18 "BaseCombatCharacter.FleshBreak" }
+	{ event AE_CL_PLAYSOUND 20 "BaseCombatCharacter.CorpseGib" }
+	ikrule rhand touch "valvebiped.Bip01_R_Hand" usesource
+	ikrule lhand touch "valvebiped.Bip01_L_Hand" usesource
+}
+
+$MakeDynamicInteraction alyx_zombie_shotgun_fight1 "AlyxDIAnimations/alyx_zombie_shotgun_fight1" $Blend_SMD_Rifle$ 12 45 64
+$append alyx_zombie_shotgun_fight1 {
+	activity "ACT_DI_ALYX_ZOMBIE_SHOTGUN64" 1
+	node $Blend_Node_Rifle$
+	{ event AE_NPC_RESPONSE 16 "DI_Alyx01_KarateQuiet" }
+	{ event AE_CL_PLAYSOUND 23 "BaseCombatCharacter.FleshBreak" }
+	{ event AE_CL_PLAYSOUND 23 "BaseCombatCharacter.CorpseGib" }
+	{ event AE_NPC_HURT_INTERACTION_PARTNER 48 "THEM 200" }
+}
+
+$MakeDynamicInteraction alyx_zombie_shotgun_fight2 "AlyxDIAnimations/alyx_zombie_shotgun_fight2" $Blend_SMD_Rifle$ 12 45 64
+$append alyx_zombie_shotgun_fight2 {
+	activity "ACT_DI_ALYX_ZOMBIE_SHOTGUN64" 2
+	node $Blend_Node_Rifle$
+	{ event AE_NPC_RESPONSE 16 "DI_Alyx01_KarateQuiet" }
+	{ event AE_CL_PLAYSOUND 23 "BaseCombatCharacter.FleshBreak" }
+	{ event AE_CL_PLAYSOUND 23 "BaseCombatCharacter.CorpseGib" }
+	{ event AE_NPC_HURT_INTERACTION_PARTNER 48 "THEM 200" }
+}
+
+$MakeDynamicInteraction alyx_zombie_shotgun_fight3 "AlyxDIAnimations/alyx_zombie_shotgun_fight3" $Blend_SMD_Rifle$ 12 25 48
+$append alyx_zombie_shotgun_fight3 {
+	activity "ACT_DI_ALYX_ZOMBIE_SHOTGUN64" 1
+	node $Blend_Node_Rifle$
+	{ event AE_NPC_RESPONSE 10 "DI_Alyx01_Karate" }
+	{ event AE_CL_PLAYSOUND 17 "BaseCombatCharacter.FleshBreak" }
+	{ event AE_CL_PLAYSOUND 17 "BaseCombatCharacter.CorpseGib" }
+}
+
+$definemacro DIKV_Alyx \\
+	"alyx_v_zombie_pistol_180deg_64" \\
+	{ \\
+		"mapbase" "1" \\
+		"trigger" "auto_in_combat" \\
+		"origin_relative" "64 0 0" \\
+		"angles_relative" "0 180 0" \\
+		"sequence" "alyx_zombie_fight2" \\
+		"delay" "20.0" \\
+		"needs_weapon" "ME" \\
+		"weapon_mine" "WEPCLASS_HANDGUN" \\
+	} \\
+	"alyx_v_zombie_rifle_180deg_64" \\
+	{ \\ 
+		"mapbase" "1" \\
+		"trigger" "auto_in_combat" \\
+		"origin_relative" "64 0 0" \\
+		"angles_relative" "0 180 0" \\
+		"activity" "ACT_DI_ALYX_ZOMBIE_SHOTGUN64" \\
+		"delay" "20.0" \\ 
+		"needs_weapon" "ME" \\
+		"weapon_mine" "!=WEPCLASS_HANDGUN" \\
+	} \\
+	"alyx_v_zombie_180deg_64" \\
+	{ \\
+		"mapbase" "1" \\
+		"trigger" "auto_in_combat" \\
+		"origin_relative" "64 0 0" \\
+		"angles_relative" "0 180 0" \\
+		"activity" "ACT_DI_ALYX_ZOMBIE_MELEE" \\
+		"delay" "10.0" \\
+	} \\
+
+
+//$KeyValues
+//{
+//	dynamic_interactions 
+//	{
+//		// Hijacking Alyx's DI activities...
+//		// 
+//		// There are some new features related to Mapbase for dynamic interactions, believe it or not.
+//		// For example, they now use response criteria. This is currently only used to detect the NPC's classname.
+//		// See source code for more information.
+//		// 
+//		// These must be the same name as Alyx's DI so Alyx knows not to perform her interactions on citizens.
+//		// (they're overwritten by Alyx's model)
+//		"alyx_v_zombie_pistol_180deg_64" 
+//		{
+//			//"classname" "!=npc_alyx"
+//			"mapbase" "1"
+//			"trigger" "auto_in_combat"
+//			"origin_relative" "64 0 0"
+//			"angles_relative" "0 180 0"
+//			"sequence" "alyx_zombie_fight2" //"activity" "ACT_DI_ALYX_ZOMBIE_SHOTGUN26"
+//			"delay" "20.0"
+//			"needs_weapon" "ME"
+//			"weapon_mine" "WEPCLASS_HANDGUN" // "WEPCLASS" is also unique to Mapbase. Replace with weapon_pistol or weapon_alyxgun in other mods
+//		}
+//		"alyx_v_zombie_rifle_180deg_64" 
+//		{
+//			//"classname" "!=npc_alyx"
+//			"mapbase" "1"
+//			"trigger" "auto_in_combat"
+//			"origin_relative" "64 0 0"
+//			"angles_relative" "0 180 0"
+//			"activity" "ACT_DI_ALYX_ZOMBIE_SHOTGUN64"
+//			"delay" "20.0"
+//			"needs_weapon" "ME"
+//			"weapon_mine" "!=WEPCLASS_HANDGUN"
+//		}
+//		"alyx_v_zombie_180deg_64" 
+//		{
+//			//"classname" "!=npc_alyx"
+//			"mapbase" "1"
+//			"trigger" "auto_in_combat"
+//			"origin_relative" "64 0 0"
+//			"angles_relative" "0 180 0"
+//			"activity" "ACT_DI_ALYX_ZOMBIE_MELEE"
+//			"delay" "10.0"
+//			//"needs_weapon" "ME"
+//			
+//			// I didn't think Grigori would be the kind of person who would struggle like this, or kick zombies in the face,
+//			// but he would definitely aim for the head, and I also realized I could make him preach while he's doing it...
+//			//"weapon_mine" "!=weapon_annabelle"
+//		}
+//	}
+//}

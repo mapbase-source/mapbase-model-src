@@ -1,0 +1,92 @@
+
+// Receiving end of the hunters' dynamic interactions.
+
+// 
+// Make sure to include BaseDI.qci before using!
+// 
+
+
+// 
+//	{ event 1004 5 "npc_citizen.whoops01" }
+//	{ event 1004 19 "npc_citizen.pain03" }
+//	{ event 1004 45 "npc_citizen.pain08" }
+// 
+$MakeDynamicInteraction "hunter_cit_throw_ground" "male_shared_anims\hunter_cit_throw_ground.smd" $Blend_SMD_Rifle$ 9 78 78
+$append "hunter_cit_throw_ground" {
+	activity "ACT_DI_HUNTER_MELEE" 1
+	{ event 1004 46 "flesh.break" }
+	{ event AE_NPC_RESPONSE 5 "DI_Hunter01_Panic" }
+	{ event AE_NPC_RESPONSE 19 "DI_Hunter01_Pain1" }
+	{ event AE_NPC_RESPONSE 45 "DI_Hunter01_Pain2" }
+}
+
+// 
+//	{ event 1004 2 "npc_citizen.uhoh" }
+//	{ event 1004 16 "npc_citizen.pain03" }
+//	{ event 1004 41 "npc_citizen.pain08" }
+// 
+$MakeDynamicInteraction "hunter_cit_tackle_di" "male_shared_anims\hunter_cit_tackle_di.smd" $Blend_SMD_Rifle$ 9 115 115
+$append "hunter_cit_tackle_di" {
+	activity "ACT_DI_HUNTER_TACKLE" 1
+	{ event 1004 73 "flesh.break" }
+	{ event AE_NPC_RAGDOLL 74 "" }
+	{ event AE_NPC_RESPONSE 2 "DI_Hunter01_Panic" }
+	{ event AE_NPC_RESPONSE 16 "DI_Hunter01_Pain1" }
+	{ event AE_NPC_RESPONSE 41 "DI_Hunter01_Pain2" }
+}
+
+// 
+//	{ event 1004 21 "npc_citizen.pain03" }
+//	{ event 1004 57 "npc_citizen.pain08" }
+// 
+$MakeDynamicInteraction "hunter_cit_stomp" "female_shared_anims\hunter_cit_stomp.smd" $Blend_SMD_Rifle$ 22 91 91
+$append "hunter_cit_stomp" {
+	activity "ACT_DI_HUNTER_MELEE" 1
+	{ event 1004 59 "flesh.break" }
+	{ event AE_NPC_RESPONSE 21 "DI_Hunter01_Pain1" }
+	{ event AE_NPC_RESPONSE 57 "DI_Hunter01_Pain2" }
+}
+
+// 
+//	{ event 1004 2 "npc_citizen.uhoh" }
+//	{ event 1004 16 "npc_citizen.pain03" }
+//	{ event 1004 41 "npc_citizen.pain08" }
+// 
+$MakeDynamicInteraction "hunter_cit_tackle" "male_shared_anims\hunter_cit_tackle.smd" $Blend_SMD_Rifle$ 9 115 115
+$append "hunter_cit_tackle" {
+	{ event 1004 73 "flesh.break" }
+	{ event AE_NPC_RAGDOLL 87 "" }
+	{ event AE_NPC_RESPONSE 2 "DI_Hunter01_Panic" }
+	{ event AE_NPC_RESPONSE 16 "DI_Hunter01_Pain1" }
+	{ event AE_NPC_RESPONSE 41 "DI_Hunter01_Pain2" }
+}
+
+$sequence "hunter_cit_tackle_postI" {
+	"male_shared_anims\hunter_cit_tackle_postI.smd"
+	loop
+	cmdlist lockfeet
+}
+
+
+
+
+$definemacro HunterRecvDI_AppendCitizenPain \\
+$append "hunter_cit_throw_ground" { \\
+	{ event 1004 5 "npc_citizen.whoops01" } \\
+	{ event 1004 19 "npc_citizen.pain03" } \\
+	{ event 1004 45 "npc_citizen.pain08" } \\
+} \\
+$append "hunter_cit_tackle_di" { \\
+	{ event 1004 2 "npc_citizen.uhoh" } \\
+	{ event 1004 16 "npc_citizen.pain03" } \\
+	{ event 1004 41 "npc_citizen.pain08" } \\
+} \\
+$append "hunter_cit_stomp" { \\
+	{ event 1004 21 "npc_citizen.pain03" } \\
+	{ event 1004 57 "npc_citizen.pain08" } \\
+} \\
+$append "hunter_cit_tackle" { \\
+	{ event 1004 2 "npc_citizen.uhoh" } \\
+	{ event 1004 16 "npc_citizen.pain03" } \\
+	{ event 1004 41 "npc_citizen.pain08" } \\
+} \\

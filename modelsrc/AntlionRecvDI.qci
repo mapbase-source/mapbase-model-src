@@ -1,0 +1,51 @@
+
+// Receiving end of the antlions' dynamic interactions.
+
+// 
+// Make sure to include BaseDI.qci before using!
+// 
+
+
+$MakeDynamicInteraction antlion_soldier_DI_01 "combine_soldier_anims_anims/antlion_soldier_DI_01" $Blend_SMD_Rifle$ 17 99 99
+$append antlion_soldier_DI_01_layer {
+	// I don't know why I have to do this, but I do
+	rotateto 180
+}
+$append antlion_soldier_DI_01 {
+	{ event AE_NPC_WEAPON_DROP 17 "" }
+	{ event AE_NPC_HURT_INTERACTION_PARTNER 55 "ME 100" }
+}
+
+$MakeDynamicInteraction antlion_soldier_DI_02 "combine_soldier_anims_anims/antlion_soldier_DI_02" $Blend_SMD_Rifle$ 24 80 80
+$append antlion_soldier_DI_02_layer {
+	// I don't know why I have to do this, but I do
+	rotateto 0
+}
+$append antlion_soldier_DI_02 {
+	{ event AE_NPC_WEAPON_DROP 24 "" }
+	{ event AE_NPC_HURT_INTERACTION_PARTNER 44 "ME 100" }
+	//{ event AE_CL_PLAYSOUND 40 "NPC_CombineS.DissolveScream" }
+}
+
+//$pushd "combine_soldier_anims_anims"
+//
+//$Sequence "antlion_soldier_DI_01" {
+//	"antlion_soldier_DI_01.smd"
+//	{ event AE_NPC_WEAPON_DROP 17 "" }
+//	{ event AE_NPC_HURT_INTERACTION_PARTNER 55 "ME 100" }
+//	rotateto 90
+//	fadein 0.25
+//	fadeout 0.25
+//}
+//
+//$Sequence "antlion_soldier_DI_02" {
+//	"antlion_soldier_DI_02.smd"
+//	{ event AE_NPC_WEAPON_DROP 24 "" }
+//	{ event AE_NPC_HURT_INTERACTION_PARTNER 44 "ME 100" }
+//	//{ event AE_CL_PLAYSOUND 40 "NPC_CombineS.DissolveScream" }
+//	rotateto 90
+//	fadein 0.25
+//	fadeout 0.25
+//}
+//
+//$popd

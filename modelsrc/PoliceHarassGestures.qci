@@ -1,0 +1,137 @@
+// ================================================================
+// 
+// Harass Gestures
+// 
+// Adds gesture versions of the CP harass animations.
+// 
+// ================================================================
+$weightlist "HarassWeightlist" {
+	"ValveBiped.Bip01_Pelvis" 0
+	"ValveBiped.Bip01_L_Clavicle" 1
+	"ValveBiped.Bip01_Spine2" 1
+	"ValveBiped.Bip01_R_Clavicle" 0.2
+	"ValveBiped.Bip01_Neck1" 0
+}
+
+$sequence "harassfront1_layer" hidden {
+	"police_animations_anims\harassfront1.smd"
+	weightlist "HarassWeightlist"
+}
+$sequence "harassfront1_gesture" {
+	"police_animations_anims\harassfront1.smd"
+	//activity "ACT_POLICE_HARASS1" 1
+	noanimation numframes 50 // 60
+	blendlayer harassfront1_layer 0 10 25 50 spline
+	//cmdlist lockfeet
+	
+	keyvalues
+	{
+		faceposer 
+		{
+			"type" "gesture"
+			 "tags" 
+			{
+				"apex" "9"
+				"accent" "16"
+				"loop" "18"
+				"end" "20"
+			}
+			"entrytag" "apex"
+			"thumbnail_frame" "16"
+		}
+	}
+}
+
+$sequence "harassfront2_layer" hidden {
+	"police_animations_anims\harassfront2.smd"
+	weightlist "HarassWeightlist"
+}
+$sequence "harassfront2_gesture" {
+	"police_animations_anims\harassfront2.smd"
+	//activity "ACT_POLICE_HARASS2" 1
+	noanimation numframes 50 // 49
+	blendlayer harassfront2_layer 0 10 40 50 spline
+	//cmdlist lockfeet
+	
+	keyvalues
+	{
+		faceposer 
+		{
+			"type" "gesture"
+			 "tags" 
+			{
+				"apex" "9"
+				"accent" "18"
+				"loop" "30"
+				"end" "38"
+			}
+			"entrytag" "apex"
+			"thumbnail_frame" "16"
+		}
+	}
+}
+// ================================================================
+// ================================================================
+$weightlist "HarassWeightlist2" {
+	"ValveBiped.Bip01_Pelvis" 0
+	"ValveBiped.Bip01_L_Clavicle" 1
+	"ValveBiped.Bip01_Spine2" 1
+	"ValveBiped.Bip01_R_Clavicle" 1
+	"ValveBiped.Bip01_Neck1" 0
+}
+
+$sequence "plazathreat1_layer" hidden {
+	"police_animations_anims\plazathreat1.smd"
+	weightlist "HarassWeightlist2"
+}
+$sequence "plazathreat1_gesture" {
+	"police_animations_anims\plazathreat1.smd"
+	noanimation numframes 160
+	blendlayer plazathreat1_layer 0 20 130 160 spline
+	//cmdlist lockfeet
+	
+	keyvalues
+	{
+		faceposer 
+		{
+			"type" "gesture"
+			 "tags" 
+			{
+				"apex" "20"
+				"accent" "60"
+				"loop" "113"
+				"end" "130"
+			}
+			"entrytag" "apex"
+			"thumbnail_frame" "26"
+		}
+	}
+}
+
+$sequence "plazathreat2_layer" hidden {
+	"police_animations_anims\plazathreat2.smd"
+	weightlist "HarassWeightlist2"
+}
+$sequence "plazathreat2_gesture" {
+	"police_animations_anims\plazathreat2.smd"
+	noanimation numframes 200
+	blendlayer plazathreat2_layer 0 20 185 200 spline
+	//cmdlist lockfeet
+	
+	keyvalues
+	{
+		faceposer 
+		{
+			"type" "gesture"
+			 "tags" 
+			{
+				"apex" "20"
+				"accent" "60"
+				"loop" "113"
+				"end" "129"
+			}
+			"entrytag" "apex"
+			"thumbnail_frame" "26"
+		}
+	}
+}

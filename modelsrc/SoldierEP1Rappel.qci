@@ -1,0 +1,232 @@
+
+
+// EP1 soldier rappel animations.
+// (Requires GenericAnimationMacros.qci)
+
+$sequence "rappel_a_preIdle" {
+	"combine_soldier_anims_anims\rappel_a_preIdle.smd"
+	loop
+	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 0 0 target 0
+	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 0 0 target 1
+	ikrule "rfoot" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 0 0 target 2
+	ikrule "lfoot" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 0 0 target 3
+}
+
+$MakeAdjustedAnimation Rappel_a "combine_soldier_anims_anims\Rappel_a.smd" $Blend_SMD_Rifle$ 0 130 140
+$append Rappel_a_layer {
+ 	walkframe 30 LX LY LZ
+	walkframe 54 LX LY LZ
+	walkframe 71 LX LY LZ
+	walkframe 90 LX LY LZ
+	walkframe 110 LX LY LZ
+	walkframe 136 LX LY LZ LZR
+	walkframe 140 LX LY LZ
+}
+$append Rappel_a {
+	align Rappel_a_layer LX LY LZ 139 0
+	{ event AE_CL_PLAYSOUND 5 "NPC_Combine.Zipline_Start" }
+	{ event AE_CL_PLAYSOUND 21 "NPC_Combine.Zipline_Mid" }
+	{ event AE_CL_PLAYSOUND 30 "NPC_Combine.Zipline_MidClothing" }
+	{ event AE_CL_PLAYSOUND 120 "NPC_Combine.Zipline_End" }
+	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 140 140 target 0 usesequence 
+	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 140 140 target 1 usesequence 
+	ikrule "rfoot" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 140 140 target 2 usesequence 
+	ikrule "lfoot" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 140 140 target 3 usesequence 
+	walkframe 30 LX LY LZ
+	walkframe 54 LX LY LZ
+	walkframe 71 LX LY LZ
+	walkframe 90 LX LY LZ
+	walkframe 110 LX LY LZ
+	walkframe 136 LX LY LZ LZR
+	walkframe 140 LX LY LZ
+}
+
+$MakeAdjustedAnimation Rappel_a_noturn "combine_soldier_anims_anims\Rappel_a_noturn.smd" $Blend_SMD_Rifle$ 0 135 140
+$append Rappel_a_noturn_layer {
+ 	walkframe 30 LX LY LZ
+	walkframe 54 LX LY LZ
+	walkframe 71 LX LY LZ
+	walkframe 90 LX LY LZ
+	walkframe 110 LX LY LZ
+	walkframe 136 LX LY LZ LZR
+	walkframe 140 LX LY LZ
+}
+$append Rappel_a_noturn {
+	{ event AE_CL_PLAYSOUND 5 "NPC_Combine.Zipline_Start" }
+	{ event AE_CL_PLAYSOUND 21 "NPC_Combine.Zipline_Mid" }
+	{ event AE_CL_PLAYSOUND 30 "NPC_Combine.Zipline_MidClothing" }
+	{ event AE_CL_PLAYSOUND 120 "NPC_Combine.Zipline_End" }
+	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 140 140 target 0 usesequence 
+	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 140 140 target 1 usesequence 
+	ikrule "rfoot" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 140 140 target 2 usesequence 
+	ikrule "lfoot" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 140 140 target 3 usesequence 
+	walkframe 30 LX LY LZ
+	walkframe 54 LX LY LZ
+	walkframe 71 LX LY LZ
+	walkframe 90 LX LY LZ
+	walkframe 110 LX LY LZ
+	walkframe 136 LX LY LZ LZR
+	walkframe 140 LX LY LZ
+}
+
+$MakeAdjustedAnimation Rappel_b "combine_soldier_anims_anims\Rappel_b.smd" $Blend_SMD_Rifle$ 0 75 90
+$append Rappel_b_layer {
+ 	walkframe 15 LX LY LZ
+	walkframe 30 LX LY LZ
+	walkframe 44 LX LY LZ
+	walkframe 60 LX LY LZ
+	walkframe 73 LX LY LZ
+	walkframe 86 LX LY LZ LZR
+	walkframe 90 LX LY LZ
+}
+$append Rappel_b {
+	{ event AE_CL_PLAYSOUND 5 "NPC_Combine.Zipline_Start" }
+	{ event AE_CL_PLAYSOUND 21 "NPC_Combine.Zipline_Mid" }
+	{ event AE_CL_PLAYSOUND 30 "NPC_Combine.Zipline_MidClothing" }
+	{ event AE_CL_PLAYSOUND 70 "NPC_Combine.Zipline_End" }
+	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 90 90 target 0 usesequence 
+	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 90 90 target 1 usesequence 
+	ikrule "rfoot" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 90 90 target 2 usesequence 
+	ikrule "lfoot" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 90 90 target 3 usesequence 
+	walkframe 15 LX LY LZ
+	walkframe 30 LX LY LZ
+	walkframe 44 LX LY LZ
+	walkframe 60 LX LY LZ
+	walkframe 73 LX LY LZ
+	walkframe 86 LX LY LZ LZR
+	walkframe 90 LX LY LZ
+}
+
+$MakeAdjustedAnimation Rappel_c "combine_soldier_anims_anims\Rappel_c.smd" $Blend_SMD_Rifle$ 0 75 90
+$append Rappel_c_layer {
+ 	walkframe 15 LX LY LZ
+	walkframe 30 LX LY LZ
+	walkframe 50 LX LY LZ
+	walkframe 73 LX LY LZ
+	walkframe 86 LX LY LZ LZR
+	walkframe 90 LX LY LZ
+}
+$append Rappel_c {
+	{ event AE_CL_PLAYSOUND 5 "NPC_Combine.Zipline_Start" }
+	{ event AE_CL_PLAYSOUND 21 "NPC_Combine.Zipline_Mid" }
+	{ event AE_CL_PLAYSOUND 30 "NPC_Combine.Zipline_MidClothing" }
+	{ event AE_CL_PLAYSOUND 70 "NPC_Combine.Zipline_End" }
+	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 90 90 target 0 usesequence 
+	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 90 90 target 1 usesequence 
+	ikrule "rfoot" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 90 90 target 2 usesequence 
+	ikrule "lfoot" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 90 90 target 3 usesequence 
+	walkframe 15 LX LY LZ
+	walkframe 30 LX LY LZ
+	walkframe 50 LX LY LZ
+	walkframe 73 LX LY LZ
+	walkframe 86 LX LY LZ LZR
+	walkframe 90 LX LY LZ
+}
+
+$MakeAdjustedAnimation Rappel_d "combine_soldier_anims_anims\Rappel_d.smd" $Blend_SMD_Rifle$ 0 91 103
+$append Rappel_d_layer {
+ 	walkframe 15 LX LY LZ
+	walkframe 30 LX LY LZ
+	walkframe 44 LX LY LZ
+	walkframe 57 LX LY LZ
+	walkframe 67 LX LY LZ
+	walkframe 75 LX LY LZ
+	walkframe 87 LX LY LZ
+	walkframe 101 LX LY LZ LZR
+	walkframe 103 LX LY LZ
+}
+$append Rappel_d {
+	{ event AE_CL_PLAYSOUND 5 "NPC_Combine.Zipline_Start" }
+	{ event AE_CL_PLAYSOUND 21 "NPC_Combine.Zipline_Mid" }
+	{ event AE_CL_PLAYSOUND 30 "NPC_Combine.Zipline_MidClothing" }
+	{ event AE_CL_PLAYSOUND 84 "NPC_Combine.Zipline_End" }
+	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 103 103 target 0 usesequence 
+	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 103 103 target 1 usesequence 
+	ikrule "rfoot" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 103 103 target 2 usesequence 
+	ikrule "lfoot" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 103 103 target 3 usesequence 
+	walkframe 15 LX LY LZ
+	walkframe 30 LX LY LZ
+	walkframe 44 LX LY LZ
+	walkframe 57 LX LY LZ
+	walkframe 67 LX LY LZ
+	walkframe 75 LX LY LZ
+	walkframe 87 LX LY LZ
+	walkframe 101 LX LY LZ LZR
+	walkframe 103 LX LY LZ
+}
+
+$MakeAdjustedAnimation Rappel_e "combine_soldier_anims_anims\Rappel_e.smd" $Blend_SMD_Rifle$ 0 73 85
+$append Rappel_e_layer {
+ 	walkframe 15 LX LY LZ
+	walkframe 30 LX LY LZ
+	walkframe 44 LX LY LZ
+	walkframe 57 LX LY LZ
+	walkframe 69 LX LY LZ
+	walkframe 82 LX LY LZ LZR
+	walkframe 85 LX LY LZ
+}
+$append Rappel_e {
+	{ event AE_CL_PLAYSOUND 5 "NPC_Combine.Zipline_Start" }
+	{ event AE_CL_PLAYSOUND 21 "NPC_Combine.Zipline_Mid" }
+	{ event AE_CL_PLAYSOUND 30 "NPC_Combine.Zipline_MidClothing" }
+	{ event AE_CL_PLAYSOUND 65 "NPC_Combine.Zipline_End" }
+	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 85 85 target 0 usesequence 
+	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 85 85 target 1 usesequence 
+	ikrule "rfoot" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 85 85 target 2 usesequence 
+	ikrule "lfoot" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 85 85 target 3 usesequence 
+	walkframe 15 LX LY LZ
+	walkframe 30 LX LY LZ
+	walkframe 44 LX LY LZ
+	walkframe 57 LX LY LZ
+	walkframe 69 LX LY LZ
+	walkframe 82 LX LY LZ LZR
+	walkframe 85 LX LY LZ
+}
+
+$MakeAdjustedAnimation Rappel_f "combine_soldier_anims_anims\Rappel_f.smd" $Blend_SMD_Rifle$ 0 76 90
+$append Rappel_f_layer {
+ 	walkframe 20 LX LY LZ
+	walkframe 40 LX LY LZ
+	walkframe 60 LX LY LZ
+	walkframe 70 LX LY LZ
+	walkframe 88 LX LY LZ LZR
+}
+$append Rappel_f {
+	{ event AE_CL_PLAYSOUND 5 "NPC_Combine.Zipline_Start" }
+	{ event AE_CL_PLAYSOUND 21 "NPC_Combine.Zipline_Mid" }
+	{ event AE_CL_PLAYSOUND 30 "NPC_Combine.Zipline_MidClothing" }
+	{ event AE_CL_PLAYSOUND 70 "NPC_Combine.Zipline_End" }
+	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 90 90 target 0 usesequence 
+	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 90 90 target 1 usesequence 
+	ikrule "rfoot" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 90 90 target 2 usesequence 
+	ikrule "lfoot" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 90 90 target 3 usesequence 
+	walkframe 20 LX LY LZ
+	walkframe 40 LX LY LZ
+	walkframe 60 LX LY LZ
+	walkframe 70 LX LY LZ
+	walkframe 88 LX LY LZ LZR
+}
+
+$MakeAdjustedAnimation Rappel_f_noturn "combine_soldier_anims_anims\Rappel_f_noturn.smd" $Blend_SMD_Rifle$ 0 76 90
+$append Rappel_f_noturn_layer {
+ 	walkframe 20 LX LY LZ
+	walkframe 40 LX LY LZ
+	walkframe 60 LX LY LZ
+	walkframe 70 LX LY LZ
+	walkframe 88 LX LY LZ LZR
+}
+$append Rappel_f_noturn {
+	{ event AE_CL_PLAYSOUND 5 "NPC_Combine.Zipline_Start" }
+	{ event AE_CL_PLAYSOUND 21 "NPC_Combine.Zipline_Mid" }
+	{ event AE_CL_PLAYSOUND 30 "NPC_Combine.Zipline_MidClothing" }
+	{ event AE_CL_PLAYSOUND 70 "NPC_Combine.Zipline_End" }
+	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 90 90 target 0 usesequence 
+	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 90 90 target 1 usesequence 
+	ikrule "rfoot" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 90 90 target 2 usesequence 
+	ikrule "lfoot" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 90 90 target 3 usesequence 
+	walkframe 20 LX LY LZ
+	walkframe 40 LX LY LZ
+	walkframe 60 LX LY LZ
+	walkframe 70 LX LY LZ
+	walkframe 88 LX LY LZ LZR
+}

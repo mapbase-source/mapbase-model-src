@@ -1,0 +1,7 @@
+
+// 
+// All choreo models should $include this!
+// 
+
+$include "../hl2mp_ported_anims/standardikchains.qci"
+$include "../hl2mp_ported_anims/commonbones.qci"

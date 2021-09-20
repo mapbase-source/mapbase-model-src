@@ -1,0 +1,74 @@
+
+
+// These animations must also be the same name as Alyx's sequences so they override them.
+
+$definemacro MakeBlindfireEntryAnim SeqName TargetAnim IdleAnim Start Peak FrameNum \\
+$sequence $SeqName$_layer $TargetAnim$ hidden \\
+$sequence $SeqName$ $IdleAnim$ { \\
+	blendlayer $SeqName$_layer $Start$ $Peak$ $FrameNum$ $FrameNum$ spline \\
+	numframes $FrameNum$ \\
+	cmdlist lockfeet \\
+} \\
+$continue $SeqName$
+
+$definemacro MakeBlindfireActionAnim SeqName AnimName \\
+$sequence $SeqName$ $AnimName$ { \\
+	loop \\
+	cmdlist lockfeet \\
+} \\
+$continue $SeqName$
+
+$definemacro MakeBlindfireExitAnim SeqName TargetAnim IdleAnim Start Peak Tail FrameNum \\
+$sequence $SeqName$_layer $TargetAnim$ hidden \\
+$sequence $SeqName$ $IdleAnim$ { \\
+	blendlayer $SeqName$_layer $Start$ $Peak$ $Tail$ $FrameNum$ spline \\
+	numframes $FrameNum$ \\
+	cmdlist lockfeet \\
+} \\
+$continue $SeqName$
+
+$MakeBlindfireEntryAnim "blindfire_left_entry" "AlyxBlindfireAnims/blindfire_left_entry.smd" $Blend_SMD_Default$ 0 12 30
+
+$MakeBlindfireActionAnim "blindfire_left_action" "AlyxBlindfireAnims/blindfire_left_action.smd"
+$append "blindfire_left_action" {
+	{ event AE_ACTBUSY_WEAPON_FIRE_ON 10 "" }
+	{ event AE_ACTBUSY_WEAPON_FIRE_OFF 67 "" }
+}
+
+$MakeBlindfireActionAnim "blindfire_left_high_action" "AlyxBlindfireAnims/blindfire_left_high_action.smd"
+$append "blindfire_left_high_action" {
+	{ event AE_ACTBUSY_WEAPON_FIRE_ON 10 "" }
+	{ event AE_ACTBUSY_WEAPON_FIRE_OFF 67 "" }
+}
+
+$MakeBlindfireActionAnim "blindfire_left_low_action" "AlyxBlindfireAnims/blindfire_left_low_action.smd"
+$append "blindfire_left_low_action" {
+	{ event AE_ACTBUSY_WEAPON_FIRE_ON 10 "" }
+	{ event AE_ACTBUSY_WEAPON_FIRE_OFF 67 "" }
+}
+
+$animation a_blindfire_idle_180 $Blend_SMD_Default$ rotate 180
+$MakeBlindfireExitAnim "blindfire_left_exit" "AlyxBlindfireAnims/blindfire_left_exit.smd" a_blindfire_idle_180 0 0 10 20
+$append "blindfire_left_exit" {
+	walkframe 20 LZR
+}
+
+$MakeBlindfireEntryAnim "blindfire_low_entry" "AlyxBlindfireAnims/blindfire_low_entry.smd" $Blend_SMD_Default$ 0 10 30
+
+$MakeBlindfireActionAnim "blindfire_low_action" "AlyxBlindfireAnims/blindfire_low_action.smd"
+$append "blindfire_low_action" {
+	{ event AE_ACTBUSY_WEAPON_FIRE_ON 15 "" }
+	{ event AE_ACTBUSY_WEAPON_FIRE_OFF 78 "" }
+}
+
+$MakeBlindfireActionAnim "blindfire_low_high_action" "AlyxBlindfireAnims/blindfire_low_high_action.smd"
+$append "blindfire_low_high_action" {
+	{ event AE_ACTBUSY_WEAPON_FIRE_ON 15 "" }
+	{ event AE_ACTBUSY_WEAPON_FIRE_OFF 78 "" }
+}
+
+$animation a_blindfire_idle_270 $Blend_SMD_Default$ rotate 270
+$MakeBlindfireExitAnim "blindfire_low_exit" "AlyxBlindfireAnims/blindfire_low_exit.smd" a_blindfire_idle_270 0 0 14 36
+$append "blindfire_low_exit" {
+	walkframe 36 LZR
+}

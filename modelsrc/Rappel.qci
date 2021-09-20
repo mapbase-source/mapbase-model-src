@@ -1,0 +1,15 @@
+
+// Rappel animations.
+
+
+$sequence "rappelloop" {
+	"police_animations_anims\rappelloop.smd"
+	activity "ACT_RAPPEL_LOOP" 1
+	cmdlist lockfeet
+}
+
+$sequence "rappelland" {
+	"police_animations_anims\rappelland.smd"
+	activity "ACT_RAPPEL_LAND" 1
+	cmdlist lockfeet
+}

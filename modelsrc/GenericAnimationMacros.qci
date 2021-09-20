@@ -1,0 +1,124 @@
+
+// 
+// Generic macros for overlaying animations.
+// 
+
+// =============================================================================================
+// 
+// Creates a sequence using special blending techniques to make an animation fit in with the NPC's actual idle
+// 
+// =============================================================================================
+$definemacro MakeAdjustedAnimation SeqName TargetAnim IdleAnim InFrame OutFrame FrameNum \\
+$sequence $SeqName$_layer $TargetAnim$ hidden \\
+$sequence $SeqName$ $IdleAnim$ { \\
+	blendlayer $SeqName$_layer 0 $InFrame$ $OutFrame$ $FrameNum$ spline \\
+	numframes $FrameNum$ \\
+	fps 30 \\
+	fadein 0.25 \\
+	fadeout 0.25 \\
+	cmdlist lockfeet \\
+} \\
+$continue $SeqName$
+
+// =============================================================================================
+// 
+// Creates a new sequence from an idle out of a subtracted delta from an existing sequence.
+// Useful for porting simple animations to other NPCs.
+// 
+// =============================================================================================
+$definemacro MakeAdjustedDelta SeqName FileName IdleAnim NumFrames FPS \\
+$sequence $SeqName$_layer $FileName$ fps $FPS$ subtract $SeqName$_layer 0 delta hidden \\
+$sequence $SeqName$ $IdleAnim$ { \\
+	numframes $NumFrames$ fps $FPS$ \\
+	addlayer $SeqName$_layer \\
+	cmdlist lockfeet \\
+} \\
+	
+// Grenade throw animation.
+// MakeGrenadeAnimation (aim anim) "combine_soldier_anims_anims/grenThrow" 45
+// MakeGrenadeAnimation (aim anim) "police_animations_anims/grenadethrow" ?
+$definemacro SoldierGrenadeAnimation IdleAnim \\
+$MakeAdjustedDelta "grenThrow" "combine_soldier_anims_anims\grenThrow.smd" $IdleAnim$ 50 45 \\
+$append grenThrow { \\
+	activity ACT_COMBINE_THROW_GRENADE 1 \\
+	{ event 7 30 "" } \\
+} \\
+
+// Grenade underthrow animation.
+$definemacro SoldierGrenadeDropAnimation IdleAnim \\
+$MakeAdjustedDelta "grenDrop" "combine_soldier_anims_anims\grenDrop.smd" $IdleAnim$ 43 35 \\
+$append grenDrop { \\
+	activity ACT_SPECIAL_ATTACK1 1 \\
+	{ event 7 26 "" } \\
+} \\
+
+// Grenade place animation.
+$definemacro SoldierGrenadePlaceAnimation IdleAnim \\
+$MakeAdjustedDelta "grenPlace" "combine_soldier_anims_anims\grenPlace.smd" $IdleAnim$ 45 35 \\
+$append grenPlace { \\
+	activity ACT_SPECIAL_ATTACK2 1 \\
+	{ event 9 25 "" } \\
+} \\
+
+
+// AR2 alt-fire animation.
+// 
+// MakeAltFireAnimation (aim anim) "combine_soldier_anims_anims/shootAR2alt" 36
+// $append shootAR2alt
+// {
+// 	{ event COMBINE_AE_BEGIN_ALTFIRE 0 "" }
+// 	{ event COMBINE_AE_ALTFIRE 16 "" }
+// }
+// 
+$definemacro MakeAltFireAnimation Name IdleAnim ActualAnim \\
+$animation a_$Name$ $IdleAnim$ frame 0 0 \\
+$sequence $Name$ $ActualAnim$ { \\
+	match a_$Name$ \\
+	ikrule rhand touch "ValveBiped.Bip01_R_Hand" usesource \\
+} \\
+$continue $Name
+
+
+// 
+// Manhack deploy animation.
+// 
+$definemacro MakeManhackDeployLayer FileName FPS \\
+$sequence deploy_layer $FileName$ fps $FPS$ subtract deploy_layer 0 delta hidden \\
+
+$definemacro MakeManhackDeployAnimation IdleAnim NumFrames FPS \\
+$sequence deploy $IdleAnim$ { \\
+	numframes $NumFrames$ fps $FPS$ \\
+	activity "ACT_METROPOLICE_DEPLOY_MANHACK" 1 \\
+	{ event AE_METROPOLICE_START_DEPLOY 10 "" } \\
+	{ event AE_METROPOLICE_DEPLOY_MANHACK 33 "" } \\
+	addlayer deploy_layer \\
+	cmdlist lockfeet \\
+} \\
+
+$definemacro MakeManhackDeployGesture IdleAnim \\
+$sequence deploy_gesture { \\
+	$IdleAnim$ \\
+	numframes 50 \\
+	subtract "deploy_gesture" 0 \\
+	delta \\
+	blendlayer "deploy_layer" 0 5 38 50 \\
+	activity "ACT_GESTURE_DEPLOY_MANHACK" 1 \\
+	{ event AE_METROPOLICE_START_DEPLOY 10 "" } \\
+	{ event AE_METROPOLICE_DEPLOY_MANHACK 33 "" } \\
+	keyvalues \\
+	{ \\
+		faceposer \\
+		{ \\
+			"type" "gesture" \\
+			"tags" \\
+			{ \\
+				"start_deploy" "10" \\
+				"apex" "26" \\
+				"end_deploy" "33" \\
+				"end" "40" \\
+			} \\
+			"start_deploy" "apex" \\
+			"thumbnail_frame" "39" \\
+		} \\
+	} \\
+} \\

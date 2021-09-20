@@ -1,0 +1,6 @@
+
+// 
+// All animation models should $include this before doing any animation stuff!
+// 
+
+$include "hl2mp_ported_anims/standardikchains.qci"

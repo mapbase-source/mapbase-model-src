@@ -1,0 +1,56 @@
+
+// 
+// All Combine soldier choreo models should $include this!
+// 
+
+$include "BaseChoreoModel.qci"
+
+$attachment "eyes" "ValveBiped.Bip01_Head1" 4.5 -5 0 rotate 0 -90 -90
+
+$include "body_poses_lean.qci"
+
+// A solid pack of gestures to use for soldier choreography.
+// You could probably add others if necessary...
+$includemodel "barney_gestures.mdl"
+$includemodel "barney_postures.mdl"
+$includemodel "humans/male_gestures.mdl"
+$includemodel "humans/male_postures.mdl"
+
+$definemacro DefineSoldierModel Reference \\
+$model Soldier $Reference$ { \\
+	$include "bodyrules_xsi.qci" \\
+} \\
+
+$sequence "ragdoll" "ragdoll.smd" {
+	activity "ACT_DIERAGDOLL" 1
+	cmdlist lockfeet
+}
+
+$collisiontext
+{
+	animatedfriction 
+	{
+		"animfrictionmin" "1.000000"
+		"animfrictionmax" "1000.000000"
+		"animfrictiontimein" "0.800000"
+		"animfrictiontimeout" "0.500000"
+		"animfrictiontimehold" "0.000000"
+	}
+	editparams 
+	{
+		"rootname" "valvebiped.bip01_pelvis"
+		"totalmass" "100.000000"
+		"jointmerge" "valvebiped.bip01_pelvis,valvebiped.bip01"
+		"jointmerge" "valvebiped.bip01_pelvis,valvebiped.bip01_spine1"
+	}
+}
+
+$KeyValues
+{
+	physgun_interactions 
+	{
+		"onpickup" "boogie"
+		"onlaunch" "spin_zaxis"
+		"onfirstimpact" "bloodsplat"
+	}
+}
