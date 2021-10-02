@@ -1,0 +1,77 @@
+
+// Requires "hl2mp_ported_anims/weaponmacros.qci"
+
+
+
+// This file should be included while in the desired animation folder via $pushd
+
+// These animations must also be the same name as Alyx's sequences so they override them.
+
+$makeweapongesturep weapon_draw_gesture "weapon_draw_gesture.smd" 5 20 35
+$append weapon_draw_gesture {
+	fps 45
+	activity "ACT_ARM" 1
+	{ event AE_NPC_DRAW 14 "" }
+}
+$append weapon_draw_gesturearms {
+	// This is needed for some reason
+	rotateto -90
+}
+
+$makeweapongesturep weapon_holster_gesture "weapon_holster_gesture.smd" 10 25 40
+$append weapon_holster_gesture {
+	fps 45
+	activity "ACT_DISARM" 1
+	{ event AE_NPC_HOLSTER 23 "" }
+}
+$append weapon_holster_gesturearms {
+	// This is needed for some reason
+	rotateto -90
+}
+
+
+
+//$weightlist "HolsterWeightlist" {
+//	"ValveBiped.Bip01_Pelvis" 0
+//	"ValveBiped.Bip01_Spine" 1
+//	//"ValveBiped.Bip01_Spine1" 1
+//	//"ValveBiped.Bip01_Spine2" 1
+//	//"ValveBiped.Bip01_Spine4" 1
+//	//"ValveBiped.Bip01_L_Clavicle" 1
+//	"ValveBiped.Bip01_L_UpperArm" 1
+//	"ValveBiped.Bip01_L_Forearm" 1
+//	"ValveBiped.Bip01_L_Hand" 1
+//	//"ValveBiped.Bip01_R_Clavicle" 1
+//	"ValveBiped.Bip01_R_UpperArm" 1
+//	"ValveBiped.Bip01_R_Forearm" 1
+//	"ValveBiped.Bip01_R_Hand" 1
+//}
+
+//$sequence "weapon_draw_gesture" {
+//	"weapon_draw_gesture.smd"
+//	activity "ACT_ARM" 1
+//	{ event AE_NPC_DRAW 14 "" }
+//	fadein 0.35
+//	fadeout 0.2
+//	fps 45
+//	ikrule "rhand" release
+//	ikrule "lhand" release
+//	ikrule "rfoot" release
+//	ikrule "lfoot" release
+//	weightlist "HolsterWeightlist"
+//}
+//
+//$sequence "weapon_holster_gesture" {
+//	"weapon_holster_gesture.smd"
+//	activity "ACT_DISARM" 1
+//	{ event AE_NPC_HOLSTER 23 "" }
+//	fadein 0.2
+//	fadeout 0.2
+//	//blendlayer "smgholster_gesture" 0 0.25 0.75 1.0 spline
+//	fps 45
+//	ikrule "rhand" release
+//	ikrule "lhand" release
+//	ikrule "rfoot" release
+//	ikrule "lfoot" release
+//	weightlist "HolsterWeightlist"
+//}

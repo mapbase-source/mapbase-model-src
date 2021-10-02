@@ -1,0 +1,17 @@
+// 
+// Animations for metrocops being on fire.
+// It burns.
+// 
+
+$sequence "idleonfire" {
+	"police_animations_anims\idleonfire.smd"
+	activity "ACT_IDLE_ON_FIRE" 1
+	loop
+}
+
+$sequence "moveonfire" {
+	"police_animations_anims\moveonfire.smd"
+	activity "ACT_RUN_ON_FIRE" 1
+	loop
+	walkframe 66 LX LY
+}

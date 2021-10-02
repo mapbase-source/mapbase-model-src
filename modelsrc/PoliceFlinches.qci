@@ -1,0 +1,22 @@
+
+// 
+// Metrocop flinches.
+// 
+
+$pushd "police_animations_anims"
+
+$definemacro MakePoliceFlinchGest name file activity \\
+$sequence $name$ $file$ subtract flinch_gesture 0 delta { \\
+	activity $activity$ 1 \\
+	fps 30 \\
+} \\
+
+$MakePoliceFlinchGest flinch_gesture "a_flinch_gesture" "ACT_GESTURE_SMALL_FLINCH"
+$MakePoliceFlinchGest flinchheadgest1 "a_flinch_head_gesture1" "ACT_GESTURE_FLINCH_HEAD"
+$MakePoliceFlinchGest flinchheadgest2 "a_flinch_head_gesture2" "ACT_GESTURE_FLINCH_HEAD"
+$MakePoliceFlinchGest flinchgutgest1 "a_flinch_gut_gesture1" "ACT_GESTURE_FLINCH_STOMACH"
+$MakePoliceFlinchGest flinchgutgest2 "a_flinch_gut_gesture2" "ACT_GESTURE_FLINCH_STOMACH"
+$MakePoliceFlinchGest flinchlarmgest "a_flinch_larm_gesture" "ACT_GESTURE_FLINCH_LEFTARM"
+$MakePoliceFlinchGest flinchrarmgest "a_flinch_rarm_gesture" "ACT_GESTURE_FLINCH_RIGHTARM"
+
+$popd
