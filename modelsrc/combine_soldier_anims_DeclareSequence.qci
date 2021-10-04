@@ -73,7 +73,84 @@ $declaresequence "RunAIMALL1"
 $declaresequence "layer_run_aiming_SG"
 $declaresequence "RunAIMALL1_SG"
 $declaresequence "Run_turretCarry_Upperbody"
-$declaresequence "Run_turretCarry_ALL"
+//$declaresequence "Run_turretCarry_ALL"
+
+$weightlist "weights_Run_turretCarry_Upperbody_idle" {
+	 "ValveBiped.Bip01_Pelvis" 0
+	 "ValveBiped.Bip01_Spine" 1
+}
+
+$animation "a_Run_turretCarry_Upperbody_idle" "combine_soldier_anims_anims\a_Run_turretCarry_Upperbody.smd" {
+	fps 30
+	loop
+	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 18 18 target 0
+	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 18 18 target 1
+	weightlist "weights_Run_turretCarry_Upperbody_idle"
+}
+
+$sequence "Run_turretCarry_Upperbody_idle" {
+	"a_Run_turretCarry_Upperbody_idle"
+	fadein 0.2
+	fadeout 0.2
+	frame 0 0
+	hidden
+}
+
+$sequence "Run_turretCarry_ALL" {
+	"a_SoldierRunS"
+	"a_SoldierRunSE"
+	"a_SoldierRunE"
+	"a_SoldierRunNE"
+	"a_SoldierRunN"
+	"a_SoldierRunNW"
+	"a_SoldierRunW"
+	"a_SoldierRunSW"
+	"a_SoldierRunS"
+	activity "ACT_TURRET_CARRY_RUN" 1
+	blend "move_yaw" -180 180
+	blendwidth 9
+	{ event 6004 7 "NPC_CombineS" }
+	{ event 6005 16 "NPC_CombineS" }
+	fadein 0.2
+	fadeout 0.2
+	addlayer "Run_turretCarry_Upperbody"
+}
+
+$sequence "Walk_turretCarry_all" {
+	"a_SoldierWalkS"
+	"a_SoldierWalkSE"
+	"a_SoldierWalkE"
+	"a_SoldierWalkNE"
+	"a_SoldierWalkN"
+	"a_SoldierWalkNW"
+	"a_SoldierWalkW"
+	"a_SoldierWalkSW"
+	"a_SoldierWalkS"
+	activity "ACT_TURRET_CARRY_WALK" 1
+	blend "move_yaw" -180 180
+	blendwidth 9
+	{ event 6004 9 "NPC_CombineS" }
+	{ event 6005 25 "NPC_CombineS" }
+	fadein 0.2
+	fadeout 0.2
+	blendlayer "Run_turretCarry_Upperbody" 0 0 0 0 local
+}
+
+$sequence "Idle1_turretCarry" {
+	"combine_soldier_anims_anims\CombatIdle1_SMG1.smd"
+	activity "ACT_TURRET_CARRY_IDLE" 1
+	fadein 0.2
+	fadeout 0.2
+	addlayer "Aim_stand_delta_all"
+	fps 1
+	loop
+	ikrule "lfoot" footstep contact 0 fakeorigin 18 4.61 0 fakerotate 0 0 0 floor 0 height 20 radius 2.5 range 0 0 30 30 target 3
+	ikrule "rfoot" footstep contact 0 fakeorigin -14.07 -4.91 0 fakerotate 0 0 0 floor 0 height 20 radius 2.5 range 0 0 30 30 target 2
+	ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 30 30 target 1
+	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 30 30 target 0
+	blendlayer "Run_turretCarry_Upperbody" 0 0 0 0 local
+}
+
 $declaresequence "Turret_Drop"
 $declaresequence "Walk_all"
 $declaresequence "layer_walk_aiming"
