@@ -1,0 +1,28 @@
+
+$include "CitizenPackageRun.qci"
+
+$sequence "run_holding_package_all" {
+	"a_MaleCitizenRunS"
+	"a_MaleCitizenRunSE"
+	"a_MaleCitizenRunE"
+	"a_MaleCitizenRunNE"
+	"a_MaleCitizenRunN" // a_WalkN_package
+	"a_MaleCitizenRunNW"
+	"a_MaleCitizenRunW"
+	"a_MaleCitizenRunSW"
+	"a_MaleCitizenRunS"
+	activity "ACT_RUN_PACKAGE" 1
+	blend "move_yaw" -180 180
+	blendwidth 9
+	fadein 0.2
+	fadeout 0.2
+	{ event 6004 6 "NPC_Citizen" }
+	{ event 6005 15 "NPC_Citizen" }
+
+	keyvalues
+	{
+		interior ACT_IDLE_PACKAGE
+	}
+	blendlayer "layer_run_holding_package" 0 0 0 0 local
+	node "walking"
+}

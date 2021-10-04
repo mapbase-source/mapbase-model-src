@@ -98,6 +98,7 @@ $weightlist "NoHeadMovement" {
 
 $sequence "gesture_shoot_shotgun" {
 	"combine_soldier_anims_anims\a_shootShotgun"
+	{ event AE_CL_PLAYSOUND 11 "Weapon_Alyx_Shotgun.Cock" }
 	activity "ACT_GESTURE_RANGE_ATTACK_SHOTGUN" 1
 	weightlist "NoHeadMovement"
 	delta
@@ -120,15 +121,21 @@ $append "gesture_reload_shotgun" {
 	{ event AE_CL_PLAYSOUND 57 "Weapon_Shotgun.Special1" }
 }
 
-$sequence "reload_shotgun1_legs" "male_shared_anims\reload_shotgun1.smd" subtract "shoot_shotgun" 0 delta weightlist "weapongesture_legsonly" hidden
+$weightlist "weights_reload_shotgun1_legs" {
+	"ValveBiped.Bip01_Pelvis" 0
+	"ValveBiped.Bip01_Spine" 0
+	"ValveBiped.Bip01_R_Thigh" 1
+	"ValveBiped.Bip01_L_Thigh" 1
+}
+
+$sequence "reload_shotgun1_legs" "male_shared_anims\reload_shotgun1.smd" weightlist "weights_reload_shotgun1_legs" hidden
 $sequence "reload_shotgun1" {
-	"police_animations_anims\smg1angryidle1.smd"
+	"police_animations_anims\reload_smg1.smd"
 	numframes 75
 	activity "ACT_RELOAD_SHOTGUN" 1
 	{ event 3015 29 "" }
 	{ event AE_CL_PLAYSOUND 57 "Weapon_Shotgun.Special1" }
 	addlayer "gesture_reload_shotgun"
-	addlayer "reload_shotgun1_legs"
 	//blendlayer "Idle_Angry_Shotgun" 59 75 75 75 spline
 	node "standing_smg"
 	ikrule "lfoot" footstep
@@ -252,6 +259,44 @@ $MakeManhackDeployGesture "police_animations_anims\smg1angryidle1.smd"
 // 
 // ================================================================
 $include "SoldierEP1Rappel.qci"
+
+$pushd "male_shared_anims"
+$include "ArrestAnims.qci"
+
+$include "CitizenPackage_Police.qci"
+$include "CitizenSuitcase_Police.qci"
+$popd
+
+$include "CitizenRPG_Police.qci"
+
+$animation "@gesture_shoot_pistol_corrective_animation" "police_animations_anims\@gesture_shoot_pistol_corrective_animation.smd" {
+}
+
+$include "NewPistolAnimations_357_Metrocop.qci"
+// ================================================================
+$include "ProtectedRun.qci"
+
+$sequence "run_protected_all" {
+	"a_PoliceRunS"
+	"a_PoliceRunSE"
+	"a_PoliceRunE"
+	"a_PoliceRunNE"
+	"a_PoliceRunN"
+	"a_PoliceRunNW"
+	"a_PoliceRunW"
+	"a_PoliceRunSW"
+	"a_PoliceRunS"
+	activity "ACT_RUN_PROTECTED" 1
+	blend "move_yaw" -180 180
+	blendwidth 9
+	{ event 6004 6 "NPC_MetroPolice" }
+	{ event 6005 15 "NPC_MetroPolice" }
+	fadein 0.2
+	fadeout 0.2
+	blendlayer "layer_run_protected" 0 0 0 0 local
+	node "running"
+}
+// ================================================================
 
 // Add a heal animation
 $MakeAdjustedAnimation Heal "male_shared_anims\Heal.smd" $Blend_SMD_Rifle$ 12 32 50

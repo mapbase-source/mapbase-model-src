@@ -144,8 +144,10 @@ $sequence "arrestidle2" "male_shared_anims\arrestidle.smd"
 $sequence "arrestcurious" "female_shared_anims\arrestcurious.smd"
 
 $pushd "female_shared_anims"
-$definevariable PanickedIdle "crouch_panicked"
 $include "ArrestAnims.qci"
+
+$include "CitizenPackageRun_Female.qci"
+$include "CitizenSuitcase.qci"
 $popd
 
 $KeyValues

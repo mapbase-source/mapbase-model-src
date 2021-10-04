@@ -1,0 +1,57 @@
+
+$include "PoliceMelee.qci"
+
+$sequence "batonidle1" {
+	"combine_soldier_anims_anims\Idle_Unarmed.smd"
+	activity "ACT_MP_STAND_MELEE" 1 // ACT_IDLE
+	fadein 0.2
+	fadeout 0.2
+	node "standing_baton"
+	blendlayer "layer_batonidle1" 0 0 0 0 local
+	fps 30
+	loop
+	ikrule "lfoot" footstep contact 0 fakeorigin -1.69 7.7 0 fakerotate 0 0 0 floor 0 height 20 radius 2.5 range 0 0 300 300 target 3
+	ikrule "rfoot" footstep contact 0 fakeorigin -1.92 -6.52 0 fakerotate 0 0 0 floor 0 height 20 radius 2.5 range 0 0 300 300 target 2
+	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 300 300 target 0
+	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 300 300 target 1
+}
+
+$sequence "walk_hold_baton_angry" {
+	"a_SoldierWalkEasyS"
+	"a_SoldierWalkEasySE"
+	"a_SoldierWalkEasyE"
+	"a_SoldierWalkEasyNE"
+	"a_SoldierWalkEasyN"
+	"a_SoldierWalkEasyNW"
+	"a_SoldierWalkEasyW"
+	"a_SoldierWalkEasySW"
+	"a_SoldierWalkEasyS"
+	activity "ACT_MP_WALK_MELEE" 1 // ACT_WALK_ANGRY
+	blend "move_yaw" -180 180
+	blendwidth 9
+	{ event 6004 9 "NPC_CombineS" }
+	{ event 6005 25 "NPC_CombineS" }
+	fadein 0.2
+	fadeout 0.2
+	blendlayer "layer_walk_hold_baton_angry" 0 0 0 0 local
+}
+
+$sequence "run_hold_baton_angry" {
+	"a_SoldierRunS"
+	"a_SoldierRunSE"
+	"a_SoldierRunE"
+	"a_SoldierRunNE"
+	"a_SoldierRunN"
+	"a_SoldierRunNW"
+	"a_SoldierRunW"
+	"a_SoldierRunSW"
+	"a_SoldierRunS"
+	activity "ACT_MP_RUN_MELEE" 1 // ACT_WALK_ANGRY
+	blend "move_yaw" -180 180
+	blendwidth 9
+	{ event 6004 7 "NPC_CombineS" }
+	{ event 6005 16 "NPC_CombineS" }
+	fadein 0.2
+	fadeout 0.2
+	blendlayer "layer_run_hold_baton_angry" 0 0 0 0 local
+}

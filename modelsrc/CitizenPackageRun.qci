@@ -1,0 +1,35 @@
+// ================================================================
+// 
+// Shared weapon_citizenpackage running animation
+// 
+// ================================================================
+
+$weightlist "weights_layer_package_run" {
+	 "ValveBiped.Bip01_Pelvis" 0
+	 "ValveBiped.Bip01_Spine" 0.2
+	 "ValveBiped.Bip01_Spine1" 0.3
+	 "ValveBiped.Bip01_Spine2" 0.4
+	 "ValveBiped.Bip01_Spine4" 0.5
+	 "ValveBiped.Bip01_Neck1" 0.5
+	 "ValveBiped.Bip01_Head1" 0.5
+	 "ValveBiped.Bip01_R_Clavicle" 1
+	 "ValveBiped.Bip01_R_UpperArm" 1
+	 "ValveBiped.Bip01_R_Forearm" 1
+	 "ValveBiped.Bip01_R_Hand" 1
+	 "ValveBiped.Bip01_L_Clavicle" 1
+	 "ValveBiped.Bip01_L_UpperArm" 1
+	 "ValveBiped.Bip01_L_Forearm" 1
+	 "ValveBiped.Bip01_L_Hand" 1
+}
+
+$sequence "layer_run_holding_package" {
+	"layer_walk_holding_package.smd"
+	fadein 0.2
+	fadeout 0.2
+	hidden
+	//worldspace
+	fps 30
+	ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 35 35 target 1
+	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 35 35 target 0
+	weightlist "weights_layer_package_run"
+}

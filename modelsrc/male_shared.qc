@@ -157,9 +157,57 @@ $sequence "harassfront2" {
 $include "SoldierEP1Rappel.qci"
 
 $pushd "male_shared_anims"
-$definevariable PanickedIdle "crouchIdle_panicked4"
 $include "ArrestAnims.qci"
+
+$include "CitizenPackageRun_Male.qci"
 $popd
+
+$weightlist "weights_layer_luggage_run" {
+	 "ValveBiped.Bip01_Pelvis" 0
+	 "ValveBiped.Bip01_Spine" 0.2
+	 "ValveBiped.Bip01_Neck1" 0.4
+	 "ValveBiped.Bip01_Head1" 0.4
+	 "ValveBiped.Bip01_R_Clavicle" 0.4
+	 "ValveBiped.Bip01_R_UpperArm" 0.6
+	 "ValveBiped.Bip01_R_Forearm" 0.8
+	 "ValveBiped.Bip01_R_Hand" 1
+	 "ValveBiped.Bip01_L_Clavicle" 0
+	 "ValveBiped.Bip01_L_UpperArm" 0
+	 "ValveBiped.Bip01_L_Forearm" 0
+	 "ValveBiped.Bip01_L_Hand" 0
+}
+
+$sequence "layer_luggage_run" {
+	"male_shared_anims\layer_luggage_walk.smd"
+	fadein 0.2
+	fadeout 0.2
+	hidden
+	fps 30
+	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 30 30 target 0
+	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 30 30 target 1
+	weightlist "weights_layer_luggage_run"
+}
+
+$sequence "luggage_run_all" {
+	"a_MaleCitizenRunS"
+	"a_MaleCitizenRunSE"
+	"a_MaleCitizenRunE"
+	"a_MaleCitizenRunNE"
+	"a_MaleCitizenRunN" // a_luggage_walk
+	"a_MaleCitizenRunNW"
+	"a_MaleCitizenRunW"
+	"a_MaleCitizenRunSW"
+	"a_MaleCitizenRunS"
+	activity "ACT_RUN_SUITCASE" 1
+	blend "move_yaw" -180 180
+	blendwidth 9
+	{ event 6004 6 "NPC_Citizen" }
+	{ event 6005 15 "NPC_Citizen" }
+	fadein 0.2
+	fadeout 0.2
+	addlayer "layer_luggage_run"
+	node "running"
+}
 
 $KeyValues
 {

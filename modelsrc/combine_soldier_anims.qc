@@ -217,6 +217,41 @@ $DefaultSignalGestures 36
 // 
 // ================================================================
 
+$pushd "male_shared_anims"
+$include "ArrestAnims.qci"
+
+$include "CitizenPackage_Soldier.qci"
+$include "CitizenSuitcase_Soldier.qci"
+$popd
+
+$include "CitizenRPG.qci"
+$include "PoliceMelee_Soldier.qci"
+
+// ================================================================
+$include "ProtectedRun.qci"
+
+$sequence "run_protected_all" {
+	"a_SoldierRunS"
+	"a_SoldierRunSE"
+	"a_SoldierRunE"
+	"a_SoldierRunNE"
+	"a_SoldierRunN"
+	"a_SoldierRunNW"
+	"a_SoldierRunW"
+	"a_SoldierRunSW"
+	"a_SoldierRunS"
+	activity "ACT_RUN_PROTECTED" 1
+	blend "move_yaw" -180 180
+	blendwidth 9
+	{ event 6004 6 "NPC_CombineS" }
+	{ event 6005 15 "NPC_CombineS" }
+	fadein 0.2
+	fadeout 0.2
+	blendlayer "layer_run_protected" 0 0 0 0 local
+	node "running"
+}
+// ================================================================
+
 // Use our DI blending techniques to add a heal animation
 $MakeAdjustedAnimation Heal "male_shared_anims\Heal.smd" $Blend_SMD_Default$ 12 32 50
 //$MakeAdjustedDelta Heal "male_shared_anims\Heal.smd" $Blend_SMD_Default$ 50 30

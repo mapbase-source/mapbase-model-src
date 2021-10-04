@@ -1,0 +1,315 @@
+// ================================================================
+// 
+// RPG Animations for Metrocops/Soldiers
+// 
+// ================================================================
+
+$weightlist "weights_layer_Aim_all" {
+	 "ValveBiped.Bip01_Pelvis" 1
+	 "ValveBiped.Bip01_Spine" 1
+	 "ValveBiped.Bip01_R_Thigh" 0
+	 "ValveBiped.Bip01_L_Thigh" 0
+}
+
+$animation "@gesture_shoot_rpg_corrective_animation" "male_shared_anims\@gesture_shoot_rpg_corrective_animation.smd" {
+}
+
+$animation "a_RPG_aim_straight_up_corrective_animation" "male_shared_anims\a_RPG_aim_straight_up_corrective_animation.smd" {
+}
+
+$animation "a_RPG_aim_up_right_corrective_animation" "male_shared_anims\a_RPG_aim_up_right_corrective_animation.smd" {
+}
+
+$animation "a_RPG_aim_up_center_corrective_animation" "male_shared_anims\a_RPG_aim_up_center_corrective_animation.smd" {
+}
+
+$animation "a_RPG_aim_up_left_corrective_animation" "male_shared_anims\a_RPG_aim_up_left_corrective_animation.smd" {
+}
+
+$animation "a_RPG_aim_mid_right_corrective_animation" "male_shared_anims\a_RPG_aim_mid_right_corrective_animation.smd" {
+}
+
+$animation "a_RPG_aim_mid_center_corrective_animation" "male_shared_anims\a_RPG_aim_mid_center_corrective_animation.smd" {
+}
+
+$animation "a_RPG_aim_mid_left_corrective_animation" "male_shared_anims\a_RPG_aim_mid_left_corrective_animation.smd" {
+}
+
+$animation "a_RPG_aim_down_right_corrective_animation" "male_shared_anims\a_RPG_aim_down_right_corrective_animation.smd" {
+}
+
+$animation "a_RPG_aim_down_center_corrective_animation" "male_shared_anims\a_RPG_aim_down_center_corrective_animation.smd" {
+}
+
+$animation "a_RPG_aim_down_left_corrective_animation" "male_shared_anims\a_RPG_aim_down_left_corrective_animation.smd" {
+}
+
+$animation "a_aim_RPG_neutral" "male_shared_anims\a_aim_RPG_neutral.smd" {
+	fps 30
+	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 0 0 target 0
+	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 0 0 target 1
+}
+
+$animation "a_RPG_aim_down_left" "male_shared_anims\a_RPG_aim_down_left.smd" {
+	fps 30
+	// Crowbar writes this subtract option to prevent jigglebone and poseparameter problems when delta sequences are recompiled.
+	subtract "a_RPG_aim_down_left_corrective_animation" 0
+	weightlist "weights_layer_Aim_all"
+}
+
+$animation "a_RPG_aim_down_center" "male_shared_anims\a_RPG_aim_down_center.smd" {
+	fps 30
+	// Crowbar writes this subtract option to prevent jigglebone and poseparameter problems when delta sequences are recompiled.
+	subtract "a_RPG_aim_down_center_corrective_animation" 0
+	weightlist "weights_layer_Aim_all"
+}
+
+$animation "a_RPG_aim_down_right" "male_shared_anims\a_RPG_aim_down_right.smd" {
+	fps 30
+	// Crowbar writes this subtract option to prevent jigglebone and poseparameter problems when delta sequences are recompiled.
+	subtract "a_RPG_aim_down_right_corrective_animation" 0
+	weightlist "weights_layer_Aim_all"
+}
+
+$animation "a_RPG_aim_mid_left" "male_shared_anims\a_RPG_aim_mid_left.smd" {
+	fps 30
+	// Crowbar writes this subtract option to prevent jigglebone and poseparameter problems when delta sequences are recompiled.
+	subtract "a_RPG_aim_mid_left_corrective_animation" 0
+	weightlist "weights_layer_Aim_all"
+}
+
+$animation "a_RPG_aim_mid_center" "male_shared_anims\a_RPG_aim_mid_center.smd" {
+	fps 30
+	// Crowbar writes this subtract option to prevent jigglebone and poseparameter problems when delta sequences are recompiled.
+	subtract "a_RPG_aim_mid_center_corrective_animation" 0
+	weightlist "weights_layer_Aim_all"
+}
+
+$animation "a_RPG_aim_mid_right" "male_shared_anims\a_RPG_aim_mid_right.smd" {
+	fps 30
+	// Crowbar writes this subtract option to prevent jigglebone and poseparameter problems when delta sequences are recompiled.
+	subtract "a_RPG_aim_mid_right_corrective_animation" 0
+	weightlist "weights_layer_Aim_all"
+}
+
+$animation "a_RPG_aim_up_left" "male_shared_anims\a_RPG_aim_up_left.smd" {
+	fps 30
+	// Crowbar writes this subtract option to prevent jigglebone and poseparameter problems when delta sequences are recompiled.
+	subtract "a_RPG_aim_up_left_corrective_animation" 0
+	weightlist "weights_layer_Aim_all"
+}
+
+$animation "a_RPG_aim_up_center" "male_shared_anims\a_RPG_aim_up_center.smd" {
+	fps 30
+	// Crowbar writes this subtract option to prevent jigglebone and poseparameter problems when delta sequences are recompiled.
+	subtract "a_RPG_aim_up_center_corrective_animation" 0
+	weightlist "weights_layer_Aim_all"
+}
+
+$animation "a_RPG_aim_up_right" "male_shared_anims\a_RPG_aim_up_right.smd" {
+	fps 30
+	// Crowbar writes this subtract option to prevent jigglebone and poseparameter problems when delta sequences are recompiled.
+	subtract "a_RPG_aim_up_right_corrective_animation" 0
+	weightlist "weights_layer_Aim_all"
+}
+
+$animation "a_RPG_aim_straight_up" "male_shared_anims\a_RPG_aim_straight_up.smd" {
+	fps 30
+	// Crowbar writes this subtract option to prevent jigglebone and poseparameter problems when delta sequences are recompiled.
+	subtract "a_RPG_aim_straight_up_corrective_animation" 0
+	weightlist "weights_layer_Aim_all"
+}
+
+$weightlist "weights_layer_rpg" {
+	 "ValveBiped.Bip01_Pelvis" 0
+	 "ValveBiped.Bip01_Spine" 0.2
+	 "ValveBiped.Bip01_Spine1" 0.4
+	 "ValveBiped.Bip01_Spine2" 0.6
+	 "ValveBiped.Bip01_Spine4" 0.8
+	 "ValveBiped.Bip01_Neck1" 1
+	 "ValveBiped.Bip01_Head1" 1
+	 "ValveBiped.forward" 1
+	 "ValveBiped.Bip01_R_Clavicle" 1
+	 "ValveBiped.Bip01_R_UpperArm" 1
+	 "ValveBiped.Bip01_R_Forearm" 1
+	 "ValveBiped.Bip01_R_Hand" 1
+	 "ValveBiped.Anim_Attachment_RH" 1
+	 "ValveBiped.Bip01_L_Clavicle" 1
+	 "ValveBiped.Bip01_L_UpperArm" 1
+	 "ValveBiped.Bip01_L_Forearm" 1
+	 "ValveBiped.Bip01_L_Hand" 1
+	 "ValveBiped.Anim_Attachment_LH" 1
+	 "ValveBiped.Bip01_R_Thigh" 0
+	 "ValveBiped.Bip01_L_Thigh" 0
+}
+
+$weightlist "weights_layer_Aim_weak" {
+	 "ValveBiped.Bip01_Pelvis" 0.6
+	 "ValveBiped.Bip01_Spine" 0.6
+	 "ValveBiped.Bip01_R_Thigh" 0
+	 "ValveBiped.Bip01_L_Thigh" 0
+}
+
+$weightlist "weights_layer_Aim_weaker" {
+	 "ValveBiped.Bip01_Pelvis" 0.2
+	 "ValveBiped.Bip01_Spine" 0.2
+	 "ValveBiped.Bip01_R_Thigh" 0
+	 "ValveBiped.Bip01_L_Thigh" 0
+}
+
+$sequence "layer_Aim_RPG_mid_left" {
+	"a_RPG_aim_mid_left"
+	weightlist "weights_layer_Aim_weak"
+	delta
+	fadein 0.2
+	fadeout 0.2
+	hidden
+	iklock "rfoot" 1 0
+	iklock "lfoot" 1 0
+}
+
+$sequence "layer_Aim_RPG_up_center" {
+	"a_RPG_aim_up_center"
+	weightlist "weights_layer_Aim_weaker"
+	delta
+	fadein 0.2
+	fadeout 0.2
+	hidden
+	iklock "rfoot" 1 0
+	iklock "lfoot" 1 0
+}
+
+$sequence "layer_rpg_aim" {
+	"male_shared_anims\Idle_RPG_Aim.smd"
+	fadein 0.2
+	fadeout 0.2
+	addlayer "layer_Aim_RPG_mid_left"
+	addlayer "layer_Aim_RPG_up_center"
+	weightlist "weights_layer_rpg"
+	node "shootingRPG"
+	fps 30
+	loop
+	hidden
+	ikrule "lfoot" footstep contact 0 fakeorigin 8.88 6.06 0 fakerotate 0 0 0 floor 0 height 20 radius 2.5 range 0 0 60 60 target 3
+	ikrule "rfoot" footstep contact 0 fakeorigin -7.06 -9.5 0 fakerotate 0 0 0 floor 0 height 20 radius 2.5 range 0 0 60 60 target 2
+	ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 60 60 target 1
+	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 60 60 target 0
+}
+
+$sequence "layer_rpg_aim_crouch" {
+	"male_shared_anims\Idle_RPG_Aim.smd"
+	fadein 0.2
+	fadeout 0.2
+	//addlayer "layer_Aim_RPG_mid_left"
+	addlayer "layer_Aim_RPG_up_center"
+	weightlist "weights_layer_rpg"
+	node "shootingRPG"
+	fps 30
+	loop
+	hidden
+	ikrule "lfoot" footstep contact 0 fakeorigin 8.88 6.06 0 fakerotate 0 0 0 floor 0 height 20 radius 2.5 range 0 0 60 60 target 3
+	ikrule "rfoot" footstep contact 0 fakeorigin -7.06 -9.5 0 fakerotate 0 0 0 floor 0 height 20 radius 2.5 range 0 0 60 60 target 2
+	ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 60 60 target 1
+	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 60 60 target 0
+}
+
+$sequence "gesture_shoot_rpg" {
+	"male_shared_anims\gesture_shoot_rpg.smd"
+	activity "ACT_GESTURE_RANGE_ATTACK_RPG" 1
+	delta
+	// Crowbar writes this subtract option to prevent jigglebone and poseparameter problems when delta sequences are recompiled.
+	subtract "@gesture_shoot_rpg_corrective_animation" 0
+	fadein 0.2
+	fadeout 0.2
+	fps 30
+}
+
+$sequence "layer_Aim_RPG_all" {
+	"a_RPG_aim_straight_up"
+	"a_RPG_aim_straight_up"
+	"a_RPG_aim_straight_up"
+	"a_RPG_aim_up_right"
+	"a_RPG_aim_up_center"
+	"a_RPG_aim_up_left"
+	"a_RPG_aim_mid_right"
+	"a_RPG_aim_mid_center"
+	"a_RPG_aim_mid_left"
+	"a_RPG_aim_down_right"
+	"a_RPG_aim_down_center"
+	"a_RPG_aim_down_left"
+	blend "aim_yaw" -48.5701 48.5905
+	blend "aim_pitch" -88.88165 49.98479
+	blendwidth 3
+	delta
+	fadein 0.2
+	fadeout 0.2
+	hidden
+	iklock "rfoot" 1 0
+	iklock "lfoot" 1 0
+}
+
+$sequence "shootRPG" {
+	"combine_soldier_anims_anims\CombatIdle1.smd"
+	activity "ACT_RANGE_ATTACK_RPG" 1
+	numframes 21
+	fadein 0.2
+	fadeout 0.2
+	addlayer "layer_Aim_RPG_all"
+	blendlayer "layer_rpg_aim" 0 0 0 0 local
+	addlayer "gesture_shoot_rpg"
+	node "shootingRPG"
+	fps 30
+	ikrule "lfoot" footstep contact 0 fakeorigin 18 4.61 0 fakerotate 0 0 0 floor 0 height 20 radius 2.5 range 0 0 20 20 target 3
+	ikrule "rfoot" footstep contact 0 fakeorigin -14.07 -4.91 0 fakerotate 0 0 0 floor 0 height 20 radius 2.5 range 0 0 20 20 target 2
+	ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 20 20 target 1
+	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 20 20 target 0
+}
+
+$sequence "CombatIdle1_RPG" {
+	"combine_soldier_anims_anims\CombatIdle1.smd"
+	activity "ACT_IDLE_ANGRY_RPG" 1
+	fadein 0.2
+	fadeout 0.2
+	addlayer "layer_Aim_RPG_all"
+	blendlayer "layer_rpg_aim" 0 0 0 0 local
+	node "shootingRPG"
+	fps 30
+	loop
+	ikrule "lfoot" footstep contact 0 fakeorigin 18 4.61 0 fakerotate 0 0 0 floor 0 height 20 radius 2.5 range 0 0 30 30 target 3
+	ikrule "rfoot" footstep contact 0 fakeorigin -14.07 -4.91 0 fakerotate 0 0 0 floor 0 height 20 radius 2.5 range 0 0 30 30 target 2
+	ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 30 30 target 1
+	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 30 30 target 0
+}
+
+$sequence "shootRPGc" {
+	"combine_soldier_anims_anims\crouch_aim_sm1.smd"
+	activity "ACT_RANGE_ATTACK_RPG_LOW" 1
+	numframes 21
+	fadein 0.2
+	fadeout 0.2
+	addlayer "layer_Aim_RPG_all"
+	blendlayer "layer_rpg_aim_crouch" 0 0 0 0 local
+	addlayer "gesture_shoot_rpg"
+	node "shootingRPG"
+	fps 30
+	ikrule "lfoot" footstep contact 0 fakeorigin 18 4.61 0 fakerotate 0 0 0 floor 0 height 20 radius 2.5 range 0 0 20 20 target 3
+	ikrule "rfoot" footstep contact 0 fakeorigin -14.07 -4.91 0 fakerotate 0 0 0 floor 0 height 20 radius 2.5 range 0 0 20 20 target 2
+	ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 20 20 target 1
+	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 20 20 target 0
+}
+
+$sequence "crouch_aim_rpg" {
+	"combine_soldier_anims_anims\crouch_aim_sm1.smd"
+	activity "ACT_RANGE_AIM_RPG_LOW" 1
+	fadein 0.2
+	fadeout 0.2
+	addlayer "layer_Aim_RPG_all"
+	blendlayer "layer_rpg_aim_crouch" 0 0 0 0 local
+	node "shootingRPG"
+	fps 30
+	loop
+	ikrule "lfoot" footstep contact 0 fakeorigin 18 4.61 0 fakerotate 0 0 0 floor 0 height 20 radius 2.5 range 0 0 30 30 target 3
+	ikrule "rfoot" footstep contact 0 fakeorigin -14.07 -4.91 0 fakerotate 0 0 0 floor 0 height 20 radius 2.5 range 0 0 30 30 target 2
+	ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 30 30 target 1
+	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 30 30 target 0
+}
