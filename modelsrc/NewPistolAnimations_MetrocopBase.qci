@@ -1,0 +1,491 @@
+// ================================================================
+// 
+// Shared base QCI for new pistol animations utilizing metrocop animations.
+// 
+// Metrocop animations were decompiled by Crowbar 0.71
+// 
+// ================================================================
+
+// ================================================================
+// Metrocop Weightlists
+// ================================================================
+$weightlist "weights_neck_trans_x" {
+	 "ValveBiped.Bip01_Pelvis" 1
+	 "ValveBiped.Bip01_Spine" 1
+	 "ValveBiped.Bip01_R_Clavicle" 0
+	 "ValveBiped.Bip01_L_Clavicle" 0
+	 "ValveBiped.Bip01_R_Thigh" 0
+	 "ValveBiped.Bip01_L_Thigh" 0
+}
+
+$weightlist "weights_gesture_reload_pistolarms" {
+	 "ValveBiped.Bip01_Pelvis" 0
+	 "ValveBiped.Bip01_R_Clavicle" 1
+	 "ValveBiped.Bip01_L_Clavicle" 1
+}
+
+$weightlist "weights_gesture_reload_pistol" {
+	 "ValveBiped.Bip01_Pelvis" 0
+}
+
+$weightlist "weights_pistol_Aim_all" {
+	 "ValveBiped.Bip01_Pelvis" 1
+	 "ValveBiped.Bip01_R_Thigh" 0
+	 "ValveBiped.Bip01_L_Thigh" 0
+}
+
+$weightlist "weights_layer_walk_hold_baton_angry" {
+	 "ValveBiped.Bip01_Pelvis" 0
+	 "ValveBiped.Bip01_Spine" 1
+}
+
+$weightlist "weights_Pistol_aim_walk_all_delta" {
+	 "ValveBiped.Bip01_Pelvis" 1
+	 "ValveBiped.Bip01_Spine" 0
+	 "ValveBiped.Bip01_R_Thigh" 0
+	 "ValveBiped.Bip01_L_Thigh" 0
+}
+
+// ================================================================
+// Corrective Animations
+// ================================================================
+$animation "@gesture_shoot_pistol_corrective_animation" "police_animations_anims\@gesture_shoot_pistol_corrective_animation.smd" {
+}
+
+$animation "@gesture_reload_pistolspine_corrective_animation" "police_animations_anims\@gesture_reload_pistolspine_corrective_animation.smd" {
+}
+
+$animation "a_pistol_aim_straight_up_corrective_animation" "police_animations_anims\a_pistol_aim_straight_up_corrective_animation.smd" {
+}
+
+$animation "a_pistol_aim_up_right_corrective_animation" "police_animations_anims\a_pistol_aim_up_right_corrective_animation.smd" {
+}
+
+$animation "a_pistol_aim_up_center_corrective_animation" "police_animations_anims\a_pistol_aim_up_center_corrective_animation.smd" {
+}
+
+$animation "a_pistol_aim_up_left_corrective_animation" "police_animations_anims\a_pistol_aim_up_left_corrective_animation.smd" {
+}
+
+$animation "a_pistol_aim_mid_right_corrective_animation" "police_animations_anims\a_pistol_aim_mid_right_corrective_animation.smd" {
+}
+
+$animation "a_pistol_aim_mid_center_corrective_animation" "police_animations_anims\a_pistol_aim_mid_center_corrective_animation.smd" {
+}
+
+$animation "a_pistol_aim_mid_left_corrective_animation" "police_animations_anims\a_pistol_aim_mid_left_corrective_animation.smd" {
+}
+
+$animation "a_pistol_aim_down_right_corrective_animation" "police_animations_anims\a_pistol_aim_down_right_corrective_animation.smd" {
+}
+
+$animation "a_pistol_aim_down_center_corrective_animation" "police_animations_anims\a_pistol_aim_down_center_corrective_animation.smd" {
+}
+
+$animation "a_pistol_aim_down_left_corrective_animation" "police_animations_anims\a_pistol_aim_down_left_corrective_animation.smd" {
+}
+
+$animation "a_WalkN_pistol_aim_straight_up_corrective_animation" "police_animations_anims\a_WalkN_pistol_aim_straight_up_corrective_animation.smd" {
+}
+
+$animation "a_WalkN_pistol_aim_up_right_corrective_animation" "police_animations_anims\a_WalkN_pistol_aim_up_right_corrective_animation.smd" {
+}
+
+$animation "a_WalkN_pistol_aim_up_center_corrective_animation" "police_animations_anims\a_WalkN_pistol_aim_up_center_corrective_animation.smd" {
+}
+
+$animation "a_WalkN_pistol_aim_up_left_corrective_animation" "police_animations_anims\a_WalkN_pistol_aim_up_left_corrective_animation.smd" {
+}
+
+$animation "a_WalkN_pistol_aim_mid_right_corrective_animation" "police_animations_anims\a_WalkN_pistol_aim_mid_right_corrective_animation.smd" {
+}
+
+$animation "a_WalkN_pistol_aim_mid_center_corrective_animation" "police_animations_anims\a_WalkN_pistol_aim_mid_center_corrective_animation.smd" {
+}
+
+$animation "a_WalkN_pistol_aim_mid_left_corrective_animation" "police_animations_anims\a_WalkN_pistol_aim_mid_left_corrective_animation.smd" {
+}
+
+$animation "a_WalkN_pistol_aim_down_right_corrective_animation" "police_animations_anims\a_WalkN_pistol_aim_down_right_corrective_animation.smd" {
+}
+
+$animation "a_WalkN_pistol_aim_down_center_corrective_animation" "police_animations_anims\a_WalkN_pistol_aim_down_center_corrective_animation.smd" {
+}
+
+$animation "a_WalkN_pistol_aim_down_left_corrective_animation" "police_animations_anims\a_WalkN_pistol_aim_down_left_corrective_animation.smd" {
+}
+
+$animation "a_walkS_pistol_aim_delta_corrective_animation" "police_animations_anims\a_walkS_pistol_aim_delta_corrective_animation.smd" {
+}
+
+$animation "a_walkSE_pistol_aim_delta_corrective_animation" "police_animations_anims\a_walkSE_pistol_aim_delta_corrective_animation.smd" {
+}
+
+$animation "a_walkE_pistol_aim_delta_corrective_animation" "police_animations_anims\a_walkE_pistol_aim_delta_corrective_animation.smd" {
+}
+
+$animation "a_walkNE_pistol_aim_delta_corrective_animation" "police_animations_anims\a_walkNE_pistol_aim_delta_corrective_animation.smd" {
+}
+
+$animation "a_walkN_pistol_aim_delta_corrective_animation" "police_animations_anims\a_walkN_pistol_aim_delta_corrective_animation.smd" {
+}
+
+$animation "a_walkNW_pistol_aim_delta_corrective_animation" "police_animations_anims\a_walkNW_pistol_aim_delta_corrective_animation.smd" {
+}
+
+$animation "a_walkW_pistol_aim_delta_corrective_animation" "police_animations_anims\a_walkW_pistol_aim_delta_corrective_animation.smd" {
+}
+
+$animation "a_walkSW_pistol_aim_delta_corrective_animation" "police_animations_anims\a_walkSW_pistol_aim_delta_corrective_animation.smd" {
+}
+
+$animation "a_runS_pistol_aim_delta_corrective_animation" "police_animations_anims\a_runS_pistol_aim_delta_corrective_animation.smd" {
+}
+
+$animation "a_runSE_pistol_aim_delta_corrective_animation" "police_animations_anims\a_runSE_pistol_aim_delta_corrective_animation.smd" {
+}
+
+$animation "a_runE_pistol_aim_delta_corrective_animation" "police_animations_anims\a_runE_pistol_aim_delta_corrective_animation.smd" {
+}
+
+$animation "a_runNE_pistol_aim_delta_corrective_animation" "police_animations_anims\a_runNE_pistol_aim_delta_corrective_animation.smd" {
+}
+
+$animation "a_runN_pistol_aim_delta_corrective_animation" "police_animations_anims\a_runN_pistol_aim_delta_corrective_animation.smd" {
+}
+
+$animation "a_runNW_pistol_aim_delta_corrective_animation" "police_animations_anims\a_runNW_pistol_aim_delta_corrective_animation.smd" {
+}
+
+$animation "a_runW_pistol_aim_delta_corrective_animation" "police_animations_anims\a_runW_pistol_aim_delta_corrective_animation.smd" {
+}
+
+$animation "a_runSW_pistol_aim_delta_corrective_animation" "police_animations_anims\a_runSW_pistol_aim_delta_corrective_animation.smd" {
+}
+
+// ================================================================
+// Aim Animations
+// ================================================================
+$animation "a_aim_pistol_neutral" "police_animations_anims\a_aim_pistol_neutral.smd" {
+	fps 30
+	//ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 0 0 target 0
+	//ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 0 0 target 1
+}
+
+$animation "a_pistol_aim_down_left" "police_animations_anims\a_pistol_aim_down_left.smd" {
+	fps 30
+	// Crowbar writes this subtract option to prevent jigglebone and poseparameter problems when delta sequences are recompiled.
+	subtract "a_pistol_aim_down_left_corrective_animation" 0
+	//ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 0 0 target 1
+	weightlist "weights_pistol_Aim_all"
+}
+
+$animation "a_pistol_aim_down_center" "police_animations_anims\a_pistol_aim_down_center.smd" {
+	fps 30
+	// Crowbar writes this subtract option to prevent jigglebone and poseparameter problems when delta sequences are recompiled.
+	subtract "a_pistol_aim_down_center_corrective_animation" 0
+	//ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 0 0 target 1
+	weightlist "weights_pistol_Aim_all"
+}
+
+$animation "a_pistol_aim_down_right" "police_animations_anims\a_pistol_aim_down_right.smd" {
+	fps 30
+	// Crowbar writes this subtract option to prevent jigglebone and poseparameter problems when delta sequences are recompiled.
+	subtract "a_pistol_aim_down_right_corrective_animation" 0
+	//ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 0 0 target 1
+	weightlist "weights_pistol_Aim_all"
+}
+
+$animation "a_pistol_aim_mid_left" "police_animations_anims\a_pistol_aim_mid_left.smd" {
+	fps 30
+	// Crowbar writes this subtract option to prevent jigglebone and poseparameter problems when delta sequences are recompiled.
+	subtract "a_pistol_aim_mid_left_corrective_animation" 0
+	//ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 0 0 target 1
+	weightlist "weights_pistol_Aim_all"
+}
+
+$animation "a_pistol_aim_mid_center" "police_animations_anims\a_pistol_aim_mid_center.smd" {
+	fps 30
+	// Crowbar writes this subtract option to prevent jigglebone and poseparameter problems when delta sequences are recompiled.
+	subtract "a_pistol_aim_mid_center_corrective_animation" 0
+	//ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 0 0 target 1
+	weightlist "weights_pistol_Aim_all"
+}
+
+$animation "a_pistol_aim_mid_right" "police_animations_anims\a_pistol_aim_mid_right.smd" {
+	fps 30
+	// Crowbar writes this subtract option to prevent jigglebone and poseparameter problems when delta sequences are recompiled.
+	subtract "a_pistol_aim_mid_right_corrective_animation" 0
+	//ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 0 0 target 1
+	weightlist "weights_pistol_Aim_all"
+}
+
+$animation "a_pistol_aim_up_left" "police_animations_anims\a_pistol_aim_up_left.smd" {
+	fps 30
+	// Crowbar writes this subtract option to prevent jigglebone and poseparameter problems when delta sequences are recompiled.
+	subtract "a_pistol_aim_up_left_corrective_animation" 0
+	//ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 0 0 target 1
+	weightlist "weights_pistol_Aim_all"
+}
+
+$animation "a_pistol_aim_up_center" "police_animations_anims\a_pistol_aim_up_center.smd" {
+	fps 30
+	// Crowbar writes this subtract option to prevent jigglebone and poseparameter problems when delta sequences are recompiled.
+	subtract "a_pistol_aim_up_center_corrective_animation" 0
+	//ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 0 0 target 1
+	weightlist "weights_pistol_Aim_all"
+}
+
+$animation "a_pistol_aim_up_right" "police_animations_anims\a_pistol_aim_up_right.smd" {
+	fps 30
+	// Crowbar writes this subtract option to prevent jigglebone and poseparameter problems when delta sequences are recompiled.
+	subtract "a_pistol_aim_up_right_corrective_animation" 0
+	//ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 0 0 target 1
+	weightlist "weights_pistol_Aim_all"
+}
+
+$animation "a_pistol_aim_straight_up" "police_animations_anims\a_pistol_aim_straight_up.smd" {
+	fps 30
+	// Crowbar writes this subtract option to prevent jigglebone and poseparameter problems when delta sequences are recompiled.
+	subtract "a_pistol_aim_straight_up_corrective_animation" 0
+	//ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 0 0 target 1
+	weightlist "weights_pistol_Aim_all"
+}
+
+$animation "a_walkn_aim_pistol_neutral" "police_animations_anims\a_walkn_aim_pistol_neutral.smd" {
+	fps 30
+	//ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 0 0 target 0
+	//ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 0 0 target 1
+}
+
+$animation "a_WalkN_pistol_aim_down_left" "police_animations_anims\a_WalkN_pistol_aim_down_left.smd" {
+	fps 30
+	// Crowbar writes this subtract option to prevent jigglebone and poseparameter problems when delta sequences are recompiled.
+	subtract "a_WalkN_pistol_aim_down_left_corrective_animation" 0
+	//ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 0 0 target 1
+	weightlist "weights_pistol_Aim_all"
+}
+
+$animation "a_WalkN_pistol_aim_down_center" "police_animations_anims\a_WalkN_pistol_aim_down_center.smd" {
+	fps 30
+	// Crowbar writes this subtract option to prevent jigglebone and poseparameter problems when delta sequences are recompiled.
+	subtract "a_WalkN_pistol_aim_down_center_corrective_animation" 0
+	//ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 0 0 target 1
+	weightlist "weights_pistol_Aim_all"
+}
+
+$animation "a_WalkN_pistol_aim_down_right" "police_animations_anims\a_WalkN_pistol_aim_down_right.smd" {
+	fps 30
+	// Crowbar writes this subtract option to prevent jigglebone and poseparameter problems when delta sequences are recompiled.
+	subtract "a_WalkN_pistol_aim_down_right_corrective_animation" 0
+	//ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 0 0 target 1
+	weightlist "weights_pistol_Aim_all"
+}
+
+$animation "a_WalkN_pistol_aim_mid_left" "police_animations_anims\a_WalkN_pistol_aim_mid_left.smd" {
+	fps 30
+	// Crowbar writes this subtract option to prevent jigglebone and poseparameter problems when delta sequences are recompiled.
+	subtract "a_WalkN_pistol_aim_mid_left_corrective_animation" 0
+	//ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 0 0 target 1
+	weightlist "weights_pistol_Aim_all"
+}
+
+$animation "a_WalkN_pistol_aim_mid_center" "police_animations_anims\a_WalkN_pistol_aim_mid_center.smd" {
+	fps 30
+	// Crowbar writes this subtract option to prevent jigglebone and poseparameter problems when delta sequences are recompiled.
+	subtract "a_WalkN_pistol_aim_mid_center_corrective_animation" 0
+	//ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 0 0 target 1
+	weightlist "weights_pistol_Aim_all"
+}
+
+$animation "a_WalkN_pistol_aim_mid_right" "police_animations_anims\a_WalkN_pistol_aim_mid_right.smd" {
+	fps 30
+	// Crowbar writes this subtract option to prevent jigglebone and poseparameter problems when delta sequences are recompiled.
+	subtract "a_WalkN_pistol_aim_mid_right_corrective_animation" 0
+	//ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 0 0 target 1
+	weightlist "weights_pistol_Aim_all"
+}
+
+$animation "a_WalkN_pistol_aim_up_left" "police_animations_anims\a_WalkN_pistol_aim_up_left.smd" {
+	fps 30
+	// Crowbar writes this subtract option to prevent jigglebone and poseparameter problems when delta sequences are recompiled.
+	subtract "a_WalkN_pistol_aim_up_left_corrective_animation" 0
+	//ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 0 0 target 1
+	weightlist "weights_pistol_Aim_all"
+}
+
+$animation "a_WalkN_pistol_aim_up_center" "police_animations_anims\a_WalkN_pistol_aim_up_center.smd" {
+	fps 30
+	// Crowbar writes this subtract option to prevent jigglebone and poseparameter problems when delta sequences are recompiled.
+	subtract "a_WalkN_pistol_aim_up_center_corrective_animation" 0
+	//ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 0 0 target 1
+	weightlist "weights_pistol_Aim_all"
+}
+
+$animation "a_WalkN_pistol_aim_up_right" "police_animations_anims\a_WalkN_pistol_aim_up_right.smd" {
+	fps 30
+	// Crowbar writes this subtract option to prevent jigglebone and poseparameter problems when delta sequences are recompiled.
+	subtract "a_WalkN_pistol_aim_up_right_corrective_animation" 0
+	//ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 0 0 target 1
+	weightlist "weights_pistol_Aim_all"
+}
+
+$animation "a_WalkN_pistol_aim_straight_up" "police_animations_anims\a_WalkN_pistol_aim_straight_up.smd" {
+	fps 30
+	// Crowbar writes this subtract option to prevent jigglebone and poseparameter problems when delta sequences are recompiled.
+	subtract "a_WalkN_pistol_aim_straight_up_corrective_animation" 0
+	//ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 0 0 target 1
+	weightlist "weights_pistol_Aim_all"
+}
+
+$animation "a_walkS_pistol_aim_delta" "police_animations_anims\a_walkS_pistol_aim_delta.smd" {
+	fps 30
+	// Crowbar writes this subtract option to prevent jigglebone and poseparameter problems when delta sequences are recompiled.
+	subtract "a_walkS_pistol_aim_delta_corrective_animation" 0
+	weightlist "weights_Pistol_aim_walk_all_delta"
+}
+
+$animation "a_walkSE_pistol_aim_delta" "police_animations_anims\a_walkSE_pistol_aim_delta.smd" {
+	fps 30
+	// Crowbar writes this subtract option to prevent jigglebone and poseparameter problems when delta sequences are recompiled.
+	subtract "a_walkSE_pistol_aim_delta_corrective_animation" 0
+	weightlist "weights_Pistol_aim_walk_all_delta"
+}
+
+$animation "a_walkE_pistol_aim_delta" "police_animations_anims\a_walkE_pistol_aim_delta.smd" {
+	fps 30
+	// Crowbar writes this subtract option to prevent jigglebone and poseparameter problems when delta sequences are recompiled.
+	subtract "a_walkE_pistol_aim_delta_corrective_animation" 0
+	weightlist "weights_Pistol_aim_walk_all_delta"
+}
+
+$animation "a_walkNE_pistol_aim_delta" "police_animations_anims\a_walkNE_pistol_aim_delta.smd" {
+	fps 30
+	// Crowbar writes this subtract option to prevent jigglebone and poseparameter problems when delta sequences are recompiled.
+	subtract "a_walkNE_pistol_aim_delta_corrective_animation" 0
+	weightlist "weights_Pistol_aim_walk_all_delta"
+}
+
+$animation "a_walkN_pistol_aim_delta" "police_animations_anims\a_walkN_pistol_aim_delta.smd" {
+	fps 30
+	// Crowbar writes this subtract option to prevent jigglebone and poseparameter problems when delta sequences are recompiled.
+	subtract "a_walkN_pistol_aim_delta_corrective_animation" 0
+	weightlist "weights_Pistol_aim_walk_all_delta"
+}
+
+$animation "a_walkNW_pistol_aim_delta" "police_animations_anims\a_walkNW_pistol_aim_delta.smd" {
+	fps 30
+	// Crowbar writes this subtract option to prevent jigglebone and poseparameter problems when delta sequences are recompiled.
+	subtract "a_walkNW_pistol_aim_delta_corrective_animation" 0
+	weightlist "weights_Pistol_aim_walk_all_delta"
+}
+
+$animation "a_walkW_pistol_aim_delta" "police_animations_anims\a_walkW_pistol_aim_delta.smd" {
+	fps 30
+	// Crowbar writes this subtract option to prevent jigglebone and poseparameter problems when delta sequences are recompiled.
+	subtract "a_walkW_pistol_aim_delta_corrective_animation" 0
+	weightlist "weights_Pistol_aim_walk_all_delta"
+}
+
+$animation "a_walkSW_pistol_aim_delta" "police_animations_anims\a_walkSW_pistol_aim_delta.smd" {
+	fps 30
+	// Crowbar writes this subtract option to prevent jigglebone and poseparameter problems when delta sequences are recompiled.
+	subtract "a_walkSW_pistol_aim_delta_corrective_animation" 0
+	weightlist "weights_Pistol_aim_walk_all_delta"
+}
+
+$animation "a_WalkN_aim_pistol" "police_animations_anims\a_WalkN_aim_pistol.smd" {
+	fps 30
+	loop
+	ikrule "lfoot" footstep contact 7 fakeorigin 13.65 6.55 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 29 7 21 29 target 3
+	ikrule "rfoot" footstep contact 22 fakeorigin 13.7 -1.18 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 14 22 6 14 target 2
+	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 30 30 target 0
+	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 30 30 target 1
+	walkframe 30 LX LY
+}
+
+$animation "a_walkN_hold_pistol" "police_animations_anims\a_walkN_hold_pistol.smd" {
+	fps 30
+	loop
+	ikrule "lfoot" footstep contact 7 fakeorigin 13.65 6.55 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 29 7 21 29 target 3
+	ikrule "rfoot" footstep contact 22 fakeorigin 13.7 -1.18 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 14 22 6 14 target 2
+	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 30 30 target 0
+	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 30 30 target 1
+	walkframe 30 LX LY
+}
+
+$animation "a_runS_pistol_aim_delta" "police_animations_anims\a_runS_pistol_aim_delta.smd" {
+	fps 30
+	// Crowbar writes this subtract option to prevent jigglebone and poseparameter problems when delta sequences are recompiled.
+	subtract "a_runS_pistol_aim_delta_corrective_animation" 0
+	weightlist "weights_Pistol_aim_walk_all_delta"
+}
+
+$animation "a_runSE_pistol_aim_delta" "police_animations_anims\a_runSE_pistol_aim_delta.smd" {
+	fps 30
+	// Crowbar writes this subtract option to prevent jigglebone and poseparameter problems when delta sequences are recompiled.
+	subtract "a_runSE_pistol_aim_delta_corrective_animation" 0
+	weightlist "weights_Pistol_aim_walk_all_delta"
+}
+
+$animation "a_runE_pistol_aim_delta" "police_animations_anims\a_runE_pistol_aim_delta.smd" {
+	fps 30
+	// Crowbar writes this subtract option to prevent jigglebone and poseparameter problems when delta sequences are recompiled.
+	subtract "a_runE_pistol_aim_delta_corrective_animation" 0
+	weightlist "weights_Pistol_aim_walk_all_delta"
+}
+
+$animation "a_runNE_pistol_aim_delta" "police_animations_anims\a_runNE_pistol_aim_delta.smd" {
+	fps 30
+	// Crowbar writes this subtract option to prevent jigglebone and poseparameter problems when delta sequences are recompiled.
+	subtract "a_runNE_pistol_aim_delta_corrective_animation" 0
+	weightlist "weights_Pistol_aim_walk_all_delta"
+}
+
+$animation "a_runN_pistol_aim_delta" "police_animations_anims\a_runN_pistol_aim_delta.smd" {
+	fps 30
+	// Crowbar writes this subtract option to prevent jigglebone and poseparameter problems when delta sequences are recompiled.
+	subtract "a_runN_pistol_aim_delta_corrective_animation" 0
+	weightlist "weights_Pistol_aim_walk_all_delta"
+}
+
+$animation "a_runNW_pistol_aim_delta" "police_animations_anims\a_runNW_pistol_aim_delta.smd" {
+	fps 30
+	// Crowbar writes this subtract option to prevent jigglebone and poseparameter problems when delta sequences are recompiled.
+	subtract "a_runNW_pistol_aim_delta_corrective_animation" 0
+	weightlist "weights_Pistol_aim_walk_all_delta"
+}
+
+$animation "a_runW_pistol_aim_delta" "police_animations_anims\a_runW_pistol_aim_delta.smd" {
+	fps 30
+	// Crowbar writes this subtract option to prevent jigglebone and poseparameter problems when delta sequences are recompiled.
+	subtract "a_runW_pistol_aim_delta_corrective_animation" 0
+	weightlist "weights_Pistol_aim_walk_all_delta"
+}
+
+$animation "a_runSW_pistol_aim_delta" "police_animations_anims\a_runSW_pistol_aim_delta.smd" {
+	fps 30
+	// Crowbar writes this subtract option to prevent jigglebone and poseparameter problems when delta sequences are recompiled.
+	subtract "a_runSW_pistol_aim_delta_corrective_animation" 0
+	weightlist "weights_Pistol_aim_walk_all_delta"
+}
+
+$animation "a_runN_hold_pistol" "police_animations_anims\a_runN_hold_pistol.smd" {
+	fps 30
+	loop
+	ikrule "lfoot" footstep contact 8 fakeorigin 10.25 6.08 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 18 7 10 18 target 3
+	ikrule "rfoot" footstep contact 18 fakeorigin 11.04 -1.4 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 8 16 1 8 target 2
+	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 20 20 target 0
+	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 20 20 target 1
+	walkframe 20 LX LY
+}
+
+$animation "a_runN_aim_pistol" "police_animations_anims\a_runN_aim_pistol.smd" {
+	fps 30
+	loop
+	ikrule "lfoot" footstep contact 8 fakeorigin 10.25 6.08 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 18 7 10 18 target 3
+	ikrule "rfoot" footstep contact 18 fakeorigin 11.04 -1.4 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 8 16 1 8 target 2
+	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 20 20 target 0
+	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 20 20 target 1
+	walkframe 20 LX LY
+}

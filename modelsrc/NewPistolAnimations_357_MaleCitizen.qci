@@ -1,0 +1,26 @@
+// ================================================================
+// 
+// 357 Animations for Male Citizens
+// 
+// ================================================================
+
+$include "NewPistolAnimations_357.qci"
+
+$sequence "shootp2" {
+	"male_shared_anims\Idle_SMG1_Aim.smd" // "police_animations_anims\pistolangryidle2.smd"
+	activity "ACT_RANGE_ATTACK_REVOLVER" 1
+	numframes 16
+	fadein 0.2
+	fadeout 0.2
+	{ event 3014 1 "" }
+	addlayer "pistol_Aim_all"
+	blendlayer "layer_aim_pistol_posture" 0 0 0 0 local
+	blendlayer "gesture_shoot_357" 0 0 0 0 local
+	node "shooting_pistol"
+	//weightlist "weights_357_shoot"
+	fps 30
+	ikrule "lfoot" footstep contact 0 fakeorigin 11.95 7.22 0 fakerotate 0 0 0 floor 0 height 20 radius 2.5 range 0 0 4 4 target 3
+	ikrule "rfoot" footstep contact 0 fakeorigin -9.2 -3.23 0 fakerotate 0 0 0 floor 0 height 20 radius 2.5 range 0 0 4 4 target 2
+	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 4 4 target 0
+	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 4 4 target 1
+}

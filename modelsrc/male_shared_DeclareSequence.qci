@@ -332,11 +332,11 @@ $sequence "crouch_reload_shotgun" {
 	ikrule "rhand" release
 }
 
-$declaresequence "shootp1"
-$declaresequence "gesture_shootp1"
-$declaresequence "reload_pistol"
-$declaresequence "crouch_shoot_pistol"
-$declaresequence "crouch_reload_pistol"
+//$declaresequence "shootp1" // New pistol animations in NewPistolAnimations_MaleCitizen.qci
+//$declaresequence "gesture_shootp1" // New pistol animations in NewPistolAnimations_MaleCitizen.qci
+//$declaresequence "reload_pistol" // New pistol animations in NewPistolAnimations_MaleCitizen.qci
+//$declaresequence "crouch_shoot_pistol" // New pistol animations in NewPistolAnimations_MaleCitizen.qci
+//$declaresequence "crouch_reload_pistol" // New pistol animations in NewPistolAnimations_MaleCitizen.qci
 $declaresequence "throw1"
 $declaresequence "swing"
 $declaresequence "idle_angry_melee"

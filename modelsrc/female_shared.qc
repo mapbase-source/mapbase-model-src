@@ -9,12 +9,21 @@ $include "BaseModel.qci"
 $include "hl2mp_ported_anims/commonbones_female.qci"
 $include "hl2mp_ported_anims/weaponmacros.qci"
 
+$include "FemaleCitizenMoveAnims.qci"
+
 $includemodel "humans/female_shared_original.mdl"
 $include "female_shared_DeclareSequence.qci"
 
-// Must be included
-$include "BaseModel.qci"
-$include "hl2mp_ported_anims/commonbones_female.qci"
+
+// ================================================================
+// 
+// Pistol Animations
+// 
+// ================================================================
+$include "NewPistolAnimations_FemaleCitizen.qci"
+$include "NewPistolAnimations_357_FemaleCitizen.qci"
+// ================================================================
+
 
 $sequence "MeleeAttack01_Act" {
 	"female_shared_anims\MeleeAttack01.smd"
@@ -28,12 +37,18 @@ $include "DefaultHolster.qci"
 $popd
 
 $definevariable Blend_Idle_Default "Idle_SMG1_Aim"
+$definevariable Blend_Idle_Unarmed "idle_subtle"
+$definevariable Blend_Idle_Panicked "crouch_panicked"
 $definevariable Blend_Idle_Pistol "Pistol_idle_aim"
 $definevariable Blend_Idle_Rifle "Idle_SMG1_Aim"
+$definevariable Blend_Idle_Rifle_Crouched "crouch_aim_smg1"
 
 $definevariable Blend_SMD_Default "female_shared_anims\Idle_SMG1_Aim.smd"
+$definevariable Blend_SMD_Unarmed "female_shared_anims\idle_subtle.smd"
+$definevariable Blend_SMD_Panicked "female_shared_anims\crouch_panicked.smd"
 $definevariable Blend_SMD_Pistol "female_shared_anims\Pistol_idle_aim.smd"
 $definevariable Blend_SMD_Rifle "female_shared_anims\Idle_SMG1_Aim.smd"
+$definevariable Blend_SMD_Rifle_Crouched "female_shared_anims\crouch_aim_smg1.smd"
 
 $definevariable Blend_Node_Default "shooting"
 $definevariable Blend_Node_Pistol "shooting"

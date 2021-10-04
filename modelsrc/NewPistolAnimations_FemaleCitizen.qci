@@ -1,0 +1,691 @@
+// ================================================================
+// 
+// New Pistol Animations for Female Citizens
+// 
+// Author: Blixibon
+// 
+// Metrocop animations were decompiled by Crowbar 0.71
+// 
+// ================================================================
+// 
+// This QCI file implements the following:
+// 
+//    1. Full pistol walk, run, and crouch animations based on decompiled Alyx animations and decompiled metrocop animations.
+//       They use citizen walk/run blends and "NPC_Citizen" footstep animation events.
+// 
+//    2. A near-complete set of pistol readiness activities. "Readiness" is a feature on citizens and
+//       other companions which changes their posture based on how "ready" they are for combat.
+//       For example, a "relaxed" citizen will stand up straight, but a "stimulated" citizen will be
+//       slightly ducked down and alert. This is purely visual and has no effect on gameplay.
+// 
+// Due to the limitations of my animation skills, this uses no custom SMD animations.
+// Instead, most of these sequences involve complex QC commands applied on directly decompiled
+// animations. This can produce surprisingly good results, but it's still very crude and has a few caveats which require
+// a lot of work to iron out. As a result, this technique didn't always turn out perfectly and there are a few flaws in these
+// sequences if you look hard enough. Fortunately, the animations are mostly passable otherwise.
+// 
+// Another limitation on female citizens in particular is the fact that we do not want to affect the animations of Alyx, which inherits from female_shared.mdl,
+// but we still want the female citizen pistol animations to be congruent with the new male citizen pistol animations from metrocops.
+// For some animations, we've had to resort to overriding them again in alyx_animations_ep2.qc or even modifying the npc_alyx code.
+// 
+// If you would like to contribute actual animatons to replace some of these sequences, please contact Blixibon.
+// 
+// ================================================================
+
+// ================================================================
+// Combat Animations
+// ================================================================
+$weightlist "weights_pistol_hands" {
+	 "ValveBiped.Bip01_Pelvis" 0
+	 "ValveBiped.Bip01_L_Hand" 1
+	 "ValveBiped.Bip01_R_Hand" 1
+}
+
+$sequence "Layer_Pistol_Hands" {
+	"police_animations_anims\a_walkN_hold_pistol.smd"
+	frame 0 0
+	numframes 30
+	weightlist "weights_pistol_hands"
+	loop
+	ikrule "lfoot" footstep contact 7 fakeorigin 13.65 6.55 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 29 7 21 29 target 3
+	ikrule "rfoot" footstep contact 22 fakeorigin 13.7 -1.18 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 14 22 6 14 target 2
+	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 30 30 target 0
+	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 30 30 target 1
+	hidden
+}
+
+$weightlist "weights_pistol_hand_r" {
+	 "ValveBiped.Bip01_Pelvis" 0
+	 "ValveBiped.Bip01_L_Hand" 0
+	 "ValveBiped.Bip01_R_Hand" 1
+}
+
+$sequence "Layer_Pistol_Hand_R" {
+	"police_animations_anims\a_walkN_hold_pistol.smd"
+	frame 0 0
+	numframes 30
+	weightlist "weights_pistol_hand_r"
+	loop
+	ikrule "lfoot" footstep contact 7 fakeorigin 13.65 6.55 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 29 7 21 29 target 3
+	ikrule "rfoot" footstep contact 22 fakeorigin 13.7 -1.18 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 14 22 6 14 target 2
+	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 30 30 target 0
+	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 30 30 target 1
+	hidden
+}
+
+$sequence "shootp1" {
+	"female_shared_anims\shootp1.smd"
+	activity "ACT_RANGE_ATTACK_PISTOL" 1
+	{ event 3014 1 "" }
+	fadein 0.2
+	fadeout 0.2
+	//blendlayer "Layer_Pistol_Hands" 0 0 0 0 local
+	addlayer "layer_Aim_p_all"
+	node "shooting_pistol"
+	snap
+	fps 25
+	ikrule "lfoot" footstep contact 0 fakeorigin 10.81 2.86 0 fakerotate 0 0 0 floor 0 height 20 radius 2.5 range 0 0 5 5 target 3
+	ikrule "rfoot" footstep contact 0 fakeorigin -3.39 -7 0 fakerotate 0 0 0 floor 0 height 20 radius 2.5 range 0 0 5 5 target 2
+	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 5 5 target 0
+	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 5 5 target 1
+}
+
+$sequence "Pistol_idle" {
+	"female_shared_anims\Pistol_idle.smd"
+	activity "ACT_IDLE_PISTOL" 1
+	fadein 0.2
+	fadeout 0.2
+	blendlayer "Layer_Pistol_Hands" 0 0 0 0 local
+	node "standing"
+	fps 30
+	loop
+	ikrule "lfoot" footstep contact 0 fakeorigin 10.81 2.86 0 fakerotate 0 0 0 floor 0 height 20 radius 2.5 range 0 0 30 30 target 3
+	ikrule "rfoot" footstep contact 0 fakeorigin -3.39 -7 0 fakerotate 0 0 0 floor 0 height 20 radius 2.5 range 0 0 30 30 target 2
+	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 30 30 target 0
+	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 30 30 target 1
+}
+
+$sequence "Pistol_idle_aim" {
+	"female_shared_anims\Pistol_idle_aim.smd"
+	activity "ACT_IDLE_ANGRY_PISTOL" 1
+	fadein 0.2
+	fadeout 0.2
+	//blendlayer "Layer_Pistol_Hands" 0 0 0 0 local
+	addlayer "layer_Aim_p_all"
+	node "shooting_pistol" // shooting
+	fps 30
+	loop
+	ikrule "lfoot" footstep contact 0 fakeorigin 10.81 2.86 0 fakerotate 0 0 0 floor 0 height 20 radius 2.5 range 0 0 0 0 target 3
+	ikrule "rfoot" footstep contact 0 fakeorigin -3.39 -7 0 fakerotate 0 0 0 floor 0 height 20 radius 2.5 range 0 0 0 0 target 2
+	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 0 0 target 0
+	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 0 0 target 1
+}
+
+// ================================================================
+// Crouch Animations (largely from Alyx)
+// ================================================================
+$sequence "idle_p_crouch" { // crouch_idle_pistol
+	"alyx_animations_ep2\idle_p_crouch.smd"
+	activity "ACT_COVER_PISTOL_LOW" 1
+	fadein 0.2
+	fadeout 0.2
+	node "crouching"
+	fps 30
+	loop
+	ikrule "lfoot" footstep contact 0 fakeorigin 4.85 1.29 0 fakerotate 0 0 0 floor 0 height 20 radius 2.5 range 0 0 40 40 target 3
+	ikrule "rfoot" footstep contact 0 fakeorigin -8.09 -4.55 0 fakerotate 0 0 0 floor 0 height 20 radius 2.5 range 0 0 40 40 target 2
+	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 40 40 target 0
+	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 40 40 target 1
+}
+
+$sequence "crouch_shoot_pistol" {
+	"alyx_animations_ep2\crouch_shoot_pistol.smd"
+	activity "ACT_RANGE_ATTACK_PISTOL_LOW" 1
+	{ event 3014 4 "" }
+	fadein 0.2
+	fadeout 0.2
+	addlayer "layer_Aim_p_all"
+	node "crouchShooting_pistol"
+	snap
+	fps 25
+	ikrule "lfoot" footstep contact 0 fakeorigin 4.85 1.29 0 fakerotate 0 0 0 floor 0 height 20 radius 2.5 range 0 0 5 5 target 3
+	ikrule "rfoot" footstep contact 0 fakeorigin -8.15 -4.51 0 fakerotate 0 0 0 floor 0 height 20 radius 2.5 range 0 0 5 5 target 2
+	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 5 5 target 0
+	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 5 5 target 1
+}
+
+$sequence "crouch_aim_pistol" {
+	"alyx_animations_ep2\crouch_aim_pistol.smd"
+	activity "ACT_RANGE_AIM_PISTOL_LOW" 1
+	fadein 0.2
+	fadeout 0.2
+	addlayer "layer_Aim_p_all"
+	node "crouchShooting_pistol"
+	fps 30
+	loop
+	ikrule "lfoot" footstep contact 0 fakeorigin 4.85 1.29 0 fakerotate 0 0 0 floor 0 height 20 radius 2.5 range 0 0 16 16 target 3
+	ikrule "rfoot" footstep contact 0 fakeorigin -8.15 -4.51 0 fakerotate 0 0 0 floor 0 height 20 radius 2.5 range 0 0 16 16 target 2
+	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 16 16 target 0
+	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 16 16 target 1
+}
+
+$sequence "crouch_reload_pistol" {
+	"alyx_animations_ep2\crouch_reload_pistol.smd"
+	activity "ACT_RELOAD_PISTOL_LOW" 1
+	{ event 3015 35 "" }
+	fadein 0.2
+	fadeout 0.2
+	node "crouchShooting_pistol"
+	fps 25
+	ikrule "lfoot" footstep contact 0 fakeorigin 4.85 1.65 0 fakerotate 0 0 0 floor 0 height 20 radius 2.5 range 0 0 39 39 target 3
+	ikrule "rfoot" footstep contact 0 fakeorigin -8.2 -4.61 0 fakerotate 0 0 0 floor 0 height 20 radius 2.5 range 0 0 39 39 target 2
+	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 39 39 target 0
+	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 39 39 target 1
+}
+
+// ================================================================
+// Transition Animations
+// ================================================================
+$sequence "Crouch_to_stand_pistol" {
+	"alyx_animations_ep2\Crouch_to_stand.smd"
+	activity "ACT_TRANSITION" 1
+	fadein 0.2
+	fadeout 0.2
+	blendlayer "layer_Aim_p_all" 8 15 25 25 spline
+	transition "crouching_pistol" "standing"
+	fps 30
+	ikrule "rfoot" footstep contact 1 fakeorigin -8.02 -4.58 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 0 1 5 10 target 2
+	ikrule "rfoot" footstep contact 12 fakeorigin -3.09 -7.27 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 10 12 24 25 target 2
+	ikrule "lfoot" footstep contact 1 fakeorigin 4.85 1.29 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 0 1 14 16 target 3
+	ikrule "lfoot" footstep contact 24 fakeorigin 10.81 2.86 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 21 24 24 25 target 3
+	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 25 25 target 0
+	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 25 25 target 1
+}
+
+$sequence "Stand_to_crouch_pistol" {
+	"alyx_animations_ep2\Stand_to_crouch.smd"
+	activity "ACT_TRANSITION" 1
+	fadein 0.2
+	fadeout 0.2
+	blendlayer "layer_Aim_p_all" 8 15 25 25 spline
+	transition "standing" "crouching_pistol"
+	fps 30
+	ikrule "rfoot" footstep contact 6 fakeorigin -8.34 -4.37 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 0 6 24 25 target 2
+	ikrule "lfoot" footstep contact 1 fakeorigin 10.81 2.86 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 0 1 7 10 target 3
+	ikrule "lfoot" footstep contact 14 fakeorigin 4.85 1.29 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 10 14 24 25 target 3
+	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 25 25 target 0
+	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 25 25 target 1
+}
+
+$sequence "Crouch_to_shoot_pistol" {
+	"alyx_animations_ep2\Crouch_to_shoot.smd"
+	activity "ACT_TRANSITION" 1
+	fadein 0.2
+	fadeout 0.2
+	blendlayer "layer_Aim_p_all" 8 15 25 25 spline
+	transition "crouching_pistol" "shooting_pistol" // shooting
+	fps 30
+	ikrule "rfoot" footstep contact 1 fakeorigin -8.02 -4.58 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 0 1 5 10 target 2
+	ikrule "rfoot" footstep contact 12 fakeorigin -3.09 -7.27 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 10 12 24 25 target 2
+	ikrule "lfoot" footstep contact 1 fakeorigin 4.85 1.29 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 0 1 14 16 target 3
+	ikrule "lfoot" footstep contact 24 fakeorigin 10.81 2.86 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 21 24 24 25 target 3
+	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 25 25 target 0
+	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 25 25 target 1
+}
+
+$sequence "Shoot_to_crouch" {
+	"alyx_animations_ep2\Shoot_to_crouch.smd"
+	activity "ACT_TRANSITION" 1
+	fadein 0.2
+	fadeout 0.2
+	blendlayer "layer_Aim_p_all" 8 15 25 25 spline
+	transition "shooting_pistol" "crouching_pistol" // shooting
+	fps 30
+	ikrule "rfoot" footstep contact 6 fakeorigin -8.34 -4.37 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 0 6 24 25 target 2
+	ikrule "lfoot" footstep contact 1 fakeorigin 10.81 2.86 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 0 1 7 10 target 3
+	ikrule "lfoot" footstep contact 14 fakeorigin 4.85 1.29 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 10 14 24 25 target 3
+	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 25 25 target 0
+	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 25 25 target 1
+}
+
+$sequence "Crouchshoot_to_stand_pistol" {
+	"alyx_animations_ep2\Crouchshoot_to_stand.smd"
+	activity "ACT_TRANSITION" 1
+	fadein 0.2
+	fadeout 0.2
+	blendlayer "layer_Aim_p_all" 8 15 25 25 spline
+	transition "crouchShooting_pistol" "standing"
+	fps 30
+	ikrule "rfoot" footstep contact 1 fakeorigin -8.1 -4.53 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 0 1 5 10 target 2
+	ikrule "rfoot" footstep contact 12 fakeorigin -2.93 -7.4 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 10 12 24 25 target 2
+	ikrule "lfoot" footstep contact 1 fakeorigin 4.85 1.29 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 0 1 14 16 target 3
+	ikrule "lfoot" footstep contact 24 fakeorigin 10.81 2.86 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 21 24 24 25 target 3
+	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 25 25 target 0
+	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 25 25 target 1
+}
+
+$sequence "Stand_to_crouchshoot_pistol" {
+	"alyx_animations_ep2\Stand_to_crouchshoot.smd"
+	activity "ACT_TRANSITION" 1
+	fadein 0.2
+	fadeout 0.2
+	blendlayer "layer_Aim_p_all" 8 15 25 25 spline
+	transition "standing" "crouchShooting_pistol"
+	fps 30
+	ikrule "rfoot" footstep contact 6 fakeorigin -7.59 -4.84 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 0 6 24 25 target 2
+	ikrule "lfoot" footstep contact 1 fakeorigin 10.81 2.86 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 0 1 7 10 target 3
+	ikrule "lfoot" footstep contact 14 fakeorigin 5.28 1.4 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 10 14 24 25 target 3
+	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 25 25 target 0
+	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 25 25 target 1
+}
+
+$sequence "Crouchshoot_to_standshoot_pistol" {
+	"alyx_animations_ep2\Crouchshoot_to_standshoot.smd"
+	activity "ACT_TRANSITION" 1
+	fadein 0.2
+	fadeout 0.2
+	blendlayer "layer_Aim_p_all" 8 15 25 25 spline
+	transition "crouchShooting_pistol" "shooting_pistol" // shooting
+	fps 30
+	ikrule "rfoot" footstep contact 1 fakeorigin -7.76 -4.75 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 0 1 5 10 target 2
+	ikrule "rfoot" footstep contact 12 fakeorigin -3.02 -7.33 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 10 12 24 25 target 2
+	ikrule "lfoot" footstep contact 1 fakeorigin 4.85 1.29 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 0 1 14 16 target 3
+	ikrule "lfoot" footstep contact 24 fakeorigin 10.81 2.86 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 21 24 24 25 target 3
+	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 25 25 target 0
+	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 25 25 target 1
+}
+
+$sequence "Standshoot_to_crouchshoot_pistol" {
+	"alyx_animations_ep2\Standshoot_to_crouchshoot.smd"
+	activity "ACT_TRANSITION" 1
+	fadein 0.2
+	fadeout 0.2
+	blendlayer "layer_Aim_p_all" 8 15 25 25 spline
+	transition "shooting_pistol" "crouchShooting_pistol" // shooting
+	fps 30
+	ikrule "rfoot" footstep contact 6 fakeorigin -7.75 -4.76 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 0 6 24 25 target 2
+	ikrule "lfoot" footstep contact 1 fakeorigin 10.81 2.86 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 0 1 7 10 target 3
+	ikrule "lfoot" footstep contact 14 fakeorigin 4.85 1.29 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 10 14 24 25 target 3
+	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 25 25 target 0
+	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 25 25 target 1
+}
+
+$sequence "Crouchidle_to_crouchagitated_pistol" {
+	"alyx_animations_ep2\Crouchidle_to_crouchagitated.smd"
+	activity "ACT_TRANSITION" 1
+	fadein 0.2
+	fadeout 0.2
+	transition "crouching_pistol" "crouchShooting_pistol"
+	fps 30
+	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 10 10 target 0
+	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 10 10 target 1
+	ikrule "rfoot" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 10 10 target 2
+	ikrule "lfoot" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 10 10 target 3
+}
+
+$sequence "crouchagitated_to_Crouchidle_pistol" {
+	"alyx_animations_ep2\crouchagitated_to_Crouchidle.smd"
+	activity "ACT_TRANSITION" 1
+	fadein 0.2
+	fadeout 0.2
+	transition "crouchShooting_pistol" "crouching_pistol"
+	fps 30
+	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 10 10 target 0
+	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 10 10 target 1
+	ikrule "rfoot" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 10 10 target 2
+	ikrule "lfoot" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 10 10 target 3
+}
+
+// ================================================================
+// Idle Animations
+// ================================================================
+$weightlist "weights_pistol_idle_layer_1" {
+	 "ValveBiped.Bip01_Pelvis" 0
+	 "ValveBiped.Bip01_Spine4" 0
+	 "ValveBiped.Bip01_L_Clavicle" 1
+	 "ValveBiped.Bip01_L_UpperArm" 1
+	 "ValveBiped.Bip01_L_Forearm" 1
+	 "ValveBiped.Bip01_L_Hand" 1
+	 "ValveBiped.Bip01_R_Clavicle" 1
+	 "ValveBiped.Bip01_R_UpperArm" 1
+	 "ValveBiped.Bip01_R_Forearm" 1
+	 "ValveBiped.Bip01_R_Hand" 1
+}
+
+$sequence "Idle_Pistol_Layer_1" {
+	"female_shared_anims\Pistol_idle.smd"
+	weightlist "weights_pistol_idle_layer_1"
+	blendlayer "Layer_Pistol_Hands" 0 0 0 0 local
+	hidden
+}
+
+$weightlist "weights_pistol_idle_layer_2" {
+	 "ValveBiped.Bip01_Pelvis" 0
+	 "ValveBiped.Bip01_Spine4" 0
+	 "ValveBiped.Bip01_L_Clavicle" 0
+	 "ValveBiped.Bip01_L_UpperArm" 0
+	 "ValveBiped.Bip01_L_Forearm" 0.2
+	 "ValveBiped.Bip01_L_Hand" 1
+	 "ValveBiped.Bip01_R_Clavicle" 0
+	 "ValveBiped.Bip01_R_UpperArm" 0
+	 "ValveBiped.Bip01_R_Forearm" 0
+	 "ValveBiped.Bip01_R_Hand" 1
+}
+
+$sequence "Idle_Pistol_Layer_2" {
+	"police_animations_anims\a_walkN_hold_pistol.smd"
+	frame 0 0
+	numframes 30
+	weightlist "weights_pistol_idle_layer_2"
+	loop
+	ikrule "lfoot" footstep contact 7 fakeorigin 13.65 6.55 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 29 7 21 29 target 3
+	ikrule "rfoot" footstep contact 22 fakeorigin 13.7 -1.18 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 14 22 6 14 target 2
+	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 30 30 target 0
+	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 30 30 target 1
+	hidden
+}
+
+$sequence "Idle_Pistol_Layer" {
+	"female_shared_anims\Pistol_idle.smd"
+	frame 0 0
+	numframes 30
+	noanimation
+	addlayer "Idle_Pistol_Layer_1"
+	addlayer "Idle_Pistol_Layer_2"
+	loop
+	hidden
+}
+
+//$sequence "Idle_Pistol_Layer2_1" {
+//	"alyx_animations_ep2\Idle_p_stimulated.smd"
+//	weightlist "weights_pistol_idle_layer_1"
+//	//blendlayer "Layer_Pistol_Hands" 0 0 0 0 local
+//	hidden
+//}
+
+$sequence "Idle_Pistol_Layer2" {
+	"alyx_animations_ep2\Idle_p_stimulated.smd"
+	frame 0 0
+	numframes 30
+	weightlist "weights_pistol_idle_layer_1"
+	loop
+	hidden
+}
+
+$sequence "Idle_Pistol_Layer3" {
+	"alyx_animations_ep2\Idle_p_stimulated_fidget01.smd"
+	frame 50 50
+	numframes 30
+	weightlist "weights_pistol_idle_layer_1"
+	loop
+	hidden
+}
+
+$weightlist "weights_pistol_idle_layer_relaxed_1" {
+	 "ValveBiped.Bip01_Pelvis" 0
+	 "ValveBiped.Bip01_Spine4" 0.5
+	 "ValveBiped.Bip01_Neck1" 0
+	 "ValveBiped.Bip01_L_Clavicle" 0
+	 "ValveBiped.Bip01_L_UpperArm" 0
+	 "ValveBiped.Bip01_L_Forearm" 0
+	 "ValveBiped.Bip01_L_Hand" 0
+	 "ValveBiped.Bip01_R_Clavicle" 0
+	 "ValveBiped.Bip01_R_UpperArm" 0
+	 "ValveBiped.Bip01_R_Forearm" 0
+	 "ValveBiped.Bip01_R_Hand" 1
+}
+
+$sequence "Idle_Pistol_Layer_Relaxed_1" {
+	"female_shared_anims\Pistol_idle.smd"
+	weightlist "weights_pistol_idle_layer_relaxed_1"
+	hidden
+}
+
+$weightlist "weights_pistol_idle_layer_relaxed_2" {
+	 "ValveBiped.Bip01_Pelvis" 0
+	 "ValveBiped.Bip01_Spine4" 1
+	 "ValveBiped.Bip01_Neck1" 0
+	 "ValveBiped.Bip01_L_Clavicle" 0.8
+	 "ValveBiped.Bip01_L_UpperArm" 1
+	 "ValveBiped.Bip01_L_Forearm" 1
+	 "ValveBiped.Bip01_L_Hand" 1
+	 "ValveBiped.Bip01_R_Clavicle" 0
+	 "ValveBiped.Bip01_R_UpperArm" 0
+	 "ValveBiped.Bip01_R_Forearm" 0
+	 "ValveBiped.Bip01_R_Hand" 0
+}
+
+$sequence "Idle_Pistol_Layer_Relaxed_2" {
+	"female_shared_anims\idle_subtle.smd"
+	frame 0 0
+	numframes 30
+	weightlist "weights_pistol_idle_layer_relaxed_2"
+	loop
+	hidden
+}
+
+$sequence "Idle_Pistol_Layer_Relaxed" {
+	"female_shared_anims\Pistol_idle.smd"
+	frame 0 0
+	numframes 30
+	noanimation
+	addlayer "Idle_Pistol_Layer_Relaxed_1"
+	addlayer "Idle_Pistol_Layer_Relaxed_2"
+	loop
+	hidden
+}
+
+//$sequence "Idle_Pistol" "male_shared_anims\idle_subtle.smd" {
+//	blendlayer "Idle_Pistol_Layer" 0 0 0 0 local
+//	activity "ACT_IDLE_PISTOL" 1
+//	cmdlist lockfeet
+//}
+
+$definemacro MakePistolIdle SeqName IdleAnim IdleLayer ActivityName ActivityWeight \\
+$sequence $SeqName$ $IdleAnim$ { \\
+	blendlayer $IdleLayer$ 0 0 0 0 local \\
+	activity $ActivityName$ $ActivityWeight$ \\
+	node "standing" \\
+	cmdlist lockfeet \\
+	ikrule "lfoot" footstep contact 0 fakeorigin 9.42 6.98 0 fakerotate 0 0 0 floor 0 height 20 radius 2.5 range 0 0 149 149 target 3 usesequence \\
+	ikrule "rfoot" footstep contact 0 fakeorigin -5.12 -3.28 0 fakerotate 0 0 0 floor 0 height 20 radius 2.5 range 0 0 149 149 target 2 usesequence \\
+	ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 149 149 target 1 usesequence \\
+	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 149 149 target 0 usesequence \\
+}
+
+//	ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 149 149 target 1 \\
+//	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 149 149 target 0 \\
+
+$MakePistolIdle "Idle_Relaxed_Pistol_1" "female_shared_anims\Idle_Relaxed_SMG1_1.smd" "Idle_Pistol_Layer_Relaxed" "ACT_IDLE_PISTOL_RELAXED" -1
+$MakePistolIdle "Idle_Relaxed_Pistol_2" "female_shared_anims\Idle_Relaxed_SMG1_2.smd" "Idle_Pistol_Layer_Relaxed" "ACT_IDLE_PISTOL_RELAXED" -1
+$MakePistolIdle "Idle_Relaxed_Pistol_3" "female_shared_anims\Idle_Relaxed_SMG1_3.smd" "Idle_Pistol_Layer_Relaxed" "ACT_IDLE_PISTOL_RELAXED" -1
+$MakePistolIdle "Idle_Relaxed_Pistol_4" "female_shared_anims\Idle_Relaxed_SMG1_4.smd" "Idle_Pistol_Layer_Relaxed" "ACT_IDLE_PISTOL_RELAXED" -1
+$MakePistolIdle "Idle_Relaxed_Pistol_5" "female_shared_anims\Idle_Relaxed_SMG1_5.smd" "Idle_Pistol_Layer" "ACT_IDLE_PISTOL_RELAXED" -1 // Looks better when not relaxed
+$MakePistolIdle "Idle_Relaxed_Pistol_6" "female_shared_anims\Idle_Relaxed_SMG1_6.smd" "Idle_Pistol_Layer" "ACT_IDLE_PISTOL_RELAXED" -1 // Looks better when not relaxed
+
+$MakePistolIdle "Idle_Alert_Pistol_1" "female_shared_anims\Idle_Alert_SMG1_1.smd" "Idle_Pistol_Layer" "ACT_IDLE_PISTOL_STIMULATED" -1
+$MakePistolIdle "Idle_Alert_Pistol_2" "female_shared_anims\Idle_Alert_SMG1_2.smd" "Idle_Pistol_Layer" "ACT_IDLE_PISTOL_STIMULATED" -1
+$MakePistolIdle "Idle_Alert_Pistol_3" "female_shared_anims\Idle_Alert_SMG1_3.smd" "Idle_Pistol_Layer" "ACT_IDLE_PISTOL_STIMULATED" -1
+$MakePistolIdle "Idle_Alert_Pistol_4" "female_shared_anims\Idle_Alert_SMG1_4.smd" "Idle_Pistol_Layer" "ACT_IDLE_PISTOL_STIMULATED" -1
+$MakePistolIdle "Idle_Alert_Pistol_5" "female_shared_anims\Idle_Alert_SMG1_5.smd" "Idle_Pistol_Layer" "ACT_IDLE_PISTOL_STIMULATED" -1
+$MakePistolIdle "Idle_Alert_Pistol_6" "female_shared_anims\Idle_Alert_SMG1_6.smd" "Idle_Pistol_Layer3" "ACT_IDLE_PISTOL_STIMULATED" -1
+$MakePistolIdle "Idle_Alert_Pistol_7" "female_shared_anims\Idle_Alert_SMG1_4.smd" "Idle_Pistol_Layer2" "ACT_IDLE_PISTOL_STIMULATED" -1
+$MakePistolIdle "Idle_Alert_Pistol_8" "female_shared_anims\Idle_Alert_SMG1_3.smd" "Idle_Pistol_Layer2" "ACT_IDLE_PISTOL_STIMULATED" -1
+$MakePistolIdle "Idle_Alert_Pistol_9" "female_shared_anims\Idle_Alert_SMG1_6.smd" "Idle_Pistol_Layer2" "ACT_IDLE_PISTOL_STIMULATED" -1
+
+//$MakePistolIdle "Idle_Angry_Pistol" "female_shared_anims\Idle_Angry_SMG1.smd" "Idle_Pistol_Layer" "ACT_IDLE_PISTOL" 1
+
+// ================================================================
+// Walk Animations
+// ================================================================
+$sequence "walk_hold_pistol" {
+	"a_FemaleCitizenWalkS"
+	"a_FemaleCitizenWalkSE"
+	"a_FemaleCitizenWalkE"
+	"a_FemaleCitizenWalkNE"
+	"a_FemaleCitizenWalkN" // a_walkN_hold_pistol
+	"a_FemaleCitizenWalkNW"
+	"a_FemaleCitizenWalkW"
+	"a_FemaleCitizenWalkSW"
+	"a_FemaleCitizenWalkS"
+	activity "ACT_WALK_PISTOL_STIMULATED" 1 // ACT_WALK_PISTOL
+	blend "move_yaw" -180 180
+	blendwidth 9
+	{ event 6004 9 "NPC_Citizen" }
+	{ event 6005 25 "NPC_Citizen" }
+	fadein 0.2
+	fadeout 0.2
+	addlayer "Idle_Pistol_Layer2"
+	node "standing" // standing_pistol
+}
+
+$sequence "walk_hold_pistol2" {
+	"a_FemaleCitizenWalkS"
+	"a_FemaleCitizenWalkSE"
+	"a_FemaleCitizenWalkE"
+	"a_FemaleCitizenWalkNE"
+	"a_FemaleCitizenWalkN" // a_walkN_hold_pistol
+	"a_FemaleCitizenWalkNW"
+	"a_FemaleCitizenWalkW"
+	"a_FemaleCitizenWalkSW"
+	"a_FemaleCitizenWalkS"
+	activity "ACT_WALK_PISTOL_STIMULATED" 1 // ACT_WALK_PISTOL
+	blend "move_yaw" -180 180
+	blendwidth 9
+	{ event 6004 9 "NPC_Citizen" }
+	{ event 6005 25 "NPC_Citizen" }
+	fadein 0.2
+	fadeout 0.2
+	addlayer "Idle_Pistol_Layer3"
+	node "standing" // standing_pistol
+}
+
+$sequence "walk_hold_pistol_relaxed" {
+	"a_FemaleCitizenWalkS"
+	"a_FemaleCitizenWalkSE"
+	"a_FemaleCitizenWalkE"
+	"a_FemaleCitizenWalkNE"
+	"a_FemaleCitizenWalkN" // a_walkN_hold_pistol
+	"a_FemaleCitizenWalkNW"
+	"a_FemaleCitizenWalkW"
+	"a_FemaleCitizenWalkSW"
+	"a_FemaleCitizenWalkS"
+	activity "ACT_WALK_PISTOL_RELAXED" 1 // ACT_WALK_PISTOL
+	blend "move_yaw" -180 180
+	blendwidth 9
+	{ event 6004 9 "NPC_Citizen" }
+	{ event 6005 25 "NPC_Citizen" }
+	fadein 0.2
+	fadeout 0.2
+	keyvalues
+	{
+		interior ACT_IDLE_PISTOL
+	}
+	addlayer "Idle_Pistol_Layer"
+	node "standing" // standing_pistol
+}
+
+// ================================================================
+// Run Animations
+// ================================================================
+$sequence "run_hold_pistol" {
+	"a_FemaleCitizenRunS"
+	"a_FemaleCitizenRunSE"
+	"a_FemaleCitizenRunE"
+	"a_FemaleCitizenRunNE"
+	"a_FemaleCitizenRunN" // a_runN_hold_pistol
+	"a_FemaleCitizenRunNW"
+	"a_FemaleCitizenRunW"
+	"a_FemaleCitizenRunSW"
+	"a_FemaleCitizenRunS"
+	activity "ACT_RUN_PISTOL_STIMULATED" 1 // ACT_RUN_PISTOL
+	blend "move_yaw" -180 180
+	blendwidth 9
+	{ event 6004 7 "NPC_Citizen" }
+	{ event 6005 16 "NPC_Citizen" }
+	fadein 0.2
+	fadeout 0.2
+	addlayer "Idle_Pistol_Layer2"
+	node "standing" // standing_pistol
+}
+
+$sequence "run_hold_pistol2" {
+	"a_FemaleCitizenRunS"
+	"a_FemaleCitizenRunSE"
+	"a_FemaleCitizenRunE"
+	"a_FemaleCitizenRunNE"
+	"a_FemaleCitizenRunN" // a_runN_hold_pistol
+	"a_FemaleCitizenRunNW"
+	"a_FemaleCitizenRunW"
+	"a_FemaleCitizenRunSW"
+	"a_FemaleCitizenRunS"
+	activity "ACT_RUN_PISTOL_STIMULATED" 1 // ACT_RUN_PISTOL
+	blend "move_yaw" -180 180
+	blendwidth 9
+	{ event 6004 7 "NPC_Citizen" }
+	{ event 6005 16 "NPC_Citizen" }
+	fadein 0.2
+	fadeout 0.2
+	addlayer "Idle_Pistol_Layer3"
+	node "standing" // standing_pistol
+}
+
+$sequence "run_hold_pistol_relaxed" {
+	"a_FemaleCitizenRunS"
+	"a_FemaleCitizenRunSE"
+	"a_FemaleCitizenRunE"
+	"a_FemaleCitizenRunNE"
+	"a_FemaleCitizenRunN" // a_runN_hold_pistol
+	"a_FemaleCitizenRunNW"
+	"a_FemaleCitizenRunW"
+	"a_FemaleCitizenRunSW"
+	"a_FemaleCitizenRunS"
+	activity "ACT_RUN_PISTOL_RELAXED" 1 // ACT_RUN_PISTOL
+	blend "move_yaw" -180 180
+	blendwidth 9
+	{ event 6004 7 "NPC_Citizen" }
+	{ event 6005 16 "NPC_Citizen" }
+	fadein 0.2
+	fadeout 0.2
+	keyvalues
+	{
+		interior ACT_IDLE_PISTOL
+	}
+	addlayer "Layer_Pistol_Hand_R"
+	node "standing" // standing_pistol
+}
+
+// ================================================================
+// Transition Animations
+// 
+// For now, these are disabled to prevent them from affecting Alyx.
+// (TODO: Can we just override them in the new alyx_animations_ep2.qc?)
+// ================================================================
+
+//$sequence "IdleAngryToShootPistol" {
+//	"male_shared_anims\IdleAngryToShoot.smd"
+//	activity "ACT_TRANSITION" 1
+//	fadein 0.2
+//	fadeout 0.2
+//	blendlayer "Idle_Angry_Pistol" 0 0 0 20 xfade spline
+//	blendlayer "Pistol_idle_aim" 0 20 20 20 spline
+//	blendlayer "IdleAngryToShootDelta" 0 0 20 20
+//	transition "standing" "shooting_pistol"
+//	fps 30
+//	noanimation //weightlist "weights_turnleft"
+//	numframes 20
+//}
+//
+//$sequence "ShootToIdleAngryPistol" {
+//	"male_shared_anims\ShootToIdleAngry.smd"
+//	activity "ACT_TRANSITION" 1
+//	fadein 0.2
+//	fadeout 0.2
+//	blendlayer "Pistol_idle_aim" 0 0 0 20 xfade spline
+//	blendlayer "Idle_Angry_Pistol" 0 20 20 20 spline
+//	blendlayer "ShootToIdleAngryDelta" 0 0 20 20
+//	transition "shooting_pistol" "standing"
+//	fps 30
+//	noanimation //weightlist "weights_turnleft"
+//	numframes 20
+//}

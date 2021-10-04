@@ -6,12 +6,15 @@ $modelname "Police_animations.mdl"
 
 //$includemodel "player/male_anims.mdl"
 
-$includemodel "police_animations_original.mdl"
-$include "police_animations_DeclareSequence.qci"
-
 // Must be included
 $include "BaseModel.qci"
 $include "hl2mp_ported_anims/commonbones.qci"
+
+// Used to compile new movement animations since $declareanimation doesn't work
+$include "PoliceMoveAnims.qci"
+
+$includemodel "police_animations_original.mdl"
+$include "police_animations_DeclareSequence.qci"
 
 $weightlist "HolsterWeightlist" {
 	"ValveBiped.Bip01_Pelvis" 0
@@ -202,12 +205,18 @@ $sequence "shootAR2alt" {
 // ================================================================
 
 $definevariable Blend_Idle_Default "pistolangryidle2"
+$definevariable Blend_Idle_Unarmed "batonidle1"
+$definevariable Blend_Idle_Panicked "batonidle1"
 $definevariable Blend_Idle_Pistol "pistolangryidle2"
 $definevariable Blend_Idle_Rifle "smg1angryidle1"
+$definevariable Blend_Idle_Rifle_Crouched "lowcover_aim_pistol"
 
 $definevariable Blend_SMD_Default "police_animations_anims\pistolangryidle2.smd"
+$definevariable Blend_SMD_Unarmed "police_animations_anims\batonidle1.smd"
+$definevariable Blend_SMD_Panicked "police_animations_anims\batonidle1.smd"
 $definevariable Blend_SMD_Pistol "police_animations_anims\pistolangryidle2.smd"
 $definevariable Blend_SMD_Rifle "police_animations_anims\smg1angryidle1.smd"
+$definevariable Blend_SMD_Rifle_Crouched "police_animations_anims\lowcover_aim_pistol.smd"
 
 $definevariable Blend_Node_Default "shooting_pistol"
 $definevariable Blend_Node_Pistol "shooting_pistol"

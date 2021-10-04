@@ -1,0 +1,243 @@
+// ================================================================
+// Soldier Movement Animations
+// ================================================================
+
+$animation "a_SoldierWalkS" "combine_soldier_anims_anims\a_WalkS.smd" {
+	fps 28
+	loop
+	ikrule "lfoot" footstep contact 7 fakeorigin -11.12 1.89 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 0 7 24 30 target 3
+	ikrule "rfoot" footstep contact 23 fakeorigin -15.11 -5.75 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 15 23 7 15 target 2
+	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 30 30 target 0
+	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 30 30 target 1
+	walkframe 30 LX LY
+}
+
+$animation "a_SoldierWalkSE" "combine_soldier_anims_anims\a_WalkSE.smd" {
+	fps 29
+	loop
+	ikrule "lfoot" footstep contact 7 fakeorigin -7.5 -0.91 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 0 7 24 30 target 3
+	ikrule "rfoot" footstep contact 23 fakeorigin -5.31 -12.15 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 15 23 7 15 target 2
+	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 30 30 target 0
+	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 30 30 target 1
+	walkframe 30 LX LY
+}
+
+$animation "a_SoldierWalkE" "combine_soldier_anims_anims\a_WalkE.smd" {
+	fps 29
+	loop
+	ikrule "lfoot" footstep contact 7 fakeorigin 8.35 -8.88 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 0 7 24 30 target 3
+	ikrule "rfoot" footstep contact 23 fakeorigin -3.31 -16.03 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 15 23 7 15 target 2
+	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 30 30 target 0
+	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 30 30 target 1
+	walkframe 30 LX LY
+}
+
+$animation "a_SoldierWalkNE" "combine_soldier_anims_anims\a_WalkNE.smd" {
+	fps 31
+	loop
+	ikrule "lfoot" footstep contact 7 fakeorigin 14.35 -6.45 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 0 7 24 30 target 3
+	ikrule "rfoot" footstep contact 23 fakeorigin 11.53 -11.35 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 15 23 7 15 target 2
+	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 30 30 target 0
+	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 30 30 target 1
+	walkframe 30 LX LY
+}
+
+$animation "a_SoldierWalkN" "combine_soldier_anims_anims\a_WalkN.smd" {
+	fps 30
+	loop
+	ikrule "lfoot" footstep contact 7 fakeorigin 22.33 3.45 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 0 7 24 30 target 3
+	ikrule "rfoot" footstep contact 23 fakeorigin 17.89 -5.63 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 15 23 7 15 target 2
+	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 30 30 target 0
+	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 30 30 target 1
+	walkframe 30 LX LY
+}
+
+$animation "a_SoldierWalkNW" "combine_soldier_anims_anims\a_WalkNW.smd" {
+	fps 29
+	loop
+	ikrule "lfoot" footstep contact 7 fakeorigin 15.5 14.69 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 0 7 24 30 target 3
+	ikrule "rfoot" footstep contact 23 fakeorigin 11.01 1.84 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 15 23 7 15 target 2
+	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 30 30 target 0
+	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 30 30 target 1
+	walkframe 30 LX LY
+}
+
+$animation "a_SoldierWalkW" "combine_soldier_anims_anims\a_WalkW.smd" {
+	fps 28
+	loop
+	ikrule "lfoot" footstep contact 7 fakeorigin 7.65 16.6 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 0 7 24 30 target 3
+	ikrule "rfoot" footstep contact 23 fakeorigin -2.32 7.77 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 15 23 7 15 target 2
+	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 30 30 target 0
+	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 30 30 target 1
+	walkframe 30 LX LY
+}
+
+$animation "a_SoldierWalkSW" "combine_soldier_anims_anims\a_WalkSW.smd" {
+	fps 29
+	loop
+	ikrule "lfoot" footstep contact 7 fakeorigin -3.84 10.93 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 0 7 24 30 target 3
+	ikrule "rfoot" footstep contact 23 fakeorigin -7.1 3.06 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 15 23 7 15 target 2
+	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 30 30 target 0
+	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 30 30 target 1
+	walkframe 30 LX LY
+}
+
+$animation "a_SoldierRunS" "combine_soldier_anims_anims\a_RunS.smd" {
+	fps 27
+	loop
+	ikrule "lfoot" footstep contact 6 fakeorigin -12.02 4.13 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 17 6 10 17 target 3
+	ikrule "rfoot" footstep contact 16 fakeorigin -9.23 -2.21 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 9 16 2 9 target 2
+	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 18 18 target 0
+	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 18 18 target 1
+	walkframe 18 LX LY
+}
+
+$animation "a_SoldierRunSE" "combine_soldier_anims_anims\a_RunSE.smd" {
+	fps 28
+	loop
+	ikrule "lfoot" footstep contact 7 fakeorigin -3.49 -0.2 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 17 7 10 17 target 3
+	ikrule "rfoot" footstep contact 16 fakeorigin -11.02 -12 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 9 16 2 9 target 2
+	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 18 18 target 0
+	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 18 18 target 1
+	walkframe 18 LX LY
+}
+
+$animation "a_SoldierRunE" "combine_soldier_anims_anims\a_RunE.smd" {
+	fps 29
+	loop
+	ikrule "lfoot" footstep contact 7 fakeorigin -6.58 7.31 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 17 7 10 17 target 3
+	ikrule "rfoot" footstep contact 16 fakeorigin 8.4 -10.07 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 9 16 2 9 target 2
+	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 18 18 target 0
+	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 18 18 target 1
+	walkframe 18 LX LY
+}
+
+$animation "a_SoldierRunNE" "combine_soldier_anims_anims\a_RunNE.smd" {
+	fps 28
+	loop
+	ikrule "lfoot" footstep contact 6 fakeorigin 5.18 3.5 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 17 6 10 17 target 3
+	ikrule "rfoot" footstep contact 15 fakeorigin 12.65 -10.84 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 8 15 2 8 target 2
+	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 18 18 target 0
+	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 18 18 target 1
+	walkframe 18 LX LY
+}
+
+$animation "a_SoldierRunN" "combine_soldier_anims_anims\a_RunN.smd" {
+	fps 30
+	loop
+	ikrule "lfoot" footstep contact 7 fakeorigin 5.14 4.19 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 17 7 10 17 target 3
+	ikrule "rfoot" footstep contact 15 fakeorigin 13.92 -3.04 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 8 15 2 8 target 2
+	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 18 18 target 0
+	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 18 18 target 1
+	walkframe 18 LX LY
+}
+
+$animation "a_SoldierRunNW" "combine_soldier_anims_anims\a_RunNW.smd" {
+	fps 29
+	loop
+	ikrule "lfoot" footstep contact 7 fakeorigin 7.44 9.53 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 17 7 10 17 target 3
+	ikrule "rfoot" footstep contact 16 fakeorigin 11.74 1.35 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 9 16 2 9 target 2
+	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 18 18 target 0
+	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 18 18 target 1
+	walkframe 18 LX LY
+}
+
+$animation "a_SoldierRunW" "combine_soldier_anims_anims\a_RunW.smd" {
+	fps 28
+	loop
+	ikrule "lfoot" footstep contact 7 fakeorigin -3.72 9.57 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 17 7 10 17 target 3
+	ikrule "rfoot" footstep contact 16 fakeorigin 7.01 2.98 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 9 16 2 9 target 2
+	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 18 18 target 0
+	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 18 18 target 1
+	walkframe 18 LX LY
+}
+
+$animation "a_SoldierRunSW" "combine_soldier_anims_anims\a_RunSW.smd" {
+	fps 27
+	loop
+	ikrule "lfoot" footstep contact 7 fakeorigin -6.88 15.88 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 17 7 10 17 target 3
+	ikrule "rfoot" footstep contact 16 fakeorigin -7.09 1.19 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 9 16 2 9 target 2
+	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 18 18 target 0
+	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 18 18 target 1
+	walkframe 18 LX LY
+}
+
+$animation "a_SoldierWalkEasyS" "combine_soldier_anims_anims\a_WalkEasy_S.smd" {
+	fps 28
+	loop
+	ikrule "lfoot" footstep contact 7 fakeorigin -11.12 1.89 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 0 7 24 30 target 3
+	ikrule "rfoot" footstep contact 23 fakeorigin -15.11 -5.75 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 15 23 7 15 target 2
+	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 30 30 target 0
+	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 30 30 target 1
+	walkframe 30 LX LY
+}
+
+$animation "a_SoldierWalkEasySE" "combine_soldier_anims_anims\a_WalkEasy_SE.smd" {
+	fps 29
+	loop
+	ikrule "lfoot" footstep contact 7 fakeorigin -7.5 -0.91 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 0 7 24 30 target 3
+	ikrule "rfoot" footstep contact 23 fakeorigin -5.31 -12.15 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 15 23 7 15 target 2
+	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 30 30 target 0
+	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 30 30 target 1
+	walkframe 30 LX LY
+}
+
+$animation "a_SoldierWalkEasyE" "combine_soldier_anims_anims\a_WalkEasy_E.smd" {
+	fps 29
+	loop
+	ikrule "lfoot" footstep contact 7 fakeorigin 8.35 -8.88 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 0 7 24 30 target 3
+	ikrule "rfoot" footstep contact 23 fakeorigin -3.31 -16.03 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 15 23 7 15 target 2
+	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 30 30 target 0
+	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 30 30 target 1
+	walkframe 30 LX LY
+}
+
+$animation "a_SoldierWalkEasyNE" "combine_soldier_anims_anims\a_WalkEasy_NE.smd" {
+	fps 31
+	loop
+	ikrule "lfoot" footstep contact 7 fakeorigin 14.35 -6.45 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 0 7 24 30 target 3
+	ikrule "rfoot" footstep contact 23 fakeorigin 11.53 -11.35 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 15 23 7 15 target 2
+	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 30 30 target 0
+	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 30 30 target 1
+	walkframe 30 LX LY
+}
+
+$animation "a_SoldierWalkEasyN" "combine_soldier_anims_anims\a_WalkEasy_N.smd" {
+	fps 30
+	loop
+	ikrule "lfoot" footstep contact 7 fakeorigin 22.33 3.45 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 0 7 24 30 target 3
+	ikrule "rfoot" footstep contact 23 fakeorigin 17.89 -5.63 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 15 23 7 15 target 2
+	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 30 30 target 0
+	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 30 30 target 1
+	walkframe 30 LX LY
+}
+
+$animation "a_SoldierWalkEasyNW" "combine_soldier_anims_anims\a_WalkEasy_NW.smd" {
+	fps 29
+	loop
+	ikrule "lfoot" footstep contact 7 fakeorigin 15.5 14.69 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 0 7 24 30 target 3
+	ikrule "rfoot" footstep contact 23 fakeorigin 11.01 1.84 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 15 23 7 15 target 2
+	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 30 30 target 0
+	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 30 30 target 1
+	walkframe 30 LX LY
+}
+
+$animation "a_SoldierWalkEasyW" "combine_soldier_anims_anims\a_WalkEasy_W.smd" {
+	fps 28
+	loop
+	ikrule "lfoot" footstep contact 7 fakeorigin 7.65 16.6 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 0 7 24 30 target 3
+	ikrule "rfoot" footstep contact 23 fakeorigin -2.32 7.77 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 15 23 7 15 target 2
+	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 30 30 target 0
+	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 30 30 target 1
+	walkframe 30 LX LY
+}
+
+$animation "a_SoldierWalkEasySW" "combine_soldier_anims_anims\a_WalkEasy_SW.smd" {
+	fps 29
+	loop
+	ikrule "lfoot" footstep contact 7 fakeorigin -3.84 10.93 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 0 7 24 30 target 3
+	ikrule "rfoot" footstep contact 23 fakeorigin -7.1 3.06 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 15 23 7 15 target 2
+	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 30 30 target 0
+	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 30 30 target 1
+	walkframe 30 LX LY
+}

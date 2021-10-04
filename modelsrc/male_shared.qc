@@ -9,8 +9,23 @@ $include "BaseModel.qci"
 $include "hl2mp_ported_anims/commonbones.qci"
 $include "hl2mp_ported_anims/weaponmacros.qci"
 
+// Used to compile new movement animations since $declareanimation doesn't work
+// (TODO: Is there a possible IK issue in here?)
+$include "MaleCitizenMoveAnims.qci"
+
 $includemodel "humans/male_shared_original.mdl"
 $include "male_shared_DeclareSequence.qci"
+
+
+// ================================================================
+// 
+// Pistol Animations
+// 
+// ================================================================
+$include "NewPistolAnimations_MaleCitizen.qci"
+$include "NewPistolAnimations_357_MaleCitizen.qci"
+// ================================================================
+
 
 $sequence "MeleeAttack01_Act" {
 	"male_shared_anims\MeleeAttack01.smd"
@@ -24,22 +39,19 @@ $pushd "male_shared_anims"
 $include "DefaultHolster.qci"
 $popd
 
-// Remove this if we get real pistol animations
-$animation a_Idle_Pistol_Aim "male_shared_anims\shootp1.smd" frame 0 0
-$sequence "Idle_Pistol_Aim" a_Idle_Pistol_Aim {
-	activity "ACT_IDLE_ANGRY_PISTOL" 1
-	numframes 10
-	fps 4
-	cmdlist lockfeet
-}
-
 $definevariable Blend_Idle_Default "Idle_SMG1_Aim"
+$definevariable Blend_Idle_Unarmed "idle_subtle"
+$definevariable Blend_Idle_Panicked "crouchIdle_panicked4"
 $definevariable Blend_Idle_Pistol "Idle_Pistol_Aim"
 $definevariable Blend_Idle_Rifle "Idle_SMG1_Aim"
+$definevariable Blend_Idle_Rifle_Crouched "crouch_aim_smg1"
 
 $definevariable Blend_SMD_Default "male_shared_anims\Idle_SMG1_Aim.smd"
+$definevariable Blend_SMD_Unarmed "male_shared_anims\idle_subtle.smd"
+$definevariable Blend_SMD_Panicked "male_shared_anims\crouchIdle_panicked4.smd"
 $definevariable Blend_SMD_Pistol "police_animations_anims\pistolangryidle2.smd"
 $definevariable Blend_SMD_Rifle "male_shared_anims\Idle_SMG1_Aim.smd"
+$definevariable Blend_SMD_Rifle_Crouched "male_shared_anims\crouch_aim_smg1.smd"
 
 $definevariable Blend_Node_Default "shooting"
 $definevariable Blend_Node_Pistol "shooting"

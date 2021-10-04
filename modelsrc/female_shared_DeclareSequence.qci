@@ -221,7 +221,7 @@ $sequence "crouch_shoot_shotgun" {
 	ikrule "rhand" release
 }
 
-$declaresequence "shootp1"
+//$declaresequence "shootp1" // New pistol animations in NewPistolAnimations_FemaleCitizen.qci
 
 //$declaresequence "reloadpistol"
 $sequence "reloadpistol" {
@@ -238,8 +238,8 @@ $sequence "reloadpistol" {
 	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 38 38 target 1
 }
 
-$declaresequence "Pistol_idle"
-$declaresequence "Pistol_idle_aim"
+//$declaresequence "Pistol_idle" // New pistol animations in NewPistolAnimations_FemaleCitizen.qci
+//$declaresequence "Pistol_idle_aim" // New pistol animations in NewPistolAnimations_FemaleCitizen.qci
 $declaresequence "gesture_shootp1"
 $declaresequence "layer_Aim_p_all"
 $declaresequence "layer_run_p_aiming"

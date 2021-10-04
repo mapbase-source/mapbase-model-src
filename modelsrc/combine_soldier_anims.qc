@@ -4,26 +4,34 @@ $ModelName "combine_soldier_anims.mdl"
 
 //$includemodel "player/male_anims.mdl"
 
-$includemodel "combine_soldier_anims_original.mdl"
-$include "combine_soldier_anims_DeclareSequence.qci"
-
 // Must be included
 $include "BaseModel.qci"
 $include "hl2mp_ported_anims/commonbones.qci"
 
+// Used to compile new movement animations since $declareanimation doesn't work
+$include "SoldierMoveAnims.qci"
+
+$includemodel "combine_soldier_anims_original.mdl"
+$include "combine_soldier_anims_DeclareSequence.qci"
 
 $include "hl2mp_ported_anims/weaponmacros.qci"
-//$pushd "male_shared_anims"
-//$include "DefaultHolster.qci"
-//$popd
+$pushd "male_shared_anims"
+$include "DefaultHolster.qci"
+$popd
 
 $definevariable Blend_Idle_Default "CombatIdle1_SMG1"
-$definevariable Blend_Idle_Pistol "CombatIdle1_SMG1"
+$definevariable Blend_Idle_Unarmed "Idle_Unarmed"
+$definevariable Blend_Idle_Panicked "Idle_Unarmed"
+$definevariable Blend_Idle_Pistol "CombatIdle1_Pistol"
 $definevariable Blend_Idle_Rifle "CombatIdle1_SMG1"
+$definevariable Blend_Idle_Rifle_Crouched "crouch_aim_sm1"
 
 $definevariable Blend_SMD_Default "combine_soldier_anims_anims\CombatIdle1_SMG1.smd"
+$definevariable Blend_SMD_Unarmed "combine_soldier_anims_anims\Idle_Unarmed.smd"
+$definevariable Blend_SMD_Panicked "combine_soldier_anims_anims\Idle_Unarmed.smd"
 $definevariable Blend_SMD_Pistol "combine_soldier_anims_anims\CombatIdle1_SMG1.smd"
 $definevariable Blend_SMD_Rifle "combine_soldier_anims_anims\CombatIdle1_SMG1.smd"
+$definevariable Blend_SMD_Rifle_Crouched "combine_soldier_anims_anims\crouch_aim_sm1.smd"
 
 // Soldiers don't use nodes...
 $definevariable Blend_Node_Default "shooting"
@@ -35,6 +43,15 @@ $definevariable AnimMatch_Default a_AnimMatch_Default
 
 $animation a_AnimMatch_Idle "combine_soldier_anims_anims\Idle1.smd" frame 0 0
 $definevariable AnimMatch_Idle a_AnimMatch_Idle
+
+// ================================================================
+// 
+// Pistol Animations
+// 
+// ================================================================
+$include "NewPistolAnimations_Soldier.qci"
+$include "NewPistolAnimations_357_Soldier.qci"
+// ================================================================
 
 $include "BaseDI.qci"
 
