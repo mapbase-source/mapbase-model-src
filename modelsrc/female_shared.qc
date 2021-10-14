@@ -63,6 +63,7 @@ $include "HunterRecvDI.qci"
 $include "OnFirePolice.qci"
 
 $include "AlyxBlindfire.qci"
+$include "AlyxHolster.qci"
 
 $include "Rappel.qci"
 $include "GenericAnimationMacros.qci"
