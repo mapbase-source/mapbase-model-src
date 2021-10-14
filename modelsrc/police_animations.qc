@@ -16,68 +16,9 @@ $include "PoliceMoveAnims.qci"
 $includemodel "police_animations_original.mdl"
 $include "police_animations_DeclareSequence.qci"
 
-$weightlist "HolsterWeightlist" {
-	"ValveBiped.Bip01_Pelvis" 0
-	"ValveBiped.Bip01_R_Clavicle" 1
-	"ValveBiped.Bip01_Spine" 0.35
-	"ValveBiped.Bip01_Spine2" 0.75
-	"ValveBiped.Bip01_Spine2" 1
-	"ValveBiped.Bip01_L_Clavicle" 0.35
-	"ValveBiped.Bip01_Neck1" 0.2
-}
-
-//$makeweapongesturep weapon_draw_gesture "police_animations_anims\weapon_draw_gesture.smd" 10 20 35
-//$append weapon_draw_gesture {
-//	fps 30
-//	activity "ACT_ARM" 1
-//	{ event AE_NPC_DRAW 11 "" }
-//}
-//$append weapon_draw_gesturearms {
-//	// This is needed for some reason
-//	//rotateto -90
-//}
-//
-//$makeweapongesturep weapon_holster_gesture "police_animations_anims\weapon_holster_gesture.smd" 15 25 40
-//$append weapon_holster_gesture {
-//	fps 30
-//	activity "ACT_DISARM" 1
-//	{ event AE_NPC_HOLSTER 24 "" }
-//}
-//$append weapon_holster_gesturearms {
-//	// This is needed for some reason
-//	//rotateto -90
-//}
-
-$sequence "weapon_draw_layer" hidden {
-	"police_animations_anims\weapon_draw_gesture.smd"
-	fps 30
-	weightlist "HolsterWeightlist"
-}
-$sequence "weapon_draw_gesture" {
-	"police_animations_anims\weapon_draw_gesture.smd"
-	activity "ACT_ARM" 1
-	noanimation numframes 40 // 35
-	blendlayer weapon_draw_layer 0 15 20 40 spline
-	{ event AE_NPC_DRAW 11 "" }
-	ikrule lhand attachment L_hand radius 10
-	ikrule rhand attachment R_hand radius 10
-}
-
-$sequence "weapon_holster_layer" hidden {
-	"police_animations_anims\weapon_holster_gesture.smd"
-	fps 30
-	weightlist "HolsterWeightlist"
-}
-$sequence "weapon_holster_gesture" {
-	"police_animations_anims\weapon_holster_gesture.smd"
-	activity "ACT_DISARM" 1
-	noanimation numframes 40 // 35
-	blendlayer weapon_holster_layer 0 15 20 40 spline
-	{ event AE_NPC_HOLSTER 24 "" }
-	ikrule lhand attachment L_hand radius 10
-	ikrule rhand attachment R_hand radius 10
-}
-
+$pushd "male_shared_anims"
+$include "DefaultHolster.qci"
+$popd
 
 // ================================================================
 // 
