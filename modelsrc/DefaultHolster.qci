@@ -5,26 +5,24 @@
 
 // This file should be included while in the desired animation folder via $pushd
 
-// These animations must also be the same name as Alyx's sequences so they override them.
-
-$makeweapongesturep weapon_draw_gesture "weapon_draw_gesture.smd" 5 20 35
-$append weapon_draw_gesture {
+$makeweapongesturep weapon_draw_rifle_gesture "weapon_draw_gesture.smd" 5 20 35
+$append weapon_draw_rifle_gesture {
 	fps 45
-	activity "ACT_ARM" 1
+	activity "ACT_ARM_RIFLE" 1
 	{ event AE_NPC_DRAW 14 "" }
 }
-$append weapon_draw_gesturearms {
+$append weapon_draw_rifle_gesturearms {
 	// This is needed for some reason
 	rotateto -90
 }
 
-$makeweapongesturep weapon_holster_gesture "weapon_holster_gesture.smd" 10 25 40
-$append weapon_holster_gesture {
+$makeweapongesturep weapon_holster_rifle_gesture "weapon_holster_gesture.smd" 10 25 40
+$append weapon_holster_rifle_gesture {
 	fps 45
-	activity "ACT_DISARM" 1
+	activity "ACT_DISARM_RIFLE" 1
 	{ event AE_NPC_HOLSTER 23 "" }
 }
-$append weapon_holster_gesturearms {
+$append weapon_holster_rifle_gesturearms {
 	// This is needed for some reason
 	rotateto -90
 }
