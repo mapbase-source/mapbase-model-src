@@ -148,8 +148,10 @@ $pushd "female_shared_anims"
 $include "ArrestAnims.qci"
 
 $include "CitizenPackageRun_Female.qci"
-$include "CitizenSuitcase.qci"
+$include "CitizenSuitcase_FemaleCitizen.qci"
 $popd
+
+$include "l4d1_ported_anims\L4D1_LadderClimb_Female.qci"
 
 $KeyValues
 {

@@ -11,7 +11,7 @@ This repository accepts pull requests for contributing models to Mapbase.
 
 ---
 
-Most of these source files are derived from decompiled Half-Life 2, Half-Life 2: Episode One, Half-Life 2: Episode Two, or Half-Life 2: Deathmatch content.
+Most of these source files are derived from decompiled Half-Life 2, Half-Life 2: Episode One, Half-Life 2: Episode Two, Half-Life 2: Deathmatch, or Left 4 Dead 1 content.
 
 Crowbar was used to decompile those models.
 

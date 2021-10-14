@@ -1,0 +1,11 @@
+// ================================================================
+// 
+// L4D1 climb animations experiment
+// 
+// ================================================================
+
+$animation "a_Ladder_Dismount_idle" $Blend_SMD_Unarmed$
+
+$pushd "l4d1_ported_anims\female"
+$include "l4d1_ported_anims\L4D1_LadderClimb.qci"
+$popd

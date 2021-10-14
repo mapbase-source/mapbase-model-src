@@ -273,6 +273,11 @@ $animation "@gesture_shoot_pistol_corrective_animation" "police_animations_anims
 }
 
 $include "NewPistolAnimations_357_Metrocop.qci"
+
+
+$include "l4d1_ported_anims\L4D1_LadderClimb_Male.qci"
+$include "l4d1_ported_anims\L4D1_PistolAnims.qci" // Metrocops technically have their own pistol draw animation, but that's harder to turn into a gesture which works well
+
 // ================================================================
 $include "ProtectedRun.qci"
 

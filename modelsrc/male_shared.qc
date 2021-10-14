@@ -162,6 +162,9 @@ $include "ArrestAnims.qci"
 $include "CitizenPackageRun_Male.qci"
 $popd
 
+$include "l4d1_ported_anims\L4D1_LadderClimb_Male.qci"
+$include "l4d1_ported_anims\L4D1_PistolAnims.qci"
+
 $weightlist "weights_layer_luggage_run" {
 	 "ValveBiped.Bip01_Pelvis" 0
 	 "ValveBiped.Bip01_Spine" 0.2

@@ -218,6 +218,9 @@ $popd
 $include "CitizenRPG.qci"
 $include "PoliceMelee_Soldier.qci"
 
+$include "l4d1_ported_anims\L4D1_LadderClimb_Male.qci"
+$include "l4d1_ported_anims\L4D1_PistolAnims.qci"
+
 // ================================================================
 $include "ProtectedRun.qci"
 
