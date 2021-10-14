@@ -164,44 +164,35 @@ $append gunrack {
 	blendlayer pickup_unarmed_layer 0 0 0 13
 }
 
+// ================================================================
 
 // 
-// AR2 Alt-Fire Gesture Experiment
+// Combine animation gestures
 // 
-// Programming not included
-// 
-$weightlist "AR2AltFireWeightlistDelta" {
-	"ValveBiped.Bip01_Pelvis" 1
-	"ValveBiped.Bip01_L_Clavicle" 0
-	"ValveBiped.Bip01_Spine" 1
-	"ValveBiped.Bip01_R_Clavicle" 0
-	"ValveBiped.Bip01_Neck1" 0
+$makeweapongesturep grenThrow_gesture "combine_soldier_anims_anims\grenThrow.smd" 10 35 50
+$append grenThrow_gesture {
+	fps 45
+	activity "ACT_GESTURE_COMBINE_THROW_GRENADE" 1
+	{ event 7 30 "" }
 }
 
-$weightlist "AR2AltFireWeightlist" {
-	"ValveBiped.Bip01_Pelvis" 0
-	"ValveBiped.Bip01_Spine" 0
-	"ValveBiped.Bip01_L_Clavicle" 1
-	"ValveBiped.Bip01_R_Clavicle" 1
-	"ValveBiped.Bip01_L_Thigh" 0
-	"ValveBiped.Bip01_R_Thigh" 0
-	"ValveBiped.Bip01_Neck1" 1
+$makeweapongesturep grenDrop_gesture "combine_soldier_anims_anims\grenDrop.smd" 12 32 43
+$append grenDrop_gesture {
+	fps 35
+	activity "ACT_GESTURE_SPECIAL_ATTACK1" 1
+	{ event 7 26 "" }
 }
 
-$sequence "shootAR2alt_gesture_delta" {
-	"combine_soldier_anims_anims\shootAR2alt.smd"
-	subtract "shootAR2alt_gesture_delta" 0
-	delta
-	hidden
-	weightlist "AR2AltFireWeightlistDelta"
+$makeweapongesturep grenPlace_gesture "combine_soldier_anims_anims\grenPlace.smd" 12 35 45
+$append grenPlace_gesture {
+	fps 35
+	activity "ACT_GESTURE_SPECIAL_ATTACK2" 1
+	{ event 9 25 "" }
 }
 
-$sequence "shootAR2alt_gesture" {
-	"combine_soldier_anims_anims\shootAR2alt.smd"
-	weightlist "AR2AltFireWeightlist"
-	addlayer "shootAR2alt_gesture_delta"
-	addlayer "Aim_stand_delta_all"
-	activity "ACT_GESTURE_AR2_ALTFIRE" 1
+$makeweapongesturep shootAR2alt_gesture "combine_soldier_anims_anims\shootAR2alt.smd" 12 24 36
+$append shootAR2alt_gesture {
+	activity "ACT_GESTURE_COMBINE_AR2_ALTFIRE" 1
 	{ event COMBINE_AE_BEGIN_ALTFIRE 0 "" }
 	{ event COMBINE_AE_ALTFIRE 16 "" }
 }
