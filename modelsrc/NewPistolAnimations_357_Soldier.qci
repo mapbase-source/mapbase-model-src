@@ -14,10 +14,12 @@ $weightlist "weights_357_shoot" {
 	 "ValveBiped.Bip01_L_UpperArm" 2
 	 "ValveBiped.Bip01_L_Forearm" 5
 	 "ValveBiped.Bip01_L_Hand" 5
+	 "ValveBiped.Cod" 0
 }
 
 $sequence "gesture_shoot_357_layer" {
-	"police_animations_anims\gesture_shoot_pistol.smd"
+	"combine_soldier_anims_anims\custom\shootp1.smd"
+	subtract "shootp1" 4
 	activity "ACT_GESTURE_RANGE_ATTACK_REVOLVER" 1
 	frame 0 0
 	delta
@@ -28,51 +30,33 @@ $sequence "gesture_shoot_357_layer" {
 }
 
 $sequence "gesture_shoot_357" {
-	"police_animations_anims\gesture_shoot_pistol.smd"
-	fps 30
+	"combine_soldier_anims_anims\custom\shootp1.smd"
 	noanimation
 	blendlayer "gesture_shoot_357_layer" 0 4 6 16 spline
 	numframes 16
 	
 	activity "ACT_GESTURE_RANGE_ATTACK_REVOLVER" 1
-	fadein 0.2
-	fadeout 0.2
 	{ event 3014 1 "" }
 }
 
 $sequence "shootp2" {
-	$Blend_SMD_Rifle$
+	$Blend_SMD_Pistol$
 	activity "ACT_RANGE_ATTACK_REVOLVER" 1
 	numframes 16
-	fadein 0.2
-	fadeout 0.2
 	{ event 3014 1 "" }
 	addlayer "Aim_stand_delta_all"
-	node "shooting_pistol"
-	blendlayer "layer_pistolangryidle2" 0 0 0 0 local
 	blendlayer "gesture_shoot_357" 0 0 0 0 local
-	//weightlist "weights_357_shoot"
-	fps 30
-	ikrule "lfoot" footstep contact 0 fakeorigin 11.95 7.22 0 fakerotate 0 0 0 floor 0 height 20 radius 2.5 range 0 0 4 4 target 3
-	ikrule "rfoot" footstep contact 0 fakeorigin -9.2 -3.23 0 fakerotate 0 0 0 floor 0 height 20 radius 2.5 range 0 0 4 4 target 2
-	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 4 4 target 0
-	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 4 4 target 1
+	ikrule "lfoot" footstep contact 0 height 20 radius 2.5
+	ikrule "rfoot" footstep contact 0 height 20 radius 2.5
 }
 
 $sequence "shootp2c" {
-	$Blend_SMD_Rifle_Crouched$
+	$Blend_SMD_Pistol_Crouched$
 	numframes 16
-	blendlayer "layer_pistolangryidle2" 0 0 0 0 local
 	addlayer "gesture_shoot_357" //blendlayer "layer_shootp1" 0 2 4 4
 	addlayer "Aim_stand_delta_all" //addlayer "Aim_crouch_delta_all"
 	activity "ACT_RANGE_ATTACK_REVOLVER_LOW" 1
 	{ event 3014 1 "" }
-	fadein 0.2
-	fadeout 0.2
-	fps 30
-	ikrule "lfoot" footstep contact 0 fakeorigin 18 5.59 0 fakerotate 0 0 0 floor 0 height 20 radius 2.5 range 0 0 4 4 target 3
-	ikrule "rfoot" footstep contact 0 fakeorigin -10.25 -3.4 0 fakerotate 0 0 0 floor 0 height 20 radius 2.5 range 0 0 4 4 target 2
-	//ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 4 4 target 1
-	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 4 4 target 0
-	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 4 4 target 0
+	ikrule "lfoot" footstep contact 0 height 20 radius 2.5
+	ikrule "rfoot" footstep contact 0 height 20 radius 2.5
 }

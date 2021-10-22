@@ -8,11 +8,16 @@ $ModelName "combine_soldier_anims.mdl"
 $include "BaseModel.qci"
 $include "hl2mp_ported_anims/commonbones.qci"
 
+$definebone "ValveBiped.Cod" "ValveBiped.Bip01_Pelvis" -0.044717 2.313936 4.661499 0 0 -2.250005 0 0 0 0 0 0
+
 // Used to compile new movement animations since $declareanimation doesn't work
 $include "SoldierMoveAnims.qci"
 
 $includemodel "combine_soldier_anims_original.mdl"
 $include "combine_soldier_anims_DeclareSequence.qci"
+$include "SoldierActivityFixes.qci"
+
+$include "SoldierReadinessAnims.qci"
 
 $include "hl2mp_ported_anims/weaponmacros.qci"
 $pushd "male_shared_anims"
@@ -29,7 +34,8 @@ $definevariable Blend_Idle_Rifle_Crouched "crouch_aim_sm1"
 $definevariable Blend_SMD_Default "combine_soldier_anims_anims\CombatIdle1_SMG1.smd"
 $definevariable Blend_SMD_Unarmed "combine_soldier_anims_anims\Idle_Unarmed.smd"
 $definevariable Blend_SMD_Panicked "combine_soldier_anims_anims\Idle_Unarmed.smd"
-$definevariable Blend_SMD_Pistol "combine_soldier_anims_anims\CombatIdle1_SMG1.smd"
+$definevariable Blend_SMD_Pistol "combine_soldier_anims_anims\custom\CombatIdle1_Pistol.smd"
+$definevariable Blend_SMD_Pistol_Crouched "combine_soldier_anims_anims\custom\crouch_aim_pistol.smd"
 $definevariable Blend_SMD_Rifle "combine_soldier_anims_anims\CombatIdle1_SMG1.smd"
 $definevariable Blend_SMD_Rifle_Crouched "combine_soldier_anims_anims\crouch_aim_sm1.smd"
 

@@ -1,0 +1,253 @@
+// ================================================================
+// 
+// Soldier Activity Fixes
+// 
+// This overwrites existing soldier sequences to fix issues with animation events, activity names, etc.
+// It also adds new animation variants for different weapons, fixing most problems involving incorrect hand positioning.
+// 
+// ================================================================
+
+$sequence "layer_relaxed_oldidle" { "combine_soldier_anims_anims\Idle1.smd" frame 0 0 ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" hidden }
+$sequence "layer_relaxed_ar2" { "combine_soldier_anims_anims\custom\Idle1_AR2.smd" frame 0 0 ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" hidden }
+$sequence "layer_relaxed_smg1" { "combine_soldier_anims_anims\custom\Idle1_SMG1.smd" frame 0 0 ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" hidden }
+$sequence "layer_relaxed_shotgun" { "combine_soldier_anims_anims\custom\Idle1_Shotgun.smd" frame 0 0 ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" hidden }
+$sequence "layer_relaxed_pistol" { "combine_soldier_anims_anims\custom\Idle1_Pistol.smd" frame 0 0 ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" hidden }
+
+// TODO: These aren't perfect and could probably be turned into actual animation layer SMDs
+$sequence "ar2_to_smg1" "combine_soldier_anims_anims\custom\Idle1_SMG1.smd" frame 0 0 subtract "layer_relaxed_ar2" 0 delta hidden
+$sequence "ar2_to_shotgun" "combine_soldier_anims_anims\custom\Idle1_Shotgun.smd" frame 0 0 subtract "layer_relaxed_ar2" 0 delta hidden
+$sequence "smg1_to_ar2" "combine_soldier_anims_anims\custom\Idle1_AR2.smd" frame 0 0 subtract "layer_relaxed_smg1" 0 delta hidden
+$sequence "oldidle_to_ar2" "combine_soldier_anims_anims\custom\Idle1_AR2.smd" frame 0 0 subtract "layer_relaxed_oldidle" 0 delta hidden
+$sequence "oldidle_to_smg1" "combine_soldier_anims_anims\custom\Idle1_SMG1.smd" frame 0 0 subtract "layer_relaxed_oldidle" 0 delta hidden
+$sequence "oldidle_to_shotgun" "combine_soldier_anims_anims\custom\Idle1_Shotgun.smd" frame 0 0 subtract "layer_relaxed_oldidle" 0 delta hidden
+$sequence "oldidle_to_pistol" "combine_soldier_anims_anims\custom\Idle1_Pistol.smd" frame 0 0 subtract "layer_relaxed_oldidle" 0 delta hidden
+
+// ----------------------------------------------------------------
+// 
+// REPLACEMENTS
+// 
+// ----------------------------------------------------------------
+
+$sequence "Idle1" {
+	"combine_soldier_anims_anims\Idle1.smd"
+	activity "ACT_IDLE_AR2_OLD" 1 // Activity changed from "ACT_IDLE" to the bogus "ACT_IDLE_AR2_OLD" since it doesn't fit any weapon in HL2
+	loop
+	ikrule "lfoot" footstep
+	ikrule "rfoot" footstep
+	ikrule "lhand" touch "ValveBiped.Bip01_R_Hand"
+}
+
+$sequence "Walk_all" {
+	$a_WalkBlends
+	activity "ACT_WALK_AR2_OLD" 1 // Activity changed from "ACT_WALK" to the bogus "ACT_WALK_AR2_OLD" since it doesn't fit any weapon in HL2
+}
+
+$sequence "RunALL" {
+	$a_RunBlends
+	activity "ACT_RUN_AR2_OLD" 1 // Activity changed from "ACT_RUN" to the bogus "ACT_RUN_AR2_OLD" since it doesn't fit any weapon in HL2
+}
+
+$sequence "Walk_aiming_all" {
+	$a_WalkBlends // Adds previously missing footstep events
+	activity "ACT_WALK_AIM_RIFLE" 1
+	blendlayer "layer_walk_aiming" 0 0 0 0 local
+}
+
+$sequence "Walk_aiming_all_SG" {
+	$a_WalkBlends // Adds previously missing footstep events
+	activity "ACT_WALK_AIM_SHOTGUN" 1
+	blendlayer "layer_walk_aiming_SG" 0 0 0 0 local
+}
+
+// ----------------------------------------------------------------
+
+$sequence "WalkUnarmed_all" {
+	$a_WalkEasyBlends // Adds previously missing footstep events
+	activity "ACT_WALK_UNARMED" 1
+	blendlayer "layer_walk_unarmed" 0 0 0 0 local
+
+	keyvalues
+	{
+		interior ACT_IDLE_UNARMED
+	}
+}
+
+$sequence "WalkEasy_all" {
+	$a_WalkEasyBlends // Adds previously missing footstep events
+	activity "ACT_WALK_EASY" 1
+}
+
+// ----------------------------------------------------------------
+// 
+// NEW
+// 
+// ----------------------------------------------------------------
+
+// New Idles
+$definemacro SoldierIdle IdleName IdleSeq IdleAct \\
+$sequence $IdleName$ { \\
+	$IdleSeq$ \\
+	activity $IdleAct$ 1 \\
+	loop \\
+	ikrule "lfoot" footstep contact 0 height 20 radius 2.5 \\
+	ikrule "rfoot" footstep contact 0 height 20 radius 2.5 \\
+	ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" \\
+	ikrule "rhand" release \\
+}
+
+// NEW - Hand-corrected custom idle animations
+$SoldierIdle "Idle1_SMG1" "combine_soldier_anims_anims\custom\Idle1_SMG1.smd" "ACT_IDLE_SMG1"
+$SoldierIdle "Idle1_AR2" "combine_soldier_anims_anims\custom\Idle1_AR2.smd" "ACT_IDLE_AR2"
+$SoldierIdle "Idle1_SG" "combine_soldier_anims_anims\custom\Idle1_Shotgun.smd" "ACT_IDLE_SHOTGUN"
+
+$sequence "CombatIdle1" {
+	"combine_soldier_anims_anims\CombatIdle1.smd"
+	activity "ACT_IDLE_ANGRY_AR2" 1 // Activity changed from "ACT_IDLE_ANGRY" to "ACT_IDLE_ANGRY_AR2"
+	{ event 4 0 "" }
+	addlayer "Aim_stand_delta_all"
+	loop
+	ikrule "lfoot" footstep
+	ikrule "rfoot" footstep
+	ikrule "lhand" touch "ValveBiped.Bip01_R_Hand"
+}
+
+// ----------------------------------------------------------------
+
+// NEW -- AR2 walking animation
+$sequence "Walk_all_AR2" {
+	$a_WalkBlends
+	activity "ACT_WALK_AR2" 1
+	blendlayer "oldidle_to_ar2" 0 0 0 0 local
+}
+
+// NEW -- SMG1 walking animation
+$sequence "Walk_all_SMG1" {
+	$a_WalkBlends
+	activity "ACT_WALK_RIFLE" 1
+	blendlayer "oldidle_to_smg1" 0 0 0 0 local
+}
+
+// NEW -- Shotgun walking animation
+$sequence "Walk_all_SG" {
+	$a_WalkBlends
+	activity "ACT_WALK_SHOTGUN" 1
+	blendlayer "oldidle_to_shotgun" 0 0 0 0 local
+}
+
+// ----------------------------------------------------------------
+
+// NEW -- AR2 running animation
+$sequence "RunALL_AR2" {
+	$a_RunBlends
+	activity "ACT_RUN_AR2" 1
+	blendlayer "oldidle_to_ar2" 0 0 0 0 local
+}
+
+// NEW -- SMG1 running animation
+$sequence "RunALL_SMG1" {
+	$a_RunBlends
+	activity "ACT_RUN_RIFLE" 1
+	blendlayer "oldidle_to_smg1" 0 0 0 0 local
+}
+
+// NEW -- Shotgun running animation
+$sequence "RunALL_SG" {
+	$a_RunBlends
+	activity "ACT_RUN_SHOTGUN" 1
+	blendlayer "oldidle_to_shotgun" 0 0 0 0 local
+}
+
+// ----------------------------------------------------------------
+
+$sequence "RunAIMALL1_AR2" {
+	$a_RunBlends
+	activity "ACT_RUN_AIM_AR2" 1
+	blendlayer "layer_run_aiming" 0 0 0 0 local
+	blendlayer "smg1_to_ar2" 0 0 0 0 local
+}
+
+$sequence "Walk_aiming_all_AR2" {
+	$a_WalkBlends
+	activity "ACT_WALK_AIM_AR2" 1
+	blendlayer "layer_walk_aiming" 0 0 0 0 local
+	blendlayer "smg1_to_ar2" 0 0 0 0 local
+}
+
+// ----------------------------------------------------------------
+
+// NEW -- Idle_Unarmed as simple ACT_IDLE (which soldiers previously lacked)
+$sequence "Idle_Unarmed_ACT_IDLE" {
+	"combine_soldier_anims_anims\Idle_Unarmed.smd"
+	activity "ACT_IDLE" 1
+	loop
+	ikrule "lfoot" footstep
+	ikrule "rfoot" footstep
+	
+	hidden	// For now, hide this and allow the original animation to continue to be used (for simplicity)
+}
+
+// NEW -- WalkUnarmed_all as simple ACT_WALK (which soldiers previously lacked)
+$sequence "WalkUnarmed_all_ACT_WALK" {
+	$a_WalkEasyBlends
+	activity "ACT_WALK" 1
+	blendlayer "layer_walk_unarmed" 0 0 0 0 local
+
+	keyvalues
+	{
+		interior ACT_IDLE
+	}
+	
+	hidden	// For now, hide this and allow the original animation to continue to be used (for simplicity)
+}
+
+$weightlist "weights_layer_run_unarmed" {
+	 "ValveBiped.Bip01_Pelvis" 0
+	 "ValveBiped.Bip01_L_Clavicle" 1
+	 "ValveBiped.Bip01_L_UpperArm" 0.8
+	 "ValveBiped.Bip01_L_Forearm" 0.8
+	 "ValveBiped.Bip01_L_Thigh" 0
+	 "ValveBiped.Bip01_R_Clavicle" 1
+	 "ValveBiped.Bip01_R_UpperArm" 0.8
+	 "ValveBiped.Bip01_R_Forearm" 0.8
+	 "ValveBiped.Bip01_R_Thigh" 0
+	 "ValveBiped.Bip01_Spine" 0.2
+	 "ValveBiped.Bip01_Spine1" 0.4
+	 "ValveBiped.Bip01_Spine2" 0.6
+	 "ValveBiped.Bip01_Spine4" 0.8
+	 "ValveBiped.Bip01_Neck1" 0
+	 //"ValveBiped.Cod" 0.1
+}
+
+//$sequence "layer_run_unarmed" {
+//	//"combine_soldier_anims_anims\layer_walk_unarmed.smd"
+//	"male_shared_anims\a_RunN.smd"
+//	hidden
+//	//worldspace
+//	loop
+//	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 30 30 target 0
+//	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 30 30 target 1
+//	weightlist "weights_layer_run_unarmed"
+//	subtract "layer_run_unarmed" 0
+//	delta
+//}
+
+$sequence "layer_run_unarmed" {
+	"male_shared_anims\a_RunN.smd"
+	hidden
+	//worldspace
+	loop
+	weightlist "weights_layer_run_unarmed"
+}
+
+// NEW -- Unarmed running animation
+$sequence "RunUnarmed_all" {
+	$a_RunBlends
+	activity "ACT_RUN" 1 // There shall be no ACT_RUN_UNARMED
+	blendlayer "layer_walk_unarmed" 0 0 0 0 local
+	blendlayer "layer_run_unarmed" 0 0 0 0 local
+
+	keyvalues
+	{
+		interior ACT_IDLE
+	}
+}

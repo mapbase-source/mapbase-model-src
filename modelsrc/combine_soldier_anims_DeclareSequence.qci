@@ -1,9 +1,9 @@
 // Created by Crowbar 0.56
 
 $declaresequence "LH_attachment_Init"
-$declaresequence "Idle1"
-$declaresequence "Idle1_SMG1"
-$declaresequence "CombatIdle1"
+//$declaresequence "Idle1"
+//$declaresequence "Idle1_SMG1"
+//$declaresequence "CombatIdle1"
 $declaresequence "CombatIdle1_SG"
 $declaresequence "CombatIdle1_SMG1"
 $declaresequence "cower"
@@ -98,7 +98,7 @@ $declaresequence "Crouch_RunALL"
 $declaresequence "Crouch_WalkALL"
 $declaresequence "Aim_all"
 $declaresequence "Aim_all_SG"
-$declaresequence "RunALL"
+//$declaresequence "RunALL"
 $declaresequence "layer_run_aiming"
 $declaresequence "RunAIMALL1"
 $declaresequence "layer_run_aiming_SG"
@@ -183,11 +183,11 @@ $sequence "Idle1_turretCarry" {
 }
 
 $declaresequence "Turret_Drop"
-$declaresequence "Walk_all"
+//$declaresequence "Walk_all"
 $declaresequence "layer_walk_aiming"
-$declaresequence "Walk_aiming_all"
+//$declaresequence "Walk_aiming_all"
 $declaresequence "layer_walk_aiming_SG"
-$declaresequence "Walk_aiming_all_SG"
+//$declaresequence "Walk_aiming_all_SG"
 $declaresequence "gesture_shoot_ar1"
 $declaresequence "gesture_shoot_ar2"
 $declaresequence "gesture_shoot_hmg1"
@@ -261,129 +261,9 @@ $declaresequence "breen_gravCarry_Idle"
 $declaresequence "breen_grav_placeDesk"
 //$declaresequence "WalkEasy_all"
 
-$sequence "WalkEasy_all" {
-	"a_SoldierWalkEasyS"
-	"a_SoldierWalkEasySE"
-	"a_SoldierWalkEasyE"
-	"a_SoldierWalkEasyNE"
-	"a_SoldierWalkEasyN"
-	"a_SoldierWalkEasyNW"
-	"a_SoldierWalkEasyW"
-	"a_SoldierWalkEasySW"
-	"a_SoldierWalkEasyS"
-	activity "ACT_WALK_EASY" 1
-	blend "move_yaw" -180 180
-	blendwidth 9
-	{ event 6004 9 "NPC_CombineS" } // New animation events
-	{ event 6005 25 "NPC_CombineS" } // New animation events
-	fadein 0.2
-	fadeout 0.2
-}
-
 $declaresequence "Idle_Unarmed"
 $declaresequence "layer_walk_unarmed"
 //$declaresequence "WalkUnarmed_all"
-
-$sequence "WalkUnarmed_all" {
-	"a_SoldierWalkEasyS"
-	"a_SoldierWalkEasySE"
-	"a_SoldierWalkEasyE"
-	"a_SoldierWalkEasyNE"
-	"a_SoldierWalkEasyN"
-	"a_SoldierWalkEasyNW"
-	"a_SoldierWalkEasyW"
-	"a_SoldierWalkEasySW"
-	"a_SoldierWalkEasyS"
-	activity "ACT_WALK_UNARMED" 1
-	blend "move_yaw" -180 180
-	blendwidth 9
-	{ event 6004 9 "NPC_CombineS" } // New animation events
-	{ event 6005 25 "NPC_CombineS" } // New animation events
-	fadein 0.2
-	fadeout 0.2
-
-keyvalues
-{
-	interior ACT_IDLE_UNARMED
-}
-	blendlayer "layer_walk_unarmed" 0 0 0 0 local
-}
-
-$weightlist "weights_layer_run_unarmed" {
-	 "ValveBiped.Bip01_Pelvis" 0
-	 "ValveBiped.Bip01_L_Clavicle" 1
-	 "ValveBiped.Bip01_L_UpperArm" 0.8
-	 "ValveBiped.Bip01_L_Forearm" 0.8
-	 "ValveBiped.Bip01_L_Thigh" 0
-	 "ValveBiped.Bip01_R_Clavicle" 1
-	 "ValveBiped.Bip01_R_UpperArm" 0.8
-	 "ValveBiped.Bip01_R_Forearm" 0.8
-	 "ValveBiped.Bip01_R_Thigh" 0
-	 "ValveBiped.Bip01_Spine" 0.2
-	 "ValveBiped.Bip01_Spine1" 0.4
-	 "ValveBiped.Bip01_Spine2" 0.6
-	 "ValveBiped.Bip01_Spine4" 0.8
-	 "ValveBiped.Bip01_Neck1" 0
-	 //"ValveBiped.Cod" 0.1
-}
-
-//$sequence "layer_run_unarmed" {
-//	//"combine_soldier_anims_anims\layer_walk_unarmed.smd"
-//	"male_shared_anims\a_RunN.smd"
-//	fadein 0.2
-//	fadeout 0.2
-//	hidden
-//	//worldspace
-//	fps 30
-//	loop
-//	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 30 30 target 0
-//	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 30 30 target 1
-//	weightlist "weights_layer_run_unarmed"
-//	subtract "layer_run_unarmed" 0
-//	delta
-//}
-
-$sequence "layer_run_unarmed" {
-	"male_shared_anims\a_RunN.smd"
-	fadein 0.2
-	fadeout 0.2
-	hidden
-	//worldspace
-	fps 30
-	loop
-	ikrule "lfoot" footstep contact 7 fakeorigin 4.52 2.76 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 16 5 10 16 target 3
-	ikrule "rfoot" footstep contact 16 fakeorigin 4.56 -1.62 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 7 14 1 7 target 2
-	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 18 18 target 0
-	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 18 18 target 1
-	//walkframe 18 LX LY
-	weightlist "weights_layer_run_unarmed"
-}
-
-$sequence "RunUnarmed_all" {
-	"a_SoldierRunS"
-	"a_SoldierRunSE"
-	"a_SoldierRunE"
-	"a_SoldierRunNE"
-	"a_SoldierRunN"
-	"a_SoldierRunNW"
-	"a_SoldierRunW"
-	"a_SoldierRunSW"
-	"a_SoldierRunS"
-	activity "ACT_RUN_UNARMED" 1
-	blend "move_yaw" -180 180
-	blendwidth 9
-	{ event 6004 7 "NPC_CombineS" }
-	{ event 6005 16 "NPC_CombineS" }
-	fadein 0.2
-	fadeout 0.2
-
-keyvalues
-{
-	interior ACT_IDLE_UNARMED
-}
-	blendlayer "layer_walk_unarmed" 0 0 0 0 local
-	blendlayer "layer_run_unarmed" 0 0 0 0 local
-}
 
 $declaresequence "WalkMarch_all"
 $declaresequence "layer_walk_GravCarry"
