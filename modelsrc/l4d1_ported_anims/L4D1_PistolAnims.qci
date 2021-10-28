@@ -29,8 +29,6 @@ $weightlist "weights_holster_layer" {
 	 "ValveBiped.Bip01_Neck1" 0
 }
 
-$weightlist "weights_DummyAim" { "ValveBiped.Bip01_Pelvis" 0 }
-
 // TODO: Female?
 $pushd "l4d1_ported_anims\male"
 
@@ -52,9 +50,9 @@ $sequence "weapon_draw_gesture" { // Unholster_Standing_Pistol
 	fadein 0.2
 	fadeout 0.2
 	blendlayer "Unholster_Standing_Pistol_layer" 0 5 13 36 spline // 0 5 23 36
-	//numframes 30
+	ikrule "rhand" touch "ValveBiped.Bip01_Spine" contact 10 range 0 10 15 30 usesequence
 	fps 30
-	weightlist "weights_DummyAim"
+	noanimation numframes 36
 }
 
 $sequence "Holster_Standing_Pistol_layer" {
@@ -76,7 +74,7 @@ $sequence "weapon_holster_gesture" { // Holster_Standing_Pistol
 	fadeout 0.2
 	blendlayer "Holster_Standing_Pistol_layer" 0 10 16 36 spline // 0 5 23 36
 	fps 30
-	weightlist "weights_DummyAim"
+	noanimation numframes 36
 }
 
 $popd

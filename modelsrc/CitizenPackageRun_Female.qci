@@ -2,15 +2,15 @@
 $include "CitizenPackageRun.qci"
 
 $sequence "run_holding_package_all" {
-	"a_FemaleCitizenRunS"
-	"a_FemaleCitizenRunSE"
-	"a_FemaleCitizenRunE"
-	"a_FemaleCitizenRunNE"
-	"a_FemaleCitizenRunN" // a_WalkN_package
-	"a_FemaleCitizenRunNW"
-	"a_FemaleCitizenRunW"
-	"a_FemaleCitizenRunSW"
-	"a_FemaleCitizenRunS"
+	"a_CitizenRunS"
+	"a_CitizenRunSE"
+	"a_CitizenRunE"
+	"a_CitizenRunNE"
+	"a_CitizenRunN" // a_WalkN_package
+	"a_CitizenRunNW"
+	"a_CitizenRunW"
+	"a_CitizenRunSW"
+	"a_CitizenRunS"
 	activity "ACT_RUN_PACKAGE" 1
 	blend "move_yaw" -180 180
 	blendwidth 9

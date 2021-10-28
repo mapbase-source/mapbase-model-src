@@ -2,13 +2,71 @@
 // Police Movement Animations
 // ================================================================
 
+$definemacro a_WalkBlends \\
+	"a_PoliceWalkS" \\
+	"a_PoliceWalkSE" \\
+	"a_PoliceWalkE" \\
+	"a_PoliceWalkNE" \\
+	"a_PoliceWalkN" \\
+	"a_PoliceWalkNW" \\
+	"a_PoliceWalkW" \\
+	"a_PoliceWalkSW" \\
+	"a_PoliceWalkS" \\
+	blend "move_yaw" -180 180 \\
+	blendwidth 9 \\
+	{ event 6004 9 "NPC_MetroPolice" } \\
+	{ event 6005 25 "NPC_MetroPolice" } \\
+
+$definemacro a_RunBlends \\
+	"a_PoliceRunS" \\
+	"a_PoliceRunSE" \\
+	"a_PoliceRunE" \\
+	"a_PoliceRunNE" \\
+	"a_PoliceRunN" \\
+	"a_PoliceRunNW" \\
+	"a_PoliceRunW" \\
+	"a_PoliceRunSW" \\
+	"a_PoliceRunS" \\
+	blend "move_yaw" -180 180 \\
+	blendwidth 9 \\
+	{ event 6004 6 "NPC_MetroPolice" } \\
+	{ event 6005 16 "NPC_MetroPolice" } \\
+	
+$definemacro a_CrouchWalkBlends \\
+	"a_PoliceCrouch_walkS" \\
+	"a_PoliceCrouch_walkSE" \\
+	"a_PoliceCrouch_walkE" \\
+	"a_PoliceCrouch_walkNE" \\
+	"a_PoliceCrouch_walkN" \\
+	"a_PoliceCrouch_walkNW" \\
+	"a_PoliceCrouch_walkW" \\
+	"a_PoliceCrouch_walkSW" \\
+	"a_PoliceCrouch_walkS" \\
+	blend "move_yaw" -180 180 \\
+	blendwidth 9 \\
+	
+$definemacro a_CrouchRunBlends \\
+	"a_PoliceCrouch_walkS" \\
+	"a_PoliceCrouch_walkSE" \\
+	"a_PoliceCrouch_walkE" \\
+	"a_PoliceCrouch_walkNE" \\
+	"a_PoliceCrouch_runN" \\
+	"a_PoliceCrouch_walkNW" \\
+	"a_PoliceCrouch_walkW" \\
+	"a_PoliceCrouch_walkSW" \\
+	"a_PoliceCrouch_walkS" \\
+	blend "move_yaw" -180 180 \\
+	blendwidth 9 \\
+	//{ event 6004 7 "NPC_MetroPolice" } \\ // This is new
+	//{ event 6005 16 "NPC_MetroPolice" } \\ // This is new
+
+// ----------------------------------------------------------------
+
 $animation "a_PoliceWalkS" "police_animations_anims\a_WalkS.smd" {
 	fps 31
 	loop
 	ikrule "lfoot" footstep contact 7 fakeorigin -8.31 8.22 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 29 7 21 29 target 3
 	ikrule "rfoot" footstep contact 22 fakeorigin -11.48 -3.43 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 14 22 6 14 target 2
-	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 30 30 target 0
-	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 30 30 target 1
 	walkframe 30 LX LY
 }
 
@@ -17,8 +75,6 @@ $animation "a_PoliceWalkSE" "police_animations_anims\a_WalkSE.smd" {
 	loop
 	ikrule "lfoot" footstep contact 7 fakeorigin -4.37 8.31 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 29 7 21 29 target 3
 	ikrule "rfoot" footstep contact 22 fakeorigin -6.05 -7.44 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 14 22 6 14 target 2
-	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 30 30 target 0
-	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 30 30 target 1
 	walkframe 30 LX LY
 }
 
@@ -27,8 +83,6 @@ $animation "a_PoliceWalkE" "police_animations_anims\a_WalkE.smd" {
 	loop
 	ikrule "lfoot" footstep contact 7 fakeorigin 8.4 -0.33 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 29 7 21 29 target 3
 	ikrule "rfoot" footstep contact 22 fakeorigin -3.88 -10.25 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 14 22 6 14 target 2
-	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 30 30 target 0
-	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 30 30 target 1
 	walkframe 30 LX LY
 }
 
@@ -37,8 +91,6 @@ $animation "a_PoliceWalkNE" "police_animations_anims\a_WalkNE.smd" {
 	loop
 	ikrule "lfoot" footstep contact 7 fakeorigin 8.82 3.92 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 29 7 21 29 target 3
 	ikrule "rfoot" footstep contact 22 fakeorigin 3.71 -11.55 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 14 22 6 14 target 2
-	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 30 30 target 0
-	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 30 30 target 1
 	walkframe 30 LX LY
 }
 
@@ -47,8 +99,6 @@ $animation "a_PoliceWalkN" "police_animations_anims\a_WalkN.smd" {
 	loop
 	ikrule "lfoot" footstep contact 7 fakeorigin 13.65 6.55 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 29 7 21 29 target 3
 	ikrule "rfoot" footstep contact 22 fakeorigin 13.7 -1.18 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 14 22 6 14 target 2
-	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 30 30 target 0
-	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 30 30 target 1
 	walkframe 30 LX LY
 }
 
@@ -57,8 +107,6 @@ $animation "a_PoliceWalkNW" "police_animations_anims\a_WalkNW.smd" {
 	loop
 	ikrule "lfoot" footstep contact 7 fakeorigin 8.2 9.8 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 29 7 21 29 target 3
 	ikrule "rfoot" footstep contact 22 fakeorigin 6.42 8.17 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 14 22 6 14 target 2
-	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 30 30 target 0
-	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 30 30 target 1
 	walkframe 30 LX LY
 }
 
@@ -67,8 +115,6 @@ $animation "a_PoliceWalkW" "police_animations_anims\a_WalkW.smd" {
 	loop
 	ikrule "lfoot" footstep contact 7 fakeorigin 5.76 10.9 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 29 7 21 29 target 3
 	ikrule "rfoot" footstep contact 22 fakeorigin -1.32 8.4 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 14 22 6 14 target 2
-	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 30 30 target 0
-	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 30 30 target 1
 	walkframe 30 LX LY
 }
 
@@ -77,8 +123,6 @@ $animation "a_PoliceWalkSW" "police_animations_anims\a_WalkSW.smd" {
 	loop
 	ikrule "lfoot" footstep contact 7 fakeorigin 0.4 8.73 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 29 7 21 29 target 3
 	ikrule "rfoot" footstep contact 22 fakeorigin -9.1 5.01 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 14 22 6 14 target 2
-	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 30 30 target 0
-	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 30 30 target 1
 	walkframe 30 LX LY
 }
 
@@ -87,8 +131,6 @@ $animation "a_PoliceRunS" "police_animations_anims\a_RunS.smd" {
 	loop
 	ikrule "lfoot" footstep contact 9 fakeorigin -1.03 6.18 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 18 7 10 18 target 3
 	ikrule "rfoot" footstep contact 19 fakeorigin -3 -1.16 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 8 16 1 8 target 2
-	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 20 20 target 0
-	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 20 20 target 1
 	walkframe 20 LX LY
 }
 
@@ -97,8 +139,6 @@ $animation "a_PoliceRunSE" "police_animations_anims\a_RunSE.smd" {
 	loop
 	ikrule "lfoot" footstep contact 9 fakeorigin 2.17 8.46 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 18 7 10 18 target 3
 	ikrule "rfoot" footstep contact 19 fakeorigin 2.16 1.19 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 8 16 1 8 target 2
-	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 20 20 target 0
-	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 20 20 target 1
 	walkframe 20 LX LY
 }
 
@@ -107,8 +147,6 @@ $animation "a_PoliceRunE" "police_animations_anims\a_RunE.smd" {
 	loop
 	ikrule "lfoot" footstep contact 10 fakeorigin 5.83 6.44 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 18 7 10 18 target 3
 	ikrule "rfoot" footstep contact 19 fakeorigin -3.99 -3.14 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 8 16 1 8 target 2
-	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 20 20 target 0
-	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 20 20 target 1
 	walkframe 20 LX LY
 }
 
@@ -117,8 +155,6 @@ $animation "a_PoliceRunNE" "police_animations_anims\a_RunNE.smd" {
 	loop
 	ikrule "lfoot" footstep contact 9 fakeorigin 5.3 2.41 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 18 7 10 18 target 3
 	ikrule "rfoot" footstep contact 19 fakeorigin 4.2 -7.29 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 8 16 1 8 target 2
-	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 20 20 target 0
-	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 20 20 target 1
 	walkframe 20 LX LY
 }
 
@@ -127,8 +163,6 @@ $animation "a_PoliceRunN" "police_animations_anims\a_RunN.smd" {
 	loop
 	ikrule "lfoot" footstep contact 10 fakeorigin -1.82 6.13 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 18 7 10 18 target 3
 	ikrule "rfoot" footstep contact 19 fakeorigin 5.1 -1.25 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 8 16 1 8 target 2
-	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 20 20 target 0
-	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 20 20 target 1
 	walkframe 20 LX LY
 }
 
@@ -137,8 +171,6 @@ $animation "a_PoliceRunNW" "police_animations_anims\a_RunNW.smd" {
 	loop
 	ikrule "lfoot" footstep contact 8 fakeorigin 2.32 13.27 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 18 7 10 18 target 3
 	ikrule "rfoot" footstep contact 20 fakeorigin -0.93 2.33 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 8 16 1 8 target 2
-	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 20 20 target 0
-	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 20 20 target 1
 	walkframe 20 LX LY
 }
 
@@ -147,8 +179,6 @@ $animation "a_PoliceRunW" "police_animations_anims\a_RunW.smd" {
 	loop
 	ikrule "lfoot" footstep contact 10 fakeorigin 5.89 4.81 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 18 7 10 18 target 3
 	ikrule "rfoot" footstep contact 1 fakeorigin -3.72 -4.06 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 10 16 4 10 target 2
-	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 20 20 target 0
-	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 20 20 target 1
 	walkframe 20 LX LY
 }
 
@@ -157,7 +187,157 @@ $animation "a_PoliceRunSW" "police_animations_anims\a_RunSW.smd" {
 	loop
 	ikrule "lfoot" footstep contact 9 fakeorigin 5.37 6.98 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 18 7 10 18 target 3
 	ikrule "rfoot" footstep contact 20 fakeorigin -1.64 -2.46 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 8 16 1 8 target 2
-	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 20 20 target 0
-	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 20 20 target 1
 	walkframe 20 LX LY
 }
+
+// ----------------------------------------------------------------
+
+// Stock metrocop crouch movement animations are a little incomplete and don't work very well when combined with aiming animations, which is currently what we want these for.
+// Citizen crouch movement animations are a lot better in this regard and mostly look fine when combined with metrocop aiming animations.
+
+
+$animation "a_PoliceCrouch_walkS" "male_shared_anims\a_Crouch_walkS.smd" {
+	fps 30
+	loop
+	ikrule "lfoot" footstep contact 10 fakeorigin -5.37 6.35 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 28 5 22 28 target 3
+	ikrule "rfoot" footstep contact 25 fakeorigin -5.55 -5.78 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 13 20 7 13 target 2
+	walkframe 30 LX LY
+}
+
+$animation "a_PoliceCrouch_walkSE" "male_shared_anims\a_Crouch_walkSE.smd" {
+	fps 30
+	loop
+	ikrule "lfoot" footstep contact 10 fakeorigin -2.77 -4.1 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 28 5 22 28 target 3
+	ikrule "rfoot" footstep contact 25 fakeorigin -2.11 -11.61 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 13 20 7 13 target 2
+	walkframe 30 LX LY
+}
+
+$animation "a_PoliceCrouch_walkE" "male_shared_anims\a_Crouch_walkE.smd" {
+	fps 30
+	loop
+	ikrule "lfoot" footstep contact 10 fakeorigin 9.12 -12.11 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 0 7 23 30 target 3
+	ikrule "rfoot" footstep contact 22 fakeorigin 2.25 -18.79 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 14 20 8 14 target 2
+	walkframe 30 LX LY
+}
+
+$animation "a_PoliceCrouch_walkNE" "male_shared_anims\a_Crouch_walkNE.smd" {
+	fps 30
+	loop
+	ikrule "lfoot" footstep contact 11 fakeorigin 9.53 -2.01 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 29 6 23 29 target 3
+	ikrule "rfoot" footstep contact 23 fakeorigin 12.58 -15.59 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 13 19 8 13 target 2
+	walkframe 30 LX LY
+}
+
+$animation "a_PoliceCrouch_walkN" "male_shared_anims\a_Crouch_walkN.smd" {
+	fps 30
+	loop
+	ikrule "lfoot" footstep contact 8 fakeorigin 18.99 5.56 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 29 5 23 29 target 3
+	ikrule "rfoot" footstep contact 23 fakeorigin 15.12 -5.52 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 13 20 7 13 target 2
+	walkframe 30 LX LY
+}
+
+$animation "a_PoliceCrouch_walkNW" "male_shared_anims\a_Crouch_walkNW.smd" {
+	fps 30
+	loop
+	ikrule "lfoot" footstep contact 7 fakeorigin 12.87 14.64 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 22 4 11 22 target 3
+	ikrule "rfoot" footstep contact 23 fakeorigin 15.05 6.11 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 9 19 30 9 target 2
+	walkframe 30 LX LY
+}
+
+$animation "a_PoliceCrouch_walkW" "male_shared_anims\a_Crouch_walkW.smd" {
+	fps 30
+	loop
+	ikrule "lfoot" footstep contact 8 fakeorigin 2.32 16.56 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 23 5 11 23 target 3
+	ikrule "rfoot" footstep contact 27 fakeorigin 9.74 3.72 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 11 22 30 11 target 2
+	walkframe 30 LX LY
+}
+
+$animation "a_PoliceCrouch_walkSW" "male_shared_anims\a_Crouch_walkSW.smd" {
+	fps 30
+	loop
+	ikrule "lfoot" footstep contact 10 fakeorigin -1.36 12.72 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 23 5 11 23 target 3
+	ikrule "rfoot" footstep contact 25 fakeorigin -0.89 2.41 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 10 20 30 10 target 2
+	walkframe 30 LX LY
+}
+
+$animation "a_PoliceCrouch_runN" "male_shared_anims\a_Crouch_runN.smd" {
+	fps 30
+	loop
+	ikrule "lfoot" footstep contact 6 fakeorigin 16.28 4.3 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 16 5 10 16 target 3
+	ikrule "rfoot" footstep contact 15 fakeorigin 16.26 -1.75 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 7 14 1 7 target 2
+	walkframe 18 LX LY
+}
+
+//$animation "a_PoliceCrouch_runN" "combine_soldier_anims_anims\a_Crouch_runN.smd" {
+//	fps 30
+//	loop
+//	ikrule "rfoot" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 20 20 target 2
+//	ikrule "lfoot" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 20 20 target 3
+//	//ikrule "lfoot" footstep contact 8 fakeorigin 10.58 2.92 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 2 8 14 2 target 3
+//	//ikrule "rfoot" footstep contact 16 fakeorigin 13.73 -4.74 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 10 16 4 10 target 2
+//	walkframe 19 LX
+//}
+//
+//$animation "a_PoliceCrouch_walkS" "police_animations_anims\a_Crouch_walkS.smd" {
+//	fps 30
+//	loop
+//	ikrule "rfoot" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 20 20 target 2
+//	ikrule "lfoot" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 20 20 target 3
+//	walkframe 20 LX LY
+//}
+//
+//$animation "a_PoliceCrouch_walkSE" "police_animations_anims\a_Crouch_walkSE.smd" {
+//	fps 30
+//	loop
+//	ikrule "rfoot" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 24 24 target 2
+//	ikrule "lfoot" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 24 24 target 3
+//	walkframe 24 LX LY
+//}
+//
+//$animation "a_PoliceCrouch_walkE" "police_animations_anims\a_Crouch_walkE.smd" {
+//	fps 30
+//	loop
+//	ikrule "rfoot" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 21 21 target 2
+//	ikrule "lfoot" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 21 21 target 3
+//	walkframe 21 LX LY
+//}
+//
+//$animation "a_PoliceCrouch_walkNE" "police_animations_anims\a_Crouch_walkNE.smd" {
+//	fps 30
+//	loop
+//	ikrule "rfoot" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 21 21 target 2
+//	ikrule "lfoot" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 21 21 target 3
+//	walkframe 21 LX LY
+//}
+//
+//$animation "a_PoliceCrouch_walkN" "police_animations_anims\a_Crouch_walkN.smd" {
+//	fps 30
+//	loop
+//	ikrule "rfoot" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 24 24 target 2
+//	ikrule "lfoot" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 24 24 target 3
+//	walkframe 24 LX LY
+//}
+//
+//$animation "a_PoliceCrouch_walkNW" "police_animations_anims\a_Crouch_walkNW.smd" {
+//	fps 30
+//	loop
+//	ikrule "rfoot" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 21 21 target 2
+//	ikrule "lfoot" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 21 21 target 3
+//	walkframe 21 LX LY
+//}
+//
+//$animation "a_PoliceCrouch_walkW" "police_animations_anims\a_Crouch_walkW.smd" {
+//	fps 30
+//	loop
+//	ikrule "rfoot" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 20 20 target 2
+//	ikrule "lfoot" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 20 20 target 3
+//	walkframe 20 LX LY
+//}
+//
+//$animation "a_PoliceCrouch_walkSW" "police_animations_anims\a_Crouch_walkSW.smd" {
+//	fps 30
+//	loop
+//	ikrule "rfoot" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 21 21 target 2
+//	ikrule "lfoot" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 21 21 target 3
+//	walkframe 21 LX LY
+//}

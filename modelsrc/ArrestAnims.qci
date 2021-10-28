@@ -14,15 +14,13 @@ $sequence "arrest_act_floor_curious" {
 	activity "ACT_ARREST_FLOOR_CURIOUS" 1
 }
 
-$weightlist "ArmsOnly" { "ValveBiped.Bip01_Pelvis" 0 "ValveBiped.Bip01_R_Clavicle" 1 "ValveBiped.Bip01_L_Clavicle" 1 }
-
 $sequence "arrest_act_standing_gesture" {
 	"apcarrestidle.smd"
 	activity "ACT_ARREST_STANDING_GESTURE" 1
 	fadein 0.2
 	fadeout 0.2
 	fps 20
-	weightlist "ArmsOnly"
+	weightlist "weapongesture_armsonly"
 	loop
 }
 
@@ -32,8 +30,6 @@ $sequence "arrest_act_standing_gesture" {
 //	addlayer "arrest_act_standing_layer"
 //	loop
 //}
-
-$weightlist "NoHands" { "ValveBiped.Bip01_Pelvis" 1 "ValveBiped.Bip01_R_Hand" 0 "ValveBiped.Bip01_L_Hand" 0 }
 
 $sequence "arrest_act_floor_enter" {
 	"slumpenter_b.smd"

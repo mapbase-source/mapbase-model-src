@@ -1,22 +1,4 @@
 
-$weightlist "weights_weapon_draw_spine" {
-	 "ValveBiped.Bip01_Pelvis" 0
-	 "ValveBiped.Bip01_Spine" 1
-	 "ValveBiped.Bip01_L_Clavicle" 0
-	 "ValveBiped.Bip01_R_Clavicle" 0
-}
-
-$weightlist "weights_weapon_draw_arms" {
-	 "ValveBiped.Bip01_Pelvis" 0
-	 "ValveBiped.Bip01_Spine" 0
-	 "ValveBiped.Bip01_L_Clavicle" 1
-	 "ValveBiped.Bip01_R_Clavicle" 1
-}
-
-$weightlist "weights_weapon_draw_gesture" {
-	 "ValveBiped.Bip01_Pelvis" 0
-}
-
 $animation "@weapon_draw_spine_corrective_animation" "alyx_animations_hl2\@weapon_draw_spine_corrective_animation.smd" {
 }
 
@@ -32,7 +14,7 @@ $sequence "weapon_draw_spine" {
 	fadeout 0.2
 	hidden
 	fps 30
-	weightlist "weights_weapon_draw_spine"
+	weightlist "weapongesture_justspine"
 }
 
 $sequence "weapon_draw_arms" {
@@ -41,7 +23,7 @@ $sequence "weapon_draw_arms" {
 	fadeout 0.2
 	hidden
 	fps 30
-	weightlist "weights_weapon_draw_arms"
+	weightlist "weapongesture_armsonly"
 }
 
 $sequence "weapon_draw_gesture" {
@@ -56,7 +38,7 @@ $sequence "weapon_draw_gesture" {
 	blendlayer "weapon_draw_spine" 0 10 26 40 spline
 	fps 30
 	ikrule "rhand" touch "ValveBiped.Bip01_Spine" contact 10 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 10 26 1 target 0 usesequence 
-	weightlist "weights_weapon_draw_gesture"
+	noanimation numframes 40
 }
 
 $sequence "weapon_holster_spine" {
@@ -68,7 +50,7 @@ $sequence "weapon_holster_spine" {
 	fadeout 0.2
 	hidden
 	fps 30
-	weightlist "weights_weapon_draw_spine"
+	weightlist "weapongesture_justspine"
 }
 
 $sequence "weapon_holster_arms" {
@@ -77,7 +59,7 @@ $sequence "weapon_holster_arms" {
 	fadeout 0.2
 	hidden
 	fps 30
-	weightlist "weights_weapon_draw_arms"
+	weightlist "weapongesture_armsonly"
 }
 
 $sequence "weapon_holster_gesture" {
@@ -92,5 +74,5 @@ $sequence "weapon_holster_gesture" {
 	blendlayer "weapon_holster_spine" 0 21 30 45 spline
 	fps 30
 	ikrule "rhand" touch "ValveBiped.Bip01_Spine" contact 21 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 21 40 1 target 0 usesequence 
-	weightlist "weights_weapon_draw_gesture"
+	noanimation numframes 45
 }

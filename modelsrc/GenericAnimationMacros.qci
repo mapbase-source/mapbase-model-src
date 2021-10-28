@@ -1,3 +1,108 @@
+// ================================================================
+// 
+// Generic Animation Macros
+// 
+// ================================================================
+
+$definemacro GenericIdle IdleName IdleSeq IdleAct \\
+$sequence $IdleName$ { $IdleSeq$ activity $IdleAct$ 1 loop \\
+	cmdlist lockfeetandlefthand \\
+}
+
+$definemacro GenericIdleWeight IdleName IdleSeq IdleAct ActWeight \\
+$sequence $IdleName$ { $IdleSeq$ activity $IdleAct$ $ActWeight$ loop \\
+	cmdlist lockfeetandlefthand \\
+}
+
+$definemacro GenericIdleHands IdleName IdleSeq IdleAct HandsLayer \\
+$sequence $IdleName$ { $IdleSeq$ activity $IdleAct$ 1 loop \\
+	cmdlist lockfeet \\
+	blendlayer $HandsLayer$ 0 0 0 0 local \\
+}
+
+$definemacro GenericCombatIdle IdleName IdleSeq IdleAct AimLayer \\
+$sequence $IdleName$ { \\
+	$IdleSeq$ \\
+	activity $IdleAct$ 1 \\
+	{ event 4 0 "" } \\
+	addlayer $AimLayer$ \\
+	loop \\
+	cmdlist lockfeetandlefthand \\
+}
+
+$definemacro GenericShoot SeqName FileName ActName AimLayer \\
+$sequence $SeqName$ { \\
+	$FileName$ \\
+	{ event 4 0 "" } \\ // { event 3014 1 "" }?
+	addlayer $AimLayer$ \\
+	activity $ActName$ 1 \\
+	cmdlist lockfeetandlefthand \\
+}
+
+$definemacro GenericReload SeqName FileName ActName AimLayer AimFadeOut AimFadeIn NumFrames EventFrame \\
+$sequence $SeqName$ { \\
+	$FileName$ \\
+	{ event 3017 0 "" } \\
+	{ event 3018 $EventFrame$ "" } \\
+	blendlayer $AimLayer$ 0 0 0 $AimFadeOut$ spline \\
+	blendlayer $AimLayer$ $AimFadeIn$ $NumFrames$ $NumFrames$ $NumFrames$ spline \\
+	activity $ActName$ 1 \\
+	cmdlist lockfeet \\
+	ikrule "rhand" release \\
+	ikrule "lhand" release \\
+}
+
+$definemacro GenericAimMoveLayer SeqName FileName HandsLayer AimLayer \\
+$sequence $SeqName$ { $FileName$ hidden addlayer $AimLayer$ loop \\
+	ikrule "rhand" release \\
+	ikrule "lhand" release \\
+	blendlayer $HandsLayer$ 0 0 0 0 local \\
+	weightlist "weights_layer_walk_ar2" \\
+}
+
+// ----------------------------------------------------------------
+
+$definemacro GenericShootFromIdle SeqName FileName ActName AimLayer GestureLayer NumFrames \\
+$sequence $SeqName$ { \\
+	$FileName$ \\
+	numframes $NumFrames$ \\
+	{ event 3014 1 "" } \\
+	blendlayer $GestureLayer$ 0 0 0 0 local \\
+	addlayer $AimLayer$ \\
+	activity $ActName$ 1 \\
+	cmdlist lockfeetandlefthand \\
+}
+
+$definemacro GenericShootFromIdle_NoHandIK SeqName FileName ActName AimLayer GestureLayer NumFrames \\
+$sequence $SeqName$ { \\
+	$FileName$ \\
+	numframes $NumFrames$ \\
+	{ event 3014 1 "" } \\
+	blendlayer $GestureLayer$ 0 0 0 0 local \\
+	addlayer $AimLayer$ \\
+	activity $ActName$ 1 \\
+	cmdlist lockfeet \\
+}
+
+$definemacro GenericReloadFromIdle SeqName FileName ActName AimLayer GestureLayer AimFadeOut AimFadeIn NumFrames EventFrame \\
+$sequence $SeqName$legs $FileName$ weightlist "LegsAndPelvis" hidden \\
+$sequence $SeqName$ { \\
+	$FileName$ \\
+	numframes $NumFrames$ \\
+	{ event 3015 $EventFrame$ "" } \\
+	blendlayer $GestureLayer$ 0 0 0 0 local \\
+	blendlayer $AimLayer$ 0 0 0 $AimFadeOut$ spline \\
+	blendlayer $AimLayer$ $AimFadeIn$ $NumFrames$ $NumFrames$ $NumFrames$ spline \\
+	activity $ActName$ 1 \\
+	cmdlist lockfeet \\
+	ikrule "rhand" release \\
+	ikrule "lhand" release \\
+}
+
+
+
+
+// =============================================================================================
 
 // 
 // Generic macros for overlaying animations.

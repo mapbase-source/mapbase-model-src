@@ -64,15 +64,15 @@ $weightlist "weights_layer_luggage_run" {
 $include "CitizenSuitcase.qci"
 
 $sequence "luggage_walk_all" {
-	"a_FemaleCitizenWalkS"
-	"a_FemaleCitizenWalkSE"
-	"a_FemaleCitizenWalkE"
-	"a_FemaleCitizenWalkNE"
-	"a_FemaleCitizenWalkN" // a_luggage_walk
-	"a_FemaleCitizenWalkNW"
-	"a_FemaleCitizenWalkW"
-	"a_FemaleCitizenWalkSW"
-	"a_FemaleCitizenWalkS"
+	"a_CitizenWalkS"
+	"a_CitizenWalkSE"
+	"a_CitizenWalkE"
+	"a_CitizenWalkNE"
+	"a_CitizenWalkN" // a_luggage_walk
+	"a_CitizenWalkNW"
+	"a_CitizenWalkW"
+	"a_CitizenWalkSW"
+	"a_CitizenWalkS"
 	activity "ACT_WALK_SUITCASE" 1
 	blend "move_yaw" -180 180
 	blendwidth 9
@@ -85,15 +85,15 @@ $sequence "luggage_walk_all" {
 }
 
 $sequence "luggage_run_all" {
-	"a_FemaleCitizenRunS"
-	"a_FemaleCitizenRunSE"
-	"a_FemaleCitizenRunE"
-	"a_FemaleCitizenRunNE"
-	"a_FemaleCitizenRunN" // a_luggage_walk
-	"a_FemaleCitizenRunNW"
-	"a_FemaleCitizenRunW"
-	"a_FemaleCitizenRunSW"
-	"a_FemaleCitizenRunS"
+	"a_CitizenRunS"
+	"a_CitizenRunSE"
+	"a_CitizenRunE"
+	"a_CitizenRunNE"
+	"a_CitizenRunN" // a_luggage_walk
+	"a_CitizenRunNW"
+	"a_CitizenRunW"
+	"a_CitizenRunSW"
+	"a_CitizenRunS"
 	activity "ACT_RUN_SUITCASE" 1
 	blend "move_yaw" -180 180
 	blendwidth 9

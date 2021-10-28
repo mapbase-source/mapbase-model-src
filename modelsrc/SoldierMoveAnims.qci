@@ -46,15 +46,15 @@ $definemacro a_CrouchWalkBlends \\
 	blendwidth 9 \\
 	
 $definemacro a_CrouchRunBlends \\
-	"a_SoldierCrouch_walkS" \\
-	"a_SoldierCrouch_walkSE" \\
-	"a_SoldierCrouch_walkE" \\
-	"a_SoldierCrouch_walkNE" \\
+	"a_SoldierCrouch_runS" \\
+	"a_SoldierRunSE" \\
+	"a_SoldierRunE" \\
+	"a_SoldierRunNE" \\
 	"a_SoldierCrouch_runN" \\
-	"a_SoldierCrouch_walkNW" \\
-	"a_SoldierCrouch_walkW" \\
-	"a_SoldierCrouch_walkSW" \\
-	"a_SoldierCrouch_walkS" \\
+	"a_SoldierRunNW" \\
+	"a_SoldierRunW" \\
+	"a_SoldierRunSW" \\
+	"a_SoldierCrouch_runS" \\
 	blend "move_yaw" -180 180 \\
 	blendwidth 9 \\
 	{ event 6004 7 "NPC_CombineS" } \\ // This is new
@@ -214,6 +214,16 @@ $animation "a_SoldierCrouch_runN" "combine_soldier_anims_anims\a_Crouch_runN.smd
 	ikrule "rfoot" footstep contact 16 fakeorigin 13.73 -4.74 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 10 16 4 10 target 2
 	walkframe 19 LX
 }
+
+$animation "a_SoldierCrouch_runS" "combine_soldier_anims_anims\custom\a_Crouch_runS.smd" {
+	fps 30
+	loop
+	ikrule "lfoot" footstep contact 8 fakeorigin 10.58 2.92 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 2 8 14 2 target 3
+	ikrule "rfoot" footstep contact 16 fakeorigin 13.73 -4.74 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 10 16 4 10 target 2
+	walkframe 19 LX
+}
+
+// ----------------------------------------------------------------
 
 $animation "a_SoldierCrouch_walkS" "combine_soldier_anims_anims\a_Crouch_walkS.smd" {
 	fps 30
