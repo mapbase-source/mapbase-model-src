@@ -1,0 +1,74 @@
+// ================================================================
+// 
+// 
+// 
+// ================================================================
+
+$weightlist weapongesture_open_door {
+	"ValveBiped.Bip01_Pelvis" 0.1 "ValveBiped.Bip01_Spine2" 1.0 "ValveBiped.Bip01_L_Thigh" 0.0 "ValveBiped.Bip01_R_Thigh" 0.0
+	"ValveBiped.Bip01_R_Clavicle" 0.5 "ValveBiped.Bip01_R_Hand" 0 // Don't influence right hand
+}
+
+$definemacro makedooropengesture gesturename filename InFrame OutFrame LastFrame \\
+$sequence $gesturename$spine $filename$ fps 30 weightlist weapongesture_noarms hidden worldspace \\
+$sequence $gesturename$arms $filename$ fps 30 weightlist weapongesture_open_door hidden \\
+$sequence $gesturename$ { \\
+	$filename$ noanimation numframes $LastFrame$ \\
+	blendlayer $gesturename$arms 0 $InFrame$ $outFrame$ $LastFrame$ spline \\
+	blendlayer $gesturename$spine 0 $InFrame$ $outFrame$ $LastFrame$ spline \\
+	iklock rfoot 1 0 iklock lfoot 1 0 \\
+} \\
+$continue $gesturename$
+
+// ----------------------------------------------------------------
+
+$makedooropengesture g_open_door_lever_back "combine_soldier_anims_anims/custom/g_open_door_left.smd" 8 20 35
+$append g_open_door_lever_back {
+	activity "ACT_GESTURE_DOOR_LEVER_OPEN_BACK" 1
+	fps 25
+	{ event 2060 11 "" }
+}
+$append g_open_door_lever_backarms {
+	ikrule "lhand" attachment "lever_back" contact 9 radius 20 range 4 11 16 24
+}
+
+// ----------------------------------------------------------------
+
+// TODO: Unique anim
+$makedooropengesture g_open_door_lever_front "combine_soldier_anims_anims/custom/g_open_door_right.smd" 8 20 35
+$append g_open_door_lever_front {
+	activity "ACT_GESTURE_DOOR_LEVER_OPEN_FRONT" 1
+	fps 25
+	{ event 2060 11 "" }
+}
+$append g_open_door_lever_frontarms {
+	ikrule "lhand" attachment "lever_front" contact 9 radius 20 range 4 11 16 24
+}
+
+// ----------------------------------------------------------------
+
+// TODO: Unique anim
+$makedooropengesture g_open_door_pushbar_back "combine_soldier_anims_anims/custom/g_open_door_left.smd" 8 20 35
+$append g_open_door_pushbar_back {
+	activity "ACT_GESTURE_DOOR_PUSHBAR_OPEN_BACK" 1
+	fps 25
+	{ event 2060 11 "" }
+}
+$append g_open_door_pushbar_backarms {
+	ikrule "lhand" attachment "pushbar_back" contact 9 radius 20 range 4 11 16 24
+}
+
+// ----------------------------------------------------------------
+
+// TODO: Unique anim
+$makedooropengesture g_open_door_pushbar_front "combine_soldier_anims_anims/custom/g_open_door_pushbar.smd" 8 20 35
+$append g_open_door_pushbar_front {
+	activity "ACT_GESTURE_DOOR_PUSHBAR_OPEN_FRONT" 1
+	fps 25
+	{ event 2060 11 "" }
+}
+$append g_open_door_pushbar_frontarms {
+	ikrule "lhand" attachment "pushbar_front" contact 9 radius 20 range 4 11 16 24
+}
+
+// ----------------------------------------------------------------
