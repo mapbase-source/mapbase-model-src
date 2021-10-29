@@ -1,0 +1,165 @@
+// ================================================================
+// 
+// Reimplements wall cover animations with new activities.
+// Also adds pistol and unarmed variants.
+// 
+// (See CitizenWallCover.qci for citizen equivalent)
+// 
+// ================================================================
+
+$sequence "cover_noise" "Idle_Unarmed.smd" subtract "cover_noise" 0 delta hidden
+
+// ----------------------------------------------------------------
+
+// The unarmed idle layer
+// WeightsUnarmedCover_R has more weight on the left clavicle and WeightsUnarmedCover_L is the other way around
+$weightlist "WeightsUnarmedCover" { "ValveBiped.Bip01_Pelvis" 0.5 "ValveBiped.Bip01_L_Clavicle" 0.5 "ValveBiped.Bip01_L_UpperArm" 0.75 "ValveBiped.Bip01_L_Forearm" 1 "ValveBiped.Bip01_R_Clavicle" 0.5 "ValveBiped.Bip01_R_UpperArm" 0.75 "ValveBiped.Bip01_R_Forearm" 1 }
+$weightlist "WeightsUnarmedCover_R" { "ValveBiped.Bip01_Pelvis" 0.5 "ValveBiped.Bip01_L_Clavicle" 1 "ValveBiped.Bip01_L_UpperArm" 0.75 "ValveBiped.Bip01_L_Forearm" 1 "ValveBiped.Bip01_R_Clavicle" 0.5 "ValveBiped.Bip01_R_UpperArm" 0.75 "ValveBiped.Bip01_R_Forearm" 1 }
+$weightlist "WeightsUnarmedCover_L" { "ValveBiped.Bip01_Pelvis" 0.5 "ValveBiped.Bip01_L_Clavicle" 0.5 "ValveBiped.Bip01_L_UpperArm" 0.75 "ValveBiped.Bip01_L_Forearm" 1 "ValveBiped.Bip01_R_Clavicle" 1 "ValveBiped.Bip01_R_UpperArm" 0.75 "ValveBiped.Bip01_R_Forearm" 1 }
+
+$sequence "cover_unarmed_r" "Idle_Unarmed.smd" frame 0 0 numframes 30 weightlist "WeightsUnarmedCover_R" loop hidden
+$sequence "cover_unarmed_l" "Idle_Unarmed.smd" frame 0 0 numframes 30 weightlist "WeightsUnarmedCover_L" loop hidden
+
+$sequence "cover_unarmed_low" "../male_shared_anims/crouchidlehide.smd" {
+	frame 0 0
+	numframes 30
+	weightlist "WeightsUnarmedCover"
+	loop
+	hidden
+}
+
+// ----------------------------------------------------------------
+
+$definemacro MakeCoverAnim SeqName FileName ActivityName \\
+$sequence $SeqName$ $FileName$ { \\
+	activity $ActivityName$ 1 \\
+	rotate 90 \\
+	loop \\
+	addlayer "cover_noise" \\
+	numframes 34 \\
+	fps 3 \\
+	ikrule "lfoot" footstep usesequence \\
+	ikrule "rfoot" footstep usesequence \\
+	ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" usesource \\
+	ikrule "rhand" release usesequence \\
+}
+
+$definemacro MakePistolCoverAnim SeqName FileName ActivityName \\
+$sequence $SeqName$ $FileName$ { \\
+	activity $ActivityName$ 1 \\
+	rotate 90 \\
+	loop \\
+	blendlayer "cover_pistol_layer" 0 0 0 0 local \\
+	addlayer "cover_noise" \\
+	numframes 34 \\
+	fps 3 \\
+	ikrule "lfoot" footstep usesequence \\
+	ikrule "rfoot" footstep usesequence \\
+	ikrule "rhand" release usesequence \\
+}
+
+$definemacro MakeCoverAnim_NoHandIK SeqName FileName ActivityName \\
+$sequence $SeqName$ $FileName$ { \\
+	activity $ActivityName$ 1 \\
+	rotate 90 \\
+	loop \\
+	addlayer "cover_noise" \\
+	numframes 34 \\
+	fps 3 \\
+	ikrule "lfoot" footstep usesequence \\
+	ikrule "rfoot" footstep usesequence \\
+}
+
+//	ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" usesequence \\
+//	ikrule "rhand" release usesequence \\
+
+// ================================================================
+
+$MakeCoverAnim "leanwall_act_right_idle" "leanwall_right_idle.smd" "ACT_COVER_WALL_R_RIFLE"
+$append leanwall_act_right_idle { rotate -90 } // This aligns this animation with the others
+
+$MakeCoverAnim "leanwall_act_left_idle" "leanwall_Left_idle.smd" "ACT_COVER_WALL_L_RIFLE"
+//$MakeCoverAnim "leanwall_act_left_B_idle" "leanwall_Left_B_idle.smd" "ACT_COVER_WALL_L_RIFLE"
+$MakeCoverAnim "leanwall_act_crouch_left_A_idle" "leanwall_CrouchLeft_A_idle.smd" "ACT_COVER_WALL_LOW_L_RIFLE"
+$MakeCoverAnim "leanwall_act_crouch_left_B_idle" "leanwall_CrouchLeft_B_idle.smd" "ACT_COVER_WALL_LOW_L_RIFLE"
+$MakeCoverAnim "leanwall_act_crouch_left_C_idle" "leanwall_CrouchLeft_C_idle.smd" "ACT_COVER_WALL_LOW_L_RIFLE"
+$MakeCoverAnim "leanwall_act_crouch_left_D_idle" "leanwall_CrouchLeft_D_idle.smd" "ACT_COVER_WALL_LOW_L_RIFLE"
+
+$MakeCoverAnim "leanwall_act_crouch_right_A_idle" "custom/leanwall_CrouchRight_A_idle.smd" "ACT_COVER_WALL_LOW_R_RIFLE"
+
+// ================================================================
+
+// New
+
+$weightlist "WeightsPistolCoverLayer" {
+	 "ValveBiped.Bip01_Pelvis" 0
+	 "ValveBiped.Bip01_L_Clavicle" 1
+	 "ValveBiped.Bip01_L_UpperArm" 1
+	 "ValveBiped.Bip01_R_Clavicle" 1
+	 "ValveBiped.Bip01_R_UpperArm" 1
+}
+
+$sequence "cover_pistol_layer" {
+	"..\police_animations_anims\a_walkN_hold_pistol.smd"
+	frame 0 0
+	numframes 30
+	weightlist "WeightsPistolCoverLayer"
+	ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" usesource
+	loop
+	hidden
+}
+
+$MakePistolCoverAnim "leanwall_act_right_idle_pistol" "leanwall_right_idle.smd" "ACT_COVER_WALL_R_PISTOL"
+$append leanwall_act_right_idle_pistol { rotate -90 } // This aligns this animation with the others
+
+$MakePistolCoverAnim "leanwall_act_left_idle_pistol" "leanwall_Left_idle.smd" "ACT_COVER_WALL_L_PISTOL"
+//$MakePistolCoverAnim "leanwall_act_left_B_idle_pistol" "leanwall_Left_B_idle.smd" "ACT_COVER_WALL_L_PISTOL"
+$MakePistolCoverAnim "leanwall_act_crouch_left_A_idle_pistol" "leanwall_CrouchLeft_A_idle.smd" "ACT_COVER_WALL_LOW_L_PISTOL"
+$MakePistolCoverAnim "leanwall_act_crouch_left_B_idle_pistol" "leanwall_CrouchLeft_B_idle.smd" "ACT_COVER_WALL_LOW_L_PISTOL"
+$MakePistolCoverAnim "leanwall_act_crouch_left_C_idle_pistol" "leanwall_CrouchLeft_C_idle.smd" "ACT_COVER_WALL_LOW_L_PISTOL"
+$MakePistolCoverAnim "leanwall_act_crouch_left_D_idle_pistol" "leanwall_CrouchLeft_D_idle.smd" "ACT_COVER_WALL_LOW_L_PISTOL"
+
+$MakePistolCoverAnim "leanwall_act_crouch_right_A_idle_pistol" "custom/leanwall_CrouchRight_A_idle.smd" "ACT_COVER_WALL_LOW_R_PISTOL"
+
+// ----------------------------------------------------------------
+
+$MakeCoverAnim_NoHandIK "leanwall_act_right_idle_unarmed" "leanwall_right_idle.smd" "ACT_COVER_WALL_R"
+$append leanwall_act_right_idle_unarmed {
+	rotate -90 // This aligns this animation with the others
+	blendlayer "cover_unarmed_r" 0 0 0 0 local
+}
+
+$MakeCoverAnim_NoHandIK "leanwall_act_left_idle_unarmed" "leanwall_Left_idle.smd" "ACT_COVER_WALL_L"
+$append leanwall_act_left_idle_unarmed {
+	blendlayer "cover_unarmed_l" 0 0 0 0 local
+}
+
+//$MakeCoverAnim_NoHandIK "leanwall_act_left_B_idle_unarmed" "leanwall_Left_B_idle.smd" "ACT_COVER_WALL_L"
+//$append leanwall_act_left_B_idle_unarmed {
+//	blendlayer "cover_unarmed_l" 0 0 0 0 local
+//}
+
+$MakeCoverAnim_NoHandIK "leanwall_act_crouch_left_A_idle_unarmed" "leanwall_CrouchLeft_A_idle.smd" "ACT_COVER_WALL_LOW_L"
+$append leanwall_act_crouch_left_A_idle_unarmed {
+	blendlayer "cover_unarmed_low" 0 0 0 0 local
+}
+
+$MakeCoverAnim_NoHandIK "leanwall_act_crouch_left_B_idle_unarmed" "leanwall_CrouchLeft_B_idle.smd" "ACT_COVER_WALL_LOW_L"
+$append leanwall_act_crouch_left_B_idle_unarmed {
+	blendlayer "cover_unarmed_low" 0 0 0 0 local
+}
+
+$MakeCoverAnim_NoHandIK "leanwall_act_crouch_left_C_idle_unarmed" "leanwall_CrouchLeft_C_idle.smd" "ACT_COVER_WALL_LOW_L"
+$append leanwall_act_crouch_left_C_idle_unarmed {
+	blendlayer "cover_unarmed_low" 0 0 0 0 local
+}
+
+$MakeCoverAnim_NoHandIK "leanwall_act_crouch_left_D_idle_unarmed" "leanwall_CrouchLeft_D_idle.smd" "ACT_COVER_WALL_LOW_L"
+$append leanwall_act_crouch_left_D_idle_unarmed {
+	blendlayer "cover_unarmed_low" 0 0 0 0 local
+}
+
+$MakeCoverAnim_NoHandIK "leanwall_act_crouch_right_A_idle_unarmed" "custom/leanwall_CrouchRight_A_idle.smd" "ACT_COVER_WALL_LOW_R"
+$append leanwall_act_crouch_right_A_idle_unarmed {
+	blendlayer "cover_unarmed_low" 0 0 0 0 local
+}

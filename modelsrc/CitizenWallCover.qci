@@ -1,0 +1,124 @@
+// ================================================================
+// 
+// Reimplements wall cover animations with new activities.
+// Also adds pistol cover animations.
+// "PistolIdleLayer" and "PistolIdleLowLayer" MUST be declared as variables!
+// 
+// (See SoldierWallCover.qci for soldier equivalent)
+// 
+// ================================================================
+
+// Using idle_noise as it is causes an exception
+$sequence "cover_noise" "idle_subtle.smd" subtract "cover_noise" 0 delta hidden
+
+// ----------------------------------------------------------------
+
+// The unarmed idle layer
+// WeightsUnarmedCover_R has more weight on the left clavicle and WeightsUnarmedCover_L is the other way around
+$weightlist "WeightsUnarmedCover" { "ValveBiped.Bip01_Pelvis" 0.5 "ValveBiped.Bip01_L_Clavicle" 0.5 "ValveBiped.Bip01_L_UpperArm" 0.75 "ValveBiped.Bip01_L_Forearm" 1 "ValveBiped.Bip01_R_Clavicle" 0.5 "ValveBiped.Bip01_R_UpperArm" 0.75 "ValveBiped.Bip01_R_Forearm" 1 }
+$weightlist "WeightsUnarmedCover_R" { "ValveBiped.Bip01_Pelvis" 0.5 "ValveBiped.Bip01_L_Clavicle" 1 "ValveBiped.Bip01_L_UpperArm" 0.75 "ValveBiped.Bip01_L_Forearm" 1 "ValveBiped.Bip01_R_Clavicle" 0.5 "ValveBiped.Bip01_R_UpperArm" 0.75 "ValveBiped.Bip01_R_Forearm" 1 }
+$weightlist "WeightsUnarmedCover_L" { "ValveBiped.Bip01_Pelvis" 0.5 "ValveBiped.Bip01_L_Clavicle" 0.5 "ValveBiped.Bip01_L_UpperArm" 0.75 "ValveBiped.Bip01_L_Forearm" 1 "ValveBiped.Bip01_R_Clavicle" 1 "ValveBiped.Bip01_R_UpperArm" 0.75 "ValveBiped.Bip01_R_Forearm" 1 }
+
+$sequence "cover_unarmed_r" "idle_subtle.smd" frame 0 0 numframes 30 weightlist "WeightsUnarmedCover_R" loop hidden
+$sequence "cover_unarmed_l" "idle_subtle.smd" frame 0 0 numframes 30 weightlist "WeightsUnarmedCover_L" loop hidden
+
+$sequence "cover_unarmed_low" "crouchidlehide.smd" {
+	frame 0 0
+	numframes 30
+	weightlist "WeightsUnarmedCover"
+	loop
+	hidden
+}
+
+// ----------------------------------------------------------------
+
+$definemacro MakeCoverAnim SeqName FileName ActivityName \\
+$sequence $SeqName$ $FileName$ { \\
+	activity $ActivityName$ 1 \\
+	loop \\
+	ikrule "lfoot" footstep usesource \\
+	ikrule "rfoot" footstep usesource \\
+	ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" usesource \\
+	ikrule "rhand" release usesource \\
+}
+
+$definemacro MakeCoverAnimWithNoise SeqName FileName ActivityName \\
+$sequence $SeqName$ $FileName$ { \\
+	activity $ActivityName$ 1 \\
+	addlayer "cover_noise" \\
+	loop \\
+	ikrule "lfoot" footstep usesequence \\
+	ikrule "rfoot" footstep usesequence \\
+	ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" usesource \\
+	ikrule "rhand" release usesequence \\
+}
+
+$definemacro MakeCoverAnim_NoHandIK SeqName FileName ActivityName \\
+$sequence $SeqName$ $FileName$ { \\
+	activity $ActivityName$ 1 \\
+	loop \\
+	ikrule "lfoot" footstep usesequence \\
+	ikrule "rfoot" footstep usesequence \\
+}
+
+$definemacro MakeCoverAnimWithNoise_NoHandIK SeqName FileName ActivityName \\
+$sequence $SeqName$ $FileName$ { \\
+	activity $ActivityName$ 1 \\
+	addlayer "cover_noise" \\
+	loop \\
+	ikrule "lfoot" footstep usesequence \\
+	ikrule "rfoot" footstep usesequence \\
+}
+
+// ================================================================
+
+$MakeCoverAnim "Cover_R" "Cover_R.smd" "ACT_COVER_WALL_R_RIFLE"
+$MakeCoverAnimWithNoise "Cover_L" "Cover_L.smd" "ACT_COVER_WALL_L_RIFLE"
+$MakeCoverAnim "CoverLow_R" "CoverLow_R.smd" "ACT_COVER_WALL_LOW_R_RIFLE"
+$MakeCoverAnimWithNoise "CoverLow_L" "CoverLow_L.smd" "ACT_COVER_WALL_LOW_L_RIFLE"
+
+// ================================================================
+
+// New
+
+$MakeCoverAnim_NoHandIK "Cover_R_pistol" "Cover_R.smd" "ACT_COVER_WALL_R_PISTOL"
+$append Cover_R_pistol {
+	blendlayer $PistolIdleLayer$ 0 0 0 0 local
+}
+
+$MakeCoverAnimWithNoise_NoHandIK "Cover_L_pistol" "Cover_L.smd" "ACT_COVER_WALL_L_PISTOL"
+$append Cover_L_pistol {
+	blendlayer $PistolIdleLayer$ 0 0 0 0 local
+}
+
+$MakeCoverAnim_NoHandIK "CoverLow_R_pistol" "CoverLow_R.smd" "ACT_COVER_WALL_LOW_R_PISTOL"
+$append CoverLow_R_pistol {
+	blendlayer $PistolIdleLowLayer$ 0 0 0 0 local
+}
+
+$MakeCoverAnimWithNoise_NoHandIK "CoverLow_L_pistol" "CoverLow_L.smd" "ACT_COVER_WALL_LOW_L_PISTOL"
+$append CoverLow_L_pistol {
+	blendlayer $PistolIdleLowLayer$ 0 0 0 0 local
+}
+
+// ----------------------------------------------------------------
+
+$MakeCoverAnim_NoHandIK "Cover_R_unarmed" "Cover_R.smd" "ACT_COVER_WALL_R"
+$append Cover_R_unarmed {
+	blendlayer "cover_unarmed_r" 0 0 0 0 local
+}
+
+$MakeCoverAnimWithNoise_NoHandIK "Cover_L_unarmed" "Cover_L.smd" "ACT_COVER_WALL_L"
+$append Cover_L_unarmed {
+	blendlayer "cover_unarmed_l" 0 0 0 0 local
+}
+
+$MakeCoverAnim_NoHandIK "CoverLow_R_unarmed" "CoverLow_R.smd" "ACT_COVER_WALL_LOW_R"
+$append CoverLow_R_unarmed {
+	blendlayer "cover_unarmed_low" 0 0 0 0 local
+}
+
+$MakeCoverAnimWithNoise_NoHandIK "CoverLow_L_unarmed" "CoverLow_L.smd" "ACT_COVER_WALL_LOW_L"
+$append CoverLow_L_unarmed {
+	blendlayer "cover_unarmed_low" 0 0 0 0 local
+}
