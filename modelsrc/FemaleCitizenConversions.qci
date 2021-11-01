@@ -1,0 +1,83 @@
+// ================================================================
+// 
+// This file adds a crude "male to female" layer to a bunch of sequences originally designed with male proprortions.
+// 
+// ================================================================
+
+$definemacro AddMtoFLayer SeqName \\
+$append $SeqName$ { blendlayer "male_to_female_layer" 0 0 0 0 local }
+
+$definemacro AddMtoFGestureLayer SeqName \\
+$append $SeqName$spine { blendlayer "male_to_female_layer" 0 0 0 0 local } \\
+$append $SeqName$arms { blendlayer "male_to_female_layer" 0 0 0 0 local } \\
+$append $SeqName$ { blendlayer "male_to_female_layer" 0 0 0 0 local }
+
+// ----------------------------------------------------------------
+// AntlionRecvDI.qci
+// ----------------------------------------------------------------
+$AddMtoFLayer "antlion_soldier_DI_01"
+$AddMtoFLayer "antlion_soldier_DI_02"
+
+// ----------------------------------------------------------------
+// HunterRecvDI.qci
+// ----------------------------------------------------------------
+$AddMtoFLayer "hunter_cit_throw_ground"
+$AddMtoFLayer "hunter_cit_tackle_di"
+$AddMtoFLayer "hunter_cit_stomp"
+$AddMtoFLayer "hunter_cit_tackle"
+$AddMtoFLayer "hunter_cit_tackle_postI"
+
+// ----------------------------------------------------------------
+// PoliceHarassGestures.qci
+// ----------------------------------------------------------------
+$AddMtoFLayer "harassfront1_layer"
+$AddMtoFLayer "harassfront2_layer"
+
+// ----------------------------------------------------------------
+// ArrestAnims.qci
+// ----------------------------------------------------------------
+$AddMtoFLayer "arrest_act_floor"
+$AddMtoFLayer "arrest_act_standing_gesture"
+$AddMtoFLayer "arrest_act_floor_enter"
+$AddMtoFLayer "arrest_act_floor_enter_panicked"
+$AddMtoFLayer "arrest_act_floor_exit"
+
+// ----------------------------------------------------------------
+// CitizenWallCover.qci
+// 
+// Note that most of these animations already existed on female citizens, but they were previously proportioned
+// to the male skeleton.
+// ----------------------------------------------------------------
+$AddMtoFLayer "Cover_R"
+$AddMtoFLayer "Cover_L"
+$AddMtoFLayer "CoverLow_R"
+$AddMtoFLayer "CoverLow_L"
+
+$AddMtoFLayer "Cover_R_pistol"
+$AddMtoFLayer "Cover_L_pistol"
+$AddMtoFLayer "CoverLow_R_pistol"
+$AddMtoFLayer "CoverLow_L_pistol"
+
+// ----------------------------------------------------------------
+// NewPistolAnimations_357_FemaleCitizen.qci / NewPistolAnimations_357_FemaleCitizen.qci
+// ----------------------------------------------------------------
+$AddMtoFLayer "reload_357"
+$AddMtoFLayer "gesture_reload_357"
+
+// ----------------------------------------------------------------
+// L4D1_LadderClimb_Female.qci
+// ----------------------------------------------------------------
+$AddMtoFLayer "Ladder_Ascend"
+$AddMtoFLayer "Ladder_Descend"
+$AddMtoFLayer "Ladder_updown"
+$AddMtoFLayer "Ladder_idle"
+$AddMtoFLayer "Ladder_Mount_Top"
+$AddMtoFLayer "Ladder_Dismount_Top"
+
+// ----------------------------------------------------------------
+// NPCDoorAnims.qci
+// ----------------------------------------------------------------
+$AddMtoFGestureLayer "g_open_door_lever_back"
+$AddMtoFGestureLayer "g_open_door_lever_front"
+$AddMtoFGestureLayer "g_open_door_pushbar_back"
+$AddMtoFGestureLayer "g_open_door_pushbar_front"

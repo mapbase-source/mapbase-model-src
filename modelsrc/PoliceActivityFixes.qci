@@ -1,0 +1,242 @@
+// ================================================================
+// 
+// Police Activity Fixes
+// 
+// This overwrites existing metrocop sequences
+// 
+// ================================================================
+
+$sequence "layer_relaxed_smg1" { "police_animations_anims\smg1angryidle1.smd" frame 0 0 ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" hidden }
+$sequence "layer_combat_smg1" { "police_animations_anims\smg1angryidle1.smd" frame 0 0 ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" hidden }
+$sequence "layer_lowcover_smg1" { "police_animations_anims\lowcover_aim_smg1.smd" frame 0 0 ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" hidden }
+
+// TODO: These aren't perfect and could probably be turned into actual animation layer SMDs
+$sequence "relaxed_smg1_to_ar2" "police_animations_anims\custom\ar2idle1.smd" frame 0 0 subtract "layer_relaxed_smg1" 0 delta hidden
+$sequence "relaxed_smg1_to_shotgun" "police_animations_anims\custom\shotgunidle1.smd" frame 0 0 subtract "layer_relaxed_smg1" 0 delta hidden
+$sequence "combat_smg1_to_ar2" "police_animations_anims\custom\ar2angryidle1.smd" frame 0 0 subtract "layer_combat_smg1" 0 delta hidden
+$sequence "combat_smg1_to_shotgun" "police_animations_anims\custom\shotgunangryidle1.smd" frame 0 0 subtract "layer_combat_smg1" 0 delta hidden
+$sequence "lowcover_smg1_to_ar2" "police_animations_anims\custom\lowcover_aim_ar2.smd" frame 0 0 subtract "layer_lowcover_smg1" 0 delta hidden
+
+// Needed for the new weapon aim animations
+$makeaimlayer soldier_Aim_9_directions			"hl2mp_ported_anims\Aim_9_directions"
+
+// ----------------------------------------------------------------
+// 
+// REPLACEMENTS
+// 
+// ----------------------------------------------------------------
+
+// NEW -- Now uses melee-specific activities
+// (note that ACT_MP_STAND_MELEE is currently a stand-in for that)
+$GenericIdleWeight "batonidle1" "police_animations_anims\batonidle1.smd" "ACT_MP_STAND_MELEE" 2
+$GenericIdle "batonidle2" "police_animations_anims\batonidle2.smd" "ACT_MP_STAND_MELEE"
+
+// ----------------------------------------------------------------
+
+// Changed these cover activities to use new "_MED" variants, partly due to how different they are from other NPC "_LOW" animations
+// and how that interferes with standoff behavior, etc.
+$GenericShoot "lowcover_shoot_pistol" "police_animations_anims\lowcover_shoot_pistol.smd" "ACT_RANGE_ATTACK_PISTOL_MED" "pistol_Aim_all" // ACT_RANGE_ATTACK_PISTOL_LOW
+$GenericCombatIdle "lowcover_aim_pistol" "police_animations_anims\lowcover_aim_pistol.smd" "ACT_RANGE_AIM_PISTOL_MED" "pistol_Aim_all" // ACT_RANGE_AIM_PISTOL_LOW
+$GenericShoot "lowcover_shoot_smg1" "police_animations_anims\lowcover_shoot_smg1.smd" "ACT_RANGE_ATTACK_SMG1_MED" "SMG1_Aim_all" // ACT_RANGE_ATTACK_SMG1_LOW
+$GenericCombatIdle "lowcover_aim_smg1" "police_animations_anims\lowcover_aim_smg1.smd" "ACT_RANGE_AIM_SMG1_MED" "SMG1_Aim_all" // ACT_RANGE_AIM_SMG1_LOW
+
+// ----------------------------------------------------------------
+// 
+// NEW
+// 
+// ----------------------------------------------------------------
+
+// Hand-corrected custom idle animations
+$GenericIdle "unarmedidle1" "police_animations_anims\custom\unarmedidle1.smd" "ACT_IDLE"
+$GenericIdle "ar2idle1" "police_animations_anims\custom\ar2idle1.smd" "ACT_IDLE_AR2"
+//$GenericIdle "ar2idle2" "police_animations_anims\custom\ar2idle2.smd" "ACT_IDLE_AR2" // Note that the left hand currently gets misaligned here and cannot be fixed by IK rules
+$GenericIdle "shotgunidle1" "police_animations_anims\custom\ar2idle1.smd" "ACT_IDLE_SHOTGUN"
+//$GenericIdle "shotgunidle2" "police_animations_anims\custom\ar2idle2.smd" "ACT_IDLE_SHOTGUN" // Note that the left hand currently gets misaligned here and cannot be fixed by IK rules
+
+// Hand-corrected custom combat animations
+$GenericCombatIdle "ar2angryidle1" "police_animations_anims\custom\ar2angryidle1.smd" "ACT_IDLE_ANGRY_AR2" "soldier_Aim_9_directions"
+$GenericShootFromIdle "shoot_ar2" "police_animations_anims\custom\ar2angryidle1.smd" "ACT_RANGE_ATTACK_AR2" "soldier_Aim_9_directions" "gesture_shoot_smg1" 3
+$GenericCombatIdle "shotgunangryidle1" "police_animations_anims\custom\shotgunangryidle1.smd" "ACT_IDLE_ANGRY_SHOTGUN" "soldier_Aim_9_directions"
+$GenericShootFromIdle_NoHandIK "shoot_shotgun" "police_animations_anims\custom\shotgunangryidle1.smd" "ACT_RANGE_ATTACK_SHOTGUN" "soldier_Aim_9_directions" "gesture_shoot_shotgun" 45
+
+$append "shoot_shotgun" { { event AE_CL_PLAYSOUND 11 "Weapon_Alyx_Shotgun.Cock" } }
+
+// Hand-corrected custom cover animations
+$GenericShootFromIdle "lowcover_shoot_ar2" "police_animations_anims\custom\lowcover_aim_ar2.smd" "ACT_RANGE_ATTACK_AR2_MED" "soldier_Aim_9_directions" "gesture_shoot_smg1" 3 // ACT_RANGE_ATTACK_SMG1_LOW
+$GenericCombatIdle "lowcover_aim_ar2" "police_animations_anims\custom\lowcover_aim_ar2.smd" "ACT_RANGE_AIM_AR2_MED" "soldier_Aim_9_directions" // ACT_RANGE_AIM_SMG1_LOW
+
+//$append lowcover_aim_ar2 { blendlayer "combat_smg1_to_ar2" 0 0 0 0 local } // TODO: Not working with hands layer
+
+$GenericAimMoveLayer "layer_run_hold_ar2" "police_animations_anims\layer_run_hold_smg1.smd" "relaxed_smg1_to_ar2" "soldier_Aim_9_directions"
+$GenericAimMoveLayer "layer_run_aiming_ar2" "police_animations_anims\layer_run_aiming_smg1.smd" "combat_smg1_to_ar2" "soldier_Aim_9_directions"
+$GenericAimMoveLayer "layer_walk_hold_ar2" "police_animations_anims\layer_walk_hold_smg1.smd" "relaxed_smg1_to_ar2" "soldier_Aim_9_directions"
+$GenericAimMoveLayer "layer_walk_aiming_ar2" "police_animations_anims\layer_walk_aiming_SMG1.smd" "combat_smg1_to_ar2" "soldier_Aim_9_directions"
+
+$GenericAimMoveLayer "layer_run_hold_shotgun" "police_animations_anims\layer_run_hold_smg1.smd" "relaxed_smg1_to_shotgun" "soldier_Aim_9_directions"
+$GenericAimMoveLayer "layer_run_aiming_shotgun" "police_animations_anims\layer_run_aiming_smg1.smd" "combat_smg1_to_shotgun" "soldier_Aim_9_directions"
+$GenericAimMoveLayer "layer_walk_hold_shotgun" "police_animations_anims\layer_walk_hold_smg1.smd" "relaxed_smg1_to_shotgun" "soldier_Aim_9_directions"
+$GenericAimMoveLayer "layer_walk_aiming_shotgun" "police_animations_anims\layer_walk_aiming_SMG1.smd" "combat_smg1_to_shotgun" "soldier_Aim_9_directions"
+
+$sequence "run_hold_ar2" { $a_RunBlends activity "ACT_RUN_AR2" 1 addlayer "layer_run_hold_ar2" }
+$sequence "run_aiming_ar2_all" { $a_RunBlends activity "ACT_RUN_AIM_AR2" 1 addlayer "layer_run_aiming_ar2" }
+$sequence "walk_hold_ar2" { $a_WalkBlends activity "ACT_WALK_AR2" 1 addlayer "layer_walk_hold_ar2" }
+$sequence "walk_aiming_ar2_all" { $a_WalkBlends activity "ACT_WALK_AIM_AR2" 1 addlayer "layer_walk_aiming_ar2" }
+
+$sequence "run_hold_shotgun" { $a_RunBlends activity "ACT_RUN_SHOTGUN" 1 addlayer "layer_run_hold_shotgun" }
+$sequence "run_aiming_shotgun_all" { $a_RunBlends activity "ACT_RUN_AIM_SHOTGUN" 1 addlayer "layer_run_aiming_shotgun" }
+$sequence "walk_hold_shotgun" { $a_WalkBlends activity "ACT_WALK_SHOTGUN" 1 addlayer "layer_walk_hold_shotgun" }
+$sequence "walk_aiming_shotgun_all" { $a_WalkBlends activity "ACT_WALK_AIM_SHOTGUN" 1 addlayer "layer_walk_aiming_shotgun" }
+
+// ----------------------------------------------------------------
+
+$weightlist "NoHeadMovement" { "ValveBiped.Bip01_Head1" 0 "ValveBiped.Bip01_Neck1" 0.25 "ValveBiped.Bip01_Pelvis" 1 }
+
+$sequence "gesture_shoot_shotgun" "combine_soldier_anims_anims\a_shootShotgun" { weightlist "NoHeadMovement" delta activity "ACT_GESTURE_RANGE_ATTACK_SHOTGUN" 1 { event AE_CL_PLAYSOUND 11 "Weapon_Alyx_Shotgun.Cock" } }
+
+// ----------------------------------------------------------------
+
+$makeweapongesture "gesture_reload_shotgun" "male_shared_anims\reload_shotgun1.smd" 14 35 75
+$append "gesture_reload_shotgun" {
+	activity "ACT_GESTURE_RELOAD_SHOTGUN" 1
+	{ event 3015 29 "" }
+	{ event AE_CL_PLAYSOUND 57 "Weapon_Shotgun.Special1" }
+}
+
+$GenericReloadFromIdle "reload_shotgun1" "police_animations_anims\custom\shotgunangryidle1.smd" "ACT_RELOAD_SHOTGUN" "soldier_Aim_9_directions" "gesture_reload_shotgun" 10 55 65 22
+$GenericReloadFromIdle "crouch_reload_shotgun1" "police_animations_anims\crouch_reload_smg1.smd" "ACT_RELOAD_SHOTGUN_LOW" "soldier_Aim_9_directions" "gesture_reload_shotgun" 10 55 65 22
+$append "reload_shotgun1" { { event AE_CL_PLAYSOUND 57 "Weapon_Shotgun.Special1" } }
+$append "crouch_reload_shotgun1" { { event AE_CL_PLAYSOUND 57 "Weapon_Shotgun.Special1" } }
+
+// ----------------------------------------------------------------
+
+// NEW -- Full-on crouching to replace the low aim/shoot
+
+$GenericCombatIdle "crouch_aim_pistol" "police_animations_anims\custom\crouch_aim_pistol.smd" "ACT_RANGE_AIM_PISTOL_LOW" "pistol_Aim_all"
+$GenericCombatIdle "crouch_aim_smg1" "police_animations_anims\custom\crouch_aim_smg1.smd" "ACT_RANGE_AIM_SMG1_LOW" "SMG1_Aim_all"
+$GenericShootFromIdle "crouch_shoot_pistol" "police_animations_anims\custom\crouch_aim_pistol.smd" "ACT_RANGE_ATTACK_PISTOL_LOW" "pistol_Aim_all" "gesture_shoot_pistol" 4
+$GenericShootFromIdle "crouch_shoot_smg1" "police_animations_anims\custom\crouch_aim_smg1.smd" "ACT_RANGE_ATTACK_SMG1_LOW" "SMG1_Aim_all" "gesture_shoot_smg1" 3
+
+$GenericCombatIdle "crouch_aim_ar2" "police_animations_anims\custom\crouch_aim_ar2.smd" "ACT_RANGE_AIM_AR2_LOW" "soldier_Aim_9_directions"
+$GenericShootFromIdle "crouch_shoot_ar2" "police_animations_anims\custom\crouch_aim_ar2.smd" "ACT_RANGE_ATTACK_AR2_LOW" "soldier_Aim_9_directions" "gesture_shoot_smg1" 3
+
+//$append crouch_aim_pistol { alignto ar2angryidle1 }
+//$append crouch_aim_smg1 { alignto ar2angryidle1 }
+//$append crouch_shoot_pistol { alignto ar2angryidle1 }
+//$append crouch_shoot_smg1 { alignto ar2angryidle1 }
+
+// ----------------------------------------------------------------
+// 
+// Nodes for all of the above animations
+// 
+// ----------------------------------------------------------------
+
+$definemacro AddNodeToSequence SeqName NodeName \\
+$append $SeqName$ { node $NodeName$ }
+
+$AddNodeToSequence "unarmedidle1" "standing"
+$AddNodeToSequence "batonidle1" "standing_baton"
+$AddNodeToSequence "batonidle2" "standing_baton"
+//$AddNodeToSequence "pistolidle1" "standing_pistol"
+//$AddNodeToSequence "pistolidle2" "standing_pistol"
+$AddNodeToSequence "ar2idle1" "standing_smg"
+//$AddNodeToSequence "ar2idle2" "standing_smg"
+$AddNodeToSequence "ar2angryidle1" "shooting_smg"
+$AddNodeToSequence "shotgunidle1" "standing_smg"
+//$AddNodeToSequence "shotgunidle2" "standing_smg"
+$AddNodeToSequence "shotgunangryidle1" "shooting_smg"
+
+$AddNodeToSequence "shoot_ar2" "shooting_smg"
+$AddNodeToSequence "shoot_shotgun" "shooting_smg"
+
+$AddNodeToSequence "lowcover_shoot_pistol" "lowcover_pistol"
+$AddNodeToSequence "lowcover_aim_pistol" "lowcover_pistol"
+$AddNodeToSequence "lowcover_shoot_smg1" "lowcover_smg"
+$AddNodeToSequence "lowcover_aim_smg1" "lowcover_smg"
+
+$AddNodeToSequence "lowcover_shoot_ar2" "lowcover_smg"
+$AddNodeToSequence "lowcover_aim_ar2" "lowcover_smg"
+
+$AddNodeToSequence "crouch_shoot_pistol" "crouchshoot_pistol"
+$AddNodeToSequence "crouch_aim_pistol" "crouchshoot_pistol"
+$AddNodeToSequence "crouch_shoot_smg1" "crouchshoot_smg"
+$AddNodeToSequence "crouch_aim_smg1" "crouchshoot_smg"
+
+// ----------------------------------------------------------------
+
+$definemacro GenericTransitionBlend SeqName BaseFile StartSeq EndSeq StartNode EndNode NumFrames \\
+$sequence $SeqName$ { \\
+	$BaseFile$ \\
+	numframes $NumFrames$ \\
+	blendlayer $StartSeq$ 0 0 0 $NumFrames$ spline \\
+	blendlayer $EndSeq$ 0 $NumFrames$ $NumFrames$ $NumFrames$ xfade spline \\
+	activity "ACT_TRANSITION" 1 \\
+	transition $StartNode$ $EndNode$ \\
+}
+
+$definemacro GenericTransitionBlendFromSMD SeqName StartSeq EndSeq StartNode EndNode NumFrames \\
+$sequence $SeqName$ { \\
+	$StartSeq$ \\
+	numframes $NumFrames$ \\
+	blendlayer $EndSeq$ 0 $NumFrames$ $NumFrames$ $NumFrames$ xfade spline \\
+	activity "ACT_TRANSITION" 1 \\
+	transition $StartNode$ $EndNode$ \\
+}
+
+$definemacro GenericTransitionBlendToSMD SeqName StartSeq EndSeq StartNode EndNode NumFrames \\
+$sequence $SeqName$ { \\
+	$EndSeq$ \\
+	numframes $NumFrames$ \\
+	blendlayer $StartSeq$ 0 0 0 $NumFrames$ spline \\
+	activity "ACT_TRANSITION" 1 \\
+	transition $StartNode$ $EndNode$ \\
+}
+
+// Stand to crouch aim
+$GenericTransitionBlendFromSMD "Stand_to_crouchshootpistol" "police_animations_anims\Stand_to_crouchpistol.smd" "crouch_aim_pistol" "standing_pistol" "crouchshoot_pistol" 22
+$GenericTransitionBlendFromSMD "Stand_to_crouchshootsmg1" "police_animations_anims\Stand_to_crouchsmg1.smd" "crouch_aim_smg1" "standing_smg" "crouchshoot_smg" 18
+$append "Stand_to_crouchshootpistol" { walkframe 16 LX LY }
+$append "Stand_to_crouchshootsmg1" { walkframe 16 LX LY }
+
+// Shoot to crouch aim
+$GenericTransitionBlendFromSMD "Shoot_to_crouchshootpistol" "police_animations_anims\Shoot_to_crouchpistol.smd" "crouch_aim_pistol" "shooting_pistol" "crouchshoot_pistol" 22
+$GenericTransitionBlendFromSMD "Shoot_to_crouchshootsmg1" "police_animations_anims\Shoot_to_crouchsmg1.smd" "crouch_aim_smg1" "shooting_smg" "crouchshoot_smg" 18
+$append "Shoot_to_crouchshootpistol" { walkframe 16 LX LY }
+$append "Shoot_to_crouchshootsmg1" { walkframe 16 LX LY }
+
+// Crouch to crouch aim
+$GenericTransitionBlendFromSMD "crouch_to_crouchshootpistol" "police_animations_anims\crouch_to_lowcoverpistol.smd" "crouch_aim_pistol" "crouching_pistol" "crouchshoot_pistol" 22
+$GenericTransitionBlendFromSMD "crouch_to_crouchshootsmg1" "police_animations_anims\crouch_to_lowcoversmg1.smd" "crouch_aim_smg1" "crouching_smg" "crouchshoot_smg" 18
+$append "crouch_to_crouchshootpistol" { walkframe 17 LX LY }
+$append "crouch_to_crouchshootsmg1" { walkframe 17 LX LY }
+
+// Lowcover aim to crouch aim
+$GenericTransitionBlendFromSMD "lowcover_to_crouchshootpistol" "police_animations_anims\lowcover_to_crouchpistol.smd" "crouch_aim_pistol" "lowcover_pistol" "crouchshoot_pistol" 22
+$GenericTransitionBlendFromSMD "lowcover_to_crouchshootsmg1" "police_animations_anims\lowcover_to_crouchsmg1.smd" "crouch_aim_smg1" "lowcover_smg" "crouchshoot_smg" 18
+$append "lowcover_to_crouchshootpistol" { blendlayer "pistol_Aim_all" 0 0 0 10 spline } // walkframe 16 LX LY
+$append "lowcover_to_crouchshootsmg1" { blendlayer "SMG1_Aim_all" 0 0 0 10 spline } // walkframe 16 LX LY
+
+// ----------------------------------------------------------------
+
+// Crouch aim to stand
+$GenericTransitionBlendToSMD "crouchshoot_to_standpistol" "crouch_aim_pistol" "police_animations_anims\Crouch_to_standpistol.smd" "crouchshoot_pistol" "standing_pistol" 22
+$GenericTransitionBlendToSMD "crouchshoot_to_standsmg1" "crouch_aim_smg1" "police_animations_anims\Crouch_to_standsmg1.smd" "crouchshoot_smg" "standing_smg" 18
+$append "crouchshoot_to_standpistol" { walkframe 20 LX LY blendlayer "pistol_Aim_all" 4 14 23 23 spline }
+$append "crouchshoot_to_standsmg1" { walkframe 22 LX LY blendlayer "SMG1_Aim_all" 4 15 22 22 spline }
+
+// Crouch aim to shoot
+$GenericTransitionBlendToSMD "crouchshoot_to_shootpistol" "crouch_aim_pistol" "police_animations_anims\Crouch_to_shootpistol.smd" "crouchshoot_pistol" "shooting_pistol" 22
+$GenericTransitionBlendToSMD "crouchshoot_to_shootsmg1" "crouch_aim_smg1" "police_animations_anims\Crouch_to_shootsmg1.smd" "crouchshoot_smg" "shooting_smg" 18
+$append "crouchshoot_to_shootpistol" { walkframe 20 LX LY blendlayer "pistolangryidle2" 14 20 26 26 }
+$append "crouchshoot_to_shootsmg1" { walkframe 22 LX LY blendlayer "SMG1_Aim_all" 4 15 22 22 spline }
+
+// Crouch aim to crouch
+$GenericTransitionBlendToSMD "crouchshoot_to_crouchpistol" "crouch_aim_pistol" "police_animations_anims\lowcover_to_crouchpistol.smd" "crouchshoot_pistol" "crouching_pistol" 22
+$GenericTransitionBlendToSMD "crouchshoot_to_crouchsmg1" "crouch_aim_smg1" "police_animations_anims\lowcover_to_crouchsmg1.smd" "crouchshoot_smg" "crouching_smg" 18
+$append "crouchshoot_to_crouchpistol" { walkframe 16 LX LY blendlayer "pistol_Aim_all" 0 0 0 10 spline }
+$append "crouchshoot_to_crouchsmg1" { blendlayer "SMG1_Aim_all" 0 0 0 10 spline } // walkframe 16 LX LY
+
+// Crouch aim to lowcover aim
+$GenericTransitionBlendToSMD "crouchshoot_to_lowcoverpistol" "crouch_aim_pistol" "police_animations_anims\crouch_to_lowcoverpistol.smd" "crouchshoot_pistol" "lowcover_pistol" 22
+$GenericTransitionBlendToSMD "crouchshoot_to_lowcoversmg1" "crouch_aim_smg1" "police_animations_anims\crouch_to_lowcoversmg1.smd" "crouchshoot_smg" "lowcover_smg" 18
+$append "crouchshoot_to_lowcoverpistol" { walkframe 17 LX LY blendlayer "pistol_Aim_all" 4 14 23 23 spline }
+$append "crouchshoot_to_lowcoversmg1" { walkframe 17 LX LY blendlayer "SMG1_Aim_all" 0 10 18 18 spline }

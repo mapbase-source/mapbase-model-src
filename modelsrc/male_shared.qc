@@ -8,6 +8,9 @@ $modelname "Humans\male_shared.mdl"
 $include "BaseModel.qci"
 $include "hl2mp_ported_anims/commonbones.qci"
 $include "hl2mp_ported_anims/weaponmacros.qci"
+$include "hl2mp_ported_anims/player_macros.qci"
+$include "GenericWeightlists.qci"
+$include "GenericAnimationMacros.qci"
 
 // Used to compile new movement animations since $declareanimation doesn't work
 // (TODO: Is there a possible IK issue in here?)
@@ -15,6 +18,10 @@ $include "MaleCitizenMoveAnims.qci"
 
 $includemodel "humans/male_shared_original.mdl"
 $include "male_shared_DeclareSequence.qci"
+
+$pushd "male_shared_anims"
+$include "CitizenActivityFixes.qci"
+$popd
 
 
 // ================================================================
@@ -72,7 +79,6 @@ $include "OnFirePolice.qci"
 $include "AlyxBlindfire.qci"
 
 $include "Rappel.qci"
-$include "GenericAnimationMacros.qci"
 $include "SoldierSignals.qci"
 
 // Soldiers' original signals had a FPS of 48
@@ -160,10 +166,20 @@ $pushd "male_shared_anims"
 $include "ArrestAnims.qci"
 
 $include "CitizenPackageRun_Male.qci"
+
+$definevariable PistolIdleLayer "Idle_Pistol_Layer4"
+$definevariable PistolIdleLowLayer "Idle_Pistol_Layer4"
+$definevariable PistolCrouchAimLayer "Crouch_Pistol_Layer"
+$definevariable PistolAimLayer "pistol_Aim_all"
+$include "CitizenWallCover.qci"
+
+$include "CitizenCrouchMovement.qci"
 $popd
 
 $include "l4d1_ported_anims\L4D1_LadderClimb_Male.qci"
 $include "l4d1_ported_anims\L4D1_PistolAnims.qci"
+
+$include "NPCDoorAnims.qci"
 
 $weightlist "weights_layer_luggage_run" {
 	 "ValveBiped.Bip01_Pelvis" 0
@@ -192,15 +208,15 @@ $sequence "layer_luggage_run" {
 }
 
 $sequence "luggage_run_all" {
-	"a_MaleCitizenRunS"
-	"a_MaleCitizenRunSE"
-	"a_MaleCitizenRunE"
-	"a_MaleCitizenRunNE"
-	"a_MaleCitizenRunN" // a_luggage_walk
-	"a_MaleCitizenRunNW"
-	"a_MaleCitizenRunW"
-	"a_MaleCitizenRunSW"
-	"a_MaleCitizenRunS"
+	"a_CitizenRunS"
+	"a_CitizenRunSE"
+	"a_CitizenRunE"
+	"a_CitizenRunNE"
+	"a_CitizenRunN" // a_luggage_walk
+	"a_CitizenRunNW"
+	"a_CitizenRunW"
+	"a_CitizenRunSW"
+	"a_CitizenRunS"
 	activity "ACT_RUN_SUITCASE" 1
 	blend "move_yaw" -180 180
 	blendwidth 9

@@ -49,8 +49,6 @@ $sequence "Layer_Pistol_Hands" {
 	loop
 	ikrule "lfoot" footstep contact 7 fakeorigin 13.65 6.55 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 29 7 21 29 target 3
 	ikrule "rfoot" footstep contact 22 fakeorigin 13.7 -1.18 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 14 22 6 14 target 2
-	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 30 30 target 0
-	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 30 30 target 1
 	hidden
 }
 
@@ -68,8 +66,6 @@ $sequence "Layer_Pistol_Hand_R" {
 	loop
 	ikrule "lfoot" footstep contact 7 fakeorigin 13.65 6.55 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 29 7 21 29 target 3
 	ikrule "rfoot" footstep contact 22 fakeorigin 13.7 -1.18 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 14 22 6 14 target 2
-	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 30 30 target 0
-	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 30 30 target 1
 	hidden
 }
 
@@ -86,8 +82,6 @@ $sequence "shootp1" {
 	fps 25
 	ikrule "lfoot" footstep contact 0 fakeorigin 10.81 2.86 0 fakerotate 0 0 0 floor 0 height 20 radius 2.5 range 0 0 5 5 target 3
 	ikrule "rfoot" footstep contact 0 fakeorigin -3.39 -7 0 fakerotate 0 0 0 floor 0 height 20 radius 2.5 range 0 0 5 5 target 2
-	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 5 5 target 0
-	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 5 5 target 1
 }
 
 $sequence "Pistol_idle" {
@@ -97,12 +91,9 @@ $sequence "Pistol_idle" {
 	fadeout 0.2
 	blendlayer "Layer_Pistol_Hands" 0 0 0 0 local
 	node "standing"
-	fps 30
 	loop
 	ikrule "lfoot" footstep contact 0 fakeorigin 10.81 2.86 0 fakerotate 0 0 0 floor 0 height 20 radius 2.5 range 0 0 30 30 target 3
 	ikrule "rfoot" footstep contact 0 fakeorigin -3.39 -7 0 fakerotate 0 0 0 floor 0 height 20 radius 2.5 range 0 0 30 30 target 2
-	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 30 30 target 0
-	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 30 30 target 1
 }
 
 $sequence "Pistol_idle_aim" {
@@ -113,12 +104,9 @@ $sequence "Pistol_idle_aim" {
 	//blendlayer "Layer_Pistol_Hands" 0 0 0 0 local
 	addlayer "layer_Aim_p_all"
 	node "shooting_pistol" // shooting
-	fps 30
 	loop
 	ikrule "lfoot" footstep contact 0 fakeorigin 10.81 2.86 0 fakerotate 0 0 0 floor 0 height 20 radius 2.5 range 0 0 0 0 target 3
 	ikrule "rfoot" footstep contact 0 fakeorigin -3.39 -7 0 fakerotate 0 0 0 floor 0 height 20 radius 2.5 range 0 0 0 0 target 2
-	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 0 0 target 0
-	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 0 0 target 1
 }
 
 // ================================================================
@@ -130,12 +118,9 @@ $sequence "idle_p_crouch" { // crouch_idle_pistol
 	fadein 0.2
 	fadeout 0.2
 	node "crouching"
-	fps 30
 	loop
 	ikrule "lfoot" footstep contact 0 fakeorigin 4.85 1.29 0 fakerotate 0 0 0 floor 0 height 20 radius 2.5 range 0 0 40 40 target 3
 	ikrule "rfoot" footstep contact 0 fakeorigin -8.09 -4.55 0 fakerotate 0 0 0 floor 0 height 20 radius 2.5 range 0 0 40 40 target 2
-	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 40 40 target 0
-	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 40 40 target 1
 }
 
 $sequence "crouch_shoot_pistol" {
@@ -150,8 +135,6 @@ $sequence "crouch_shoot_pistol" {
 	fps 25
 	ikrule "lfoot" footstep contact 0 fakeorigin 4.85 1.29 0 fakerotate 0 0 0 floor 0 height 20 radius 2.5 range 0 0 5 5 target 3
 	ikrule "rfoot" footstep contact 0 fakeorigin -8.15 -4.51 0 fakerotate 0 0 0 floor 0 height 20 radius 2.5 range 0 0 5 5 target 2
-	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 5 5 target 0
-	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 5 5 target 1
 }
 
 $sequence "crouch_aim_pistol" {
@@ -161,12 +144,9 @@ $sequence "crouch_aim_pistol" {
 	fadeout 0.2
 	addlayer "layer_Aim_p_all"
 	node "crouchShooting_pistol"
-	fps 30
 	loop
 	ikrule "lfoot" footstep contact 0 fakeorigin 4.85 1.29 0 fakerotate 0 0 0 floor 0 height 20 radius 2.5 range 0 0 16 16 target 3
 	ikrule "rfoot" footstep contact 0 fakeorigin -8.15 -4.51 0 fakerotate 0 0 0 floor 0 height 20 radius 2.5 range 0 0 16 16 target 2
-	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 16 16 target 0
-	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 16 16 target 1
 }
 
 $sequence "crouch_reload_pistol" {
@@ -179,8 +159,6 @@ $sequence "crouch_reload_pistol" {
 	fps 25
 	ikrule "lfoot" footstep contact 0 fakeorigin 4.85 1.65 0 fakerotate 0 0 0 floor 0 height 20 radius 2.5 range 0 0 39 39 target 3
 	ikrule "rfoot" footstep contact 0 fakeorigin -8.2 -4.61 0 fakerotate 0 0 0 floor 0 height 20 radius 2.5 range 0 0 39 39 target 2
-	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 39 39 target 0
-	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 39 39 target 1
 }
 
 // ================================================================
@@ -193,13 +171,10 @@ $sequence "Crouch_to_stand_pistol" {
 	fadeout 0.2
 	blendlayer "layer_Aim_p_all" 8 15 25 25 spline
 	transition "crouching_pistol" "standing"
-	fps 30
 	ikrule "rfoot" footstep contact 1 fakeorigin -8.02 -4.58 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 0 1 5 10 target 2
 	ikrule "rfoot" footstep contact 12 fakeorigin -3.09 -7.27 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 10 12 24 25 target 2
 	ikrule "lfoot" footstep contact 1 fakeorigin 4.85 1.29 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 0 1 14 16 target 3
 	ikrule "lfoot" footstep contact 24 fakeorigin 10.81 2.86 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 21 24 24 25 target 3
-	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 25 25 target 0
-	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 25 25 target 1
 }
 
 $sequence "Stand_to_crouch_pistol" {
@@ -209,12 +184,9 @@ $sequence "Stand_to_crouch_pistol" {
 	fadeout 0.2
 	blendlayer "layer_Aim_p_all" 8 15 25 25 spline
 	transition "standing" "crouching_pistol"
-	fps 30
 	ikrule "rfoot" footstep contact 6 fakeorigin -8.34 -4.37 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 0 6 24 25 target 2
 	ikrule "lfoot" footstep contact 1 fakeorigin 10.81 2.86 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 0 1 7 10 target 3
 	ikrule "lfoot" footstep contact 14 fakeorigin 4.85 1.29 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 10 14 24 25 target 3
-	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 25 25 target 0
-	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 25 25 target 1
 }
 
 $sequence "Crouch_to_shoot_pistol" {
@@ -224,13 +196,10 @@ $sequence "Crouch_to_shoot_pistol" {
 	fadeout 0.2
 	blendlayer "layer_Aim_p_all" 8 15 25 25 spline
 	transition "crouching_pistol" "shooting_pistol" // shooting
-	fps 30
 	ikrule "rfoot" footstep contact 1 fakeorigin -8.02 -4.58 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 0 1 5 10 target 2
 	ikrule "rfoot" footstep contact 12 fakeorigin -3.09 -7.27 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 10 12 24 25 target 2
 	ikrule "lfoot" footstep contact 1 fakeorigin 4.85 1.29 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 0 1 14 16 target 3
 	ikrule "lfoot" footstep contact 24 fakeorigin 10.81 2.86 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 21 24 24 25 target 3
-	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 25 25 target 0
-	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 25 25 target 1
 }
 
 $sequence "Shoot_to_crouch" {
@@ -240,12 +209,9 @@ $sequence "Shoot_to_crouch" {
 	fadeout 0.2
 	blendlayer "layer_Aim_p_all" 8 15 25 25 spline
 	transition "shooting_pistol" "crouching_pistol" // shooting
-	fps 30
 	ikrule "rfoot" footstep contact 6 fakeorigin -8.34 -4.37 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 0 6 24 25 target 2
 	ikrule "lfoot" footstep contact 1 fakeorigin 10.81 2.86 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 0 1 7 10 target 3
 	ikrule "lfoot" footstep contact 14 fakeorigin 4.85 1.29 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 10 14 24 25 target 3
-	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 25 25 target 0
-	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 25 25 target 1
 }
 
 $sequence "Crouchshoot_to_stand_pistol" {
@@ -255,13 +221,10 @@ $sequence "Crouchshoot_to_stand_pistol" {
 	fadeout 0.2
 	blendlayer "layer_Aim_p_all" 8 15 25 25 spline
 	transition "crouchShooting_pistol" "standing"
-	fps 30
 	ikrule "rfoot" footstep contact 1 fakeorigin -8.1 -4.53 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 0 1 5 10 target 2
 	ikrule "rfoot" footstep contact 12 fakeorigin -2.93 -7.4 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 10 12 24 25 target 2
 	ikrule "lfoot" footstep contact 1 fakeorigin 4.85 1.29 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 0 1 14 16 target 3
 	ikrule "lfoot" footstep contact 24 fakeorigin 10.81 2.86 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 21 24 24 25 target 3
-	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 25 25 target 0
-	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 25 25 target 1
 }
 
 $sequence "Stand_to_crouchshoot_pistol" {
@@ -271,12 +234,9 @@ $sequence "Stand_to_crouchshoot_pistol" {
 	fadeout 0.2
 	blendlayer "layer_Aim_p_all" 8 15 25 25 spline
 	transition "standing" "crouchShooting_pistol"
-	fps 30
 	ikrule "rfoot" footstep contact 6 fakeorigin -7.59 -4.84 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 0 6 24 25 target 2
 	ikrule "lfoot" footstep contact 1 fakeorigin 10.81 2.86 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 0 1 7 10 target 3
 	ikrule "lfoot" footstep contact 14 fakeorigin 5.28 1.4 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 10 14 24 25 target 3
-	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 25 25 target 0
-	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 25 25 target 1
 }
 
 $sequence "Crouchshoot_to_standshoot_pistol" {
@@ -286,13 +246,10 @@ $sequence "Crouchshoot_to_standshoot_pistol" {
 	fadeout 0.2
 	blendlayer "layer_Aim_p_all" 8 15 25 25 spline
 	transition "crouchShooting_pistol" "shooting_pistol" // shooting
-	fps 30
 	ikrule "rfoot" footstep contact 1 fakeorigin -7.76 -4.75 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 0 1 5 10 target 2
 	ikrule "rfoot" footstep contact 12 fakeorigin -3.02 -7.33 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 10 12 24 25 target 2
 	ikrule "lfoot" footstep contact 1 fakeorigin 4.85 1.29 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 0 1 14 16 target 3
 	ikrule "lfoot" footstep contact 24 fakeorigin 10.81 2.86 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 21 24 24 25 target 3
-	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 25 25 target 0
-	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 25 25 target 1
 }
 
 $sequence "Standshoot_to_crouchshoot_pistol" {
@@ -302,12 +259,9 @@ $sequence "Standshoot_to_crouchshoot_pistol" {
 	fadeout 0.2
 	blendlayer "layer_Aim_p_all" 8 15 25 25 spline
 	transition "shooting_pistol" "crouchShooting_pistol" // shooting
-	fps 30
 	ikrule "rfoot" footstep contact 6 fakeorigin -7.75 -4.76 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 0 6 24 25 target 2
 	ikrule "lfoot" footstep contact 1 fakeorigin 10.81 2.86 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 0 1 7 10 target 3
 	ikrule "lfoot" footstep contact 14 fakeorigin 4.85 1.29 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 10 14 24 25 target 3
-	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 25 25 target 0
-	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 25 25 target 1
 }
 
 $sequence "Crouchidle_to_crouchagitated_pistol" {
@@ -316,11 +270,6 @@ $sequence "Crouchidle_to_crouchagitated_pistol" {
 	fadein 0.2
 	fadeout 0.2
 	transition "crouching_pistol" "crouchShooting_pistol"
-	fps 30
-	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 10 10 target 0
-	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 10 10 target 1
-	ikrule "rfoot" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 10 10 target 2
-	ikrule "lfoot" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 10 10 target 3
 }
 
 $sequence "crouchagitated_to_Crouchidle_pistol" {
@@ -329,11 +278,6 @@ $sequence "crouchagitated_to_Crouchidle_pistol" {
 	fadein 0.2
 	fadeout 0.2
 	transition "crouchShooting_pistol" "crouching_pistol"
-	fps 30
-	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 10 10 target 0
-	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 10 10 target 1
-	ikrule "rfoot" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 10 10 target 2
-	ikrule "lfoot" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 10 10 target 3
 }
 
 // ================================================================
@@ -380,8 +324,6 @@ $sequence "Idle_Pistol_Layer_2" {
 	loop
 	ikrule "lfoot" footstep contact 7 fakeorigin 13.65 6.55 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 29 7 21 29 target 3
 	ikrule "rfoot" footstep contact 22 fakeorigin 13.7 -1.18 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 14 22 6 14 target 2
-	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 30 30 target 0
-	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 30 30 target 1
 	hidden
 }
 
@@ -519,15 +461,15 @@ $MakePistolIdle "Idle_Alert_Pistol_9" "female_shared_anims\Idle_Alert_SMG1_6.smd
 // Walk Animations
 // ================================================================
 $sequence "walk_hold_pistol" {
-	"a_FemaleCitizenWalkS"
-	"a_FemaleCitizenWalkSE"
-	"a_FemaleCitizenWalkE"
-	"a_FemaleCitizenWalkNE"
-	"a_FemaleCitizenWalkN" // a_walkN_hold_pistol
-	"a_FemaleCitizenWalkNW"
-	"a_FemaleCitizenWalkW"
-	"a_FemaleCitizenWalkSW"
-	"a_FemaleCitizenWalkS"
+	"a_CitizenWalkS"
+	"a_CitizenWalkSE"
+	"a_CitizenWalkE"
+	"a_CitizenWalkNE"
+	"a_CitizenWalkN" // a_walkN_hold_pistol
+	"a_CitizenWalkNW"
+	"a_CitizenWalkW"
+	"a_CitizenWalkSW"
+	"a_CitizenWalkS"
 	activity "ACT_WALK_PISTOL_STIMULATED" 1 // ACT_WALK_PISTOL
 	blend "move_yaw" -180 180
 	blendwidth 9
@@ -540,15 +482,15 @@ $sequence "walk_hold_pistol" {
 }
 
 $sequence "walk_hold_pistol2" {
-	"a_FemaleCitizenWalkS"
-	"a_FemaleCitizenWalkSE"
-	"a_FemaleCitizenWalkE"
-	"a_FemaleCitizenWalkNE"
-	"a_FemaleCitizenWalkN" // a_walkN_hold_pistol
-	"a_FemaleCitizenWalkNW"
-	"a_FemaleCitizenWalkW"
-	"a_FemaleCitizenWalkSW"
-	"a_FemaleCitizenWalkS"
+	"a_CitizenWalkS"
+	"a_CitizenWalkSE"
+	"a_CitizenWalkE"
+	"a_CitizenWalkNE"
+	"a_CitizenWalkN" // a_walkN_hold_pistol
+	"a_CitizenWalkNW"
+	"a_CitizenWalkW"
+	"a_CitizenWalkSW"
+	"a_CitizenWalkS"
 	activity "ACT_WALK_PISTOL_STIMULATED" 1 // ACT_WALK_PISTOL
 	blend "move_yaw" -180 180
 	blendwidth 9
@@ -561,15 +503,15 @@ $sequence "walk_hold_pistol2" {
 }
 
 $sequence "walk_hold_pistol_relaxed" {
-	"a_FemaleCitizenWalkS"
-	"a_FemaleCitizenWalkSE"
-	"a_FemaleCitizenWalkE"
-	"a_FemaleCitizenWalkNE"
-	"a_FemaleCitizenWalkN" // a_walkN_hold_pistol
-	"a_FemaleCitizenWalkNW"
-	"a_FemaleCitizenWalkW"
-	"a_FemaleCitizenWalkSW"
-	"a_FemaleCitizenWalkS"
+	"a_CitizenWalkS"
+	"a_CitizenWalkSE"
+	"a_CitizenWalkE"
+	"a_CitizenWalkNE"
+	"a_CitizenWalkN" // a_walkN_hold_pistol
+	"a_CitizenWalkNW"
+	"a_CitizenWalkW"
+	"a_CitizenWalkSW"
+	"a_CitizenWalkS"
 	activity "ACT_WALK_PISTOL_RELAXED" 1 // ACT_WALK_PISTOL
 	blend "move_yaw" -180 180
 	blendwidth 9
@@ -589,15 +531,15 @@ $sequence "walk_hold_pistol_relaxed" {
 // Run Animations
 // ================================================================
 $sequence "run_hold_pistol" {
-	"a_FemaleCitizenRunS"
-	"a_FemaleCitizenRunSE"
-	"a_FemaleCitizenRunE"
-	"a_FemaleCitizenRunNE"
-	"a_FemaleCitizenRunN" // a_runN_hold_pistol
-	"a_FemaleCitizenRunNW"
-	"a_FemaleCitizenRunW"
-	"a_FemaleCitizenRunSW"
-	"a_FemaleCitizenRunS"
+	"a_CitizenRunS"
+	"a_CitizenRunSE"
+	"a_CitizenRunE"
+	"a_CitizenRunNE"
+	"a_CitizenRunN" // a_runN_hold_pistol
+	"a_CitizenRunNW"
+	"a_CitizenRunW"
+	"a_CitizenRunSW"
+	"a_CitizenRunS"
 	activity "ACT_RUN_PISTOL_STIMULATED" 1 // ACT_RUN_PISTOL
 	blend "move_yaw" -180 180
 	blendwidth 9
@@ -610,15 +552,15 @@ $sequence "run_hold_pistol" {
 }
 
 $sequence "run_hold_pistol2" {
-	"a_FemaleCitizenRunS"
-	"a_FemaleCitizenRunSE"
-	"a_FemaleCitizenRunE"
-	"a_FemaleCitizenRunNE"
-	"a_FemaleCitizenRunN" // a_runN_hold_pistol
-	"a_FemaleCitizenRunNW"
-	"a_FemaleCitizenRunW"
-	"a_FemaleCitizenRunSW"
-	"a_FemaleCitizenRunS"
+	"a_CitizenRunS"
+	"a_CitizenRunSE"
+	"a_CitizenRunE"
+	"a_CitizenRunNE"
+	"a_CitizenRunN" // a_runN_hold_pistol
+	"a_CitizenRunNW"
+	"a_CitizenRunW"
+	"a_CitizenRunSW"
+	"a_CitizenRunS"
 	activity "ACT_RUN_PISTOL_STIMULATED" 1 // ACT_RUN_PISTOL
 	blend "move_yaw" -180 180
 	blendwidth 9
@@ -631,15 +573,15 @@ $sequence "run_hold_pistol2" {
 }
 
 $sequence "run_hold_pistol_relaxed" {
-	"a_FemaleCitizenRunS"
-	"a_FemaleCitizenRunSE"
-	"a_FemaleCitizenRunE"
-	"a_FemaleCitizenRunNE"
-	"a_FemaleCitizenRunN" // a_runN_hold_pistol
-	"a_FemaleCitizenRunNW"
-	"a_FemaleCitizenRunW"
-	"a_FemaleCitizenRunSW"
-	"a_FemaleCitizenRunS"
+	"a_CitizenRunS"
+	"a_CitizenRunSE"
+	"a_CitizenRunE"
+	"a_CitizenRunNE"
+	"a_CitizenRunN" // a_runN_hold_pistol
+	"a_CitizenRunNW"
+	"a_CitizenRunW"
+	"a_CitizenRunSW"
+	"a_CitizenRunS"
 	activity "ACT_RUN_PISTOL_RELAXED" 1 // ACT_RUN_PISTOL
 	blend "move_yaw" -180 180
 	blendwidth 9

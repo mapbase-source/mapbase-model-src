@@ -1,0 +1,149 @@
+// ================================================================
+// 
+// New Citizen Crouch Movement Animations
+// 
+// ================================================================
+
+$weightlist "weights_layer_walk_aiming" {
+	 "ValveBiped.Bip01_Pelvis" 0.1
+	 "ValveBiped.Bip01_Spine" 0.2
+	 "ValveBiped.Bip01_Spine1" 0.4
+	 "ValveBiped.Bip01_Spine2" 0.6
+	 "ValveBiped.Bip01_Spine4" 1
+	 "ValveBiped.Bip01_R_Thigh" 0
+	 "ValveBiped.Bip01_L_Thigh" 0
+}
+
+$sequence "layer_crouch_run_holding_pistol" {
+	"layer_crouch_run_holding.smd"
+	fadein 0.2
+	fadeout 0.2
+	hidden
+	addlayer $PistolIdleLowLayer$
+	worldspace
+	fps 30
+	ikrule "lhand" touch "ValveBiped.Bip01_R_Hand"
+	ikrule "rhand" release
+	weightlist "weights_layer_walk_aiming"
+}
+
+$sequence "layer_crouch_run_aiming_pistol" {
+	"layer_crouch_run_aiming.smd"
+	fadein 0.2
+	fadeout 0.2
+	hidden
+	blendlayer $PistolCrouchAimLayer$ 0 0 0 0 local
+	addlayer $PistolAimLayer$
+	worldspace
+	fps 30
+	ikrule "lhand" touch "ValveBiped.Bip01_R_Hand"
+	ikrule "rhand" release
+	weightlist "weights_layer_walk_aiming"
+}
+
+$sequence "crouchRUNHOLDINGALL1_pistol" {
+	"a_CitizenRunS"
+	"a_CitizenRunSE"
+	"a_CitizenRunE"
+	"a_CitizenRunNE"
+	"a_CitizenCrouch_runN"
+	"a_CitizenRunNW"
+	"a_CitizenRunW"
+	"a_CitizenRunSW"
+	"a_CitizenRunS"
+	activity "ACT_RUN_CROUCH_PISTOL" 1
+	blend "move_yaw" -180 180
+	blendwidth 9
+	{ event 6004 6 "NPC_Citizen" }
+	{ event 6005 16 "NPC_Citizen" }
+	fadein 0.2
+	fadeout 0.2
+	blendlayer "layer_crouch_run_holding_pistol" 0 0 0 0 local
+	node "run_crouching"
+}
+
+$sequence "crouchRUNAIMINGALL1_pistol" {
+	"a_CitizenRunS"
+	"a_CitizenRunSE"
+	"a_CitizenRunE"
+	"a_CitizenRunNE"
+	"a_CitizenCrouch_runN"
+	"a_CitizenRunNW"
+	"a_CitizenRunW"
+	"a_CitizenRunSW"
+	"a_CitizenRunS"
+	activity "ACT_RUN_CROUCH_AIM_PISTOL" 1
+	blend "move_yaw" -180 180
+	blendwidth 9
+	{ event 6004 6 "NPC_Citizen" }
+	{ event 6005 16 "NPC_Citizen" }
+	fadein 0.2
+	fadeout 0.2
+	blendlayer "layer_crouch_run_aiming_pistol" 0 0 0 0 local
+	node "run_crouching"
+}
+
+$sequence "layer_crouch_walk_holding_pistol" {
+	"layer_crouch_walk_holding.smd"
+	fadein 0.2
+	fadeout 0.2
+	hidden
+	addlayer $PistolIdleLowLayer$
+	worldspace
+	fps 30
+	ikrule "lhand" touch "ValveBiped.Bip01_R_Hand"
+	ikrule "rhand" release
+	weightlist "weights_layer_walk_aiming"
+}
+
+$sequence "layer_crouch_walk_aiming_pistol" {
+	"layer_crouch_walk_aiming.smd"
+	fadein 0.2
+	fadeout 0.2
+	hidden
+	blendlayer $PistolCrouchAimLayer$ 0 0 0 0 local
+	addlayer $PistolAimLayer$
+	worldspace
+	fps 30
+	ikrule "lhand" touch "ValveBiped.Bip01_R_Hand"
+	ikrule "rhand" release
+	weightlist "weights_layer_walk_aiming"
+}
+
+$sequence "Crouch_walk_holding_pistol_all" {
+	"a_CitizenCrouch_walkS"
+	"a_CitizenCrouch_walkSE"
+	"a_CitizenCrouch_walkE"
+	"a_CitizenCrouch_walkNE"
+	"a_CitizenCrouch_walkN"
+	"a_CitizenCrouch_walkNW"
+	"a_CitizenCrouch_walkW"
+	"a_CitizenCrouch_walkSW"
+	"a_CitizenCrouch_walkS"
+	activity "ACT_WALK_CROUCH_PISTOL" 1
+	blend "move_yaw" -180 180
+	blendwidth 9
+	fadein 0.2
+	fadeout 0.2
+	blendlayer "layer_crouch_walk_holding_pistol" 0 0 0 0 local
+	node "walk_crouching"
+}
+
+$sequence "Crouch_walk_aiming_pistol_all" {
+	"a_CitizenCrouch_walkS"
+	"a_CitizenCrouch_walkSE"
+	"a_CitizenCrouch_walkE"
+	"a_CitizenCrouch_walkNE"
+	"a_CitizenCrouch_walkN"
+	"a_CitizenCrouch_walkNW"
+	"a_CitizenCrouch_walkW"
+	"a_CitizenCrouch_walkSW"
+	"a_CitizenCrouch_walkS"
+	activity "ACT_WALK_CROUCH_AIM_PISTOL" 1
+	blend "move_yaw" -180 180
+	blendwidth 9
+	fadein 0.2
+	fadeout 0.2
+	blendlayer "layer_crouch_walk_aiming_pistol" 0 0 0 0 local
+	node "walk_crouching"
+}

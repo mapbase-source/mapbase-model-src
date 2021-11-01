@@ -1,0 +1,194 @@
+// ================================================================
+// 
+// New Metrocop Readiness Animations
+// 
+// ================================================================
+
+
+
+
+
+
+// ================================================================
+
+//$sequence "layer_relaxed_ar2" { "combine_soldier_anims_anims\custom\Idle1_AR2.smd" frame 0 0 weightlist "weights_stimulated_idle" ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" hidden }
+//$sequence "layer_relaxed_smg1" { "combine_soldier_anims_anims\custom\Idle1_SMG1.smd" frame 0 0 weightlist "weights_stimulated_idle" ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" hidden }
+//$sequence "layer_relaxed_shotgun" { "combine_soldier_anims_anims\custom\Idle1_Shotgun.smd" frame 0 0 weightlist "weights_stimulated_idle" ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" hidden }
+
+// Stimulated idle is basically half-idle, half-combat.
+$weightlist "weights_stimulated_idle" { "ValveBiped.Bip01_Pelvis" 0.5 }
+
+$weightlist "weights_stimulated_idle_walk" {
+	 "ValveBiped.Bip01_Pelvis" 0.1
+	 "ValveBiped.Bip01_Spine" 0.5
+	 "ValveBiped.Bip01_R_Thigh" 0
+	 "ValveBiped.Bip01_L_Thigh" 0
+}
+
+$weightlist "weights_stimulated_aim" {
+	 "ValveBiped.Bip01_Pelvis" 0.1
+	 "ValveBiped.Bip01_Spine" 0.1
+	 "ValveBiped.Bip01_Spine1" 0.2
+	 "ValveBiped.Bip01_Spine2" 0.3
+	 "ValveBiped.Bip01_Spine4" 0.4
+	 "ValveBiped.Bip01_L_Clavicle" 1
+	 "ValveBiped.Bip01_R_Clavicle" 1
+	 "ValveBiped.Bip01_R_Thigh" 0
+	 "ValveBiped.Bip01_L_Thigh" 0
+}
+
+// Stronger and doesn't care about the pelvis (for non-worldspace layers)
+$weightlist "weights_stimulated_aim_2" {
+	 "ValveBiped.Bip01_Pelvis" 0
+	 "ValveBiped.Bip01_Spine" 0.2
+	 "ValveBiped.Bip01_Spine1" 0.4
+	 "ValveBiped.Bip01_Spine2" 0.6
+	 "ValveBiped.Bip01_Spine4" 0.8
+	 "ValveBiped.Bip01_L_Clavicle" 1
+	 "ValveBiped.Bip01_R_Clavicle" 1
+	 "ValveBiped.Bip01_R_Thigh" 0
+	 "ValveBiped.Bip01_L_Thigh" 0
+}
+
+// ----------------------------------------------------------------
+
+$sequence "layer_stimulated_smg1" { "police_animations_anims\smg1angryidle1.smd" weightlist "weights_stimulated_idle" ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" hidden }
+$sequence "layer_stimulated_pistol" { "police_animations_anims\layer_walk_hold_pistol.smd" frame 0 0 weightlist "weights_stimulated_aim" ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" worldspace rotate 90 hidden }
+$sequence "layer_stimulated_ar2" { "police_animations_anims\custom\ar2angryidle1.smd" weightlist "weights_stimulated_idle" ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" hidden }
+
+$sequence "layer_stimulated_aim_smg1" { "police_animations_anims\lowcover_aim_smg1.smd" weightlist "weights_stimulated_aim" addlayer "SMG1_Aim_all" ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" worldspace hidden }
+$sequence "layer_stimulated_aim_pistol" { "police_animations_anims\layer_walk_aiming_pistol.smd" frame 0 0 weightlist "weights_stimulated_aim" addlayer "WalkN_pistol_Aim_all" ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" worldspace rotate 90 hidden }
+$sequence "layer_stimulated_aim_ar2" { "police_animations_anims\custom\lowcover_aim_ar2.smd" weightlist "weights_stimulated_aim" addlayer "soldier_Aim_9_directions" ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" worldspace hidden }
+
+// ----------------------------------------------------------------
+// 
+// IDLE RELAXED
+// 
+// ----------------------------------------------------------------
+
+
+
+// ----------------------------------------------------------------
+// 
+// IDLE STIMULATED
+// 
+// ----------------------------------------------------------------
+
+$sequence "idle_stimulated_layer" {
+	"police_animations_anims\smg1angryidle1.smd"
+	weightlist "weights_stimulated_idle"
+	worldspace
+	//frame 0 0
+	hidden
+}
+
+$sequence "pistolidle3" {
+	"police_animations_anims\pistolidle2.smd"
+	activity "ACT_IDLE_PISTOL_STIMULATED" 1
+	node "standing_pistol"
+	loop
+	blendlayer "idle_stimulated_layer" 0 0 0 0 local
+	blendlayer "layer_stimulated_pistol" 0 0 0 0 local
+	cmdlist lockfeet
+}
+
+$sequence "smg1idle3" {
+	"police_animations_anims\smg1idle2.smd"
+	activity "ACT_IDLE_RIFLE_STIMULATED" 1
+	node "standing_smg"
+	loop
+	//blendlayer "idle_stimulated_layer" 0 0 0 0 local
+	blendlayer "layer_stimulated_smg1" 0 0 0 0 local
+	cmdlist lockfeet
+}
+
+$sequence "ar2idle3" {
+	"police_animations_anims\custom\ar2idle1.smd"
+	activity "ACT_IDLE_AR2_STIMULATED" 1
+	node "standing_smg"
+	loop
+	//blendlayer "idle_stimulated_layer" 0 0 0 0 local
+	blendlayer "layer_stimulated_ar2" 0 0 0 0 local
+	cmdlist lockfeet
+}
+
+
+// ----------------------------------------------------------------
+// 
+// AIMING STIMULATED
+// 
+// ----------------------------------------------------------------
+$sequence "pistolangryidle3" {
+	"police_animations_anims\pistolangryidle2.smd"
+	activity "ACT_IDLE_AIM_PISTOL_STIMULATED" 1
+	blendlayer "layer_stimulated_aim_pistol" 0 0 0 0 local
+	node "shooting_pistol"
+	fps 4
+	cmdlist lockfeet
+}
+
+$sequence "smg1angryidle2" {
+	"police_animations_anims\smg1angryidle1.smd"
+	activity "ACT_IDLE_AIM_RIFLE_STIMULATED" 1
+	blendlayer "layer_stimulated_aim_smg1" 0 0 0 0 local
+	node "shooting_smg"
+	fps 4
+	cmdlist lockfeet
+}
+
+$sequence "ar2angryidle2" {
+	"police_animations_anims\custom\ar2angryidle1.smd"
+	activity "ACT_IDLE_AIM_AR2_STIMULATED" 1
+	blendlayer "layer_stimulated_aim_ar2" 0 0 0 0 local
+	node "shooting_smg"
+	fps 4
+	cmdlist lockfeet
+}
+
+// ----------------------------------------------------------------
+
+$sequence "walk_aiming_stimulated_SMG1_all" {
+	$a_WalkBlends
+	activity "ACT_WALK_AIM_RIFLE_STIMULATED" 1
+
+	keyvalues
+	{
+		interior ACT_IDLE_RIFLE_STIMULATED
+	}
+	blendlayer "layer_stimulated_aim_smg1" 0 0 0 0 local
+}
+
+$sequence "run_aiming_stimulated_SMG1_all" {
+	$a_RunBlends
+	activity "ACT_RUN_AIM_RIFLE_STIMULATED" 1
+
+	keyvalues
+	{
+		interior ACT_IDLE_RIFLE_STIMULATED
+	}
+	blendlayer "layer_stimulated_aim_smg1" 0 0 0 0 local
+}
+
+$sequence "walk_aiming_stimulated_AR2_all" {
+	$a_WalkBlends
+	activity "ACT_WALK_AIM_AR2_STIMULATED" 1
+
+	keyvalues
+	{
+		interior ACT_IDLE_AR2_STIMULATED
+	}
+	blendlayer "layer_stimulated_aim_ar2" 0 0 0 0 local
+}
+
+$sequence "run_aiming_stimulated_AR2_all" {
+	$a_RunBlends
+	activity "ACT_RUN_AIM_AR2_STIMULATED" 1
+
+	keyvalues
+	{
+		interior ACT_IDLE_AR2_STIMULATED
+	}
+	blendlayer "layer_stimulated_aim_ar2" 0 0 0 0 local
+}
+
+// ----------------------------------------------------------------

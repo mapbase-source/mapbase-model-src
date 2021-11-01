@@ -7,6 +7,9 @@ $ModelName "combine_soldier_anims.mdl"
 // Must be included
 $include "BaseModel.qci"
 $include "hl2mp_ported_anims/commonbones.qci"
+$include "hl2mp_ported_anims/weaponmacros.qci"
+$include "GenericWeightlists.qci"
+$include "GenericAnimationMacros.qci"
 
 $definebone "ValveBiped.Cod" "ValveBiped.Bip01_Pelvis" -0.044717 2.313936 4.661499 0 0 -2.250005 0 0 0 0 0 0
 
@@ -16,10 +19,10 @@ $include "SoldierMoveAnims.qci"
 $includemodel "combine_soldier_anims_original.mdl"
 $include "combine_soldier_anims_DeclareSequence.qci"
 $include "SoldierActivityFixes.qci"
+$include "SoldierTransitions.qci"
 
 $include "SoldierReadinessAnims.qci"
 
-$include "hl2mp_ported_anims/weaponmacros.qci"
 $pushd "male_shared_anims"
 $include "DefaultHolster.qci"
 $popd
@@ -66,7 +69,6 @@ $include "BaseDI.qci"
 // and makes soldiers susceptible to it.
 //$include "AlyxDI.qci"
 
-$include "GenericAnimationMacros.qci"
 $include "SoldierSignals.qci"
 
 $include "HunterRecvDI.qci"
@@ -221,32 +223,45 @@ $include "CitizenPackage_Soldier.qci"
 $include "CitizenSuitcase_Soldier.qci"
 $popd
 
-$include "CitizenRPG.qci"
+$pushd "combine_soldier_anims_anims"
+$include "SoldierWallCover.qci"
+$popd
+
+$include "CitizenRPG_Soldier.qci"
 $include "PoliceMelee_Soldier.qci"
+
+$sequence "melee_kick" {
+	"police_ss_anims\adoorkick.smd"
+	activity "ACT_MELEE_ATTACK2" 1
+	frame 0 45
+	fps 40
+	{ event 3 20 "" }
+	blendlayer $Blend_Idle_Default$ 0 0 1 7
+	blendlayer $Blend_Idle_Default$ 30 37 46 46
+}
+
+$sequence "melee_kick_scripted" {
+	"police_ss_anims\adoorkick.smd"
+	frame 0 40
+	fps 30
+	{ event 1003 20 "1" }
+	blendlayer $Blend_Idle_Default$ 0 0 1 7
+	blendlayer $Blend_Idle_Default$ 30 38 38 41 xfade
+}
+
+$include "SoldierCrouchMovement.qci"
 
 $include "l4d1_ported_anims\L4D1_LadderClimb_Male.qci"
 $include "l4d1_ported_anims\L4D1_PistolAnims.qci"
+
+$include "NPCDoorAnims.qci"
 
 // ================================================================
 $include "ProtectedRun.qci"
 
 $sequence "run_protected_all" {
-	"a_SoldierRunS"
-	"a_SoldierRunSE"
-	"a_SoldierRunE"
-	"a_SoldierRunNE"
-	"a_SoldierRunN"
-	"a_SoldierRunNW"
-	"a_SoldierRunW"
-	"a_SoldierRunSW"
-	"a_SoldierRunS"
+	$a_RunBlends
 	activity "ACT_RUN_PROTECTED" 1
-	blend "move_yaw" -180 180
-	blendwidth 9
-	{ event 6004 6 "NPC_CombineS" }
-	{ event 6005 15 "NPC_CombineS" }
-	fadein 0.2
-	fadeout 0.2
 	blendlayer "layer_run_protected" 0 0 0 0 local
 	node "running"
 }
@@ -259,3 +274,5 @@ $append Heal {
 	activity "ACT_CIT_HEAL" 1
 	{ event AE_CITIZEN_HEAL 31 "" }
 }
+
+$include "SoldierAnimationNodes.qci"

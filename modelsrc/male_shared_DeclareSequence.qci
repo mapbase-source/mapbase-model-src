@@ -9,7 +9,7 @@ $declaresequence "LineIdle01"
 $declaresequence "LineIdle02"
 $declaresequence "LineIdle03"
 $declaresequence "LineIdle04"
-$declaresequence "Crouch_idleD"
+//$declaresequence "Crouch_idleD"
 $declaresequence "layer_crouch_walk_no_weapon"
 $declaresequence "layer_crouch_run_no_weapon"
 $declaresequence "walk_all_Moderate"
@@ -39,8 +39,8 @@ $declaresequence "sprint_all"
 $declaresequence "Crouch_walk_all"
 $declaresequence "crouch_run_all_delta"
 $declaresequence "crouchRUNALL1"
-$declaresequence "Stand_to_crouch"
-$declaresequence "Crouch_to_stand"
+//$declaresequence "Stand_to_crouch"
+//$declaresequence "Crouch_to_stand"
 $declaresequence "Open_door_away"
 $declaresequence "Open_door_towards_right"
 $declaresequence "Open_door_towards_left"
@@ -102,7 +102,7 @@ $declaresequence "Heal"
 $declaresequence "Wave"
 $declaresequence "Wave_close"
 $declaresequence "DuckUnder"
-$declaresequence "crouchidlehide"
+//$declaresequence "crouchidlehide"
 $declaresequence "standtocrouchhide"
 $declaresequence "crouchhidetostand"
 $declaresequence "scaredidle"
@@ -289,10 +289,10 @@ $declaresequence "CrouchDToStand"
 $declaresequence "StandToCrouchD"
 $declaresequence "CrouchDToCrouchShoot"
 $declaresequence "CrouchShootToCrouchD"
-$declaresequence "Cover_R"
-$declaresequence "Cover_L"
-$declaresequence "CoverLow_R"
-$declaresequence "CoverLow_L"
+//$declaresequence "Cover_R" // See "CitizenWallCover.qci"
+//$declaresequence "Cover_L" // See "CitizenWallCover.qci"
+//$declaresequence "CoverLow_R" // See "CitizenWallCover.qci"
+//$declaresequence "CoverLow_L" // See "CitizenWallCover.qci"
 $declaresequence "Cover_LToShootSMG1"
 $declaresequence "Cover_RToShootSMG1"
 $declaresequence "CoverLow_LToShootSMG1"
@@ -389,7 +389,35 @@ $declaresequence "run_holding_all"
 $declaresequence "run_aiming_all"
 $declaresequence "layer_run_holding_ar2"
 $declaresequence "run_holding_ar2_all"
-$declaresequence "run_aiming_ar2_all"
+//$declaresequence "run_aiming_ar2_all"
+
+$animation "a_RunN_AR2_aim" "male_shared_anims\a_RunN_AR2_aim.smd" {
+	fps 30
+	loop
+	ikrule "lfoot" footstep
+	ikrule "rfoot" footstep
+	walkframe 17 LX LY
+}
+
+$sequence "run_aiming_ar2_all" {
+	"a_CitizenRunS"
+	"a_CitizenRunSE"
+	"a_CitizenRunE"
+	"a_CitizenRunNE"
+	"a_RunN_AR2_aim"
+	"a_CitizenRunNW"
+	"a_CitizenRunW"
+	"a_CitizenRunSW"
+	"a_CitizenRunS"
+	activity "ACT_RUN_AIM_AR2" 1 // Fixed activity being named incorrectly
+	blend "move_yaw" -180 180
+	blendwidth 9
+	{ event 6004 6 "NPC_Citizen" }
+	{ event 6005 16 "NPC_Citizen" }
+	blendlayer "layer_run_AR2_aiming" 0 0 0 0 local
+	node "running"
+}
+
 $declaresequence "layer_crouch_run_holding"
 $declaresequence "crouchRUNHOLDINGALL1"
 $declaresequence "crouchRUNAIMINGALL1"

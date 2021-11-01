@@ -10,17 +10,39 @@ $sequence "shootp2" {
 	"male_shared_anims\Idle_SMG1_Aim.smd" // "police_animations_anims\pistolangryidle2.smd"
 	activity "ACT_RANGE_ATTACK_REVOLVER" 1
 	numframes 16
-	fadein 0.2
-	fadeout 0.2
 	{ event 3014 1 "" }
 	addlayer "pistol_Aim_all"
 	blendlayer "layer_aim_pistol_posture" 0 0 0 0 local
 	blendlayer "gesture_shoot_357" 0 0 0 0 local
 	node "shooting_pistol"
 	//weightlist "weights_357_shoot"
+	ikrule "lfoot" footstep contact 0 fakeorigin 11.95 7.22 0 fakerotate 0 0 0 floor 0 height 20 radius 2.5 range 0 0 15 15 target 3
+	ikrule "rfoot" footstep contact 0 fakeorigin -9.2 -3.23 0 fakerotate 0 0 0 floor 0 height 20 radius 2.5 range 0 0 15 15 target 2
+}
+
+$sequence "crouch_shoot_357" {
+	"male_shared_anims\crouch_aim_smg1.smd"
+	activity "ACT_RANGE_ATTACK_REVOLVER_LOW" 1
+	numframes 16
+	blendlayer "Crouch_ShootPistol_Layer" 0 0 0 0 local
+	addlayer "pistol_Aim_all"
+	node "crouchShooting_pistol"
+	blendlayer "gesture_shoot_357" 0 0 0 0 local
+	//weightlist "weights_357_shoot"
+	{ event 3002 0 "" }
+	ikrule "lfoot" footstep contact 0 fakeorigin 11.07 8.78 0 fakerotate 0 0 0 floor 0 height 20 radius 2.5 range 0 0 15 15 target 3
+	ikrule "rfoot" footstep contact 0 fakeorigin -5.22 0.2 0 fakerotate 0 0 0 floor 0 height 20 radius 2.5 range 0 0 15 15 target 2
+}
+
+// ----------------------------------------------------------------
+
+$makeaimlayer soldier_Aim_9_directions			"hl2mp_ported_anims\Aim_9_directions"
+
+// HACKHACK: Need soldier_Aim_9_directions instead of pistol_Aim_all to get past IK issues
+$GenericReload "reload_357" "police_animations_anims\custom\reload_357.smd" "ACT_RELOAD_REVOLVER" "soldier_Aim_9_directions" 15 51 62 41
+
+$append "reload_357" {
+	$357ReloadSounds
+	node "shooting_pistol"
 	fps 30
-	ikrule "lfoot" footstep contact 0 fakeorigin 11.95 7.22 0 fakerotate 0 0 0 floor 0 height 20 radius 2.5 range 0 0 4 4 target 3
-	ikrule "rfoot" footstep contact 0 fakeorigin -9.2 -3.23 0 fakerotate 0 0 0 floor 0 height 20 radius 2.5 range 0 0 4 4 target 2
-	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 4 4 target 0
-	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 4 4 target 1
 }

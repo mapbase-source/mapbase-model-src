@@ -1,7 +1,5 @@
 // Created by Crowbar 0.56
 
-$include "hl2mp_ported_anims/weaponmacros.qci"
-
 $modelname "Police_animations.mdl"
 
 //$includemodel "player/male_anims.mdl"
@@ -9,12 +7,18 @@ $modelname "Police_animations.mdl"
 // Must be included
 $include "BaseModel.qci"
 $include "hl2mp_ported_anims/commonbones.qci"
+$include "hl2mp_ported_anims/weaponmacros.qci"
+$include "hl2mp_ported_anims/player_macros.qci"
+$include "GenericWeightlists.qci"
+$include "GenericAnimationMacros.qci"
 
 // Used to compile new movement animations since $declareanimation doesn't work
 $include "PoliceMoveAnims.qci"
 
 $includemodel "police_animations_original.mdl"
 $include "police_animations_DeclareSequence.qci"
+$include "PoliceActivityFixes.qci"
+$include "PoliceReadinessAnims.qci"
 
 $pushd "male_shared_anims"
 $include "DefaultHolster.qci"
@@ -29,61 +33,6 @@ $popd
 // ================================================================
 $include "PoliceHarassGestures.qci"
 
-// ================================================================
-// ================================================================
-$weightlist "NoHeadMovement" {
-	"ValveBiped.Bip01_Head1" 0
-	"ValveBiped.Bip01_Neck1" 0.25
-	"ValveBiped.Bip01_Pelvis" 1
-}
-
-$sequence "gesture_shoot_shotgun" {
-	"combine_soldier_anims_anims\a_shootShotgun"
-	{ event AE_CL_PLAYSOUND 11 "Weapon_Alyx_Shotgun.Cock" }
-	activity "ACT_GESTURE_RANGE_ATTACK_SHOTGUN" 1
-	weightlist "NoHeadMovement"
-	delta
-}
-
-$sequence "shoot_shotgun" {
-	"police_animations_anims\smg1angryidle1.smd"
-	{ event AE_CL_PLAYSOUND 11 "Weapon_Alyx_Shotgun.Cock" }
-	numframes 45
-	activity "ACT_RANGE_ATTACK_SHOTGUN" 1
-	addlayer "gesture_shoot_shotgun"
-	addlayer "SMG1_Aim_all"
-	node "shooting_smg"
-}
-
-$makeweapongesture "gesture_reload_shotgun" "male_shared_anims\reload_shotgun1.smd" 10 60 75
-$append "gesture_reload_shotgun" {
-	activity "ACT_GESTURE_RELOAD_SHOTGUN" 1
-	{ event 3015 29 "" }
-	{ event AE_CL_PLAYSOUND 57 "Weapon_Shotgun.Special1" }
-}
-
-$weightlist "weights_reload_shotgun1_legs" {
-	"ValveBiped.Bip01_Pelvis" 0
-	"ValveBiped.Bip01_Spine" 0
-	"ValveBiped.Bip01_R_Thigh" 1
-	"ValveBiped.Bip01_L_Thigh" 1
-}
-
-$sequence "reload_shotgun1_legs" "male_shared_anims\reload_shotgun1.smd" weightlist "weights_reload_shotgun1_legs" hidden
-$sequence "reload_shotgun1" {
-	"police_animations_anims\reload_smg1.smd"
-	numframes 75
-	activity "ACT_RELOAD_SHOTGUN" 1
-	{ event 3015 29 "" }
-	{ event AE_CL_PLAYSOUND 57 "Weapon_Shotgun.Special1" }
-	addlayer "gesture_reload_shotgun"
-	//blendlayer "Idle_Angry_Shotgun" 59 75 75 75 spline
-	node "standing_smg"
-	ikrule "lfoot" footstep
-	ikrule "rfoot" footstep
-	ikrule "rhand" release
-	ikrule "lhand" release
-}
 // ================================================================
 // ================================================================
 // 
@@ -178,7 +127,6 @@ $include "HunterRecvDI.qci"
 
 $include "AlyxBlindfire.qci"
 
-$include "GenericAnimationMacros.qci"
 $include "SoldierSignals.qci"
 
 // Soldiers' original signals had a FPS of 48
@@ -208,16 +156,26 @@ $include "CitizenPackage_Police.qci"
 $include "CitizenSuitcase_Police.qci"
 $popd
 
+$pushd "combine_soldier_anims_anims"
+
+$definevariable PistolIdleLayer "Idle_Pistol_Layer2a"
+$definevariable PistolIdleLowLayer "Idle_Pistol_Layer2a"
+$include "SoldierWallCover.qci"
+$popd
+
 $include "CitizenRPG_Police.qci"
 
 $animation "@gesture_shoot_pistol_corrective_animation" "police_animations_anims\@gesture_shoot_pistol_corrective_animation.smd" {
 }
 
 $include "NewPistolAnimations_357_Metrocop.qci"
+$include "PoliceCrouchMovement.qci"
 
 
 $include "l4d1_ported_anims\L4D1_LadderClimb_Male.qci"
 $include "l4d1_ported_anims\L4D1_PistolAnims.qci" // Metrocops technically have their own pistol draw animation, but that's harder to turn into a gesture which works well
+
+$include "NPCDoorAnims.qci"
 
 // ================================================================
 $include "ProtectedRun.qci"

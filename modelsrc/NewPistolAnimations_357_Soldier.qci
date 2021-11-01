@@ -4,6 +4,12 @@
 // 
 // ================================================================
 
+$definemacro 357ReloadSounds \\
+	{ event AE_CL_PLAYSOUND 10 "Weapon_357.OpenLoader" } \\
+	{ event AE_CL_PLAYSOUND 17 "Weapon_357.RemoveLoader" } \\
+	{ event AE_CL_PLAYSOUND 37 "Weapon_357.ReplaceLoader" } \\
+	{ event AE_CL_PLAYSOUND 47 "Weapon_357.Spin" } \\ // TODO: Not really a spin
+
 $weightlist "weights_357_shoot" {
 	 "ValveBiped.Bip01_Pelvis" 3
 	 "ValveBiped.Bip01_R_Clavicle" 3
@@ -46,8 +52,7 @@ $sequence "shootp2" {
 	{ event 3014 1 "" }
 	addlayer "Aim_stand_delta_all"
 	blendlayer "gesture_shoot_357" 0 0 0 0 local
-	ikrule "lfoot" footstep contact 0 height 20 radius 2.5
-	ikrule "rfoot" footstep contact 0 height 20 radius 2.5
+	cmdlist lockfeet
 }
 
 $sequence "shootp2c" {
@@ -57,6 +62,32 @@ $sequence "shootp2c" {
 	addlayer "Aim_stand_delta_all" //addlayer "Aim_crouch_delta_all"
 	activity "ACT_RANGE_ATTACK_REVOLVER_LOW" 1
 	{ event 3014 1 "" }
-	ikrule "lfoot" footstep contact 0 height 20 radius 2.5
-	ikrule "rfoot" footstep contact 0 height 20 radius 2.5
+	cmdlist lockfeet
+}
+
+// ----------------------------------------------------------------
+
+//$makeaimlayer soldier_Aim_9_directions			"hl2mp_ported_anims\Aim_9_directions"
+
+$makeweapongesturep "gesture_reload_357" "police_animations_anims\custom\reload_357.smd" 15 51 62
+
+$append "gesture_reload_357" {
+	$357ReloadSounds
+	activity "ACT_GESTURE_RELOAD_REVOLVER" 1
+	{ event 3017 0 "" }
+	{ event 3018 41 "" }
+}
+
+$GenericReloadFromIdle "reload_357" $Blend_SMD_Pistol$ "ACT_RELOAD_REVOLVER" "Aim_stand_delta_all" "gesture_reload_357" 15 51 62 41
+
+$append "reload_357" {
+	$357ReloadSounds
+	fps 30
+}
+
+$GenericReloadFromIdle "reload_357_low" $Blend_SMD_Pistol_Crouched$ "ACT_RELOAD_REVOLVER_LOW" "Aim_crouch_delta_all" "gesture_reload_357" 15 51 62 41
+
+$append "reload_357" {
+	$357ReloadSounds
+	fps 30
 }

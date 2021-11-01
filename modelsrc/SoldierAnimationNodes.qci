@@ -1,0 +1,149 @@
+// ================================================================
+// 
+// This file adds transition nodes to soldier animations.
+// 
+// Node graph:
+// 
+// - Unarmed_Idle, etc.								standing
+// - Idle1_AR2, Idle1_SMG1, etc.					standing_ar2, standing_smg1, etc.
+// - CombatIdle1_AR2, etc.							shooting_ar2, etc.
+// - crouch_aim_ar2, etc.							crouching_ar2, etc.
+// 
+// For now, walk/run use "standing_" and "shooting_" nodes
+// 
+// ================================================================
+
+$definemacro AddNodeToSequence SeqName NodeName \\
+$append $SeqName$ { node $NodeName$ }
+
+$skiptransition "standing" "standing_ar2" "standing_smg1" "standing_sg" "standing_pistol"
+$skiptransition "shooting" "shooting_ar2" "shooting_smg1" "shooting_sg" "shooting_pistol"
+$skiptransition "crouching" "crouching_ar2" "crouching_smg1" "crouching_sg" "crouching_pistol"
+
+// ----------------------------------------------------------------
+// SoldierActivityFixes.qci
+// ----------------------------------------------------------------
+$AddNodeToSequence "CombatIdle1" "shooting_ar2"
+$AddNodeToSequence "CombatIdle1_SMG1" "shooting_smg1"
+$AddNodeToSequence "CombatIdle1_SG" "shooting_sg"
+
+$AddNodeToSequence "crouch_aim_ar2" "crouching_ar2"
+$AddNodeToSequence "crouch_aim_sm1" "crouching_smg1"
+$AddNodeToSequence "crouch_aim_sg" "crouching_sg"
+
+$AddNodeToSequence "Idle_Unarmed_ACT_IDLE" "standing"
+$AddNodeToSequence "Idle1_AR2" "standing_ar2"
+$AddNodeToSequence "Idle1_SMG1" "standing_smg1"
+$AddNodeToSequence "Idle1_SG" "standing_sg"
+
+$AddNodeToSequence "cover_crouch" "crouching_ar2"
+$AddNodeToSequence "cover_crouch_low" "crouching_ar2"
+$AddNodeToSequence "cover_crouch_med" "crouching_ar2"
+$AddNodeToSequence "cover_crouch_low_ar2" "crouching_ar2"
+$AddNodeToSequence "cover_crouch_low_smg1" "crouching_smg1"
+$AddNodeToSequence "cover_crouch_low_sg" "crouching_sg"
+
+$AddNodeToSequence "Walk_aiming_all" "shooting_smg1"
+$AddNodeToSequence "Walk_aiming_all_SG" "shooting_sg"
+$AddNodeToSequence "Walk_aiming_all_AR2" "shooting_ar2"
+
+$AddNodeToSequence "RunAIMALL1" "shooting_smg1"
+$AddNodeToSequence "RunAIMALL1_SG" "shooting_sg"
+$AddNodeToSequence "RunAIMALL1_AR2" "standing_ar2"
+
+$AddNodeToSequence "WalkUnarmed_all_ACT_WALK" "standing"
+$AddNodeToSequence "Walk_all_AR2" "standing_ar2"
+$AddNodeToSequence "Walk_all_SMG1" "standing_smg1"
+$AddNodeToSequence "Walk_all_SG" "standing_sg"
+
+$AddNodeToSequence "RunUnarmed_all" "standing"
+$AddNodeToSequence "RunALL_AR2" "standing_ar2"
+$AddNodeToSequence "RunALL_SMG1" "standing_smg1"
+$AddNodeToSequence "RunALL_SG" "standing_sg"
+
+$AddNodeToSequence "Crouch_RunALL" "crouching"
+$AddNodeToSequence "Crouch_WalkALL" "crouching"
+
+$AddNodeToSequence "shootSMG1s" "shooting_smg1"
+$AddNodeToSequence "shootSMG1c" "crouching_smg1"
+$AddNodeToSequence "shootAR2s" "shooting_ar2"
+$AddNodeToSequence "shootAR2c" "crouching_ar2"
+$AddNodeToSequence "shootAR2alt" "shooting_ar2"
+$AddNodeToSequence "shootSGs" "shooting_sg"
+$AddNodeToSequence "shootSGc" "crouching_sg"
+
+$AddNodeToSequence "reload_ar2" "shooting_ar2"
+$AddNodeToSequence "reload_ar2_low" "crouching_ar2"
+$AddNodeToSequence "reload_smg1" "shooting_smg1"
+$AddNodeToSequence "reload_smg1_low" "crouching_smg1"
+$AddNodeToSequence "reload_shotgun1" "shooting_sg"
+$AddNodeToSequence "reload_shotgun1_low" "crouching_sg"
+
+//$AddNodeToSequence "melee_gunhit" "shooting"
+
+$AddNodeToSequence "grenThrow" "shooting"
+$AddNodeToSequence "grenDrop" "shooting"
+$AddNodeToSequence "grenPlace" "shooting"
+
+$AddNodeToSequence "signal_advance" "shooting"
+$AddNodeToSequence "signal_forward" "shooting"
+$AddNodeToSequence "signal_group" "shooting"
+$AddNodeToSequence "signal_halt" "shooting"
+$AddNodeToSequence "signal_left" "shooting"
+$AddNodeToSequence "signal_right" "shooting"
+$AddNodeToSequence "signal_takecover" "shooting"
+
+// ----------------------------------------------------------------
+// SoldierReadinessAnims.qci
+// ----------------------------------------------------------------
+$AddNodeToSequence "walk_relaxed_all_AR2" "standing_ar2"
+$AddNodeToSequence "walk_relaxed_all_SMG1" "standing_smg1"
+$AddNodeToSequence "walk_relaxed_all_SG" "standing_sg"
+$AddNodeToSequence "walk_relaxed_all_Pistol" "standing_pistol"
+
+$AddNodeToSequence "Idle2_AR2" "standing_alert_ar2"
+$AddNodeToSequence "Idle2_SMG1" "standing_alert_smg1"
+$AddNodeToSequence "Idle2_SG" "standing_alert_sg"
+$AddNodeToSequence "Idle2_Pistol" "standing_alert_pistol"
+
+$AddNodeToSequence "walk_stimulated_all_AR2" "standing_alert_ar2"
+$AddNodeToSequence "walk_stimulated_all_SMG1" "standing_alert_smg1"
+$AddNodeToSequence "walk_stimulated_all_SG" "standing_alert_sg"
+$AddNodeToSequence "walk_stimulated_all_Pistol" "standing_alert_pistol"
+
+$AddNodeToSequence "walk_aiming_stimulated_all_AR2" "standing_alert_ar2"
+$AddNodeToSequence "walk_aiming_stimulated_all_SMG1" "standing_alert_smg1"
+$AddNodeToSequence "walk_aiming_stimulated_all_SG" "standing_alert_sg"
+$AddNodeToSequence "walk_aiming_stimulated_all_Pistol" "standing_alert_pistol"
+
+$AddNodeToSequence "run_aiming_stimulated_all_AR2" "standing_alert_ar2"
+$AddNodeToSequence "run_aiming_stimulated_all_SMG1" "standing_alert_smg1"
+$AddNodeToSequence "run_aiming_stimulated_all_SG" "standing_alert_sg"
+$AddNodeToSequence "run_aiming_stimulated_all_Pistol" "standing_alert_pistol"
+
+// ----------------------------------------------------------------
+// NewPistolAnimations_357_Soldier.qci / NewPistolAnimations_357_Soldier.qci
+// ----------------------------------------------------------------
+$AddNodeToSequence "Idle1_Pistol" "standing_pistol"
+$AddNodeToSequence "CombatIdle1_Pistol" "shooting_pistol"
+
+$AddNodeToSequence "shootp1" "shooting_pistol"
+$AddNodeToSequence "shootp2" "shooting_pistol"
+
+$AddNodeToSequence "reload_pistol" "shooting_pistol"
+$AddNodeToSequence "reload_pistol_low" "crouching_pistol"
+$AddNodeToSequence "reload_357" "shooting_pistol"
+$AddNodeToSequence "reload_357_low" "crouching_pistol"
+
+$AddNodeToSequence "Crouch_idle_pistol" "crouching_pistol"
+$AddNodeToSequence "crouch_aim_pistol" "crouching_pistol"
+
+$AddNodeToSequence "walk_aiming_pistol_all" "shooting_pistol"
+$AddNodeToSequence "run_aiming_pistol_all" "shooting_pistol"
+$AddNodeToSequence "walk_hold_pistol" "standing_pistol"
+$AddNodeToSequence "run_hold_pistol" "standing_pistol"
+
+// ----------------------------------------------------------------
+// SoldierCrouchMovement.qci
+// ----------------------------------------------------------------
+

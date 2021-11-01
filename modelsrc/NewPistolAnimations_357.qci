@@ -4,6 +4,12 @@
 // 
 // ================================================================
 
+$definemacro 357ReloadSounds \\
+	{ event AE_CL_PLAYSOUND 10 "Weapon_357.OpenLoader" } \\
+	{ event AE_CL_PLAYSOUND 17 "Weapon_357.RemoveLoader" } \\
+	{ event AE_CL_PLAYSOUND 37 "Weapon_357.ReplaceLoader" } \\
+	{ event AE_CL_PLAYSOUND 47 "Weapon_357.Spin" } \\ // TODO: Not really a spin
+
 $weightlist "weights_357_shoot" {
 	 "ValveBiped.Bip01_Pelvis" 3
 	 "ValveBiped.Bip01_R_Clavicle" 3
@@ -57,3 +63,12 @@ $sequence "gesture_shoot_357" {
 //	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 4 4 target 0
 //	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 4 4 target 1
 //}
+
+$makeweapongesturep "gesture_reload_357" "police_animations_anims\custom\reload_357.smd" 15 51 62
+
+$append "gesture_reload_357" {
+	$357ReloadSounds
+	activity "ACT_GESTURE_RELOAD_REVOLVER" 1
+	{ event 3017 0 "" }
+	{ event 3018 41 "" }
+}

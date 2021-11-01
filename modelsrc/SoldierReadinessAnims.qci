@@ -32,6 +32,12 @@ $weightlist "weights_stimulated_aim" {
 	 "ValveBiped.Cod" 1
 }
 
+$weightlist "weights_stimulated_aim_legs" {
+	 "ValveBiped.Bip01_Pelvis" 0.5
+	 "ValveBiped.Bip01_Spine" 0
+	 "ValveBiped.Cod" 0.5
+}
+
 // Stronger and doesn't care about the pelvis (for non-worldspace layers)
 $weightlist "weights_stimulated_aim_2" {
 	 "ValveBiped.Bip01_Pelvis" 0
@@ -52,6 +58,8 @@ $sequence "layer_stimulated_ar2" { "combine_soldier_anims_anims\CombatIdle1.smd"
 $sequence "layer_stimulated_smg1" { "combine_soldier_anims_anims\CombatIdle1_SMG1.smd" weightlist "weights_stimulated_idle" ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" hidden }
 $sequence "layer_stimulated_shotgun" { "combine_soldier_anims_anims\CombatIdle1_SG.smd" weightlist "weights_stimulated_idle" ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" hidden }
 $sequence "layer_stimulated_pistol" { "combine_soldier_anims_anims\custom\CombatIdle1_Pistol.smd" weightlist "weights_stimulated_idle" ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" hidden }
+
+$sequence "layer_stimulated_aim_legs" { "combine_soldier_anims_anims\CombatIdle1.smd" weightlist "weights_stimulated_aim_legs" ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" hidden }
 
 $sequence "layer_stimulated_aim_ar2" { "combine_soldier_anims_anims\CombatIdle1.smd" weightlist "weights_stimulated_aim" addlayer "Aim_stand_delta_all" ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" worldspace hidden }
 $sequence "layer_stimulated_aim_smg1" { "combine_soldier_anims_anims\CombatIdle1_SMG1.smd" weightlist "weights_stimulated_aim" addlayer "Aim_stand_delta_all" ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" worldspace hidden }
@@ -108,8 +116,7 @@ $sequence $IdleName$ { \\
 	$IdleSeq$ \\
 	activity $IdleAct$ 1 \\
 	loop \\
-	ikrule "lfoot" footstep contact 0 height 20 radius 2.5 \\
-	ikrule "rfoot" footstep contact 0 height 20 radius 2.5 \\
+	cmdlist lockfeet \\
 	blendlayer $StimulatedLayer$ 0 0 0 0 local \\
 }
 
@@ -186,49 +193,20 @@ $sequence "walk_stimulated_all_Pistol" {
 // 
 // ----------------------------------------------------------------
 
-$sequence "CombatIdle2" {
-	"combine_soldier_anims_anims\custom\Idle1_AR2.smd"
-	activity "ACT_IDLE_AIM_AR2_STIMULATED" 1
-	loop
-	blendlayer "layer_stimulated_aim_ar2" 0 0 0 0 local
-	ikrule "lfoot" footstep
-	ikrule "rfoot" footstep
-	//ikrule "lhand" touch "ValveBiped.Bip01_R_Hand"
-	//ikrule "rhand" release
+$definemacro SoldierStimulatedAimIdle IdleName IdleSeq IdleAct StimulatedLayer \\
+$sequence $IdleName$ { \\
+	$IdleSeq$ \\
+	activity $IdleAct$ 1 \\
+	loop \\
+	cmdlist lockfeet \\
+	blendlayer "layer_stimulated_aim_legs" 0 0 0 0 local \\
+	blendlayer $StimulatedLayer$ 0 0 0 0 local \\
 }
 
-$sequence "CombatIdle2_SMG1" {
-	"combine_soldier_anims_anims\custom\Idle1_SMG1.smd"
-	activity "ACT_IDLE_AIM_RIFLE_STIMULATED" 1
-	loop
-	blendlayer "layer_stimulated_aim_smg1" 0 0 0 0 local
-	ikrule "lfoot" footstep
-	ikrule "rfoot" footstep
-	//ikrule "lhand" touch "ValveBiped.Bip01_R_Hand"
-	//ikrule "rhand" release
-}
-
-$sequence "CombatIdle2_SG" {
-	"combine_soldier_anims_anims\custom\Idle1_Shotgun.smd"
-	activity "ACT_IDLE_AIM_SHOTGUN_STIMULATED" 1
-	loop
-	blendlayer "layer_stimulated_aim_shotgun" 0 0 0 0 local
-	ikrule "lfoot" footstep
-	ikrule "rfoot" footstep
-	//ikrule "lhand" touch "ValveBiped.Bip01_R_Hand"
-	//ikrule "rhand" release
-}
-
-$sequence "CombatIdle2_Pistol" {
-	"combine_soldier_anims_anims\Idle1.smd"
-	activity "ACT_IDLE_AIM_PISTOL_STIMULATED" 1
-	loop
-	blendlayer "layer_stimulated_aim_pistol" 0 0 0 0 local
-	ikrule "lfoot" footstep
-	ikrule "rfoot" footstep
-	//ikrule "lhand" touch "ValveBiped.Bip01_R_Hand"
-	//ikrule "rhand" release
-}
+$SoldierStimulatedAimIdle "CombatIdle2" "combine_soldier_anims_anims\custom\Idle1_AR2.smd" "ACT_IDLE_AIM_AR2_STIMULATED" "layer_stimulated_aim_ar2"
+$SoldierStimulatedAimIdle "CombatIdle2_SMG1" "combine_soldier_anims_anims\custom\Idle1_SMG1.smd" "ACT_IDLE_AIM_RIFLE_STIMULATED" "layer_stimulated_aim_smg1"
+$SoldierStimulatedAimIdle "CombatIdle2_SG" "combine_soldier_anims_anims\custom\Idle1_Shotgun.smd" "ACT_IDLE_AIM_SHOTGUN_STIMULATED" "layer_stimulated_aim_shotgun"
+$SoldierStimulatedAimIdle "CombatIdle2_Pistol" "combine_soldier_anims_anims\Idle1.smd" "ACT_IDLE_AIM_PISTOL_STIMULATED" "layer_stimulated_aim_pistol"
 
 // ----------------------------------------------------------------
 
@@ -258,7 +236,7 @@ $sequence "walk_aiming_stimulated_all_AR2" {
 
 	keyvalues
 	{
-		interior ACT_IDLE
+		interior ACT_IDLE_AR2_STIMULATED
 	}
 	//blendlayer "layer_walk_unarmed" 0 0 0 0 local
 	blendlayer "walk_stimulated_layer" 0 0 0 0 local
@@ -271,7 +249,7 @@ $sequence "walk_aiming_stimulated_all_SMG1" {
 
 	keyvalues
 	{
-		interior ACT_IDLE
+		interior ACT_IDLE_RIFLE_STIMULATED
 	}
 	//blendlayer "layer_walk_unarmed" 0 0 0 0 local
 	blendlayer "walk_stimulated_layer" 0 0 0 0 local
@@ -284,7 +262,7 @@ $sequence "walk_aiming_stimulated_all_SG" {
 
 	keyvalues
 	{
-		interior ACT_IDLE
+		interior ACT_IDLE_SHOTGUN_STIMULATED
 	}
 	//blendlayer "layer_walk_unarmed" 0 0 0 0 local
 	blendlayer "walk_stimulated_layer" 0 0 0 0 local
@@ -297,7 +275,7 @@ $sequence "walk_aiming_stimulated_all_Pistol" {
 
 	keyvalues
 	{
-		interior ACT_IDLE
+		interior ACT_IDLE_PISTOL_STIMULATED
 	}
 	//blendlayer "layer_walk_unarmed" 0 0 0 0 local
 	blendlayer "walk_stimulated_layer" 0 0 0 0 local
@@ -310,7 +288,7 @@ $sequence "run_aiming_stimulated_all_AR2" {
 
 	keyvalues
 	{
-		interior ACT_IDLE
+		interior ACT_IDLE_AR2_STIMULATED
 	}
 	blendlayer "layer_walk_unarmed" 0 0 0 0 local
 	blendlayer "layer_stimulated_aim_run_ar2" 0 0 0 0 local
@@ -322,7 +300,7 @@ $sequence "run_aiming_stimulated_all_SMG1" {
 
 	keyvalues
 	{
-		interior ACT_IDLE
+		interior ACT_IDLE_RIFLE_STIMULATED
 	}
 	blendlayer "layer_walk_unarmed" 0 0 0 0 local
 	blendlayer "layer_stimulated_aim_run_smg1" 0 0 0 0 local
@@ -334,7 +312,7 @@ $sequence "run_aiming_stimulated_all_SG" {
 
 	keyvalues
 	{
-		interior ACT_IDLE
+		interior ACT_IDLE_SHOTGUN_STIMULATED
 	}
 	blendlayer "layer_walk_unarmed" 0 0 0 0 local
 	blendlayer "layer_stimulated_aim_run_shotgun" 0 0 0 0 local
@@ -346,7 +324,7 @@ $sequence "run_aiming_stimulated_all_pistol" {
 
 	keyvalues
 	{
-		interior ACT_IDLE
+		interior ACT_IDLE_PISTOL_STIMULATED
 	}
 	blendlayer "layer_walk_unarmed" 0 0 0 0 local
 	blendlayer "layer_stimulated_aim_run_pistol" 0 0 0 0 local

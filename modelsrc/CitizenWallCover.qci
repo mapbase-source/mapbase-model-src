@@ -1,7 +1,7 @@
 // ================================================================
 // 
 // Reimplements wall cover animations with new activities.
-// Also adds pistol cover animations.
+// Also adds pistol and unarmed variants.
 // "PistolIdleLayer" and "PistolIdleLowLayer" MUST be declared as variables!
 // 
 // (See SoldierWallCover.qci for soldier equivalent)

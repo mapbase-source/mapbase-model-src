@@ -55,8 +55,7 @@ $sequence "CombatIdle1_Pistol" { // pistolangryidle2
 	addlayer "Aim_stand_delta_all"
 	activity "ACT_IDLE_ANGRY_PISTOL" 1
 	loop
-	ikrule "lfoot" footstep
-	ikrule "rfoot" footstep
+	cmdlist lockfeet
 	ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" usesource
 }
 
@@ -65,8 +64,7 @@ $sequence "Crouch_idle_pistol" {
 	activity "ACT_COVER_PISTOL_LOW" 1
 	//node "crouching_pistol"
 	loop
-	ikrule "lfoot" footstep
-	ikrule "rfoot" footstep
+	cmdlist lockfeet
 	ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" usesource
 }
 
@@ -74,8 +72,7 @@ $sequence "shootp1" {
 	"combine_soldier_anims_anims\custom\shootp1.smd"
 	addlayer "Aim_stand_delta_all"
 	activity "ACT_RANGE_ATTACK_PISTOL" 1
-	ikrule "lfoot" footstep
-	ikrule "rfoot" footstep
+	cmdlist lockfeet
 	ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" usesource
 }
 
@@ -98,8 +95,7 @@ $sequence "reload_pistol" {
 	activity "ACT_RELOAD_PISTOL" 1
 	{ event 3017 0 "" }
 	{ event 3018 34 "" }
-	ikrule "lfoot" footstep
-	ikrule "rfoot" footstep
+	cmdlist lockfeet
 	ikrule "lhand" release
 	ikrule "rhand" release
 }
@@ -115,8 +111,7 @@ $sequence "reload_pistol_low" { // crouch_reload_pistol
 	activity "ACT_RELOAD_PISTOL_LOW" 1
 	{ event 3017 0 "" }
 	{ event 3018 34 "" }
-	ikrule "lfoot" footstep
-	ikrule "rfoot" footstep
+	cmdlist lockfeet
 	ikrule "lhand" release
 	ikrule "rhand" release
 }
@@ -159,8 +154,7 @@ $sequence "crouch_aim_pistol" {
 	activity "ACT_RANGE_AIM_PISTOL_LOW" 1
 	fps 18
 	loop
-	ikrule "lfoot" footstep
-	ikrule "rfoot" footstep
+	cmdlist lockfeet
 	ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" usesource
 }
 
@@ -171,8 +165,7 @@ $sequence "shootp1c" {
 	numframes 5
 	activity "ACT_RANGE_ATTACK_PISTOL_LOW" 1
 	{ event 4 0 "" }
-	ikrule "lfoot" footstep
-	ikrule "rfoot" footstep
+	cmdlist lockfeet
 	ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" usesource
 }
 
@@ -275,4 +268,4 @@ $sequence "run_aiming_pistol_all" {
 // Idle Animations
 // ================================================================
 
-$SoldierIdle "Idle1_Pistol" "combine_soldier_anims_anims\custom\Idle1_Pistol.smd" "ACT_IDLE_PISTOL"
+$GenericIdle "Idle1_Pistol" "combine_soldier_anims_anims\custom\Idle1_Pistol.smd" "ACT_IDLE_PISTOL"

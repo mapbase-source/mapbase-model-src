@@ -8,12 +8,23 @@ $modelname "Humans\female_shared.mdl"
 $include "BaseModel.qci"
 $include "hl2mp_ported_anims/commonbones_female.qci"
 $include "hl2mp_ported_anims/weaponmacros.qci"
+$include "hl2mp_ported_anims/player_macros.qci"
+$include "GenericWeightlists.qci"
+$include "GenericAnimationMacros.qci"
 
 $include "FemaleCitizenMoveAnims.qci"
 
 $includemodel "humans/female_shared_original.mdl"
 $include "female_shared_DeclareSequence.qci"
 
+$pushd "female_shared_anims"
+$include "CitizenActivityFixes.qci"
+$popd
+
+// A quick way of retargeting male animations to the female skeleton.
+$weightlist "MaleToFemaleWeights" { "ValveBiped.Bip01_Pelvis" 1 "ValveBiped.Bip01_L_UpperArm" 0 "ValveBiped.Bip01_R_UpperArm" 0 }
+$sequence "male_to_female_layer_base" "male_shared_anims\ragdoll.smd" hidden
+$sequence "male_to_female_layer" "female_shared_anims\ragdoll.smd" weightlist "MaleToFemaleWeights" subtract "male_to_female_layer_base" 0 delta hidden
 
 // ================================================================
 // 
@@ -23,7 +34,6 @@ $include "female_shared_DeclareSequence.qci"
 $include "NewPistolAnimations_FemaleCitizen.qci"
 $include "NewPistolAnimations_357_FemaleCitizen.qci"
 // ================================================================
-
 
 $sequence "MeleeAttack01_Act" {
 	"female_shared_anims\MeleeAttack01.smd"
@@ -66,7 +76,6 @@ $include "AlyxBlindfire.qci"
 $include "AlyxHolster.qci"
 
 $include "Rappel.qci"
-$include "GenericAnimationMacros.qci"
 $include "SoldierSignals.qci"
 
 // Soldiers' original signals had a FPS of 48
@@ -149,9 +158,23 @@ $include "ArrestAnims.qci"
 
 $include "CitizenPackageRun_Female.qci"
 $include "CitizenSuitcase_FemaleCitizen.qci"
+
+$definevariable PistolIdleLayer "Idle_Pistol_Layer2"
+$definevariable PistolIdleLowLayer "Idle_Pistol_Layer2"
+$definevariable PistolCrouchAimLayer "Idle_Pistol_Layer3"
+$definevariable PistolAimLayer "layer_Aim_p_all"
+$include "CitizenWallCover.qci"
+
+$include "CitizenCrouchMovement.qci"
 $popd
 
 $include "l4d1_ported_anims\L4D1_LadderClimb_Female.qci"
+
+$include "NPCDoorAnims.qci"
+
+// Converts certain sequences from the above files to the female skeleton
+// (Keep this at the bottom!)
+$include "FemaleCitizenConversions.qci"
 
 $KeyValues
 {

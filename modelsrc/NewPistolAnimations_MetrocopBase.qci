@@ -168,15 +168,15 @@ $animation "a_runSW_pistol_aim_delta_corrective_animation" "police_animations_an
 // ================================================================
 $animation "a_aim_pistol_neutral" "police_animations_anims\a_aim_pistol_neutral.smd" {
 	fps 30
-	//ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 0 0 target 0
-	//ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 0 0 target 1
+	ikrule "rhand" release
+	ikrule "lhand" release
 }
 
 $animation "a_pistol_aim_down_left" "police_animations_anims\a_pistol_aim_down_left.smd" {
 	fps 30
 	// Crowbar writes this subtract option to prevent jigglebone and poseparameter problems when delta sequences are recompiled.
 	subtract "a_pistol_aim_down_left_corrective_animation" 0
-	//ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 0 0 target 1
+	ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" usesource
 	weightlist "weights_pistol_Aim_all"
 }
 
@@ -184,7 +184,7 @@ $animation "a_pistol_aim_down_center" "police_animations_anims\a_pistol_aim_down
 	fps 30
 	// Crowbar writes this subtract option to prevent jigglebone and poseparameter problems when delta sequences are recompiled.
 	subtract "a_pistol_aim_down_center_corrective_animation" 0
-	//ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 0 0 target 1
+	ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" usesource
 	weightlist "weights_pistol_Aim_all"
 }
 
@@ -192,7 +192,7 @@ $animation "a_pistol_aim_down_right" "police_animations_anims\a_pistol_aim_down_
 	fps 30
 	// Crowbar writes this subtract option to prevent jigglebone and poseparameter problems when delta sequences are recompiled.
 	subtract "a_pistol_aim_down_right_corrective_animation" 0
-	//ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 0 0 target 1
+	ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" usesource
 	weightlist "weights_pistol_Aim_all"
 }
 
@@ -200,7 +200,7 @@ $animation "a_pistol_aim_mid_left" "police_animations_anims\a_pistol_aim_mid_lef
 	fps 30
 	// Crowbar writes this subtract option to prevent jigglebone and poseparameter problems when delta sequences are recompiled.
 	subtract "a_pistol_aim_mid_left_corrective_animation" 0
-	//ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 0 0 target 1
+	ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" usesource
 	weightlist "weights_pistol_Aim_all"
 }
 
@@ -208,7 +208,7 @@ $animation "a_pistol_aim_mid_center" "police_animations_anims\a_pistol_aim_mid_c
 	fps 30
 	// Crowbar writes this subtract option to prevent jigglebone and poseparameter problems when delta sequences are recompiled.
 	subtract "a_pistol_aim_mid_center_corrective_animation" 0
-	//ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 0 0 target 1
+	ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" usesource
 	weightlist "weights_pistol_Aim_all"
 }
 
@@ -216,7 +216,7 @@ $animation "a_pistol_aim_mid_right" "police_animations_anims\a_pistol_aim_mid_ri
 	fps 30
 	// Crowbar writes this subtract option to prevent jigglebone and poseparameter problems when delta sequences are recompiled.
 	subtract "a_pistol_aim_mid_right_corrective_animation" 0
-	//ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 0 0 target 1
+	ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" usesource
 	weightlist "weights_pistol_Aim_all"
 }
 
@@ -224,7 +224,7 @@ $animation "a_pistol_aim_up_left" "police_animations_anims\a_pistol_aim_up_left.
 	fps 30
 	// Crowbar writes this subtract option to prevent jigglebone and poseparameter problems when delta sequences are recompiled.
 	subtract "a_pistol_aim_up_left_corrective_animation" 0
-	//ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 0 0 target 1
+	ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" usesource
 	weightlist "weights_pistol_Aim_all"
 }
 
@@ -232,7 +232,7 @@ $animation "a_pistol_aim_up_center" "police_animations_anims\a_pistol_aim_up_cen
 	fps 30
 	// Crowbar writes this subtract option to prevent jigglebone and poseparameter problems when delta sequences are recompiled.
 	subtract "a_pistol_aim_up_center_corrective_animation" 0
-	//ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 0 0 target 1
+	ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" usesource
 	weightlist "weights_pistol_Aim_all"
 }
 
@@ -240,7 +240,7 @@ $animation "a_pistol_aim_up_right" "police_animations_anims\a_pistol_aim_up_righ
 	fps 30
 	// Crowbar writes this subtract option to prevent jigglebone and poseparameter problems when delta sequences are recompiled.
 	subtract "a_pistol_aim_up_right_corrective_animation" 0
-	//ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 0 0 target 1
+	ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" usesource
 	weightlist "weights_pistol_Aim_all"
 }
 
@@ -248,21 +248,20 @@ $animation "a_pistol_aim_straight_up" "police_animations_anims\a_pistol_aim_stra
 	fps 30
 	// Crowbar writes this subtract option to prevent jigglebone and poseparameter problems when delta sequences are recompiled.
 	subtract "a_pistol_aim_straight_up_corrective_animation" 0
-	//ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 0 0 target 1
+	ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" usesource
 	weightlist "weights_pistol_Aim_all"
 }
 
 $animation "a_walkn_aim_pistol_neutral" "police_animations_anims\a_walkn_aim_pistol_neutral.smd" {
 	fps 30
-	//ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 0 0 target 0
-	//ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 0 0 target 1
+	ikrule "rhand" release
+	ikrule "lhand" release
 }
 
 $animation "a_WalkN_pistol_aim_down_left" "police_animations_anims\a_WalkN_pistol_aim_down_left.smd" {
 	fps 30
 	// Crowbar writes this subtract option to prevent jigglebone and poseparameter problems when delta sequences are recompiled.
 	subtract "a_WalkN_pistol_aim_down_left_corrective_animation" 0
-	//ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 0 0 target 1
 	weightlist "weights_pistol_Aim_all"
 }
 
@@ -270,7 +269,6 @@ $animation "a_WalkN_pistol_aim_down_center" "police_animations_anims\a_WalkN_pis
 	fps 30
 	// Crowbar writes this subtract option to prevent jigglebone and poseparameter problems when delta sequences are recompiled.
 	subtract "a_WalkN_pistol_aim_down_center_corrective_animation" 0
-	//ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 0 0 target 1
 	weightlist "weights_pistol_Aim_all"
 }
 
@@ -278,7 +276,6 @@ $animation "a_WalkN_pistol_aim_down_right" "police_animations_anims\a_WalkN_pist
 	fps 30
 	// Crowbar writes this subtract option to prevent jigglebone and poseparameter problems when delta sequences are recompiled.
 	subtract "a_WalkN_pistol_aim_down_right_corrective_animation" 0
-	//ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 0 0 target 1
 	weightlist "weights_pistol_Aim_all"
 }
 
@@ -286,7 +283,6 @@ $animation "a_WalkN_pistol_aim_mid_left" "police_animations_anims\a_WalkN_pistol
 	fps 30
 	// Crowbar writes this subtract option to prevent jigglebone and poseparameter problems when delta sequences are recompiled.
 	subtract "a_WalkN_pistol_aim_mid_left_corrective_animation" 0
-	//ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 0 0 target 1
 	weightlist "weights_pistol_Aim_all"
 }
 
@@ -294,7 +290,6 @@ $animation "a_WalkN_pistol_aim_mid_center" "police_animations_anims\a_WalkN_pist
 	fps 30
 	// Crowbar writes this subtract option to prevent jigglebone and poseparameter problems when delta sequences are recompiled.
 	subtract "a_WalkN_pistol_aim_mid_center_corrective_animation" 0
-	//ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 0 0 target 1
 	weightlist "weights_pistol_Aim_all"
 }
 
@@ -302,7 +297,6 @@ $animation "a_WalkN_pistol_aim_mid_right" "police_animations_anims\a_WalkN_pisto
 	fps 30
 	// Crowbar writes this subtract option to prevent jigglebone and poseparameter problems when delta sequences are recompiled.
 	subtract "a_WalkN_pistol_aim_mid_right_corrective_animation" 0
-	//ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 0 0 target 1
 	weightlist "weights_pistol_Aim_all"
 }
 
@@ -310,7 +304,6 @@ $animation "a_WalkN_pistol_aim_up_left" "police_animations_anims\a_WalkN_pistol_
 	fps 30
 	// Crowbar writes this subtract option to prevent jigglebone and poseparameter problems when delta sequences are recompiled.
 	subtract "a_WalkN_pistol_aim_up_left_corrective_animation" 0
-	//ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 0 0 target 1
 	weightlist "weights_pistol_Aim_all"
 }
 
@@ -318,7 +311,6 @@ $animation "a_WalkN_pistol_aim_up_center" "police_animations_anims\a_WalkN_pisto
 	fps 30
 	// Crowbar writes this subtract option to prevent jigglebone and poseparameter problems when delta sequences are recompiled.
 	subtract "a_WalkN_pistol_aim_up_center_corrective_animation" 0
-	//ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 0 0 target 1
 	weightlist "weights_pistol_Aim_all"
 }
 
@@ -326,7 +318,6 @@ $animation "a_WalkN_pistol_aim_up_right" "police_animations_anims\a_WalkN_pistol
 	fps 30
 	// Crowbar writes this subtract option to prevent jigglebone and poseparameter problems when delta sequences are recompiled.
 	subtract "a_WalkN_pistol_aim_up_right_corrective_animation" 0
-	//ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 0 0 target 1
 	weightlist "weights_pistol_Aim_all"
 }
 
@@ -334,7 +325,6 @@ $animation "a_WalkN_pistol_aim_straight_up" "police_animations_anims\a_WalkN_pis
 	fps 30
 	// Crowbar writes this subtract option to prevent jigglebone and poseparameter problems when delta sequences are recompiled.
 	subtract "a_WalkN_pistol_aim_straight_up_corrective_animation" 0
-	//ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 0 0 target 1
 	weightlist "weights_pistol_Aim_all"
 }
 
