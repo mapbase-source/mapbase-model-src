@@ -171,6 +171,11 @@ $animation "@gesture_shoot_pistol_corrective_animation" "police_animations_anims
 $include "NewPistolAnimations_357_Metrocop.qci"
 $include "PoliceCrouchMovement.qci"
 
+$MakeAdjustedAnimation "melee_gunhit" "combine_soldier_anims_anims\melee_gunhit.smd" "police_animations_anims\smg1angryidle1.smd" 7 20 27
+$append melee_gunhit { activity "ACT_MELEE_ATTACK1" 1 { event 3 13 "" } }
+
+$makeflinchgesture "gesture_melee_gunhit" "combine_soldier_anims_anims\melee_gunhit.smd" 7 20 27
+$append gesture_melee_gunhit { activity "ACT_GESTURE_MELEE_ATTACK1" 1 { event 3 13 "" } }
 
 $include "l4d1_ported_anims\L4D1_LadderClimb_Male.qci"
 $include "l4d1_ported_anims\L4D1_PistolAnims.qci" // Metrocops technically have their own pistol draw animation, but that's harder to turn into a gesture which works well
