@@ -3,7 +3,7 @@ $include "PoliceMelee.qci"
 
 $sequence "batonidle1" {
 	"combine_soldier_anims_anims\Idle_Unarmed.smd"
-	activity "ACT_MP_STAND_MELEE" 1 // ACT_IDLE
+	activity "ACT_IDLE_MELEE" 1 // ACT_IDLE
 	fadein 0.2
 	fadeout 0.2
 	node "standing_baton"
@@ -26,7 +26,7 @@ $sequence "walk_hold_baton_angry" {
 	"a_SoldierWalkEasyW"
 	"a_SoldierWalkEasySW"
 	"a_SoldierWalkEasyS"
-	activity "ACT_MP_WALK_MELEE" 1 // ACT_WALK_ANGRY
+	activity "ACT_WALK_MELEE" 1 // ACT_WALK_ANGRY
 	blend "move_yaw" -180 180
 	blendwidth 9
 	{ event 6004 9 "NPC_CombineS" }
@@ -46,7 +46,7 @@ $sequence "run_hold_baton_angry" {
 	"a_SoldierRunW"
 	"a_SoldierRunSW"
 	"a_SoldierRunS"
-	activity "ACT_MP_RUN_MELEE" 1 // ACT_WALK_ANGRY
+	activity "ACT_RUN_MELEE" 1 // ACT_WALK_ANGRY
 	blend "move_yaw" -180 180
 	blendwidth 9
 	{ event 6004 7 "NPC_CombineS" }

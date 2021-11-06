@@ -204,7 +204,7 @@ $sequence "layer_run_hold_baton_angry" {
 //	"a_WalkW"
 //	"a_WalkSW"
 //	"a_WalkS"
-//	activity "ACT_MP_WALK_MELEE" 1 // ACT_WALK_ANGRY
+//	activity "ACT_WALK_ANGRY" 1
 //	blend "move_yaw" -180 180
 //	blendwidth 9
 //	{ event 6004 9 "NPC_MetroPolice" }
