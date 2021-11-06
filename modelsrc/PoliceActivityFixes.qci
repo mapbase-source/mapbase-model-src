@@ -6,7 +6,10 @@
 // 
 // ================================================================
 
-$sequence "layer_relaxed_smg1" { "police_animations_anims\smg1angryidle1.smd" frame 0 0 ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" hidden }
+$weightlist "RHandOnly" { "ValveBiped.Bip01_Pelvis" 0 "ValveBiped.Bip01_R_Hand" 1 }
+
+$sequence "layer_relaxed_fist" { "police_animations_anims\custom\unarmedidle1.smd" frame 0 0 weightlist "RHandOnly" hidden }
+$sequence "layer_relaxed_smg1" { "police_animations_anims\smg1idle1.smd" frame 0 0 ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" hidden }
 $sequence "layer_combat_smg1" { "police_animations_anims\smg1angryidle1.smd" frame 0 0 ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" hidden }
 $sequence "layer_lowcover_smg1" { "police_animations_anims\lowcover_aim_smg1.smd" frame 0 0 ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" hidden }
 
@@ -26,10 +29,14 @@ $makeaimlayer soldier_Aim_9_directions			"hl2mp_ported_anims\Aim_9_directions"
 // 
 // ----------------------------------------------------------------
 
-// NEW -- Now uses melee-specific activities
-// (note that ACT_MP_STAND_MELEE is currently a stand-in for that)
-$GenericIdleWeight "batonidle1" "police_animations_anims\batonidle1.smd" "ACT_MP_STAND_MELEE" 2
-$GenericIdle "batonidle2" "police_animations_anims\batonidle2.smd" "ACT_MP_STAND_MELEE"
+// Now uses melee-specific activities
+$GenericIdleWeight "batonidle1" "police_animations_anims\batonidle1.smd" "ACT_IDLE_MELEE" 2
+$GenericIdle "batonidle2" "police_animations_anims\batonidle2.smd" "ACT_IDLE_MELEE"
+
+// ----------------------------------------------------------------
+
+$sequence "walk_all" { $a_WalkBlends activity "ACT_WALK_MELEE" 1 } // Activity changed from "ACT_WALK" to "ACT_WALK_MELEE" (see below for new ACT_WALK)
+$sequence "run_all" { $a_RunBlends activity "ACT_RUN_MELEE" 1 } // Activity changed from "ACT_RUN" to "ACT_RUN_MELEE" (see below for new ACT_RUN)
 
 // ----------------------------------------------------------------
 
@@ -76,6 +83,9 @@ $GenericAimMoveLayer "layer_run_hold_shotgun" "police_animations_anims\layer_run
 $GenericAimMoveLayer "layer_run_aiming_shotgun" "police_animations_anims\layer_run_aiming_smg1.smd" "combat_smg1_to_shotgun" "soldier_Aim_9_directions"
 $GenericAimMoveLayer "layer_walk_hold_shotgun" "police_animations_anims\layer_walk_hold_smg1.smd" "relaxed_smg1_to_shotgun" "soldier_Aim_9_directions"
 $GenericAimMoveLayer "layer_walk_aiming_shotgun" "police_animations_anims\layer_walk_aiming_SMG1.smd" "combat_smg1_to_shotgun" "soldier_Aim_9_directions"
+
+$sequence "walk_all_unarmed" { $a_WalkBlends activity "ACT_WALK" 1 blendlayer "layer_relaxed_fist" 0 0 0 0 local }
+$sequence "run_all_unarmed" { $a_RunBlends activity "ACT_RUN" 1 } // Unarmed layer makes this look weird
 
 $sequence "run_hold_ar2" { $a_RunBlends activity "ACT_RUN_AR2" 1 addlayer "layer_run_hold_ar2" }
 $sequence "run_aiming_ar2_all" { $a_RunBlends activity "ACT_RUN_AIM_AR2" 1 addlayer "layer_run_aiming_ar2" }
