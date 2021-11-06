@@ -64,9 +64,10 @@ $GenericIdle "shotgunidle1" "police_animations_anims\custom\ar2idle1.smd" "ACT_I
 $GenericCombatIdle "ar2angryidle1" "police_animations_anims\custom\ar2angryidle1.smd" "ACT_IDLE_ANGRY_AR2" "soldier_Aim_9_directions"
 $GenericShootFromIdle "shoot_ar2" "police_animations_anims\custom\ar2angryidle1.smd" "ACT_RANGE_ATTACK_AR2" "soldier_Aim_9_directions" "gesture_shoot_smg1" 3
 $GenericCombatIdle "shotgunangryidle1" "police_animations_anims\custom\shotgunangryidle1.smd" "ACT_IDLE_ANGRY_SHOTGUN" "soldier_Aim_9_directions"
-$GenericShootFromIdle_NoHandIK "shoot_shotgun" "police_animations_anims\custom\shotgunangryidle1.smd" "ACT_RANGE_ATTACK_SHOTGUN" "soldier_Aim_9_directions" "gesture_shoot_shotgun" 45
+//$GenericShootFromIdle_NoHandIK "shoot_shotgun" "police_animations_anims\custom\shotgunangryidle1.smd" "ACT_RANGE_ATTACK_SHOTGUN" "soldier_Aim_9_directions" "gesture_shoot_shotgun" 45
+$GenericShoot "shoot_shotgun" "police_animations_anims\custom\shoot_shotgun.smd" "ACT_RANGE_ATTACK_SHOTGUN" "soldier_Aim_9_directions"
 
-$append "shoot_shotgun" { { event AE_CL_PLAYSOUND 11 "Weapon_Alyx_Shotgun.Cock" } }
+$append "shoot_shotgun" { { event AE_CL_PLAYSOUND 11 "Weapon_Alyx_Shotgun.Cock" } numframes 45 }
 
 // Hand-corrected custom cover animations
 $GenericShootFromIdle "lowcover_shoot_ar2" "police_animations_anims\custom\lowcover_aim_ar2.smd" "ACT_RANGE_ATTACK_AR2_MED" "soldier_Aim_9_directions" "gesture_shoot_smg1" 3 // ACT_RANGE_ATTACK_SMG1_LOW
@@ -101,7 +102,9 @@ $sequence "walk_aiming_shotgun_all" { $a_WalkBlends activity "ACT_WALK_AIM_SHOTG
 
 $weightlist "NoHeadMovement" { "ValveBiped.Bip01_Head1" 0 "ValveBiped.Bip01_Neck1" 0.25 "ValveBiped.Bip01_Pelvis" 1 }
 
-$sequence "gesture_shoot_shotgun" "combine_soldier_anims_anims\a_shootShotgun" { weightlist "NoHeadMovement" delta activity "ACT_GESTURE_RANGE_ATTACK_SHOTGUN" 1 { event AE_CL_PLAYSOUND 11 "Weapon_Alyx_Shotgun.Cock" } }
+//$sequence "gesture_shoot_shotgun" "combine_soldier_anims_anims\a_shootShotgun" { weightlist "NoHeadMovement" delta activity "ACT_GESTURE_RANGE_ATTACK_SHOTGUN" 1 { event AE_CL_PLAYSOUND 11 "Weapon_Alyx_Shotgun.Cock" } }
+
+$makeweapongesture "gesture_shoot_shotgun" "police_animations_anims\custom\shoot_shotgun.smd" 9 20 30
 
 // ----------------------------------------------------------------
 
