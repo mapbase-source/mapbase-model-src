@@ -249,6 +249,31 @@ $sequence "melee_kick_scripted" {
 	blendlayer $Blend_Idle_Default$ 30 38 38 41 xfade
 }
 
+$makeflinchgesture "gesture_melee_gunhit" "combine_soldier_anims_anims\melee_gunhit.smd" 7 20 27
+$append gesture_melee_gunhit { activity "ACT_GESTURE_MELEE_ATTACK1" 1 { event 3 13 "" } }
+
+$weightlist weapongesture_upperbody_and_rleg "ValveBiped.Bip01_Pelvis" 1.0 "ValveBiped.Bip01_L_Thigh" 0.0 "ValveBiped.Bip01_R_Thigh" 1.0
+
+$definemacro makeflinchgesture_rleg gesturename filename InFrame OutFrame LastFrame \\
+$sequence $gesturename$inDelta $filename$ frame 0 $InFrame$ weightlist weapongesture_upperbody_and_rleg splinedelta delta hidden  \\
+$sequence $gesturename$inFrame $filename$ frame $InFrame$ $InFrame$ weightlist weapongesture_upperbody_and_rleg hidden noautoik \\
+$sequence $gesturename$CoreDelta $filename$ frame $InFrame$ $OutFrame$ weightlist weapongesture_upperbody_and_rleg splinedelta delta hidden  \\
+$sequence $gesturename$OutFrame $filename$ frame $OutFrame$ $OutFrame$ weightlist weapongesture_upperbody_and_rleg hidden noautoik \\
+$sequence $gesturename$outDelta $filename$ frame $OutFrame$ $LastFrame$ weightlist weapongesture_upperbody_and_rleg splinedelta delta hidden  \\
+\\
+$sequence $gesturename$ { \\
+  $filename$ noanimation numframes $LastFrame$ \\
+  blendlayer $gesturename$inFrame 0 $InFrame$ $InFrame$ $OutFrame$ spline xfade \\
+  blendlayer $gesturename$OutFrame $InFrame$ $OutFrame$ $OutFrame$ $LastFrame$ spline \\
+  blendlayer $gesturename$inDelta 0 0 $InFrame$ $InFrame$ \\
+  blendlayer $gesturename$CoreDelta $InFrame$ $InFrame$ $OutFrame$ $OutFrame$ \\
+  blendlayer $gesturename$outDelta $OutFrame$ $OutFrame$ $LastFrame$ $LastFrame$ \\
+} \\
+$continue $gesturename$
+
+$makeflinchgesture_rleg "gesture_melee_kick" "police_ss_anims\adoorkick.smd" 7 32 45
+$append gesture_melee_kick { activity "ACT_GESTURE_MELEE_ATTACK2" 1 { event 3 20 "" } fps 40 }
+
 $include "SoldierCrouchMovement.qci"
 
 $include "l4d1_ported_anims\L4D1_LadderClimb_Male.qci"
