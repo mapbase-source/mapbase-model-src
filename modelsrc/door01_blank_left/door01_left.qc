@@ -13,6 +13,7 @@ $bodygroup "handle01"
 	studio "door01_left_handle01_reference.smd"
 	studio "door01_left_handle02_reference.smd"
 	studio "door01_left_handle03_reference.smd"
+	studio "door01_left_handle04_reference.smd" // Mapbase -- New Combine lock hardware
 }
 
 //$lod 15
@@ -31,6 +32,7 @@ $contents "solid"
 $illumposition 23 0 0
 
 $cdmaterials "models\props_c17\"
+$cdmaterials "models\props_combine\"
 
 $texturegroup "skinfamilies"
 {
@@ -83,16 +85,45 @@ $keyvalues
 		{
 			"locked"			"DoorSound.Null"
 			"unlocked"			"DoorSound.Null"
+			
+			"activity_front"	"ACT_GESTURE_DOOR_LEVER_OPEN_FRONT"
+			"activity_back"		"ACT_GESTURE_DOOR_LEVER_OPEN_BACK"
 		}
 		"hardware1"		 
 		{
 			"locked"			"DoorHandles.Locked1"
 			"unlocked"			"DoorHandles.Unlocked1"
+			
+			"activity_front"	"ACT_GESTURE_DOOR_LEVER_OPEN_FRONT"
+			"activity_back"		"ACT_GESTURE_DOOR_LEVER_OPEN_BACK"
 		}
 		"hardware2"		 
 		{
 			"locked"			"DoorHandles.Locked2"
 			"unlocked"			"DoorHandles.Unlocked2"
+			
+			"activity_front"	"ACT_GESTURE_DOOR_PUSHBAR_OPEN_FRONT"
+			"activity_back"		"ACT_GESTURE_DOOR_PUSHBAR_OPEN_BACK"
+		}
+		
+		// Mapbase -- Fixed keypad handle sounds
+		"hardware3"		 
+		{
+			"locked"			"DoorHandles.Locked1"
+			"unlocked"			"DoorHandles.Unlocked1"
+			
+			"activity_front"	"ACT_GESTURE_DOOR_LEVER_OPEN_FRONT"
+			"activity_back"		"ACT_GESTURE_DOOR_LEVER_OPEN_BACK"
+		}
+		
+		// Mapbase -- New Combine lock hardware
+		"hardware4"		 
+		{
+			"locked"			"combine.door_lock"
+			"unlocked"			"DoorHandles.Unlocked1"
+			
+			"activity_front"	"ACT_GESTURE_DOOR_LEVER_OPEN_FRONT"
+			"activity_back"		"ACT_GESTURE_DOOR_LEVER_OPEN_BACK"
 		}
 	}
 }
@@ -104,6 +135,13 @@ $bbox -5.996 -1.25 -54.25 5.996 47.25 54.25
 $definebone "door" "" 0 0 0 0 0 89.999983 0 0 0 0 0 0
 $definebone "handle" "door" 43.810005 -10.390667 1.997513 0 0 0 0 0 0 0 0 0
 $definebone "handle02" "door" 43.810005 -10.390667 1.997513 0 0 0 0 0 0 0 0 0
+
+// Mapbase -- New attachments
+$attachment "lever_front" "handle" -3 -3.5 9 rotate 90 -180 0
+$attachment "lever_back" "handle" -3 -3.5 -10 rotate -90 -180 0
+
+$attachment "pushbar_back" "door" 43.75 -10 -6 rotate -90 -90 0
+$attachment "pushbar_front" "handle02" -16 0.5 7 rotate 0 0 -90
 
 
 $weightlist "weights_openbar" {
