@@ -117,7 +117,7 @@ $sequence "idle_p_crouch" { // crouch_idle_pistol
 	activity "ACT_COVER_PISTOL_LOW" 1
 	fadein 0.2
 	fadeout 0.2
-	node "crouching"
+	node "crouching_pistol"
 	loop
 	ikrule "lfoot" footstep contact 0 fakeorigin 4.85 1.29 0 fakerotate 0 0 0 floor 0 height 20 radius 2.5 range 0 0 40 40 target 3
 	ikrule "rfoot" footstep contact 0 fakeorigin -8.09 -4.55 0 fakerotate 0 0 0 floor 0 height 20 radius 2.5 range 0 0 40 40 target 2
@@ -195,6 +195,7 @@ $sequence "Crouch_to_shoot_pistol" {
 	fadein 0.2
 	fadeout 0.2
 	blendlayer "layer_Aim_p_all" 8 15 25 25 spline
+	blendlayer "Crouchshoot_to_standshoot_pistol" 1 25 26 26 // Alyx animation doesn't aim for some reason
 	transition "crouching_pistol" "shooting_pistol" // shooting
 	ikrule "rfoot" footstep contact 1 fakeorigin -8.02 -4.58 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 0 1 5 10 target 2
 	ikrule "rfoot" footstep contact 12 fakeorigin -3.09 -7.27 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 10 12 24 25 target 2
@@ -208,6 +209,7 @@ $sequence "Shoot_to_crouch" {
 	fadein 0.2
 	fadeout 0.2
 	blendlayer "layer_Aim_p_all" 8 15 25 25 spline
+	blendlayer "Pistol_idle_aim" 0 0 0 15 // Alyx animation doesn't aim for some reason
 	transition "shooting_pistol" "crouching_pistol" // shooting
 	ikrule "rfoot" footstep contact 6 fakeorigin -8.34 -4.37 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 0 6 24 25 target 2
 	ikrule "lfoot" footstep contact 1 fakeorigin 10.81 2.86 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 0 1 7 10 target 3

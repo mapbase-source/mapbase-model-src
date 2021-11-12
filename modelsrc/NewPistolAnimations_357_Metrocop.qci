@@ -32,3 +32,10 @@ $append "reload_357" {
 	node "shooting_pistol"
 	fps 30
 }
+
+$GenericReloadFromIdle_NoAim "crouch_reload_357" "police_animations_anims\crouch_reload_pistol.smd" "ACT_RELOAD_REVOLVER_LOW" "gesture_reload_357" 62 41
+
+$append "crouch_reload_357" {
+	$357ReloadSounds
+	node "crouching_pistol"
+}
