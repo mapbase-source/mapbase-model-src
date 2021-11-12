@@ -93,10 +93,30 @@ $weightlist "GrenadeCorrectionWeights" {
 	"ValveBiped.Bip01_L_Foot" 0
 }
 
-//$MakeGrenadeGesture $DI_Idle_Default$ "combine_soldier_anims_anims/grenThrow" 10 40 50 45
 $SoldierGrenadeAnimation $Blend_SMD_Default$
 $append "grenThrow_layer" {
 	weightlist "GrenadeCorrectionWeights"
+}
+
+$makeweapongesturep grenThrow_gesture "combine_soldier_anims_anims\grenThrow.smd" 10 35 50
+$append grenThrow_gesture {
+	fps 45
+	activity "ACT_GESTURE_COMBINE_THROW_GRENADE" 1
+	{ event 7 30 "" }
+}
+
+$makeweapongesturep grenDrop_gesture "combine_soldier_anims_anims\grenDrop.smd" 12 32 43
+$append grenDrop_gesture {
+	fps 35
+	activity "ACT_GESTURE_SPECIAL_ATTACK1" 1
+	{ event 7 26 "" }
+}
+
+$makeweapongesturep grenPlace_gesture "combine_soldier_anims_anims\grenPlace.smd" 12 35 45
+$append grenPlace_gesture {
+	fps 35
+	activity "ACT_GESTURE_SPECIAL_ATTACK2" 1
+	{ event 9 25 "" }
 }
 
 // Not good enough at/m
