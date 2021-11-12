@@ -90,7 +90,92 @@ $ikchain "lfoot" "ValveBiped.Bip01_L_Foot" knee 0.798 0.603 0
 $ikautoplaylock "rfoot" 1 0.1
 $ikautoplaylock "lfoot" 1 0.1
 
+$cmdlist lockfeet {
+	ikrule lfoot footstep
+	ikrule rfoot footstep
+}
+
+$cmdlist lockfeetreleasehands {
+	ikrule lfoot footstep
+	ikrule rfoot footstep
+	ikrule rhand release
+	ikrule lhand release
+}
+
 $surfaceprop "alienflesh"
+
+// ================================================================
+
+$weightlist "JumpCrouchLayer" { "ValveBiped.hips" 1 "ValveBiped.spine1" 0 }
+$sequence "jump_holding_land_layer" "vortigaunt_anims\jump_holding_land.smd" frame 0 0 weightlist "JumpCrouchLayer" hidden
+
+$weightlist "ActionIdleLayer" { "ValveBiped.hips" 0.05 "ValveBiped.spine1" 1 }
+$sequence "action_idle_layer" "vortigaunt_anims\ActionIdle.smd" worldspace weightlist "ActionIdleLayer" hidden
+$sequence "action_zapattack_layer" "vortigaunt_anims\zapattack1.smd" worldspace weightlist "ActionIdleLayer" hidden
+$sequence "action_from_layer" "vortigaunt_anims\FromAction.smd" worldspace weightlist "ActionIdleLayer" hidden
+$sequence "action_to_layer" "vortigaunt_anims\ToAction.smd" worldspace weightlist "ActionIdleLayer" hidden
+
+$sequence "crouch_cover_low" {
+	"vortigaunt_anims\jump_holding_land.smd"
+	activity "ACT_COVER_LOW" 1
+	node "crouch_cover"
+	frame 0 0
+	cmdlist lockfeetreleasehands
+}
+
+$sequence "crouch_aim" {
+	"vortigaunt_anims\jump_holding_land.smd"
+	activity "ACT_RANGE_AIM_LOW" 1
+	node "crouch_aim"
+	frame 0 0
+	numframes 75
+	blendlayer "action_idle_layer" 0 0 0 0 local
+	cmdlist lockfeetreleasehands
+}
+
+$declaresequence "bolt_attack_all"
+
+$sequence "crouch_zapattack1" {
+	"vortigaunt_anims\jump_holding_land.smd"
+	activity "ACT_RANGE_ATTACK1_LOW" 1
+	{ event AE_VORTIGAUNT_ZAP_POWERUP 1 "2" }
+	{ event AE_VORTIGAUNT_ZAP_POWERUP 5 "2" }
+	{ event AE_VORTIGAUNT_ZAP_POWERUP 10 "2" }
+	{ event AE_VORTIGAUNT_SHOOT_SOUNDSTART 44 "" }
+	{ event AE_VORTIGAUNT_ZAP_SHOOT 47 "2" }
+	{ event AE_VORTIGAUNT_ZAP_DONE 55 "" }
+	blendlayer "bolt_attack_all" 27 45 67 73
+	node "crouch_aim"
+	frame 0 0
+	numframes 90
+	fps 45
+	blendlayer "action_zapattack_layer" 0 0 0 0 local
+	cmdlist lockfeetreleasehands
+}
+
+$declaresequence "ActionIdle"
+
+$sequence "crouch_cover_to_stand" "vortigaunt_anims\jump_holding_land.smd" activity "ACT_TRANSITION" 1 transition "crouch_cover" "1" cmdlist lockfeetreleasehands
+$sequence "crouch_cover_to_action" "vortigaunt_anims\jump_holding_land.smd" activity "ACT_TRANSITION" 1 transition "crouch_cover" "2" cmdlist lockfeetreleasehands blendlayer "ActionIdle" 12 25 26 26 spline
+$sequence "stand_to_crouch_cover" "vortigaunt_anims\jump_holding_land_reverse.smd" activity "ACT_TRANSITION" 1 transition "1" "crouch_cover" cmdlist lockfeetreleasehands
+$sequence "action_to_crouch_cover" "vortigaunt_anims\jump_holding_land_reverse.smd" activity "ACT_TRANSITION" 1 transition "2" "crouch_cover" cmdlist lockfeetreleasehands blendlayer "ActionIdle" 0 0 0 15 spline
+
+$sequence "crouch_aim_to_stand" "vortigaunt_anims\jump_holding_land.smd" activity "ACT_TRANSITION" 1 transition "crouch_aim" "1" cmdlist lockfeetreleasehands blendlayer "action_idle_layer" 0 0 0 15 spline
+$sequence "crouch_aim_to_action" "vortigaunt_anims\jump_holding_land.smd" activity "ACT_TRANSITION" 1 transition "crouch_aim" "2" cmdlist lockfeetreleasehands blendlayer "action_idle_layer" 0 0 0 0 local
+$sequence "stand_to_crouch_aim" "vortigaunt_anims\jump_holding_land_reverse.smd" activity "ACT_TRANSITION" 1 transition "1" "crouch_aim" cmdlist lockfeetreleasehands blendlayer "action_idle_layer" 12 25 26 26
+$sequence "action_to_crouch_aim" "vortigaunt_anims\jump_holding_land_reverse.smd" activity "ACT_TRANSITION" 1 transition "2" "crouch_aim" cmdlist lockfeetreleasehands blendlayer "action_idle_layer" 0 0 0 0 local
+
+$sequence "crouch_cover_to_crouch_aim" "vortigaunt_anims\jump_holding_land.smd" frame 0 0 numframes 35 fps 60 activity "ACT_TRANSITION" 1 transition "crouch_cover" "crouch_aim" cmdlist lockfeetreleasehands blendlayer "action_to_layer" 0 35 36 36
+$sequence "crouch_aim_to_crouch_cover" "vortigaunt_anims\jump_holding_land.smd" frame 0 0 numframes 50 activity "ACT_TRANSITION" 1 transition "crouch_aim" "crouch_cover" cmdlist lockfeetreleasehands blendlayer "action_from_layer" 0 0 0 50
+
+// ================================================================
+
+$sequence "grenThrow" {
+	"vortigaunt_anims\MeleeHigh1.smd"
+	activity "ACT_COMBINE_THROW_GRENADE" 1
+	{ event 7 17 "" }
+	cmdlist lockfeetreleasehands
+}
 
 // ================================================================
 
@@ -141,8 +226,7 @@ $sequence "Man_Gun" {
 	addlayer "Man_Gun_Aim_all"
 	fps 30
 	loop
-	ikrule "lfoot" release
-	ikrule "rfoot" release
+	cmdlist lockfeet
 	ikrule "lhand" attachment "L_hand_vort" radius 50
 	ikrule "rhand" attachment "R_hand_vort" radius 50
 }
