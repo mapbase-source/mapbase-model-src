@@ -56,7 +56,7 @@ $definevariable Blend_Idle_Rifle_Crouched "crouch_aim_smg1"
 $definevariable Blend_SMD_Default "male_shared_anims\Idle_SMG1_Aim.smd"
 $definevariable Blend_SMD_Unarmed "male_shared_anims\idle_subtle.smd"
 $definevariable Blend_SMD_Panicked "male_shared_anims\crouchIdle_panicked4.smd"
-$definevariable Blend_SMD_Pistol "police_animations_anims\pistolangryidle2.smd"
+$definevariable Blend_SMD_Pistol "male_shared_anims\custom\Idle_Pistol_Aim.smd"
 $definevariable Blend_SMD_Rifle "male_shared_anims\Idle_SMG1_Aim.smd"
 $definevariable Blend_SMD_Rifle_Crouched "male_shared_anims\crouch_aim_smg1.smd"
 

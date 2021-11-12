@@ -134,44 +134,20 @@ $sequence "layer_run_aiming_pistol_posture" {
 // ================================================================
 
 // Re-use the regular metrocop animation as a readiness activity
-$sequence "pistolangryidle2" {
-	"police_animations_anims\pistolangryidle2.smd"
-	activity "ACT_IDLE_AIM_PISTOL_STIMULATED" 1 // ACT_IDLE_ANGRY_PISTOL
-	fadein 0.2
-	fadeout 0.2
-	addlayer "pistol_Aim_all"
+$GenericCombatIdle "pistolangryidle2" "police_animations_anims\pistolangryidle2.smd" "ACT_IDLE_AIM_PISTOL_STIMULATED" "pistol_Aim_all"
+$append pistolangryidle2 {
 	node "shooting_pistol"
 	fps 4
-	ikrule "lfoot" footstep contact 0 fakeorigin 11.96 7.22 0 fakerotate 0 0 0 floor 0 height 20 radius 2.5 range 0 0 3 3 target 3
-	ikrule "rfoot" footstep contact 0 fakeorigin -9.2 -3.23 0 fakerotate 0 0 0 floor 0 height 20 radius 2.5 range 0 0 3 3 target 2
 }
 
-$sequence "Idle_Pistol_Aim" { // pistolangryidle2
-	"male_shared_anims\Idle_SMG1_Aim.smd"
-	activity "ACT_IDLE_ANGRY_PISTOL" 1
-	fadein 0.2
-	fadeout 0.2
-	blendlayer "layer_aim_pistol_posture" 0 0 0 0 local
-	addlayer "pistol_Aim_all"
+$GenericCombatIdle "Idle_Pistol_Aim" "male_shared_anims\custom\Idle_Pistol_Aim.smd" "ACT_IDLE_ANGRY_PISTOL" "soldier_Aim_9_directions"
+$append Idle_Pistol_Aim {
 	node "shooting_pistol"
 	fps 4
-	ikrule "lfoot" footstep contact 0 fakeorigin 13.32 4.21 0 fakerotate 0 0 0 floor 0 height 20 radius 2.5 range 0 0 60 60 target 3
-	ikrule "rfoot" footstep contact 0 fakeorigin -9.26 -2.18 0 fakerotate 0 0 0 floor 0 height 20 radius 2.5 range 0 0 60 60 target 2
-	//ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 60 60 target 1
-	//ikrule "rhand" release
 }
 
-$sequence "Crouch_idle_pistol" {
-	"police_animations_anims\Crouch_idle_pistol.smd"
-	activity "ACT_COVER_PISTOL_LOW" 1
-	fadein 0.2
-	fadeout 0.2
-	node "crouching_pistol"
-	fps 30
-	loop
-	ikrule "lfoot" footstep contact 0 fakeorigin 5.77 8.81 0 fakerotate 0 0 0 floor 0 height 20 radius 2.5 range 0 0 80 80 target 3
-	ikrule "rfoot" footstep contact 0 fakeorigin -11.36 9.68 0 fakerotate 0 0 0 floor 0 height 20 radius 2.5 range 0 0 80 80 target 2
-}
+$GenericIdle "Crouch_idle_pistol" "police_animations_anims\Crouch_idle_pistol.smd" "ACT_COVER_PISTOL_LOW"
+$append Crouch_idle_pistol { node "crouching_pistol" }
 
 $sequence "gesture_shoot_pistol" {
 	"police_animations_anims\gesture_shoot_pistol.smd"
@@ -184,20 +160,7 @@ $sequence "gesture_shoot_pistol" {
 	fps 30
 }
 
-$sequence "shootp1" {
-	"male_shared_anims\Idle_SMG1_Aim.smd" // "police_animations_anims\shootp1.smd"
-	numframes 5
-	activity "ACT_RANGE_ATTACK_PISTOL" 1
-	fadein 0.2
-	fadeout 0.2
-	blendlayer "layer_aim_pistol_posture" 0 0 0 0 local
-	addlayer "pistol_Aim_all"
-	addlayer "gesture_shoot_pistol"
-	node "shooting_pistol"
-	fps 30
-	ikrule "lfoot" footstep contact 0 fakeorigin 11.95 7.22 0 fakerotate 0 0 0 floor 0 height 20 radius 2.5 range 0 0 4 4 target 3
-	ikrule "rfoot" footstep contact 0 fakeorigin -9.2 -3.23 0 fakerotate 0 0 0 floor 0 height 20 radius 2.5 range 0 0 4 4 target 2
-}
+$GenericShootFromIdle "shootp1" "male_shared_anims\custom\Idle_Pistol_Aim.smd" "ACT_RANGE_ATTACK_PISTOL" "soldier_Aim_9_directions" "gesture_shoot_pistol" 5
 
 $sequence "reload_pistol" {
 	"police_animations_anims\reload_pistol.smd"
@@ -260,23 +223,13 @@ $sequence "gesture_reload_pistol" {
 // ================================================================
 // Low Cover Animations
 // ================================================================
-$sequence "crouch_reload_pistol" {
-	"police_animations_anims\crouch_reload_pistol.smd"
-	activity "ACT_RELOAD_PISTOL_LOW" 1
-	{ event 3017 0 "" }
-	{ event 3018 56 "" }
-	fadein 0.2
-	fadeout 0.2
-	node "crouching_pistol"
-	fps 30
-	ikrule "lfoot" footstep contact 0 fakeorigin 5.77 8.81 0 fakerotate 0 0 0 floor 0 height 20 radius 2.5 range 0 0 60 60 target 3
-	ikrule "rfoot" footstep contact 0 fakeorigin -11.36 9.68 0 fakerotate 0 0 0 floor 0 height 20 radius 2.5 range 0 0 60 60 target 2
-}
-
 $weightlist "weights_pistol_crouch_layer" {
-	 "ValveBiped.Bip01_Pelvis" 0
-	 "ValveBiped.Bip01_Spine4" 1
-	 "ValveBiped.Bip01_Neck1" 0
+	 "ValveBiped.Bip01_Pelvis" 0.1
+	 "ValveBiped.Bip01_Spine" 0.2
+	 "ValveBiped.Bip01_Spine1" 0.3
+	 "ValveBiped.Bip01_Spine2" 0.4
+	 "ValveBiped.Bip01_Spine4" 0.5
+	 "ValveBiped.Bip01_Neck1" 0.25
 	 "ValveBiped.Bip01_L_Clavicle" 1
 	 "ValveBiped.Bip01_L_UpperArm" 1
 	 "ValveBiped.Bip01_L_Forearm" 1
@@ -288,60 +241,24 @@ $weightlist "weights_pistol_crouch_layer" {
 }
 
 $sequence "Crouch_Pistol_Layer" {
-	"police_animations_anims\pistolangryidle2.smd"
+	"male_shared_anims\custom\crouch_aim_pistol.smd"
 	frame 0 0
 	numframes 30
+	worldspace
 	weightlist "weights_pistol_crouch_layer"
-	addlayer "layer_pistolangryidle2_mid_right"
 	loop
-	ikrule "lfoot" footstep contact 7 fakeorigin 13.65 6.55 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 29 7 21 29 target 3
-	ikrule "rfoot" footstep contact 22 fakeorigin 13.7 -1.18 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 14 22 6 14 target 2
 	hidden
+	ikrule lhand touch "ValveBiped.Bip01_R_Hand"
 }
 
-$sequence "Crouch_ShootPistol_Layer" {
-	"police_animations_anims\shootp1.smd"
-	weightlist "weights_pistol_crouch_layer"
-	addlayer "layer_pistolangryidle2_mid_right"
-	loop
-	ikrule "lfoot" footstep contact 7 fakeorigin 13.65 6.55 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 29 7 21 29 target 3
-	ikrule "rfoot" footstep contact 22 fakeorigin 13.7 -1.18 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 14 22 6 14 target 2
-	hidden
-}
+$GenericReloadNoAim "crouch_reload_pistol" "police_animations_anims\crouch_reload_pistol.smd" "ACT_RELOAD_PISTOL_LOW" 56
+$append crouch_reload_pistol { node "crouching_pistol" }
 
-$sequence "crouch_shoot_pistol" {
-	"male_shared_anims\crouch_shoot_smg1.smd"
-	activity "ACT_RANGE_ATTACK_PISTOL_LOW" 1
-	{ event 3002 0 "" }
-	fadein 0.2
-	fadeout 0.2
-	blendlayer "Crouch_ShootPistol_Layer" 0 0 0 0 local
-	addlayer "pistol_Aim_all"
-	node "crouchShooting_pistol"
-	fps 25
-	ikrule "lfoot" footstep contact 0 fakeorigin 11.07 8.78 0 fakerotate 0 0 0 floor 0 height 20 radius 2.5 range 0 0 6 6 target 3
-	ikrule "rfoot" footstep contact 0 fakeorigin -5.22 0.2 0 fakerotate 0 0 0 floor 0 height 20 radius 2.5 range 0 0 6 6 target 2
-	//ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 6 6 target 1
-	ikrule "lhand" release
-	ikrule "rhand" release
-}
+$GenericCombatIdle "crouch_aim_pistol" "male_shared_anims\custom\crouch_aim_pistol.smd" "ACT_RANGE_AIM_PISTOL_LOW" "soldier_Aim_9_directions"
+$append crouch_aim_pistol { node "crouchShooting_pistol" }
 
-$sequence "crouch_aim_pistol" {
-	"male_shared_anims\crouch_aim_smg1.smd"
-	activity "ACT_RANGE_AIM_PISTOL_LOW" 1
-	fadein 0.2
-	fadeout 0.2
-	blendlayer "Crouch_Pistol_Layer" 0 0 0 0 local
-	addlayer "pistol_Aim_all"
-	node "crouchShooting_pistol"
-	fps 30
-	loop
-	ikrule "lfoot" footstep contact 0 fakeorigin 11.07 8.78 0 fakerotate 0 0 0 floor 0 height 20 radius 2.5 range 0 0 60 60 target 3
-	ikrule "rfoot" footstep contact 0 fakeorigin -5.22 0.2 0 fakerotate 0 0 0 floor 0 height 20 radius 2.5 range 0 0 60 60 target 2
-	//ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 60 60 target 1
-	ikrule "lhand" release
-	ikrule "rhand" release
-}
+$GenericShootFromIdle "crouch_shoot_pistol" "male_shared_anims\custom\crouch_aim_pistol.smd" "ACT_RANGE_ATTACK_PISTOL_LOW" "soldier_Aim_9_directions" "gesture_shoot_pistol" 4
+$append crouch_shoot_pistol { node "crouchShooting_pistol" }
 
 // ================================================================
 // Aim Animations
@@ -424,6 +341,9 @@ $sequence "WalkN_pistol_Aim_all" {
 	//iklock "rfoot" 1 0
 	//iklock "lfoot" 1 0
 }
+
+// We need this instead of pistol_Aim_all in some animations
+$makeaimlayer soldier_Aim_9_directions			"hl2mp_ported_anims\Aim_9_directions"
 
 // ================================================================
 // Walk Animations
