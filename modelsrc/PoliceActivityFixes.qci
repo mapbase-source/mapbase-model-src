@@ -73,6 +73,10 @@ $append "shoot_shotgun" { { event AE_CL_PLAYSOUND 11 "Weapon_Alyx_Shotgun.Cock" 
 $GenericShootFromIdle "lowcover_shoot_ar2" "police_animations_anims\custom\lowcover_aim_ar2.smd" "ACT_RANGE_ATTACK_AR2_MED" "soldier_Aim_9_directions" "gesture_shoot_smg1" 3 // ACT_RANGE_ATTACK_SMG1_LOW
 $GenericCombatIdle "lowcover_aim_ar2" "police_animations_anims\custom\lowcover_aim_ar2.smd" "ACT_RANGE_AIM_AR2_MED" "soldier_Aim_9_directions" // ACT_RANGE_AIM_SMG1_LOW
 
+// TODO: Unique anims?
+$GenericShootFromIdle "lowcover_shoot_shotgun" "police_animations_anims\custom\lowcover_aim_ar2.smd" "ACT_RANGE_ATTACK_SHOTGUN_MED" "soldier_Aim_9_directions" "gesture_shoot_shotgun_crouch" 45
+$GenericCombatIdle "lowcover_aim_shotgun" "police_animations_anims\custom\lowcover_aim_ar2.smd" "ACT_RANGE_AIM_SHOTGUN_MED" "soldier_Aim_9_directions"
+
 //$append lowcover_aim_ar2 { blendlayer "combat_smg1_to_ar2" 0 0 0 0 local } // TODO: Not working with hands layer
 
 $GenericAimMoveLayer "layer_run_hold_ar2" "police_animations_anims\layer_run_hold_smg1.smd" "relaxed_smg1_to_ar2" "soldier_Aim_9_directions"
@@ -102,9 +106,11 @@ $sequence "walk_aiming_shotgun_all" { $a_WalkBlends activity "ACT_WALK_AIM_SHOTG
 
 $weightlist "NoHeadMovement" { "ValveBiped.Bip01_Head1" 0 "ValveBiped.Bip01_Neck1" 0.25 "ValveBiped.Bip01_Pelvis" 1 }
 
-//$sequence "gesture_shoot_shotgun" "combine_soldier_anims_anims\a_shootShotgun" { weightlist "NoHeadMovement" delta activity "ACT_GESTURE_RANGE_ATTACK_SHOTGUN" 1 { event AE_CL_PLAYSOUND 11 "Weapon_Alyx_Shotgun.Cock" } }
 
 $makeweapongesture "gesture_shoot_shotgun" "police_animations_anims\custom\shoot_shotgun.smd" 9 20 30
+
+// This should be replaced later
+$sequence "gesture_shoot_shotgun_crouch" "combine_soldier_anims_anims\a_shootShotgun" { weightlist "NoHeadMovement" delta hidden { event AE_CL_PLAYSOUND 11 "Weapon_Alyx_Shotgun.Cock" } }
 
 // ----------------------------------------------------------------
 
@@ -132,10 +138,21 @@ $GenericShootFromIdle "crouch_shoot_smg1" "police_animations_anims\custom\crouch
 $GenericCombatIdle "crouch_aim_ar2" "police_animations_anims\custom\crouch_aim_ar2.smd" "ACT_RANGE_AIM_AR2_LOW" "soldier_Aim_9_directions"
 $GenericShootFromIdle "crouch_shoot_ar2" "police_animations_anims\custom\crouch_aim_ar2.smd" "ACT_RANGE_ATTACK_AR2_LOW" "soldier_Aim_9_directions" "gesture_shoot_smg1" 3
 
+// TODO: Unique anims?
+$GenericCombatIdle "crouch_aim_shotgun" "police_animations_anims\custom\crouch_aim_ar2.smd" "ACT_RANGE_AIM_SHOTGUN_LOW" "soldier_Aim_9_directions"
+$GenericShootFromIdle "crouch_shoot_shotgun" "police_animations_anims\custom\crouch_aim_ar2.smd" "ACT_RANGE_ATTACK_SHOTGUN_LOW" "soldier_Aim_9_directions" "gesture_shoot_shotgun_crouch" 45
+
 //$append crouch_aim_pistol { alignto ar2angryidle1 }
 //$append crouch_aim_smg1 { alignto ar2angryidle1 }
 //$append crouch_shoot_pistol { alignto ar2angryidle1 }
 //$append crouch_shoot_smg1 { alignto ar2angryidle1 }
+
+// ----------------------------------------------------------------
+
+$append "lowcover_shoot_shotgun" { { event AE_CL_PLAYSOUND 11 "Weapon_Alyx_Shotgun.Cock" } }
+$append "crouch_shoot_shotgun" { { event AE_CL_PLAYSOUND 11 "Weapon_Alyx_Shotgun.Cock" } }
+$append "gesture_shoot_shotgun" { { event AE_CL_PLAYSOUND 11 "Weapon_Alyx_Shotgun.Cock" } activity "ACT_GESTURE_RANGE_ATTACK_SHOTGUN" 1 }
+$append "gesture_shoot_shotgun_crouch" { { event AE_CL_PLAYSOUND 11 "Weapon_Alyx_Shotgun.Cock" } }
 
 // ----------------------------------------------------------------
 // 
@@ -173,6 +190,8 @@ $AddNodeToSequence "crouch_shoot_pistol" "crouchshoot_pistol"
 $AddNodeToSequence "crouch_aim_pistol" "crouchshoot_pistol"
 $AddNodeToSequence "crouch_shoot_smg1" "crouchshoot_smg"
 $AddNodeToSequence "crouch_aim_smg1" "crouchshoot_smg"
+$AddNodeToSequence "crouch_shoot_ar2" "crouchshoot_smg"
+$AddNodeToSequence "crouch_aim_ar2" "crouchshoot_smg"
 
 // ----------------------------------------------------------------
 
