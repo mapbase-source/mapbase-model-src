@@ -2,6 +2,66 @@
 // Male Citizen Movement Animations
 // ================================================================
 
+$definemacro a_WalkBlends \\
+	"a_CitizenWalkS" \\
+	"a_CitizenWalkSE" \\
+	"a_CitizenWalkE" \\
+	"a_CitizenWalkNE" \\
+	"a_CitizenWalkN" \\
+	"a_CitizenWalkNW" \\
+	"a_CitizenWalkW" \\
+	"a_CitizenWalkSW" \\
+	"a_CitizenWalkS" \\
+	blend "move_yaw" -180 180 \\
+	blendwidth 9 \\
+	{ event 6004 8 "NPC_Citizen" } \\
+	{ event 6005 23 "NPC_Citizen" } \\
+
+$definemacro a_RunBlends \\
+	"a_CitizenRunS" \\
+	"a_CitizenRunSE" \\
+	"a_CitizenRunE" \\
+	"a_CitizenRunNE" \\
+	"a_CitizenRunN" \\
+	"a_CitizenRunNW" \\
+	"a_CitizenRunW" \\
+	"a_CitizenRunSW" \\
+	"a_CitizenRunS" \\
+	blend "move_yaw" -180 180 \\
+	blendwidth 9 \\
+	{ event 6004 6 "NPC_Citizen" } \\
+	{ event 6005 15 "NPC_Citizen" } \\
+	
+$definemacro a_CrouchWalkBlends \\
+	"a_CitizenCrouch_walkS" \\
+	"a_CitizenCrouch_walkSE" \\
+	"a_CitizenCrouch_walkE" \\
+	"a_CitizenCrouch_walkNE" \\
+	"a_CitizenCrouch_walkN" \\
+	"a_CitizenCrouch_walkNW" \\
+	"a_CitizenCrouch_walkW" \\
+	"a_CitizenCrouch_walkSW" \\
+	"a_CitizenCrouch_walkS" \\
+	blend "move_yaw" -180 180 \\
+	blendwidth 9 \\
+	
+$definemacro a_CrouchRunBlends \\
+	"a_CitizenRunS" \\
+	"a_CitizenRunSE" \\
+	"a_CitizenRunE" \\
+	"a_CitizenRunNE" \\
+	"a_CitizenCrouch_runN" \\
+	"a_CitizenRunNW" \\
+	"a_CitizenRunW" \\
+	"a_CitizenRunSW" \\
+	"a_CitizenRunS" \\
+	blend "move_yaw" -180 180 \\
+	blendwidth 9 \\
+	{ event 6004 6 "NPC_Citizen" } \\ // This is new
+	{ event 6005 15 "NPC_Citizen" } \\ // This is new
+
+// ----------------------------------------------------------------
+
 $animation "a_CitizenWalkS" "male_shared_anims\a_WalkS.smd" {
 	fps 30
 	loop

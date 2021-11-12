@@ -13,6 +13,13 @@ $append $SeqName$arms { blendlayer "male_to_female_layer" 0 0 0 0 local } \\
 $append $SeqName$ { blendlayer "male_to_female_layer" 0 0 0 0 local }
 
 // ----------------------------------------------------------------
+// CitizenActivityFixes.qci
+// ----------------------------------------------------------------
+//$AddMtoFLayer "Idle_Crossbow_Aim"
+//$AddMtoFLayer "shoot_crossbow"
+$AddMtoFLayer "reload_crossbow"
+
+// ----------------------------------------------------------------
 // AntlionRecvDI.qci
 // ----------------------------------------------------------------
 $AddMtoFLayer "antlion_soldier_DI_01"

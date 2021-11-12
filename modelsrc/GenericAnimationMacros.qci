@@ -24,16 +24,24 @@ $definemacro GenericCombatIdle IdleName IdleSeq IdleAct AimLayer \\
 $sequence $IdleName$ { \\
 	$IdleSeq$ \\
 	activity $IdleAct$ 1 \\
-	{ event 4 0 "" } \\
 	addlayer $AimLayer$ \\
 	loop \\
 	cmdlist lockfeetandlefthand \\
 }
 
+$definemacro GenericCombatIdle_NoHandIK IdleName IdleSeq IdleAct AimLayer \\
+$sequence $IdleName$ { \\
+	$IdleSeq$ \\
+	activity $IdleAct$ 1 \\
+	addlayer $AimLayer$ \\
+	loop \\
+	cmdlist lockfeet \\
+}
+
 $definemacro GenericShoot SeqName FileName ActName AimLayer \\
 $sequence $SeqName$ { \\
 	$FileName$ \\
-	{ event 4 0 "" } \\ // { event 3014 1 "" }?
+	{ event 3014 0 "" } \\ // { event 3014 1 "" }?
 	addlayer $AimLayer$ \\
 	activity $ActName$ 1 \\
 	cmdlist lockfeetandlefthand \\
@@ -52,12 +60,57 @@ $sequence $SeqName$ { \\
 	ikrule "lhand" release \\
 }
 
+$definemacro GenericReloadNoAim SeqName FileName ActName EventFrame \\
+$sequence $SeqName$ { \\
+	$FileName$ \\
+	{ event 3017 0 "" } \\
+	{ event 3018 $EventFrame$ "" } \\
+	activity $ActName$ 1 \\
+	cmdlist lockfeet \\
+	ikrule "rhand" release \\
+	ikrule "lhand" release \\
+}
+
 $definemacro GenericAimMoveLayer SeqName FileName HandsLayer AimLayer \\
 $sequence $SeqName$ { $FileName$ hidden addlayer $AimLayer$ loop \\
 	ikrule "rhand" release \\
 	ikrule "lhand" release \\
 	blendlayer $HandsLayer$ 0 0 0 0 local \\
 	weightlist "weights_layer_walk_ar2" \\
+}
+
+$definemacro GenericMoveLayer LayerName FileName WeightList \\
+$sequence $LayerName$ { \\
+	$FileName$ \\
+	hidden \\
+	worldspace \\
+	ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" \\
+	ikrule "rhand" release \\
+	weightlist $WeightList$ \\
+}
+
+// ----------------------------------------------------------------
+
+$definemacro GenericWalkLayered SeqName ActivityName LayerName InteriorAct \\
+$sequence $SeqName$ { \\
+	$a_WalkBlends \\
+	activity $ActivityName$ 1 \\
+	keyvalues \\
+	{ \\
+		interior $InteriorAct$ \\
+	} \\
+	blendlayer $LayerName$ 0 0 0 0 local \\
+}
+
+$definemacro GenericRunLayered SeqName ActivityName LayerName InteriorAct \\
+$sequence $SeqName$ { \\
+	$a_RunBlends \\
+	activity $ActivityName$ 1 \\
+	keyvalues \\
+	{ \\
+		interior $InteriorAct$ \\
+	} \\
+	blendlayer $LayerName$ 0 0 0 0 local \\
 }
 
 // ----------------------------------------------------------------
@@ -93,6 +146,19 @@ $sequence $SeqName$ { \\
 	blendlayer $GestureLayer$ 0 0 0 0 local \\
 	blendlayer $AimLayer$ 0 0 0 $AimFadeOut$ spline \\
 	blendlayer $AimLayer$ $AimFadeIn$ $NumFrames$ $NumFrames$ $NumFrames$ spline \\
+	activity $ActName$ 1 \\
+	cmdlist lockfeet \\
+	ikrule "rhand" release \\
+	ikrule "lhand" release \\
+}
+
+$definemacro GenericReloadFromIdle_NoAim SeqName FileName ActName GestureLayer NumFrames EventFrame \\
+$sequence $SeqName$legs $FileName$ weightlist "LegsAndPelvis" hidden \\
+$sequence $SeqName$ { \\
+	$FileName$ \\
+	numframes $NumFrames$ \\
+	{ event 3015 $EventFrame$ "" } \\
+	blendlayer $GestureLayer$ 0 0 0 0 local \\
 	activity $ActName$ 1 \\
 	cmdlist lockfeet \\
 	ikrule "rhand" release \\
