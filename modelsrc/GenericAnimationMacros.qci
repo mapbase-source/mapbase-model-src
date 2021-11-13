@@ -99,7 +99,7 @@ $sequence $SeqName$ { \\
 	{ \\
 		interior $InteriorAct$ \\
 	} \\
-	blendlayer $LayerName$ 0 0 0 0 local \\
+	addlayer $LayerName$ \\ // "blendlayer $LayerName$ 0 0 0 0 local" apparently doesn't keep IK
 }
 
 $definemacro GenericRunLayered SeqName ActivityName LayerName InteriorAct \\
@@ -110,7 +110,7 @@ $sequence $SeqName$ { \\
 	{ \\
 		interior $InteriorAct$ \\
 	} \\
-	blendlayer $LayerName$ 0 0 0 0 local \\
+	addlayer $LayerName$ \\ // "blendlayer $LayerName$ 0 0 0 0 local" apparently doesn't keep IK
 }
 
 // ----------------------------------------------------------------

@@ -200,7 +200,7 @@ $sequence $IdleName$ { \\
 	loop \\
 	cmdlist lockfeet \\
 	blendlayer "layer_stimulated_aim_legs" 0 0 0 0 local \\
-	blendlayer $StimulatedLayer$ 0 0 0 0 local \\
+	addlayer $StimulatedLayer$ \\ // "blendlayer $StimulatedLayer$ 0 0 0 0 local" apparently doesn't keep IK
 }
 
 $SoldierStimulatedAimIdle "CombatIdle2" "combine_soldier_anims_anims\custom\Idle1_AR2.smd" "ACT_IDLE_AIM_AR2_STIMULATED" "layer_stimulated_aim_ar2"
@@ -240,7 +240,7 @@ $sequence "walk_aiming_stimulated_all_AR2" {
 	}
 	//blendlayer "layer_walk_unarmed" 0 0 0 0 local
 	blendlayer "walk_stimulated_layer" 0 0 0 0 local
-	blendlayer "layer_stimulated_aim_walk_ar2" 0 0 0 0 local
+	addlayer "layer_stimulated_aim_walk_ar2"
 }
 
 $sequence "walk_aiming_stimulated_all_SMG1" {
@@ -253,7 +253,7 @@ $sequence "walk_aiming_stimulated_all_SMG1" {
 	}
 	//blendlayer "layer_walk_unarmed" 0 0 0 0 local
 	blendlayer "walk_stimulated_layer" 0 0 0 0 local
-	blendlayer "layer_stimulated_aim_walk_smg1" 0 0 0 0 local
+	addlayer "layer_stimulated_aim_walk_smg1"
 }
 
 $sequence "walk_aiming_stimulated_all_SG" {
@@ -266,7 +266,7 @@ $sequence "walk_aiming_stimulated_all_SG" {
 	}
 	//blendlayer "layer_walk_unarmed" 0 0 0 0 local
 	blendlayer "walk_stimulated_layer" 0 0 0 0 local
-	blendlayer "layer_stimulated_aim_walk_shotgun" 0 0 0 0 local
+	addlayer "layer_stimulated_aim_walk_shotgun"
 }
 
 $sequence "walk_aiming_stimulated_all_Pistol" {
@@ -279,7 +279,7 @@ $sequence "walk_aiming_stimulated_all_Pistol" {
 	}
 	//blendlayer "layer_walk_unarmed" 0 0 0 0 local
 	blendlayer "walk_stimulated_layer" 0 0 0 0 local
-	blendlayer "layer_stimulated_aim_walk_pistol" 0 0 0 0 local
+	addlayer "layer_stimulated_aim_walk_pistol"
 }
 
 $sequence "run_aiming_stimulated_all_AR2" {
@@ -291,7 +291,7 @@ $sequence "run_aiming_stimulated_all_AR2" {
 		interior ACT_IDLE_AR2_STIMULATED
 	}
 	blendlayer "layer_walk_unarmed" 0 0 0 0 local
-	blendlayer "layer_stimulated_aim_run_ar2" 0 0 0 0 local
+	addlayer "layer_stimulated_aim_run_ar2"
 }
 
 $sequence "run_aiming_stimulated_all_SMG1" {
@@ -303,7 +303,7 @@ $sequence "run_aiming_stimulated_all_SMG1" {
 		interior ACT_IDLE_RIFLE_STIMULATED
 	}
 	blendlayer "layer_walk_unarmed" 0 0 0 0 local
-	blendlayer "layer_stimulated_aim_run_smg1" 0 0 0 0 local
+	addlayer "layer_stimulated_aim_run_smg1"
 }
 
 $sequence "run_aiming_stimulated_all_SG" {
@@ -315,7 +315,7 @@ $sequence "run_aiming_stimulated_all_SG" {
 		interior ACT_IDLE_SHOTGUN_STIMULATED
 	}
 	blendlayer "layer_walk_unarmed" 0 0 0 0 local
-	blendlayer "layer_stimulated_aim_run_shotgun" 0 0 0 0 local
+	addlayer "layer_stimulated_aim_run_shotgun"
 }
 
 $sequence "run_aiming_stimulated_all_pistol" {
@@ -327,7 +327,7 @@ $sequence "run_aiming_stimulated_all_pistol" {
 		interior ACT_IDLE_PISTOL_STIMULATED
 	}
 	blendlayer "layer_walk_unarmed" 0 0 0 0 local
-	blendlayer "layer_stimulated_aim_run_pistol" 0 0 0 0 local
+	addlayer "layer_stimulated_aim_run_pistol"
 }
 
 // ----------------------------------------------------------------
