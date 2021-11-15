@@ -30,9 +30,20 @@ $append grenPlace_gesture {
 	{ event 9 25 "" }
 }
 
-$makeweapongesturep shootAR2alt_gesture "..\combine_soldier_anims_anims\shootAR2alt.smd" 12 24 36
-$append shootAR2alt_gesture {
-	activity "ACT_GESTURE_COMBINE_AR2_ALTFIRE" 1
-	{ event COMBINE_AE_BEGIN_ALTFIRE 0 "" }
-	{ event COMBINE_AE_ALTFIRE 16 "" }
-}
+// ---------------------------------------------------
+
+$makerange	range2_shotgun	"..\male_shared_anims\shoot_shotgun" 0 ACT_HL2MP_GESTURE_RANGE_ATTACK2_SHOTGUN 1	// Temporary?
+$makerange	range2_grenade	"..\hl2mp_ported_anims\HL2DM_Throw_Grenade" 0 ACT_HL2MP_GESTURE_RANGE_ATTACK2_GRENADE 1
+
+$makeweapongesturep range2_smg1 "..\male_shared_anims\shoot_AR2_alt.smd" 12 24 36 ACT_HL2MP_GESTURE_RANGE_ATTACK2_SMG1 1
+$makeweapongesturep range2_ar2 "..\combine_soldier_anims_anims\shootAR2alt.smd" 12 24 36 ACT_HL2MP_GESTURE_RANGE_ATTACK2_AR2 1
+
+// ---------------------------------------------------
+
+$pushd "../male_shared_anims"
+$include "DefaultHolster.qci"
+$popd
+
+$pushd "../"
+$include "l4d1_ported_anims/L4D1_PistolAnims.qci"
+$popd
