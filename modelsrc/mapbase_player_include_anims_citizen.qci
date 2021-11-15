@@ -146,11 +146,11 @@ $makejump	jump_slam		"..\hl2mp_ported_anims\HL2DM_Idle_SLAM" 0 ACT_HL2MP_JUMP_SL
 // ---------------------------------------------------
 
 $makeweapongesturep reload_pistol 	"..\hl2mp_ported_anims\Pistol_reload" 9 33 40 ACT_HL2MP_GESTURE_RELOAD_PISTOL 1
-$makeweapongesturep reload_shotgun  "..\combine_soldier_anims_anims\reload" 19 55 65 ACT_HL2MP_GESTURE_RELOAD_SHOTGUN 1
+$makeweapongesturep reload_shotgun  "..\male_shared_anims\reload_shotgun1" 19 55 75 ACT_HL2MP_GESTURE_RELOAD_SHOTGUN 1
 $makeweapongesturep reload_smg1		"..\combine_soldier_anims_anims\reload" 19 55 65 ACT_HL2MP_GESTURE_RELOAD_SMG1 1
-$makeweapongesturep reload_ar2		"..\combine_soldier_anims_anims\reload" 19 55 65 ACT_HL2MP_GESTURE_RELOAD_AR2 1
-$makeweapongesturep reload_crossbow		"custom\reload_crossbow" 10 25 40 ACT_HL2MP_GESTURE_RELOAD_CROSSBOW 1
-$makeweapongesturep reload_357			"..\police_animations_anims\custom\reload_357" 15 51 62 ACT_HL2MP_GESTURE_RELOAD_357 1
+$makeweapongesturep reload_ar2		"..\male_shared_anims\reload_ar2" 10 30 50 ACT_HL2MP_GESTURE_RELOAD_AR2 1
+$makeweapongesturep reload_crossbow	"custom\reload_crossbow" 10 25 40 fps 20 ACT_HL2MP_GESTURE_RELOAD_CROSSBOW 1
+$makeweapongesturep reload_357		"..\police_animations_anims\custom\reload_357" 15 51 62 ACT_HL2MP_GESTURE_RELOAD_357 1
 
 // ---------------------------------------------------
 // Walk
@@ -166,7 +166,7 @@ $sequence walk_all {
 
 $makematchwalk_9way	walk_pistol		"..\hl2mp_ported_anims\RunN_aim_pistol" 0 police_WalkN_pistol_aim_matrix "..\male_shared_anims\custom\Idle_Pistol_Aim" 4 ACT_HL2MP_WALK_PISTOL 1
 $makematchwalk_9way	walk_shotgun	"..\hl2mp_ported_anims\RunN_aim_sg" 0 soldier_Aim_9_directions_SG "..\hl2mp_ported_anims\Aim_9_directions_SG" 4 ACT_HL2MP_WALK_SHOTGUN 1
-$makewalk_9way		walk_smg1		"..\hl2mp_ported_anims\RunN_Alert_SMG1_Aim" 0 weapons_RunN_SMG1_Aim_9_directions "Idle_SMG1_Aim" 0 ACT_HL2MP_WALK_SMG1 1
+$makematchwalk_9way	walk_smg1		"Idle_SMG1_Aim" 0 weapons_RunN_SMG1_Aim_9_directions "Idle_SMG1_Aim" 0 ACT_HL2MP_WALK_SMG1 1
 $makematchwalk_9way	walk_ar2		"idle_ar2_aim" 0 soldier_Aim_9_directions "idle_ar2_aim" 0 ACT_HL2MP_WALK_AR2 1
 $makematchwalk_9way	walk_gravgun 	"..\hl2mp_ported_anims\HL2DM_Run_Aim_Gravgun" 4 HL2DM_Run_Aim_Gravgun "..\hl2mp_ported_anims\HL2DM_Aim_Gravgun" 4 ACT_HL2MP_WALK_PHYSGUN 1
 $makematchwalk_9way	walk_grenade 	"..\hl2mp_ported_anims\HL2DM_Throw_Grenade" 0 soldier_Aim_9_directions "..\hl2mp_ported_anims\HL2DM_Throw_Grenade" 0 ACT_HL2MP_WALK_GRENADE 1

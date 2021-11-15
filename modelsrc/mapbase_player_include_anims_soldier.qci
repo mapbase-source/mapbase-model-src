@@ -146,11 +146,11 @@ $makejump	jump_slam		"..\hl2mp_ported_anims\HL2DM_Idle_SLAM" 0 ACT_HL2MP_JUMP_SL
 // ---------------------------------------------------
 
 $makeweapongesturep reload_pistol 	"..\hl2mp_ported_anims\Pistol_reload" 9 33 40 ACT_HL2MP_GESTURE_RELOAD_PISTOL 1
-$makeweapongesturep reload_shotgun  "..\combine_soldier_anims_anims\reload" 19 55 65 ACT_HL2MP_GESTURE_RELOAD_SHOTGUN 1
+$makeweapongesturep reload_shotgun  "..\male_shared_anims\reload_shotgun1" 19 55 75 ACT_HL2MP_GESTURE_RELOAD_SHOTGUN 1
 $makeweapongesturep reload_smg1		"..\combine_soldier_anims_anims\reload" 19 55 65 ACT_HL2MP_GESTURE_RELOAD_SMG1 1
-$makeweapongesturep reload_ar2		"..\combine_soldier_anims_anims\reload" 19 55 65 ACT_HL2MP_GESTURE_RELOAD_AR2 1
-$makeweapongesturep reload_crossbow		"..\male_shared_anims\custom\reload_crossbow" 10 25 40 ACT_HL2MP_GESTURE_RELOAD_CROSSBOW 1
-$makeweapongesturep reload_357			"..\police_animations_anims\custom\reload_357" 15 51 62 ACT_HL2MP_GESTURE_RELOAD_357 1
+$makeweapongesturep reload_ar2		"..\male_shared_anims\reload_ar2" 10 30 50 ACT_HL2MP_GESTURE_RELOAD_AR2 1
+$makeweapongesturep reload_crossbow	"..\male_shared_anims\custom\reload_crossbow" 10 25 40 fps 20 ACT_HL2MP_GESTURE_RELOAD_CROSSBOW 1
+$makeweapongesturep reload_357		"..\police_animations_anims\custom\reload_357" 15 51 62 ACT_HL2MP_GESTURE_RELOAD_357 1
 
 // ---------------------------------------------------
 // Walk
