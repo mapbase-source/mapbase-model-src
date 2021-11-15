@@ -100,7 +100,7 @@ $continue $idlename$
 //
 $definemacro makematchrun runname filename frame aimlayer \\
 $animation a_$runname$_base $filename$ frame $frame$ $frame$ \\
-$sequence $runname$_mod "..\humans_sdk\male_animations\RunN" { \\
+$sequence $runname$_mod "..\hl2mp_ported_anims\RunN" { \\
 	LX LY rotateto 0 \\
 	alignto reference \\
 	weightlist UpperbodyBlend \\
@@ -158,6 +158,7 @@ $sequence $cidlename$ $filenameB$ { \\
 	weightlist UpperbodyBlend \\
 	worldspaceblend a_$cidlename$_base \\
 	weightlist AllBones \\
+	addlayer $aimlayer$ \\
 	loop \\ 
 	} \\
 $continue $cidlename$
@@ -168,7 +169,7 @@ $continue $cidlename$
 //
 $definemacro makecwalk crouch_walkname filename frame aimlayer \\
 $animation a_$crouch_walkname$_base $filename$ frame $frame$ $frame$ \\
-$sequence $crouch_walkname$_mod "..\humans_sdk\male_animations\crouch_walkN" { \\
+$sequence $crouch_walkname$_mod "..\hl2mp_ported_anims\crouch_walkN" { \\
 	LX LY rotateto 0 \\
 	alignto reference \\
 	weightlist UpperbodyBlend \\
@@ -202,7 +203,7 @@ $continue $rangename$
 //
 $definemacro makejump jumpname filename frame \\
 $animation a_$jumpname$ $filename$ frame $frame$ $frame$ weightlist SlowerUpperbodyBlend \\
-$sequence $jumpname$ "CS_Jump" { \\
+$sequence $jumpname$ "..\hl2mp_ported_anims\CS_Jump" { \\
 	weightlist SlowerUpperbodyBlend \\
 	worldspaceblend a_$jumpname$ \\
 	weightlist AllBones \\
@@ -218,6 +219,143 @@ $sequence $reloadname$ $filename$ { \\
 	iklock lfoot 1 0 iklock rfoot 1 0 \\
 	} \\
 $continue $reloadname$
+
+// ================================================================
+
+// 9-way blends
+
+$definemacro makematchrun_9way runname filename frame aimlayer idlefile idleframe \\
+$animation a_$runname$_base $filename$ frame $frame$ $frame$ \\
+$sequence $runname$_mod "..\hl2mp_ported_anims\RunN" { \\
+	LX LY rotateto 0 \\
+	alignto reference \\
+	weightlist UpperbodyBlend \\
+	worldspaceblend a_$runname$_base \\
+	weightlist UpperbodyReplace \\
+	hidden \\
+	iklock lfoot 1 0 iklock rfoot 1 0 \\
+	} \\
+$sequence $runname$_static $idlefile$ frame $idleframe$ $idleframe$ alignto reference weightlist UpperbodyReplace hidden \\
+$animation a_$runname$C $idlefile$ frame $idleframe$ $idleframe$ loop rotateto -180 alignto reference cmdlist lockfeet \\
+$sequence $runname$ { \\
+	a_runSW a_runS a_runSE \\
+	a_runW a_$runname$C a_runE \\
+	a_runNW a_runN a_runNE \\ // a_runS a_runSE a_runE a_runNE a_runN a_runNW a_runW a_runSW a_runS
+	blendwidth 3 blend move_y -1 1 blend move_x -1 1 \\ // blendwidth 9 blend move_yaw -180 180
+	blendlayer $runname$_static 0 0 0 0 local \\
+	blendlayer $runname$_mod -2 -2 -1 0 poseparameter move_x spline \\
+	blendlayer $runname$_mod 0 1 2 2 poseparameter move_x spline \\
+	blendlayer $runname$_mod -1 -1 -1 0 poseparameter move_y spline \\
+	blendlayer $runname$_mod 0 1 2 2 poseparameter move_y spline \\
+	addlayer $aimlayer$ \\
+	} \\
+$continue $runname$
+
+$definemacro makerun_9way runname filename frame aimlayer idlefile idleframe \\
+$sequence $runname$_mod $filename$ { \\
+	LX LY rotateto 0 \\
+	startloop $frame$ \\
+	alignto reference \\
+	weightlist UpperbodyReplace \\
+	hidden \\
+	loop \\
+	} \\
+$sequence $runname$_static $idlefile$ frame $idleframe$ $idleframe$ alignto reference weightlist UpperbodyReplace hidden \\
+$animation a_$runname$C $idlefile$ frame $idleframe$ $idleframe$ loop rotateto -180 alignto reference cmdlist lockfeet \\
+$sequence $runname$ { \\
+	a_runSW a_runS a_runSE \\
+	a_runW a_$runname$C a_runE \\
+	a_runNW a_runN a_runNE \\ // a_runS a_runSE a_runE a_runNE a_runN a_runNW a_runW a_runSW a_runS
+	blendwidth 3 blend move_y -1 1 blend move_x -1 1 \\ // blendwidth 9 blend move_yaw -180 180
+	blendlayer $runname$_static 0 0 0 0 local \\
+	blendlayer $runname$_mod -1 -1 -1 0 poseparameter move_x spline \\
+	blendlayer $runname$_mod 0 1 2 2 poseparameter move_x spline \\
+	blendlayer $runname$_mod -1 -1 -1 0 poseparameter move_y spline \\
+	blendlayer $runname$_mod 0 1 2 2 poseparameter move_y spline \\
+	addlayer $aimlayer$ \\
+	loop \\
+	} \\
+$continue $runname$
+
+$definemacro makecwalk_9way crouch_walkname filename frame aimlayer idlefile idleframe \\
+$animation a_$crouch_walkname$_base $filename$ frame $frame$ $frame$ \\
+$sequence $crouch_walkname$_mod "..\hl2mp_ported_anims\crouch_walkN" { \\
+	LX LY rotateto 0 \\
+	alignto reference \\
+	weightlist UpperbodyBlend \\
+	worldspaceblend a_$crouch_walkname$_base \\
+	weightlist UpperbodyReplace \\
+	hidden \\
+	iklock lfoot 1 0 iklock rfoot 1 0 \\
+	} \\
+$animation a_$crouch_walkname$C $idlefile$ frame $idleframe$ $idleframe$ loop rotateto -180 alignto reference cmdlist lockfeet \\
+$sequence $crouch_walkname$ { \\
+	a_crouch_walkSW a_crouch_walkS a_crouch_walkSE \\
+	a_crouch_walkW a_$crouch_walkname$C a_crouch_walkE \\
+	a_crouch_walkNW a_crouch_walkN a_crouch_walkNE \\ // a_crouch_walkS a_crouch_walkSE a_crouch_walkE a_crouch_walkNE a_crouch_walkN a_crouch_walkNW a_crouch_walkW a_crouch_walkSW a_crouch_walkS
+	blendwidth 3 blend move_y -1 1 blend move_x -1 1 \\ // blendwidth 9 blend move_yaw -180 180
+	addlayer $crouch_walkname$_mod \\
+	addlayer $aimlayer$ \\
+	loop \\
+	} \\
+$continue $crouch_walkname$
+
+// ================================================================
+
+// Walks
+
+$definemacro makematchwalk_9way walkname filename frame aimlayer idlefile idleframe \\
+$animation a_$walkname$_base $filename$ frame $frame$ $frame$ \\
+$sequence $walkname$_mod "..\male_shared_anims\a_WalkN" { \\
+	LX LY rotateto 0 \\
+	alignto reference \\
+	weightlist UpperbodyBlend \\
+	worldspaceblend a_$walkname$_base \\
+	weightlist UpperbodyReplace \\
+	hidden \\
+	iklock lfoot 1 0 iklock rfoot 1 0 \\
+	} \\
+$sequence $walkname$_static $idlefile$ frame $idleframe$ $idleframe$ alignto reference weightlist UpperbodyReplace hidden \\
+$animation a_$walkname$C $idlefile$ frame $idleframe$ $idleframe$ loop rotateto -180 alignto reference cmdlist lockfeet \\
+$sequence $walkname$ { \\
+	a_walkSW a_walkS a_walkSE \\
+	a_walkW a_$walkname$C a_walkE \\
+	a_walkNW a_walkN a_walkNE \\
+	blendwidth 3 blend move_y -1 1 blend move_x -1 1 \\
+	blendlayer $walkname$_static 0 0 0 0 local \\
+	blendlayer $walkname$_mod -2 -2 -1 0 poseparameter move_x spline \\
+	blendlayer $walkname$_mod 0 1 2 2 poseparameter move_x spline \\
+	blendlayer $walkname$_mod -1 -1 -1 0 poseparameter move_y spline \\
+	blendlayer $walkname$_mod 0 1 2 2 poseparameter move_y spline \\
+	addlayer $aimlayer$ \\
+	} \\
+$continue $walkname$
+
+$definemacro makewalk_9way walkname filename frame aimlayer idlefile idleframe \\
+$sequence $walkname$_mod $filename$ { \\
+	LX LY rotateto 0 \\
+	startloop $frame$ \\
+	alignto reference \\
+	weightlist UpperbodyReplace \\
+	hidden \\
+	loop \\
+	} \\
+$sequence $walkname$_static $filename$ frame 0 0 alignto reference weightlist UpperbodyReplace hidden \\
+$animation a_$walkname$C $idlefile$ frame $idleframe$ $idleframe$ loop rotateto -180 alignto reference cmdlist lockfeet \\
+$sequence $walkname$ { \\
+	a_walkSW a_walkS a_walkSE \\
+	a_walkW a_$walkname$C a_walkE \\
+	a_walkNW a_walkN a_walkNE \\
+	blendwidth 3 blend move_y -1 1 blend move_x -1 1 \\
+	blendlayer $walkname$_static 0 0 0 0 local \\
+	blendlayer $walkname$_mod -1 -1 -1 0 poseparameter move_x spline \\
+	blendlayer $walkname$_mod 0 1 2 2 poseparameter move_x spline \\
+	blendlayer $walkname$_mod -1 -1 -1 0 poseparameter move_y spline \\
+	blendlayer $walkname$_mod 0 1 2 2 poseparameter move_y spline \\
+	addlayer $aimlayer$ \\
+	loop \\
+	} \\
+$continue $walkname$
 
 
 
