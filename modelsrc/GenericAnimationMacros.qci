@@ -60,6 +60,18 @@ $sequence $SeqName$ { \\
 	ikrule "lhand" release \\
 }
 
+$definemacro GenericReloadSoundMatched SeqName FileName ActName AimLayer AimFadeOut AimFadeIn NumFrames EventFrame \\
+$sequence $SeqName$ { \\
+	$FileName$ \\
+	{ event 3015 $EventFrame$ "" } \\
+	blendlayer $AimLayer$ 0 0 0 $AimFadeOut$ spline \\
+	blendlayer $AimLayer$ $AimFadeIn$ $NumFrames$ $NumFrames$ $NumFrames$ spline \\
+	activity $ActName$ 1 \\
+	cmdlist lockfeet \\
+	ikrule "rhand" release \\
+	ikrule "lhand" release \\
+}
+
 $definemacro GenericReloadNoAim SeqName FileName ActName EventFrame \\
 $sequence $SeqName$ { \\
 	$FileName$ \\

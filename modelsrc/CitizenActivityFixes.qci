@@ -42,8 +42,8 @@ $GenericShoot "shoot_crossbow" "custom\shoot_crossbow.smd" "ACT_RANGE_ATTACK_CRO
 
 $GenericShootFromIdle "crouch_shoot_crossbow" "crouch_shoot_smg1.smd" "ACT_RANGE_ATTACK_CROSSBOW_LOW" "soldier_Aim_9_directions" "gesture_shoot_crossbow" 10
 
-$GenericReload "reload_crossbow" "custom\reload_crossbow.smd" "ACT_RELOAD_CROSSBOW" "soldier_Aim_9_directions" 10 25 40 20
-$append reload_crossbow { fps 25 }
+$GenericReloadSoundMatched "reload_crossbow" "custom\reload_crossbow.smd" "ACT_RELOAD_CROSSBOW" "soldier_Aim_9_directions" 10 25 40 20
+$append reload_crossbow { fps 25 { event AE_CL_PLAYSOUND 20 "Weapon_Crossbow.BoltElectrify" } }
 
 $GenericReloadFromIdle "crouch_reload_crossbow" "Crouch_idleD.smd" "ACT_RELOAD_CROSSBOW_LOW" "soldier_Aim_9_directions" "gesture_reload_crossbow" 10 25 40 20
 $append crouch_reload_crossbow { fps 25 }
@@ -53,7 +53,7 @@ $append crouch_idle_crossbow { blendlayer "relaxed_smg1_to_crossbow" 0 0 0 0 loc
 
 $sequence "gesture_shoot_crossbow" "custom\shoot_crossbow.smd" subtract "gesture_shoot_crossbow" 0 delta activity "ACT_GESTURE_RANGE_ATTACK_CROSSBOW" 1
 $makeweapongesturep "gesture_reload_crossbow" "custom\reload_crossbow.smd" 10 25 40
-$append gesture_reload_crossbow { fps 25 activity "ACT_GESTURE_RELOAD_CROSSBOW" 1 { event 3018 20 "" } }
+$append gesture_reload_crossbow { fps 25 activity "ACT_GESTURE_RELOAD_CROSSBOW" 1 { event 3015 20 "" } { event AE_CL_PLAYSOUND 20 "Weapon_Crossbow.BoltElectrify" } }
 
 $sequence "layer_relaxed_smg1" { "Idle_SMG1_Relaxed.smd" frame 0 0 ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" hidden }
 $sequence "relaxed_smg1_to_crossbow" "custom\Idle_Crossbow_Relaxed.smd" frame 0 0 subtract "layer_relaxed_smg1" 0 delta hidden
