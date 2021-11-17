@@ -44,6 +44,19 @@ $pushd "../male_shared_anims"
 $include "DefaultHolster.qci"
 $popd
 
+// ---------------------------------------------------
+
 $pushd "../"
+
 $include "l4d1_ported_anims/L4D1_PistolAnims.qci"
+
+// Soldier Signals
+$include "SoldierSignals.qci"
+
+// Soldiers' original signals had a FPS of 48
+$definevariable SignalFPS 36 //32
+$DefaultSignalGestures $SignalFPS$
+
 $popd
+
+// ---------------------------------------------------

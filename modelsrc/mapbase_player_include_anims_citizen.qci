@@ -150,7 +150,7 @@ $makeweapongesturep reload_shotgun  "..\male_shared_anims\reload_shotgun1" 19 55
 $makeweapongesturep reload_smg1		"..\combine_soldier_anims_anims\reload" 19 55 65 ACT_HL2MP_GESTURE_RELOAD_SMG1 1
 $makeweapongesturep reload_ar2		"..\male_shared_anims\reload_ar2" 10 30 50 ACT_HL2MP_GESTURE_RELOAD_AR2 1
 $makeweapongesturep reload_crossbow	"custom\reload_crossbow" 10 25 40 fps 20 ACT_HL2MP_GESTURE_RELOAD_CROSSBOW 1
-$makeweapongesturep reload_357		"..\police_animations_anims\custom\reload_357" 15 51 62 ACT_HL2MP_GESTURE_RELOAD_357 1
+$makeweapongesturep reload_357		"..\police_animations_anims\custom\reload_357" 15 51 62 ACT_HL2MP_GESTURE_RELOAD_REVOLVER 1
 
 // ---------------------------------------------------
 // Walk
@@ -194,7 +194,7 @@ $sequence a_range_357 "..\police_animations_anims\gesture_shoot_pistol.smd" subt
 $sequence range_357 "..\police_animations_anims\gesture_shoot_pistol.smd" {
 	iklock lfoot 1 0 iklock rfoot 1 0
 	noanimation numframes 16 blendlayer "a_range_357" 0 4 6 16 spline
-	activity "ACT_HL2MP_GESTURE_RANGE_ATTACK_357" 1
+	activity "ACT_HL2MP_GESTURE_RANGE_ATTACK_REVOLVER" 1
 	}
 	
 $append reload_357 { fps 20 }

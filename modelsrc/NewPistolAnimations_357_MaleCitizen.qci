@@ -4,7 +4,7 @@
 // 
 // ================================================================
 
-$include "NewPistolAnimations_357.qci"
+$include "NewPistolAnimations_357_NPC.qci"
 
 $GenericShootFromIdle "shootp2" "male_shared_anims\custom\Idle_Pistol_Aim.smd" "ACT_RANGE_ATTACK_REVOLVER" "soldier_Aim_9_directions" "gesture_shoot_357" 16
 $append shootp2 { node "shooting_pistol" }

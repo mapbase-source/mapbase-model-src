@@ -20,15 +20,6 @@ $pushd "combine_soldier_anims_anims"
 $include "mapbase_player_include_anims_soldier.qci"
 $popd
 
-// ---------------------------------------------------
-// Soldier Signals
-$include "SoldierSignals.qci"
-
-// Soldiers' original signals had a FPS of 48
-$definevariable SignalFPS 36 //32
-$DefaultSignalGestures $SignalFPS$
-// ---------------------------------------------------
-
 $attachment "eyes" "ValveBiped.Bip01_Head1" 0 -4 67.5 absolute
 
 $pushd "ChoreoModels"

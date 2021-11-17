@@ -4,7 +4,7 @@
 // 
 // ================================================================
 
-$include "NewPistolAnimations_357.qci"
+$include "NewPistolAnimations_357_NPC.qci"
 
 $sequence "shootp2" {
 	"police_animations_anims\pistolangryidle2.smd"
