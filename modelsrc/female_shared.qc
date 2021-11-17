@@ -4,6 +4,9 @@ $modelname "Humans\female_shared.mdl"
 
 //$includemodel "player/female_anims.mdl"
 
+// Automatically tries to convert any non-female animations to the female skeleton
+$lockbonelengths
+
 // Must be included
 $include "BaseModel.qci"
 $include "hl2mp_ported_anims/commonbones_female.qci"
@@ -192,10 +195,6 @@ $popd
 $include "l4d1_ported_anims\L4D1_LadderClimb_Female.qci"
 
 $include "NPCDoorAnims.qci"
-
-// Converts certain sequences from the above files to the female skeleton
-// (Keep this at the bottom!)
-$include "FemaleCitizenConversions.qci"
 
 $KeyValues
 {
