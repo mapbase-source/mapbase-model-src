@@ -4,10 +4,7 @@
 // 
 // ================================================================
 
-
-
-
-
+$pushd "police_animations_anims"
 
 // ================================================================
 
@@ -52,15 +49,15 @@ $weightlist "weights_stimulated_aim_2" {
 
 // ----------------------------------------------------------------
 
-$sequence "layer_stimulated_smg1" { "police_animations_anims\smg1angryidle1.smd" weightlist "weights_stimulated_idle" ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" hidden }
-$sequence "layer_stimulated_pistol" { "police_animations_anims\layer_walk_hold_pistol.smd" frame 0 0 weightlist "weights_stimulated_aim" ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" worldspace rotate 90 hidden }
-$sequence "layer_stimulated_ar2" { "police_animations_anims\custom\ar2angryidle1.smd" weightlist "weights_stimulated_idle" ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" hidden }
-$sequence "layer_stimulated_shotgun" { "police_animations_anims\custom\shotgunangryidle1.smd" weightlist "weights_stimulated_idle" ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" hidden }
+$sequence "layer_stimulated_smg1" { "smg1angryidle1.smd" weightlist "weights_stimulated_idle" ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" hidden }
+$sequence "layer_stimulated_pistol" { "layer_walk_hold_pistol.smd" frame 0 0 weightlist "weights_stimulated_aim" ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" worldspace rotate 90 hidden }
+$sequence "layer_stimulated_ar2" { "custom\ar2angryidle1.smd" weightlist "weights_stimulated_idle" ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" hidden }
+$sequence "layer_stimulated_shotgun" { "custom\shotgunangryidle1.smd" weightlist "weights_stimulated_idle" ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" hidden }
 
-$sequence "layer_stimulated_aim_smg1" { "police_animations_anims\lowcover_aim_smg1.smd" weightlist "weights_stimulated_aim" addlayer "SMG1_Aim_all" ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" worldspace hidden }
-$sequence "layer_stimulated_aim_pistol" { "police_animations_anims\layer_walk_aiming_pistol.smd" frame 0 0 weightlist "weights_stimulated_aim" addlayer "WalkN_pistol_Aim_all" ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" worldspace rotate 90 hidden }
-$sequence "layer_stimulated_aim_ar2" { "police_animations_anims\custom\lowcover_aim_ar2.smd" weightlist "weights_stimulated_aim" addlayer "soldier_Aim_9_directions" ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" worldspace hidden }
-$sequence "layer_stimulated_aim_shotgun" { "police_animations_anims\custom\lowcover_aim_ar2.smd" weightlist "weights_stimulated_aim" addlayer "soldier_Aim_9_directions" ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" worldspace hidden } // TEMP?
+$sequence "layer_stimulated_aim_smg1" { "lowcover_aim_smg1.smd" weightlist "weights_stimulated_aim" addlayer "SMG1_Aim_all" ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" worldspace hidden }
+$sequence "layer_stimulated_aim_pistol" { "layer_walk_aiming_pistol.smd" frame 0 0 weightlist "weights_stimulated_aim" addlayer "WalkN_pistol_Aim_all" ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" worldspace rotate 90 hidden }
+$sequence "layer_stimulated_aim_ar2" { "custom\lowcover_aim_ar2.smd" weightlist "weights_stimulated_aim" addlayer "soldier_Aim_9_directions" ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" worldspace hidden }
+$sequence "layer_stimulated_aim_shotgun" { "custom\lowcover_aim_ar2.smd" weightlist "weights_stimulated_aim" addlayer "soldier_Aim_9_directions" ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" worldspace hidden } // TEMP?
 
 // ----------------------------------------------------------------
 // 
@@ -77,7 +74,7 @@ $sequence "layer_stimulated_aim_shotgun" { "police_animations_anims\custom\lowco
 // ----------------------------------------------------------------
 
 $sequence "idle_stimulated_layer" {
-	"police_animations_anims\smg1angryidle1.smd"
+	"smg1angryidle1.smd"
 	weightlist "weights_stimulated_idle"
 	worldspace
 	//frame 0 0
@@ -85,7 +82,7 @@ $sequence "idle_stimulated_layer" {
 }
 
 $sequence "pistolidle3" {
-	"police_animations_anims\pistolidle2.smd"
+	"pistolidle2.smd"
 	activity "ACT_IDLE_PISTOL_STIMULATED" 1
 	node "standing_pistol"
 	loop
@@ -95,7 +92,7 @@ $sequence "pistolidle3" {
 }
 
 $sequence "smg1idle3" {
-	"police_animations_anims\smg1idle2.smd"
+	"smg1idle2.smd"
 	activity "ACT_IDLE_RIFLE_STIMULATED" 1
 	node "standing_smg"
 	loop
@@ -105,7 +102,7 @@ $sequence "smg1idle3" {
 }
 
 $sequence "ar2idle3" {
-	"police_animations_anims\custom\ar2idle1.smd"
+	"custom\ar2idle1.smd"
 	activity "ACT_IDLE_AR2_STIMULATED" 1
 	node "standing_smg"
 	loop
@@ -115,7 +112,7 @@ $sequence "ar2idle3" {
 }
 
 $sequence "shotgunidle3" {
-	"police_animations_anims\custom\shotgunidle1.smd"
+	"custom\shotgunidle1.smd"
 	activity "ACT_IDLE_SHOTGUN_STIMULATED" 1
 	node "standing_smg"
 	loop
@@ -131,7 +128,7 @@ $sequence "shotgunidle3" {
 // 
 // ----------------------------------------------------------------
 $sequence "pistolangryidle3" {
-	"police_animations_anims\pistolangryidle2.smd"
+	"pistolangryidle2.smd"
 	activity "ACT_IDLE_AIM_PISTOL_STIMULATED" 1
 	addlayer "layer_stimulated_aim_pistol"
 	node "shooting_pistol"
@@ -139,32 +136,9 @@ $sequence "pistolangryidle3" {
 	cmdlist lockfeet
 }
 
-$sequence "smg1angryidle2" {
-	"police_animations_anims\smg1angryidle1.smd"
-	activity "ACT_IDLE_AIM_RIFLE_STIMULATED" 1
-	addlayer "layer_stimulated_aim_smg1"
-	node "shooting_smg"
-	fps 4
-	cmdlist lockfeet
-}
-
-$sequence "ar2angryidle2" {
-	"police_animations_anims\custom\ar2angryidle1.smd"
-	activity "ACT_IDLE_AIM_AR2_STIMULATED" 1
-	addlayer "layer_stimulated_aim_ar2"
-	node "shooting_smg"
-	fps 4
-	cmdlist lockfeet
-}
-
-$sequence "shotgunangryidle2" {
-	"police_animations_anims\custom\shotgunangryidle1.smd"
-	activity "ACT_IDLE_AIM_SHOTGUN_STIMULATED" 1
-	addlayer "layer_stimulated_aim_shotgun"
-	node "shooting_smg"
-	fps 4
-	cmdlist lockfeet
-}
+$GenericCombatIdle "smg1angryidle2" "custom\smg1angryidle2.smd" "ACT_IDLE_AIM_RIFLE_STIMULATED" "soldier_Aim_9_directions" fps 4 node "shooting_smg"
+$GenericCombatIdle "ar2angryidle2" "custom\ar2angryidle2.smd" "ACT_IDLE_AIM_AR2_STIMULATED" "soldier_Aim_9_directions" fps 4 node "shooting_smg"
+$GenericCombatIdle "shotgunangryidle2" "custom\ar2angryidle2.smd" "ACT_IDLE_AIM_AR2_STIMULATED" "soldier_Aim_9_directions" fps 4 node "shooting_smg" // TEMP?
 
 // ----------------------------------------------------------------
 
@@ -178,3 +152,5 @@ $GenericWalkLayered "walk_aiming_stimulated_shotgun_all" "ACT_WALK_AIM_SHOTGUN_S
 $GenericRunLayered "run_aiming_stimulated_shotgun_all" "ACT_RUN_AIM_SHOTGUN_STIMULATED" "layer_stimulated_aim_shotgun" "ACT_IDLE_SHOTGUN_STIMULATED"
 
 // ----------------------------------------------------------------
+
+$popd
