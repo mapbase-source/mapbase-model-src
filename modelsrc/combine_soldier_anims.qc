@@ -41,11 +41,14 @@ $definevariable Blend_SMD_Pistol "combine_soldier_anims_anims\custom\CombatIdle1
 $definevariable Blend_SMD_Pistol_Crouched "combine_soldier_anims_anims\custom\crouch_aim_pistol.smd"
 $definevariable Blend_SMD_Rifle "combine_soldier_anims_anims\CombatIdle1_SMG1.smd"
 $definevariable Blend_SMD_Rifle_Crouched "combine_soldier_anims_anims\crouch_aim_sm1.smd"
+$definevariable Blend_SMD_Annabelle "combine_soldier_anims_anims\CombatIdle1.smd"
+$definevariable Blend_SMD_Annabelle_Crouch "combine_soldier_anims_anims\CrouchIdle.smd"
 
-// Soldiers don't use nodes...
-$definevariable Blend_Node_Default "shooting"
-$definevariable Blend_Node_Pistol "shooting"
-$definevariable Blend_Node_Rifle "shooting"
+$definevariable Blend_Node_Default "shooting_smg1"
+$definevariable Blend_Node_Pistol "shooting_pistol"
+$definevariable Blend_Node_Rifle "shooting_ar2"
+
+$definevariable Blend_Aim_Rifle "Aim_stand_delta_all"
 
 $animation a_AnimMatch_Default "combine_soldier_anims_anims\CombatIdle1_SMG1.smd" frame 0 0
 $definevariable AnimMatch_Default a_AnimMatch_Default
@@ -280,6 +283,8 @@ $include "l4d1_ported_anims\L4D1_LadderClimb_Male.qci"
 $include "l4d1_ported_anims\L4D1_PistolAnims.qci"
 
 $include "NPCDoorAnims.qci"
+
+$include "AnnabelleAnimations.qci"
 
 // ================================================================
 $include "ProtectedRun.qci"

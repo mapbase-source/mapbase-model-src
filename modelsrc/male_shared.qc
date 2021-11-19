@@ -59,10 +59,14 @@ $definevariable Blend_SMD_Panicked "male_shared_anims\crouchIdle_panicked4.smd"
 $definevariable Blend_SMD_Pistol "male_shared_anims\custom\Idle_Pistol_Aim.smd"
 $definevariable Blend_SMD_Rifle "male_shared_anims\Idle_SMG1_Aim.smd"
 $definevariable Blend_SMD_Rifle_Crouched "male_shared_anims\crouch_aim_smg1.smd"
+$definevariable Blend_SMD_Annabelle "male_shared_anims\shoot_shotgun_idle_hack.smd" // TODO?
+$definevariable Blend_SMD_Annabelle_Crouch "male_shared_anims\crouch_aim_smg1.smd" // TODO?
 
 $definevariable Blend_Node_Default "shooting"
 $definevariable Blend_Node_Pistol "shooting"
 $definevariable Blend_Node_Rifle "shooting"
+
+$definevariable Blend_Aim_Rifle "soldier_Aim_9_directions"
 
 $animation a_AnimMatch_Default "male_shared_anims\Idle_SMG1_Aim.smd" frame 0 0
 $definevariable AnimMatch_Default a_AnimMatch_Default
@@ -200,6 +204,8 @@ $include "l4d1_ported_anims\L4D1_LadderClimb_Male.qci"
 $include "l4d1_ported_anims\L4D1_PistolAnims.qci"
 
 $include "NPCDoorAnims.qci"
+
+$include "AnnabelleAnimations.qci"
 
 $weightlist "weights_layer_luggage_run" {
 	 "ValveBiped.Bip01_Pelvis" 0

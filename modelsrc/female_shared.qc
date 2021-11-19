@@ -62,10 +62,14 @@ $definevariable Blend_SMD_Panicked "female_shared_anims\crouch_panicked.smd"
 $definevariable Blend_SMD_Pistol "female_shared_anims\Pistol_idle_aim.smd"
 $definevariable Blend_SMD_Rifle "female_shared_anims\Idle_SMG1_Aim.smd"
 $definevariable Blend_SMD_Rifle_Crouched "female_shared_anims\crouch_aim_smg1.smd"
+$definevariable Blend_SMD_Annabelle "female_shared_anims\idle_ar2_aim.smd"
+$definevariable Blend_SMD_Annabelle_Crouch "female_shared_anims\crouch_aim_smg1.smd" // TODO?
 
 $definevariable Blend_Node_Default "shooting"
 $definevariable Blend_Node_Pistol "shooting"
 $definevariable Blend_Node_Rifle "shooting"
+
+$definevariable Blend_Aim_Rifle "soldier_Aim_9_directions"
 
 $include "BaseDI.qci"
 $include "AlyxDI.qci"
@@ -195,6 +199,8 @@ $popd
 $include "l4d1_ported_anims\L4D1_LadderClimb_Female.qci"
 
 $include "NPCDoorAnims.qci"
+
+$include "AnnabelleAnimations.qci"
 
 $KeyValues
 {

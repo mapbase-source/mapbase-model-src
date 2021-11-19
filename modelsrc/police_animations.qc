@@ -114,10 +114,14 @@ $definevariable Blend_SMD_Panicked "police_animations_anims\batonidle1.smd"
 $definevariable Blend_SMD_Pistol "police_animations_anims\pistolangryidle2.smd"
 $definevariable Blend_SMD_Rifle "police_animations_anims\smg1angryidle1.smd"
 $definevariable Blend_SMD_Rifle_Crouched "police_animations_anims\lowcover_aim_pistol.smd"
+$definevariable Blend_SMD_Annabelle "police_animations_anims\custom\ar2angryidle2.smd"
+$definevariable Blend_SMD_Annabelle_Crouch "police_animations_anims\custom\crouch_aim_ar2.smd"
 
 $definevariable Blend_Node_Default "shooting_pistol"
 $definevariable Blend_Node_Pistol "shooting_pistol"
 $definevariable Blend_Node_Rifle "shooting_smg"
+
+$definevariable Blend_Aim_Rifle "soldier_Aim_9_directions"
 
 $include "BaseDI.qci"
 $include "AlyxDI.qci"
@@ -181,6 +185,8 @@ $include "l4d1_ported_anims\L4D1_LadderClimb_Male.qci"
 $include "l4d1_ported_anims\L4D1_PistolAnims.qci" // Metrocops technically have their own pistol draw animation, but that's harder to turn into a gesture which works well
 
 $include "NPCDoorAnims.qci"
+
+$include "AnnabelleAnimations.qci"
 
 // ================================================================
 $include "ProtectedRun.qci"
