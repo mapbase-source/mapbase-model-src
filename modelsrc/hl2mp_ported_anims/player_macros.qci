@@ -200,6 +200,18 @@ $sequence $rangename$ a_$rangename$ { \\
 $continue $rangename$
 
 //
+// make a simple delta animation to add on to an upper body
+//
+$definemacro makerange_releaseik rangename filename startframe \\
+$animation a_$rangename$ $filename$ subtract a_$rangename$ $startframe$ weightlist HipsUpperbodyReplace \\
+$sequence $rangename$ a_$rangename$ { \\
+	iklock lfoot 1 0 iklock rfoot 1 0 \\
+	ikrule lhand release \\
+	delta \\
+	} \\
+$continue $rangename$
+
+//
 // make a jump animation from a composite of an upper body pose and the CS jump
 //
 $definemacro makejump jumpname filename frame \\
