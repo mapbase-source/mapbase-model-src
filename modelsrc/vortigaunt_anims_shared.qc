@@ -106,17 +106,19 @@ $surfaceprop "alienflesh"
 
 // ================================================================
 
+$pushd "vortigaunt_anims"
+
 $weightlist "JumpCrouchLayer" { "ValveBiped.hips" 1 "ValveBiped.spine1" 0 }
-$sequence "jump_holding_land_layer" "vortigaunt_anims\jump_holding_land.smd" frame 0 0 weightlist "JumpCrouchLayer" hidden
+$sequence "jump_holding_land_layer" "jump_holding_land.smd" frame 0 0 weightlist "JumpCrouchLayer" hidden
 
 $weightlist "ActionIdleLayer" { "ValveBiped.hips" 0.05 "ValveBiped.spine1" 1 }
-$sequence "action_idle_layer" "vortigaunt_anims\ActionIdle.smd" worldspace weightlist "ActionIdleLayer" hidden
-$sequence "action_zapattack_layer" "vortigaunt_anims\zapattack1.smd" worldspace weightlist "ActionIdleLayer" hidden
-$sequence "action_from_layer" "vortigaunt_anims\FromAction.smd" worldspace weightlist "ActionIdleLayer" hidden
-$sequence "action_to_layer" "vortigaunt_anims\ToAction.smd" worldspace weightlist "ActionIdleLayer" hidden
+$sequence "action_idle_layer" "ActionIdle.smd" worldspace weightlist "ActionIdleLayer" hidden
+$sequence "action_zapattack_layer" "zapattack1.smd" worldspace weightlist "ActionIdleLayer" hidden
+$sequence "action_from_layer" "FromAction.smd" worldspace weightlist "ActionIdleLayer" hidden
+$sequence "action_to_layer" "ToAction.smd" worldspace weightlist "ActionIdleLayer" hidden
 
 $sequence "crouch_cover_low" {
-	"vortigaunt_anims\jump_holding_land.smd"
+	"jump_holding_land.smd"
 	activity "ACT_COVER_LOW" 1
 	node "crouch_cover"
 	frame 0 0
@@ -124,7 +126,7 @@ $sequence "crouch_cover_low" {
 }
 
 $sequence "crouch_aim" {
-	"vortigaunt_anims\jump_holding_land.smd"
+	"jump_holding_land.smd"
 	activity "ACT_RANGE_AIM_LOW" 1
 	node "crouch_aim"
 	frame 0 0
@@ -133,18 +135,31 @@ $sequence "crouch_aim" {
 	cmdlist lockfeetreleasehands
 }
 
+$sequence "peeking_aim" {
+	"Idle01.smd"
+	activity "ACT_RANGE_AIM_MED" 1
+	node "peeking_aim"
+	frame 0 0
+	numframes 75
+	blendlayer "action_idle_layer" 0 0 0 0 local
+	cmdlist lockfeetreleasehands
+}
+
 $declaresequence "bolt_attack_all"
 
+$definemacro ZapAttackContent \\
+	{ event AE_VORTIGAUNT_ZAP_POWERUP 1 "2" } \\
+	{ event AE_VORTIGAUNT_ZAP_POWERUP 5 "2" } \\
+	{ event AE_VORTIGAUNT_ZAP_POWERUP 10 "2" } \\
+	{ event AE_VORTIGAUNT_SHOOT_SOUNDSTART 44 "" } \\
+	{ event AE_VORTIGAUNT_ZAP_SHOOT 47 "2" } \\
+	{ event AE_VORTIGAUNT_ZAP_DONE 55 "" } \\
+	blendlayer "bolt_attack_all" 27 45 67 73 \\
+
 $sequence "crouch_zapattack1" {
-	"vortigaunt_anims\jump_holding_land.smd"
+	"jump_holding_land.smd"
 	activity "ACT_RANGE_ATTACK1_LOW" 1
-	{ event AE_VORTIGAUNT_ZAP_POWERUP 1 "2" }
-	{ event AE_VORTIGAUNT_ZAP_POWERUP 5 "2" }
-	{ event AE_VORTIGAUNT_ZAP_POWERUP 10 "2" }
-	{ event AE_VORTIGAUNT_SHOOT_SOUNDSTART 44 "" }
-	{ event AE_VORTIGAUNT_ZAP_SHOOT 47 "2" }
-	{ event AE_VORTIGAUNT_ZAP_DONE 55 "" }
-	blendlayer "bolt_attack_all" 27 45 67 73
+	$ZapAttackContent
 	node "crouch_aim"
 	frame 0 0
 	numframes 90
@@ -153,20 +168,39 @@ $sequence "crouch_zapattack1" {
 	cmdlist lockfeetreleasehands
 }
 
+$sequence "peeking_zapattack1" {
+	"Idle01.smd"
+	activity "ACT_RANGE_ATTACK1_MED" 1
+	$ZapAttackContent
+	node "peeking_aim"
+	frame 0 0
+	numframes 90
+	fps 60
+	blendlayer "action_zapattack_layer" 0 0 0 0 local
+	cmdlist lockfeetreleasehands
+}
+
 $declaresequence "ActionIdle"
 
-$sequence "crouch_cover_to_stand" "vortigaunt_anims\jump_holding_land.smd" activity "ACT_TRANSITION" 1 transition "crouch_cover" "1" cmdlist lockfeetreleasehands
-$sequence "crouch_cover_to_action" "vortigaunt_anims\jump_holding_land.smd" activity "ACT_TRANSITION" 1 transition "crouch_cover" "2" cmdlist lockfeetreleasehands blendlayer "ActionIdle" 12 25 26 26 spline
-$sequence "stand_to_crouch_cover" "vortigaunt_anims\jump_holding_land_reverse.smd" activity "ACT_TRANSITION" 1 transition "1" "crouch_cover" cmdlist lockfeetreleasehands
-$sequence "action_to_crouch_cover" "vortigaunt_anims\jump_holding_land_reverse.smd" activity "ACT_TRANSITION" 1 transition "2" "crouch_cover" cmdlist lockfeetreleasehands blendlayer "ActionIdle" 0 0 0 15 spline
+$sequence "crouch_cover_to_stand" "jump_holding_land.smd" activity "ACT_TRANSITION" 1 transition "crouch_cover" "1" cmdlist lockfeetreleasehands
+$sequence "crouch_cover_to_action" "jump_holding_land.smd" activity "ACT_TRANSITION" 1 transition "crouch_cover" "2" cmdlist lockfeetreleasehands blendlayer "ActionIdle" 12 25 26 26 spline
+$sequence "stand_to_crouch_cover" "jump_holding_land_reverse.smd" activity "ACT_TRANSITION" 1 transition "1" "crouch_cover" cmdlist lockfeetreleasehands
+$sequence "action_to_crouch_cover" "jump_holding_land_reverse.smd" activity "ACT_TRANSITION" 1 transition "2" "crouch_cover" cmdlist lockfeetreleasehands blendlayer "ActionIdle" 0 0 0 15 spline
 
-$sequence "crouch_aim_to_stand" "vortigaunt_anims\jump_holding_land.smd" activity "ACT_TRANSITION" 1 transition "crouch_aim" "1" cmdlist lockfeetreleasehands blendlayer "action_idle_layer" 0 0 0 15 spline
-$sequence "crouch_aim_to_action" "vortigaunt_anims\jump_holding_land.smd" activity "ACT_TRANSITION" 1 transition "crouch_aim" "2" cmdlist lockfeetreleasehands blendlayer "action_idle_layer" 0 0 0 0 local
-$sequence "stand_to_crouch_aim" "vortigaunt_anims\jump_holding_land_reverse.smd" activity "ACT_TRANSITION" 1 transition "1" "crouch_aim" cmdlist lockfeetreleasehands blendlayer "action_idle_layer" 12 25 26 26
-$sequence "action_to_crouch_aim" "vortigaunt_anims\jump_holding_land_reverse.smd" activity "ACT_TRANSITION" 1 transition "2" "crouch_aim" cmdlist lockfeetreleasehands blendlayer "action_idle_layer" 0 0 0 0 local
+$sequence "crouch_aim_to_stand" "jump_holding_land.smd" activity "ACT_TRANSITION" 1 transition "crouch_aim" "1" cmdlist lockfeetreleasehands blendlayer "action_idle_layer" 0 0 0 15 spline
+$sequence "crouch_aim_to_action" "jump_holding_land.smd" activity "ACT_TRANSITION" 1 transition "crouch_aim" "2" cmdlist lockfeetreleasehands blendlayer "action_idle_layer" 0 0 0 0 local
+$sequence "stand_to_crouch_aim" "jump_holding_land_reverse.smd" activity "ACT_TRANSITION" 1 transition "1" "crouch_aim" cmdlist lockfeetreleasehands blendlayer "action_idle_layer" 12 25 26 26
+$sequence "action_to_crouch_aim" "jump_holding_land_reverse.smd" activity "ACT_TRANSITION" 1 transition "2" "crouch_aim" cmdlist lockfeetreleasehands blendlayer "action_idle_layer" 0 0 0 0 local
 
-$sequence "crouch_cover_to_crouch_aim" "vortigaunt_anims\jump_holding_land.smd" frame 0 0 numframes 35 fps 60 activity "ACT_TRANSITION" 1 transition "crouch_cover" "crouch_aim" cmdlist lockfeetreleasehands blendlayer "action_to_layer" 0 35 36 36
-$sequence "crouch_aim_to_crouch_cover" "vortigaunt_anims\jump_holding_land.smd" frame 0 0 numframes 50 activity "ACT_TRANSITION" 1 transition "crouch_aim" "crouch_cover" cmdlist lockfeetreleasehands blendlayer "action_from_layer" 0 0 0 50
+$sequence "crouch_cover_to_crouch_aim" "jump_holding_land.smd" frame 0 0 numframes 35 fps 60 activity "ACT_TRANSITION" 1 transition "crouch_cover" "crouch_aim" cmdlist lockfeetreleasehands blendlayer "action_to_layer" 0 35 36 36
+$sequence "crouch_aim_to_crouch_cover" "jump_holding_land.smd" frame 0 0 numframes 50 activity "ACT_TRANSITION" 1 transition "crouch_aim" "crouch_cover" cmdlist lockfeetreleasehands blendlayer "action_from_layer" 0 0 0 50
+
+$sequence "crouch_cover_to_peek" "jump_holding_land.smd" activity "ACT_TRANSITION" 1 transition "crouch_cover" "peeking_aim" cmdlist lockfeetreleasehands blendlayer "peeking_aim" 12 25 26 26 spline blendlayer "action_idle_layer" 12 25 26 26 spline
+$sequence "crouch_aim_to_peek" "jump_holding_land.smd" activity "ACT_TRANSITION" 1 transition "crouch_aim" "peeking_aim" cmdlist lockfeetreleasehands blendlayer "peeking_aim" 12 25 26 26 spline blendlayer "action_idle_layer" 0 0 0 0 local
+$sequence "stand_to_peek" "jump_holding_land_reverse.smd" activity "ACT_TRANSITION" 1 transition "1" "peeking_aim" cmdlist lockfeetreleasehands blendlayer "peeking_aim" 12 25 26 26 spline blendlayer "action_idle_layer" 12 25 26 26
+$sequence "action_to_peek" "jump_holding_land_reverse.smd" activity "ACT_TRANSITION" 1 transition "2" "peeking_aim" cmdlist lockfeetreleasehands blendlayer "peeking_aim" 12 25 26 26 blendlayer "action_idle_layer" 0 0 0 0 local
+
+$popd
 
 // ================================================================
 
