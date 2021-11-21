@@ -35,16 +35,16 @@ $makeaimlayer HL2DM_crouch_aim_gravgun			"..\hl2mp_ported_anims\HL2DM_crouch_aim
 
 $sequence	idle			"idle_subtle" loop activity ACT_HL2MP_IDLE 1
 
-$makeidle	idle_pistol		"..\male_shared_anims\custom\Idle_Pistol_Aim" 0 weapons_Pistol_aim_matrix ACT_HL2MP_IDLE_PISTOL 1
-$makeidle	idle_shotgun	"..\hl2mp_ported_anims\Aim_9_directions_SG" 4 soldier_Aim_9_directions_SG ACT_HL2MP_IDLE_SHOTGUN 1
-$makeidle	idle_smg1		"Idle_SMG1_Aim" 0 soldier_Aim_9_directions ACT_HL2MP_IDLE_SMG1 1
-$makeidle	idle_ar2		"idle_ar2_aim" 0 soldier_Aim_9_directions ACT_HL2MP_IDLE_AR2 1
-$makeidle	idle_gravgun	"..\hl2mp_ported_anims\HL2DM_Aim_Gravgun" 4 HL2DM_Aim_Gravgun ACT_HL2MP_IDLE_PHYSGUN 1
-$makeidle	idle_grenade	"..\hl2mp_ported_anims\HL2DM_Throw_Grenade" 0 soldier_Aim_9_directions ACT_HL2MP_IDLE_GRENADE 1
-$makeidle	idle_rpg		"..\hl2mp_ported_anims\Aim_RPG_9_directions" 4 weapons_Aim_RPG_9_directions ACT_HL2MP_IDLE_RPG 1
-$makeidle	idle_crossbow	"custom\Idle_Crossbow_Aim" 0 soldier_Aim_9_directions ACT_HL2MP_IDLE_CROSSBOW 1
-$makeidle	idle_melee		"..\hl2mp_ported_anims\HL2DM_MeleeAttack" 0 soldier_Aim_9_directions ACT_HL2MP_IDLE_MELEE 1
-$makeidle	idle_slam		"..\hl2mp_ported_anims\HL2DM_Idle_Slam" 0 soldier_Aim_9_directions ACT_HL2MP_IDLE_SLAM 1
+$makeidle		idle_pistol		"..\male_shared_anims\custom\Idle_Pistol_Aim" 0 weapons_Pistol_aim_matrix ACT_HL2MP_IDLE_PISTOL 1
+$makeidle		idle_shotgun	"..\hl2mp_ported_anims\Aim_9_directions_SG" 4 soldier_Aim_9_directions_SG ACT_HL2MP_IDLE_SHOTGUN 1
+$makeidle		idle_smg1		"Idle_SMG1_Aim" 0 soldier_Aim_9_directions ACT_HL2MP_IDLE_SMG1 1
+$makeidle		idle_ar2		"idle_ar2_aim" 0 soldier_Aim_9_directions ACT_HL2MP_IDLE_AR2 1
+$makeidle		idle_gravgun	"..\hl2mp_ported_anims\HL2DM_Aim_Gravgun" 4 HL2DM_Aim_Gravgun ACT_HL2MP_IDLE_PHYSGUN 1
+$makeidle_noik	idle_grenade	"..\hl2mp_ported_anims\HL2DM_Throw_Grenade" 0 soldier_Aim_9_directions ACT_HL2MP_IDLE_GRENADE 1
+$makeidle		idle_rpg		"..\hl2mp_ported_anims\Aim_RPG_9_directions" 4 weapons_Aim_RPG_9_directions ACT_HL2MP_IDLE_RPG 1
+$makeidle		idle_crossbow	"custom\Idle_Crossbow_Aim" 0 soldier_Aim_9_directions ACT_HL2MP_IDLE_CROSSBOW 1
+$makeidle_noik	idle_melee		"..\hl2mp_ported_anims\HL2DM_MeleeAttack" 0 soldier_Aim_9_directions ACT_HL2MP_IDLE_MELEE 1
+$makeidle_noik	idle_slam		"..\hl2mp_ported_anims\HL2DM_Idle_Slam" 0 soldier_Aim_9_directions ACT_HL2MP_IDLE_SLAM 1
 
 // ---------------------------------------------------
 // Run
@@ -75,16 +75,16 @@ $makematchrun_9way	run_slam		"..\hl2mp_ported_anims\HL2DM_Idle_Slam" 0 soldier_A
 
 $sequence	cidle			"crouchidlehide" loop activity ACT_HL2MP_IDLE_CROUCH 1
 
-$makecidle	cidle_pistol	"..\hl2mp_ported_anims\HL2DM_crouch_aim_pistol" 4 HL2DM_crouch_aim_pistol ACT_HL2MP_IDLE_CROUCH_PISTOL 1
-$makecidle	cidle_shotgun	"..\combine_soldier_anims_anims\shootSGc" 0 soldier_Crouch_aim_9_directions ACT_HL2MP_IDLE_CROUCH_SHOTGUN 1
-$makecidleB	cidle_smg1		"Idle_SMG1_Aim" 0 "..\hl2mp_ported_anims\HL2DM_crouch_aim_gravgun" 4 soldier_Crouch_aim_9_directions ACT_HL2MP_IDLE_CROUCH_SMG1 1
-$makecidleB	cidle_ar2		"idle_ar2_aim" 0 "..\hl2mp_ported_anims\HL2DM_crouch_aim_gravgun" 4 soldier_Crouch_aim_9_directions ACT_HL2MP_IDLE_CROUCH_AR2 1
-$makecidle	cidle_gravgun	"..\hl2mp_ported_anims\HL2DM_crouch_aim_gravgun" 4 HL2DM_crouch_aim_gravgun ACT_HL2MP_IDLE_CROUCH_PHYSGUN 1
-$makecidleB	cidle_grenade	"..\hl2mp_ported_anims\HL2DM_Throw_Grenade" 0 "..\hl2mp_ported_anims\HL2DM_crouch_aim_gravgun" 4 soldier_Aim_9_directions ACT_HL2MP_IDLE_CROUCH_GRENADE 1 
-$makecidle	cidle_rpg		"..\hl2mp_ported_anims\HL2DM_crouch_aim_RPG" 4 HL2DM_crouch_aim_RPG ACT_HL2MP_IDLE_CROUCH_RPG 1 
-$makecidleB cidle_crossbow	"custom\Idle_Crossbow_Aim" 0 "..\hl2mp_ported_anims\HL2DM_crouch_aim_gravgun" 4 soldier_Crouch_aim_9_directions ACT_HL2MP_IDLE_CROUCH_CROSSBOW 1
-$makecidleB	cidle_melee		"..\hl2mp_ported_anims\HL2DM_MeleeAttack" 0 "..\hl2mp_ported_anims\HL2DM_crouch_aim_gravgun" 4 soldier_Aim_9_directions ACT_HL2MP_IDLE_CROUCH_MELEE 1
-$makecidleB	cidle_slam		"..\hl2mp_ported_anims\HL2DM_Idle_Slam" 0 "..\hl2mp_ported_anims\HL2DM_crouch_aim_gravgun" 4 soldier_Aim_9_directions ACT_HL2MP_IDLE_CROUCH_SLAM 1
+$makecidle			cidle_pistol	"..\hl2mp_ported_anims\HL2DM_crouch_aim_pistol" 4 HL2DM_crouch_aim_pistol ACT_HL2MP_IDLE_CROUCH_PISTOL 1
+$makecidle			cidle_shotgun	"..\combine_soldier_anims_anims\shootSGc" 0 soldier_Crouch_aim_9_directions ACT_HL2MP_IDLE_CROUCH_SHOTGUN 1
+$makecidleB			cidle_smg1		"Idle_SMG1_Aim" 0 "..\hl2mp_ported_anims\HL2DM_crouch_aim_gravgun" 4 soldier_Crouch_aim_9_directions ACT_HL2MP_IDLE_CROUCH_SMG1 1
+$makecidleB			cidle_ar2		"idle_ar2_aim" 0 "..\hl2mp_ported_anims\HL2DM_crouch_aim_gravgun" 4 soldier_Crouch_aim_9_directions ACT_HL2MP_IDLE_CROUCH_AR2 1
+$makecidle			cidle_gravgun	"..\hl2mp_ported_anims\HL2DM_crouch_aim_gravgun" 4 HL2DM_crouch_aim_gravgun ACT_HL2MP_IDLE_CROUCH_PHYSGUN 1
+$makecidleB_noik	cidle_grenade	"..\hl2mp_ported_anims\HL2DM_Throw_Grenade" 0 "..\hl2mp_ported_anims\HL2DM_crouch_aim_gravgun" 4 soldier_Aim_9_directions ACT_HL2MP_IDLE_CROUCH_GRENADE 1 
+$makecidle			cidle_rpg		"..\hl2mp_ported_anims\HL2DM_crouch_aim_RPG" 4 HL2DM_crouch_aim_RPG ACT_HL2MP_IDLE_CROUCH_RPG 1 
+$makecidleB 		cidle_crossbow	"custom\Idle_Crossbow_Aim" 0 "..\hl2mp_ported_anims\HL2DM_crouch_aim_gravgun" 4 soldier_Crouch_aim_9_directions ACT_HL2MP_IDLE_CROUCH_CROSSBOW 1
+$makecidleB_noik	cidle_melee		"..\hl2mp_ported_anims\HL2DM_MeleeAttack" 0 "..\hl2mp_ported_anims\HL2DM_crouch_aim_gravgun" 4 soldier_Aim_9_directions ACT_HL2MP_IDLE_CROUCH_MELEE 1
+$makecidleB_noik	cidle_slam		"..\hl2mp_ported_anims\HL2DM_Idle_Slam" 0 "..\hl2mp_ported_anims\HL2DM_crouch_aim_gravgun" 4 soldier_Aim_9_directions ACT_HL2MP_IDLE_CROUCH_SLAM 1
 
 // ---------------------------------------------------
 // Crouch Walk
@@ -118,10 +118,10 @@ $makerange_releaseik	range_shotgun	"..\combine_soldier_anims_anims\shootSGs" 0 f
 $makerange				range_smg1		"..\combine_soldier_anims_anims\shootSMG1s" 0 ACT_HL2MP_GESTURE_RANGE_ATTACK_SMG1 1
 $makerange				range_ar2		"..\combine_soldier_anims_anims\shootAR2s" 0 ACT_HL2MP_GESTURE_RANGE_ATTACK_AR2 1
 $makerange				range_gravgun	"..\hl2mp_ported_anims\HL2DM_Fire_Gravgun" 0 ACT_HL2MP_GESTURE_RANGE_ATTACK_PHYSGUN 1
-$makerange_releaseik	range_grenade	"..\hl2mp_ported_anims\HL2DM_Throw_Grenade" 0 ACT_HL2MP_GESTURE_RANGE_ATTACK_GRENADE 1
+$makerange				range_grenade	"..\hl2mp_ported_anims\HL2DM_Throw_Grenade" 0 ACT_HL2MP_GESTURE_RANGE_ATTACK_GRENADE 1
 $makerange				range_rpg		"..\male_shared_anims\shoot_rpg" 0 ACT_HL2MP_GESTURE_RANGE_ATTACK_RPG 1
 $makerange				range_crossbow	"custom\shoot_crossbow" 0 ACT_HL2MP_GESTURE_RANGE_ATTACK_CROSSBOW 1
-$makerange_releaseik	range_melee		"..\hl2mp_ported_anims\HL2DM_MeleeAttack" 0 ACT_HL2MP_GESTURE_RANGE_ATTACK_MELEE 1 looping fps 45
+$makerange				range_melee		"..\hl2mp_ported_anims\HL2DM_MeleeAttack" 0 ACT_HL2MP_GESTURE_RANGE_ATTACK_MELEE 1 looping fps 45
 $makerange				range_slam		"..\hl2mp_ported_anims\HL2DM_deploy_SLAM" 0 ACT_HL2MP_GESTURE_RANGE_ATTACK_SLAM 1
 
 // ---------------------------------------------------

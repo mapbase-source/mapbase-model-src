@@ -89,8 +89,12 @@ $continue $layername$
 //
 // make an idle animation from a single frame, add in aiming
 //
+$definemacro makeidle_noik idlename filename frame aimlayer \\
+$sequence $idlename$ $filename$ alignto reference frame $frame$ $frame$ numframes 30 loop addlayer $aimlayer$ \\
+$continue $idlename$
+
 $definemacro makeidle idlename filename frame aimlayer \\
-$sequence $idlename$ $filename$ alignto reference frame $frame$ $frame$ numframes 30 loop ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" addlayer $aimlayer$ \\
+$makeidle_noik $idlename$ $filename$ $frame$ $aimlayer$ ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" \\
 $continue $idlename$
 
 
@@ -143,14 +147,18 @@ $continue $runname$
 //
 // make an idle animation from a single frame, add in aiming
 //
+$definemacro makecidle_noik cidlename filename frame aimlayer \\
+$sequence $cidlename$ $filename$ alignto reference frame $frame$ $frame$ numframes 30 loop addlayer $aimlayer$ \\
+$continue $cidlename$
+
 $definemacro makecidle cidlename filename frame aimlayer \\
-$sequence $cidlename$ $filename$ alignto reference frame $frame$ $frame$ numframes 30 loop ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" addlayer $aimlayer$ \\
+$makecidle_noik $cidlename$ $filename$ $frame$ $aimlayer$ ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" \\
 $continue $cidlename$
 
 //
 // make an idle animation from a composite of a standing animation and a crouch animation, add in aiming
 //
-$definemacro makecidleB cidlename filename frame filenameB frameB aimlayer \\
+$definemacro makecidleB_noik cidlename filename frame filenameB frameB aimlayer \\
 $animation a_$cidlename$_base $filename$ frame $frame$ $frame$ \\
 $sequence $cidlename$ $filenameB$ { \\
 	frame $frameB$ $frameB$ \\
@@ -159,9 +167,12 @@ $sequence $cidlename$ $filenameB$ { \\
 	worldspaceblend a_$cidlename$_base \\
 	weightlist AllBones \\
 	addlayer $aimlayer$ \\
-	ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" \\
 	loop \\ 
 	} \\
+$continue $cidlename$
+
+$definemacro makecidleB cidlename filename frame filenameB frameB aimlayer \\
+$makecidleB_noik $cidlename$ $filename$ $frame$ $filenameB$ $frameB$ $aimlayer$ ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" \\
 $continue $cidlename$
 
 //

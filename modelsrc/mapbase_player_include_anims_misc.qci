@@ -40,19 +40,31 @@ $makeweapongesturep range2_ar2 "..\combine_soldier_anims_anims\shootAR2alt.smd" 
 
 // ---------------------------------------------------
 
-// Prop carrying animations
-$makeidle			idle_use		"..\male_shared_anims\custom\hl2dm_use_light" 0 soldier_Aim_9_directions ACT_HL2MP_IDLE_USE 1
+// General +USE animations (prop carrying, func_tank, etc.)
+// 
+// The IK attachment rules mainly just come in handy for func_tanks, although you're unlikely to see
+// that externally anyway, so it's more of an afterthought/experiment than anything
+// 
+$cmdlist IK_LHand {
+	ikrule "lhand" attachment "L_hand"
+}
+$cmdlist IK_BothHands {
+	ikrule "lhand" attachment "L_hand"
+	ikrule "rhand" attachment "R_hand"
+}
+
+$makeidle			idle_use		"..\male_shared_anims\custom\hl2dm_use_light" 0 soldier_Aim_9_directions ACT_HL2MP_IDLE_USE 1 cmdlist IK_LHand
 $makematchrun_9way	run_use			"..\male_shared_anims\custom\hl2dm_use_light" 0 soldier_Aim_9_directions "..\male_shared_anims\custom\hl2dm_use_light" 0 ACT_HL2MP_RUN_USE 1
-$makecidleB			cidle_use		"..\male_shared_anims\custom\hl2dm_use_light" 0 "..\hl2mp_ported_anims\HL2DM_crouch_aim_gravgun" 4 soldier_Crouch_aim_9_directions ACT_HL2MP_IDLE_CROUCH_USE 1
+$makecidleB			cidle_use		"..\male_shared_anims\custom\hl2dm_use_light" 0 "..\hl2mp_ported_anims\HL2DM_crouch_aim_gravgun" 4 soldier_Crouch_aim_9_directions ACT_HL2MP_IDLE_CROUCH_USE 1 cmdlist IK_LHand
 $makecwalk_9way		cwalk_use		"..\male_shared_anims\custom\hl2dm_use_light" 0 soldier_Crouch_aim_9_directions "..\male_shared_anims\custom\hl2dm_use_light" 0 ACT_HL2MP_WALK_CROUCH_USE 1
-$makejump			jump_use		"..\male_shared_anims\custom\hl2dm_use_light" 0 ACT_HL2MP_JUMP_USE 1
+$makejump			jump_use		"..\male_shared_anims\custom\hl2dm_use_light" 0 ACT_HL2MP_JUMP_USE 1 cmdlist IK_LHand
 $makematchwalk_9way	walk_use		"..\male_shared_anims\custom\hl2dm_use_light" 0 soldier_Aim_9_directions "..\male_shared_anims\custom\hl2dm_use_light" 0 ACT_HL2MP_WALK_USE 1
 
-$makeidle			idle_use_heavy		"..\male_shared_anims\custom\hl2dm_use_heavy" 0 soldier_Aim_9_directions ACT_HL2MP_IDLE_USE_HEAVY 1
+$makeidle			idle_use_heavy		"..\male_shared_anims\custom\hl2dm_use_heavy" 0 soldier_Aim_9_directions ACT_HL2MP_IDLE_USE_HEAVY 1 cmdlist IK_BothHands
 $makematchrun_9way	run_use_heavy		"..\male_shared_anims\custom\hl2dm_use_heavy" 0 soldier_Aim_9_directions "..\male_shared_anims\custom\hl2dm_use_heavy" 0 ACT_HL2MP_RUN_USE_HEAVY 1
-$makecidleB			cidle_use_heavy		"..\male_shared_anims\custom\hl2dm_use_heavy" 0 "..\hl2mp_ported_anims\HL2DM_crouch_aim_gravgun" 4 soldier_Crouch_aim_9_directions ACT_HL2MP_IDLE_CROUCH_USE_HEAVY 1
+$makecidleB			cidle_use_heavy		"..\male_shared_anims\custom\hl2dm_use_heavy" 0 "..\hl2mp_ported_anims\HL2DM_crouch_aim_gravgun" 4 soldier_Crouch_aim_9_directions ACT_HL2MP_IDLE_CROUCH_USE_HEAVY 1 cmdlist IK_BothHands
 $makecwalk_9way		cwalk_use_heavy		"..\male_shared_anims\custom\hl2dm_use_heavy" 0 soldier_Crouch_aim_9_directions "..\male_shared_anims\custom\hl2dm_use_heavy" 0 ACT_HL2MP_WALK_CROUCH_USE_HEAVY 1
-$makejump			jump_use_heavy		"..\male_shared_anims\custom\hl2dm_use_heavy" 0 ACT_HL2MP_JUMP_USE_HEAVY 1
+$makejump			jump_use_heavy		"..\male_shared_anims\custom\hl2dm_use_heavy" 0 ACT_HL2MP_JUMP_USE_HEAVY 1 cmdlist IK_BothHands
 $makematchwalk_9way	walk_use_heavy		"..\male_shared_anims\custom\hl2dm_use_heavy" 0 soldier_Aim_9_directions "..\male_shared_anims\custom\hl2dm_use_heavy" 0 ACT_HL2MP_WALK_USE_HEAVY 1
 
 // ---------------------------------------------------
