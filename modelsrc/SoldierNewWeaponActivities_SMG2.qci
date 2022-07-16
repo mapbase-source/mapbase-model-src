@@ -1,0 +1,23 @@
+// ================================================================
+// 
+// Soldier SMG2 Activities
+// 
+// ================================================================
+
+$GenericIdle "Idle1_SMG2" "combine_soldier_anims_anims\custom\Idle1_SMG2.smd" "ACT_IDLE_SMG2"
+
+$GenericCombatIdle "CombatIdle1_SMG2" "combine_soldier_anims_anims\custom\CombatIdle1_SMG2.smd" "ACT_IDLE_ANGRY_SMG2" "Aim_stand_delta_all"
+
+$GenericCombatIdle "crouch_aim_smg2" "combine_soldier_anims_anims\custom\crouch_aim_smg2.smd" "ACT_RANGE_AIM_SMG2_LOW" "Aim_crouch_delta_all"
+
+// ----------------------------------------------------------------
+
+// TODO: Do something more than just changing the hands?
+$GenericReload "reload_smg2" "combine_soldier_anims_anims\reload.smd" "ACT_RELOAD_SMG2" "Aim_stand_delta_all" 13 48 65 28
+$append "reload_smg2" { blendlayer "CombatIdle1_SMG2" 0 0 0 4 blendlayer "CombatIdle1_SMG2" 61 67 67 67 xfade }
+
+// ----------------------------------------------------------------
+
+$GenericShoot "shootSMG2s" "combine_soldier_anims_anims\shootSMG1s.smd" "ACT_RANGE_ATTACK_SMG2" "Aim_stand_delta_all" match "CombatIdle1_SMG2"
+
+$GenericShoot "shootSMG2c" "combine_soldier_anims_anims\shootSMG1c.smd" "ACT_RANGE_ATTACK_SMG2_LOW" "Aim_stand_delta_all" match "crouch_aim_smg2"

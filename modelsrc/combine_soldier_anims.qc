@@ -19,6 +19,7 @@ $include "SoldierMoveAnims.qci"
 $includemodel "combine_soldier_anims_original.mdl"
 $include "combine_soldier_anims_DeclareSequence.qci"
 $include "SoldierActivityFixes.qci"
+$include "SoldierNewWeaponActivities.qci"
 $include "SoldierTransitions.qci"
 
 $include "SoldierReadinessAnims.qci"
