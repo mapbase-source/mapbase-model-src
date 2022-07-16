@@ -143,6 +143,28 @@ $sequence $runname$ { \\
 	} \\
 $continue $runname$
 
+//
+// same as makematchrun, but with walking
+//
+$definemacro makematchwalk walkname filename frame aimlayer \\
+$animation a_$walkname$_base $filename$ frame $frame$ $frame$ \\
+$sequence $walkname$_mod "..\male_shared_anims\a_WalkN" { \\
+	LX LY rotateto 0 \\
+	alignto reference \\
+	weightlist UpperbodyBlend \\
+	worldspaceblend a_$walkname$_base \\
+	weightlist HipsUpperbodyReplace \\
+	hidden \\
+	iklock lfoot 1 0 iklock rfoot 1 0 \\
+	} \\
+$sequence $walkname$ { \\
+	a_walkS a_walkSE a_walkE a_walkNE a_walkN a_walkNW a_walkW a_walkSW a_walkS \\
+	blendwidth 9 blend move_yaw -180 180 \\
+	addlayer $walkname$_mod \\
+	addlayer $aimlayer$ \\
+	} \\
+$continue $walkname$
+
 
 //
 // make an idle animation from a single frame, add in aiming

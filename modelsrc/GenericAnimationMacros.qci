@@ -194,8 +194,41 @@ $sequence $SeqName$ { \\
 } \\
 $continue $SeqName$
 
+// ================================================================
 
+$definemacro makenpcmatchrun runname filename frame aimlayer runn blendweights walkframe \\
+$animation a_$runname$_base $filename$ frame $frame$ $frame$ \\
+$sequence $runname$_mod $runn$ { \\
+	walkframe $walkframe$ LX LY rotateto 0 \\
+	weightlist $blendweights$ \\
+	worldspaceblend a_$runname$_base \\
+	weightlist HipsUpperbodyReplace \\
+	hidden \\
+	iklock lfoot 1 0 iklock rfoot 1 0 \\
+	} \\
+$sequence $runname$ { \\
+	$a_RunBlends \\
+	addlayer $runname$_mod \\
+	addlayer $aimlayer$ \\
+	} \\
+$continue $runname$
 
+$definemacro makenpcmatchwalk walkname filename frame aimlayer walkn blendweights walkframe \\
+$animation a_$walkname$_base $filename$ frame $frame$ $frame$ \\
+$sequence $walkname$_mod $walkn$ { \\
+	walkframe $walkframe$ LX LY rotateto 0 \\
+	weightlist $blendweights$ \\
+	worldspaceblend a_$walkname$_base \\
+	weightlist HipsUpperbodyReplace \\
+	hidden \\
+	iklock lfoot 1 0 iklock rfoot 1 0 \\
+	} \\
+$sequence $walkname$ { \\
+	$a_WalkBlends \\
+	addlayer $walkname$_mod \\
+	addlayer $aimlayer$ \\
+	} \\
+$continue $walkname$
 
 // =============================================================================================
 

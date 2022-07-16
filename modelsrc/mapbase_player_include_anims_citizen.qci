@@ -46,6 +46,9 @@ $makeidle		idle_crossbow	"custom\Idle_Crossbow_Aim" 0 soldier_Aim_9_directions A
 $makeidle_noik	idle_melee		"..\hl2mp_ported_anims\HL2DM_MeleeAttack" 0 soldier_Aim_9_directions ACT_HL2MP_IDLE_MELEE 1
 $makeidle_noik	idle_slam		"..\hl2mp_ported_anims\HL2DM_Idle_Slam" 0 soldier_Aim_9_directions ACT_HL2MP_IDLE_SLAM 1
 
+$makeidle		idle_smg2		"custom\Idle_SMG2_Aim" 0 soldier_Aim_9_directions ACT_HL2MP_IDLE_SMG2 1
+$makeidle		idle_ar1		"custom\idle_ar1_aim" 0 soldier_Aim_9_directions ACT_HL2MP_IDLE_AR1 1
+
 // ---------------------------------------------------
 // Run
 // ---------------------------------------------------
@@ -69,6 +72,9 @@ $makematchrun_9way	run_crossbow	"custom\Idle_Crossbow_Aim" 0 soldier_Aim_9_direc
 $makematchrun_9way	run_melee		"..\hl2mp_ported_anims\HL2DM_MeleeAttack" 0 soldier_Aim_9_directions "..\hl2mp_ported_anims\HL2DM_MeleeAttack" 0 ACT_HL2MP_RUN_MELEE 1
 $makematchrun_9way	run_slam		"..\hl2mp_ported_anims\HL2DM_Idle_Slam" 0 soldier_Aim_9_directions "..\hl2mp_ported_anims\HL2DM_Idle_Slam" 0 ACT_HL2MP_RUN_SLAM 1
 
+$makerun_9way		run_smg1		"..\hl2mp_ported_anims\RunN_Alert_SMG1_Aim" 0 weapons_RunN_SMG1_Aim_9_directions "Idle_SMG2_Aim" 0 ACT_HL2MP_RUN_SMG2 1
+$makematchrun_9way	run_ar2			"custom\idle_ar1_aim" 0 soldier_Aim_9_directions "custom\idle_ar1_aim" 0 ACT_HL2MP_RUN_AR1 1
+
 // ---------------------------------------------------
 // Crouch Idle
 // ---------------------------------------------------
@@ -85,6 +91,9 @@ $makecidle			cidle_rpg		"..\hl2mp_ported_anims\HL2DM_crouch_aim_RPG" 4 HL2DM_cro
 $makecidleB 		cidle_crossbow	"custom\Idle_Crossbow_Aim" 0 "..\hl2mp_ported_anims\HL2DM_crouch_aim_gravgun" 4 soldier_Crouch_aim_9_directions ACT_HL2MP_IDLE_CROUCH_CROSSBOW 1
 $makecidleB_noik	cidle_melee		"..\hl2mp_ported_anims\HL2DM_MeleeAttack" 0 "..\hl2mp_ported_anims\HL2DM_crouch_aim_gravgun" 4 soldier_Aim_9_directions ACT_HL2MP_IDLE_CROUCH_MELEE 1
 $makecidleB_noik	cidle_slam		"..\hl2mp_ported_anims\HL2DM_Idle_Slam" 0 "..\hl2mp_ported_anims\HL2DM_crouch_aim_gravgun" 4 soldier_Aim_9_directions ACT_HL2MP_IDLE_CROUCH_SLAM 1
+
+$makecidleB			cidle_smg2		"custom\Idle_SMG2_Aim" 0 "..\hl2mp_ported_anims\HL2DM_crouch_aim_gravgun" 4 soldier_Crouch_aim_9_directions ACT_HL2MP_IDLE_CROUCH_SMG2 1
+$makecidleB			cidle_ar1		"custom\idle_ar1_aim" 0 "..\hl2mp_ported_anims\HL2DM_crouch_aim_gravgun" 4 soldier_Crouch_aim_9_directions ACT_HL2MP_IDLE_CROUCH_AR1 1
 
 // ---------------------------------------------------
 // Crouch Walk
@@ -109,6 +118,9 @@ $makecwalk_9way	cwalk_crossbow	"custom\Idle_Crossbow_Aim" 0 soldier_Crouch_aim_9
 $makecwalk_9way	cwalk_melee		"..\hl2mp_ported_anims\HL2DM_MeleeAttack" 0 soldier_Aim_9_directions "..\hl2mp_ported_anims\HL2DM_MeleeAttack" 0 ACT_HL2MP_WALK_CROUCH_MELEE 1
 $makecwalk_9way	cwalk_slam		"..\hl2mp_ported_anims\HL2DM_Idle_Slam" 0 soldier_Aim_9_directions "..\hl2mp_ported_anims\HL2DM_Idle_Slam" 0 ACT_HL2MP_WALK_CROUCH_SLAM 1
 
+$makecwalk_9way	cwalk_smg2		"custom\Idle_SMG2_Aim" 0 soldier_Crouch_aim_9_directions "..\combine_soldier_anims_anims\shootSMG1c" 0 ACT_HL2MP_WALK_CROUCH_SMG2 1
+$makecwalk_9way	cwalk_ar1		"custom\idle_ar1_aim" 0 soldier_Crouch_aim_9_directions "..\combine_soldier_anims_anims\shootAR2c" 0 ACT_HL2MP_WALK_CROUCH_AR1 1
+
 // ---------------------------------------------------
 // Attack
 // ---------------------------------------------------
@@ -123,6 +135,9 @@ $makerange				range_rpg		"..\male_shared_anims\shoot_rpg" 0 ACT_HL2MP_GESTURE_RA
 $makerange				range_crossbow	"custom\shoot_crossbow" 0 ACT_HL2MP_GESTURE_RANGE_ATTACK_CROSSBOW 1
 $makerange				range_melee		"..\hl2mp_ported_anims\HL2DM_MeleeAttack" 0 ACT_HL2MP_GESTURE_RANGE_ATTACK_MELEE 1 looping fps 45
 $makerange				range_slam		"..\hl2mp_ported_anims\HL2DM_deploy_SLAM" 0 ACT_HL2MP_GESTURE_RANGE_ATTACK_SLAM 1
+
+$makerange				range_smg2		"..\combine_soldier_anims_anims\shootSMG1s" 0 ACT_HL2MP_GESTURE_RANGE_ATTACK_SMG2 1
+$makerange				range_ar1		"..\combine_soldier_anims_anims\shootAR2s" 0 ACT_HL2MP_GESTURE_RANGE_ATTACK_AR1 1
 
 // ---------------------------------------------------
 // Jump
@@ -141,6 +156,9 @@ $makejump	jump_crossbow	"custom\Idle_Crossbow_Aim" 0 ACT_HL2MP_JUMP_CROSSBOW 1
 $makejump	jump_melee		"..\hl2mp_ported_anims\HL2DM_MeleeAttack" 0 ACT_HL2MP_JUMP_MELEE 1
 $makejump	jump_slam		"..\hl2mp_ported_anims\HL2DM_Idle_SLAM" 0 ACT_HL2MP_JUMP_SLAM 1
 
+$makejump	jump_smg2		"custom\Idle_SMG2_Aim" 0 ACT_HL2MP_JUMP_SMG2 1
+$makejump	jump_ar1		"custom\idle_ar1_aim" 0 ACT_HL2MP_JUMP_AR1 1
+
 // ---------------------------------------------------
 // Reload
 // ---------------------------------------------------
@@ -151,6 +169,8 @@ $makeweapongesturep reload_smg1		"..\combine_soldier_anims_anims\reload" 19 55 6
 $makeweapongesturep reload_ar2		"..\male_shared_anims\reload_ar2" 10 30 50 ACT_HL2MP_GESTURE_RELOAD_AR2 1
 $makeweapongesturep reload_crossbow	"custom\reload_crossbow" 10 25 40 fps 20 ACT_HL2MP_GESTURE_RELOAD_CROSSBOW 1
 $makeweapongesturep reload_357		"..\police_animations_anims\custom\reload_357" 15 51 62 ACT_HL2MP_GESTURE_RELOAD_REVOLVER 1
+
+$makeweapongesturep reload_ar1		"..\male_shared_anims\custom\reload_ar1" 10 30 50 ACT_HL2MP_GESTURE_RELOAD_AR1 1
 
 // ---------------------------------------------------
 // Walk
@@ -174,6 +194,9 @@ $makematchwalk_9way	walk_rpg		"..\hl2mp_ported_anims\Aim_RPG_9_directions" 4 wea
 $makematchwalk_9way	walk_crossbow	"custom\Idle_Crossbow_Aim" 0 soldier_Aim_9_directions "custom\Idle_Crossbow_Aim" 0 ACT_HL2MP_WALK_CROSSBOW 1
 $makematchwalk_9way	walk_melee		"..\hl2mp_ported_anims\HL2DM_MeleeAttack" 0 soldier_Aim_9_directions "..\hl2mp_ported_anims\HL2DM_MeleeAttack" 0 ACT_HL2MP_WALK_MELEE 1
 $makematchwalk_9way	walk_slam		"..\hl2mp_ported_anims\HL2DM_Idle_Slam" 0 soldier_Aim_9_directions "..\hl2mp_ported_anims\HL2DM_Idle_Slam" 0 ACT_HL2MP_WALK_SLAM 1
+
+$makematchwalk_9way	walk_smg2		"custom\Idle_SMG2_Aim" 0 weapons_RunN_SMG1_Aim_9_directions "custom\Idle_SMG2_Aim" 0 ACT_HL2MP_WALK_SMG2 1
+$makematchwalk_9way	walk_ar1		"custom\idle_ar1_aim" 0 soldier_Aim_9_directions "custom\idle_ar1_aim" 0 ACT_HL2MP_WALK_AR1 1
 
 // ---------------------------------------------------
 // Misc
