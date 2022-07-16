@@ -19,8 +19,11 @@ $include "MaleCitizenMoveAnims.qci"
 $includemodel "humans/male_shared_original.mdl"
 $include "male_shared_DeclareSequence.qci"
 
+$sequence reference "male_shared_anims\ragdoll"
+
 $pushd "male_shared_anims"
 $include "CitizenActivityFixes.qci"
+$include "CitizenNewWeaponActivities.qci"
 $popd
 
 

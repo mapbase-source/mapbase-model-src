@@ -75,6 +75,19 @@ $weightlist "weights_move_hold_pistol_police_posture" {
 	 "ValveBiped.Bip01_L_Clavicle" 1
 }
 
+$Weightlist PistolRelaxedAimUpperbodyBlend {
+	"valvebiped.Bip01_Pelvis" 0.1 
+	"ValveBiped.Bip01_L_Thigh" 0.0 
+	"ValveBiped.Bip01_R_Thigh" 0.0 
+	"ValveBiped.Bip01_Spine" 0.2 
+	"ValveBiped.Bip01_Spine1" 0.4 
+	"ValveBiped.Bip01_Spine2" 0.6 
+	"ValveBiped.Bip01_Spine4" 0.8
+	"ValveBiped.Bip01_Neck1" 0.5
+	"ValveBiped.Bip01_R_Clavicle" 1.0
+	"ValveBiped.Bip01_L_Clavicle" 0.25
+}
+
 // ================================================================
 // 
 // The layers below are combined with existing citizen or metrocop animations to create believable-looking pistol animations.
@@ -139,6 +152,8 @@ $append pistolangryidle2 {
 	node "shooting_pistol"
 	fps 4
 }
+
+$GenericCombatIdle "Idle_Pistol_Aim_Relaxed" "male_shared_anims\custom\Idle_Pistol_Aim_Relaxed.smd" "ACT_IDLE_AIM_PISTOL_RELAXED" "soldier_Aim_9_directions" node "shooting_pistol"
 
 $GenericCombatIdle "Idle_Pistol_Aim" "male_shared_anims\custom\Idle_Pistol_Aim.smd" "ACT_IDLE_ANGRY_PISTOL" "soldier_Aim_9_directions"
 $append Idle_Pistol_Aim {
@@ -399,6 +414,8 @@ $sequence "walk_aiming_pistol_alert_all" {
 	fadeout 0.2
 	addlayer "layer_walk_aiming_pistol"
 }
+
+$makenpcmatchwalk	walk_aiming_pistol_relaxed_all		"male_shared_anims\custom\Idle_Pistol_Aim_Relaxed.smd" 0 soldier_Aim_9_directions "male_shared_anims\a_WalkN.smd" PistolRelaxedAimUpperbodyBlend 30 ACT_WALK_AIM_PISTOL_RELAXED 1
 
 $sequence "walk_aiming_pistol_all" {
 	"a_CitizenWalkS"
@@ -714,6 +731,8 @@ $sequence "run_aiming_pistol_alert_all" {
 	fadeout 0.2
 	blendlayer "layer_run_aiming_pistol" 0 0 0 0 local
 }
+
+$makenpcmatchrun	run_aiming_pistol_relaxed_all		"male_shared_anims\custom\Idle_Pistol_Aim_Relaxed.smd" 0 soldier_Aim_9_directions "male_shared_anims\a_RunN.smd" PistolRelaxedAimUpperbodyBlend 18 ACT_RUN_AIM_PISTOL_RELAXED 1
 
 $sequence "run_aiming_pistol_all" {
 	"a_CitizenRunS"

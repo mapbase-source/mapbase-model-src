@@ -22,6 +22,7 @@ $include "female_shared_DeclareSequence.qci"
 
 $pushd "female_shared_anims"
 $include "CitizenActivityFixes.qci"
+$include "CitizenNewWeaponActivities.qci"
 $popd
 
 // A quick way of retargeting male animations to the female skeleton.
