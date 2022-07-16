@@ -1,0 +1,85 @@
+// ================================================================
+// 
+// New Soldier Transition Animations
+// 
+// ================================================================
+
+$definemacro IdleToCombatStandTransition SeqName BaseFile StartNode EndNode AimLayer \\
+$sequence $SeqName$ { \\
+	$BaseFile$ \\
+	activity "ACT_TRANSITION" 1 \\
+	transition $StartNode$ $EndNode$ \\
+	blendlayer $AimLayer$ 0 8 19 19 local spline \\
+	ikrule "lfoot" footstep contact 0 height 20 radius 2.5 range 0 0 0 4 \\
+	ikrule "rfoot" footstep contact 0 height 20 radius 2.5 range 0 0 0 4 \\
+	ikrule "lfoot" footstep contact 0 height 20 radius 2.5 range 9 12 18 18 \\
+	ikrule "rfoot" footstep contact 0 height 20 radius 2.5 range 9 12 18 18 \\
+}
+
+$definemacro CombatToIdleStandTransition SeqName BaseFile StartNode EndNode AimLayer \\
+$sequence $SeqName$ { \\
+	$BaseFile$ \\
+	activity "ACT_TRANSITION" 1 \\
+	transition $StartNode$ $EndNode$ \\
+	blendlayer $AimLayer$ 0 0 0 25 local spline \\
+	ikrule "lfoot" footstep contact 0 height 20 radius 2.5 range 0 0 10 14 \\
+	ikrule "rfoot" footstep contact 0 height 20 radius 2.5 range 0 0 0 2 \\
+	ikrule "lfoot" footstep contact 0 height 20 radius 2.5 range 20 24 24 24 \\
+	ikrule "rfoot" footstep contact 0 height 20 radius 2.5 range 11 15 24 24 \\
+}
+
+// AR2 idle to combat
+$IdleToCombatStandTransition "idle_to_combat_stand_ar2" "custom/idle_to_combat_stand.smd" "standing_ar2" "shooting_ar2" "Aim_stand_delta_all"
+$CombatToIdleStandTransition "combat_stand_to_idle_ar2" "custom/combat_stand_to_idle.smd" "shooting_ar2" "standing_ar2" "Aim_stand_delta_all"
+
+// AR2 idle stimulated to combat
+$GenericTransitionBlendToSMD "idle_stimulated_to_combat_stand_ar2" "Idle2_AR2" "custom/idle_to_combat_stand.smd" "standing_alert_ar2" "shooting_ar2" 15
+$GenericTransitionBlendFromSMD "combat_stand_to_idle_stimulated_ar2" "custom/combat_stand_to_idle.smd" "Idle2_AR2" "shooting_ar2" "standing_alert_ar2" 20
+
+// AR2 idle to crouch
+$GenericTransitionBlendFromSMD "idle_to_crouch_ar2" "custom/idle_to_combat_stand.smd" "Combat_stand_to_crouch" "standing_ar2" "crouching_ar2" 15
+$GenericTransitionBlendToSMD "crouch_to_idle_ar2" "Crouch_to_combat_stand" "custom/combat_stand_to_idle.smd" "crouching_ar2" "standing_ar2" 20
+
+// AR2 idle stimulated to crouch
+$GenericTransitionBlendToSMD "idle_stimulated_to_crouch_ar2" "Idle2_AR2" "Combat_stand_to_crouch.smd" "standing_alert_ar2" "crouching_ar2" 15
+$GenericTransitionBlendFromSMD "crouch_to_idle_stimulated_ar2" "Crouch_to_combat_stand.smd" "Idle2_AR2" "crouching_ar2" "standing_alert_ar2" 20
+
+// ----------------------------------------------------------------
+
+// SMG1 idle to combat
+$IdleToCombatStandTransition "idle_to_combat_stand_smg1" "custom/idle_to_combat_stand_smg1.smd" "standing_smg1" "shooting_smg1" "Aim_stand_delta_all"
+$CombatToIdleStandTransition "combat_stand_to_idle_smg1" "custom/combat_stand_to_idle_smg1.smd" "shooting_smg1" "standing_smg1" "Aim_stand_delta_all"
+
+// ----------------------------------------------------------------
+
+// Shotgun idle to combat
+$IdleToCombatStandTransition "idle_to_combat_stand_shotgun" "custom/idle_to_combat_stand_shotgun.smd" "standing_sg" "shooting_sg" "Aim_stand_delta_all"
+$CombatToIdleStandTransition "combat_stand_to_idle_shotgun" "custom/combat_stand_to_idle_shotgun.smd" "shooting_sg" "standing_sg" "Aim_stand_delta_all"
+
+$GenericTransitionBlend "idle_to_crouch_shotgun" "custom/idle_to_combat_stand.smd" "Idle1_SG" "crouch_aim_ar2" "standing_sg" "crouching_sg" 15
+$GenericTransitionBlend "crouch_to_idle_shotgun" "custom/combat_stand_to_idle.smd" "crouch_aim_ar2" "Idle1_SG" "crouching_sg" "standing_sg" 20
+
+// ----------------------------------------------------------------
+
+// Stubs
+$CombatStandCrouchTransition "transition_stub_cs_to_c_ar2" "Combat_stand_to_crouch.smd" "shooting" "crouching_ar2"
+$CombatStandCrouchTransition "transition_stub_cs_to_c_smg1" "Combat_stand_to_crouch.smd" "shooting" "crouching_smg1"
+$GenericTransitionBlendToSMD "transition_stub_cs_to_c_sg" "CombatIdle1_SG" "Combat_stand_to_crouch.smd" "shooting" "crouching_sg" 16
+$GenericTransitionBlend "transition_stub_cs_to_c_pistol" "Combat_stand_to_crouch.smd" "CombatIdle1_Pistol" "crouch_aim_pistol" "shooting" "crouching_pistol" 16
+
+$append "transition_stub_cs_to_c_ar2" { hidden blendlayer "oldidle_to_ar2" 0 0 0 0 local }
+$append "transition_stub_cs_to_c_smg1" { hidden blendlayer "oldidle_to_smg1" 0 0 0 0 local }
+$append "transition_stub_cs_to_c_sg" { hidden walkframe 7 LX }
+$append "transition_stub_cs_to_c_pistol" { hidden walkframe 7 LX }
+
+$CombatCrouchStandTransition "transition_stub_c_to_cs_ar2" "Crouch_to_combat_stand.smd" "crouching" "shooting_ar2"
+$CombatCrouchStandTransition "transition_stub_c_to_cs_smg1" "Crouch_to_combat_stand.smd" "crouching" "shooting_smg1"
+$GenericTransitionBlendFromSMD "transition_stub_c_to_cs_sg" "Crouch_to_combat_stand.smd" "CombatIdle1_SG" "crouching" "shooting_sg" 16
+$GenericTransitionBlend "transition_stub_c_to_cs_pistol" "Crouch_to_combat_stand.smd" "crouch_aim_pistol" "CombatIdle1_Pistol" "crouching" "shooting_pistol" 16
+
+$append "transition_stub_c_to_cs_ar2" { hidden blendlayer "oldidle_to_ar2" 0 0 0 0 local }
+$append "transition_stub_c_to_cs_smg1" { hidden blendlayer "oldidle_to_smg1" 0 0 0 0 local }
+$append "transition_stub_c_to_cs_sg" { hidden walkframe 7 LX }
+$append "transition_stub_c_to_cs_pistol" { hidden walkframe 7 LX }
+
+// ----------------------------------------------------------------

@@ -1,0 +1,58 @@
+// ================================================================
+// 
+// Citizen New Weapon Activities
+// 
+// ================================================================
+
+// ----------------------------------------------------------------
+
+$weightlist "weights_stimulated_aim" {
+	 "ValveBiped.Bip01_Pelvis" 0.1
+	 "ValveBiped.Bip01_Spine" 0.1
+	 "ValveBiped.Bip01_Spine1" 0.2
+	 "ValveBiped.Bip01_Spine2" 0.3
+	 "ValveBiped.Bip01_Spine4" 0.4
+	 "ValveBiped.Bip01_L_Clavicle" 1
+	 "ValveBiped.Bip01_R_Clavicle" 1
+	 "ValveBiped.Bip01_R_Thigh" 0
+	 "ValveBiped.Bip01_L_Thigh" 0
+}
+
+// Stronger and doesn't care about the pelvis (for non-worldspace layers)
+$weightlist "weights_stimulated_aim_2" {
+	 "ValveBiped.Bip01_Pelvis" 0
+	 "ValveBiped.Bip01_Spine" 0.2
+	 "ValveBiped.Bip01_Spine1" 0.4
+	 "ValveBiped.Bip01_Spine2" 0.6
+	 "ValveBiped.Bip01_Spine4" 0.8
+	 "ValveBiped.Bip01_L_Clavicle" 1
+	 "ValveBiped.Bip01_R_Clavicle" 1
+	 "ValveBiped.Bip01_R_Thigh" 0
+	 "ValveBiped.Bip01_L_Thigh" 0
+}
+
+// Stronger worldspace blend (for keeping citizen posture)
+$weightlist "weights_stimulated_aim_3" {
+	 "ValveBiped.Bip01_Pelvis" 0.1
+	 "ValveBiped.Bip01_Spine" 0.2
+	 "ValveBiped.Bip01_Spine1" 0.4
+	 "ValveBiped.Bip01_Spine2" 0.6
+	 "ValveBiped.Bip01_Spine4" 0.8
+	 "ValveBiped.Bip01_L_Clavicle" 1
+	 "ValveBiped.Bip01_R_Clavicle" 1
+	 "ValveBiped.Bip01_R_Thigh" 0
+	 "ValveBiped.Bip01_L_Thigh" 0
+}
+
+$sequence "layer_walk_alert_aim_noise" { "layer_walk_alert_aiming.smd" weightlist "weights_stimulated_aim_2" subtract "layer_walk_alert_aim_noise" 0 delta hidden }
+
+// ----------------------------------------------------------------
+
+$sequence "layer_relaxed_smg1" { "Idle_SMG1_Relaxed.smd" frame 0 0 ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" hidden }
+$sequence "layer_relaxed_ar2" { "Idle_AR2_Relaxed.smd" frame 0 0 ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" hidden }
+
+// ----------------------------------------------------------------
+
+$include "CitizenNewWeaponActivities_Crossbow.qci"
+$include "CitizenNewWeaponActivities_AR1.qci"
+$include "CitizenNewWeaponActivities_SMG2.qci"

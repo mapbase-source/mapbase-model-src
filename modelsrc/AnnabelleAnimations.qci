@@ -1,0 +1,25 @@
+// ================================================================
+// 
+// Simple annabelle animations for all NPCs
+// 
+// ================================================================
+
+$animation "@gesture_shoot_annabelle_corrective_animation" "monk_animations_anims/@gesture_shoot_shotgun_corrective_animation.smd"
+$sequence "gesture_shoot_annabelle" "monk_animations_anims/gesture_shoot_shotgun.smd" {
+	activity "ACT_GESTURE_RANGE_ATTACK_ANNABELLE" 1
+	delta
+	// Crowbar writes this subtract option to prevent jigglebone and poseparameter problems when delta sequences are recompiled.
+	subtract "@gesture_shoot_annabelle_corrective_animation" 0
+}
+
+$GenericShootFromIdle "shoot_annabelle" $Blend_SMD_Annabelle$ "ACT_RANGE_ATTACK_ANNABELLE" $Blend_Aim_Rifle$ "gesture_shoot_annabelle" 36 node $Blend_Node_Rifle$
+$GenericShootFromIdle "shoot_annabelle_low" $Blend_SMD_Annabelle_Crouch$ "ACT_RANGE_ATTACK_ANNABELLE_LOW" $Blend_Aim_Rifle$ "gesture_shoot_annabelle" 36 node $Blend_Node_Rifle$
+
+// ----------------------------------------------------------------
+
+// Reload blend was 20 80 119
+$makeweapongesturep gesture_reload_annabelle "monk_animations_anims/reload_smg1.smd" 20 80 119 "ACT_GESTURE_RELOAD_ANNABELLE" 1
+$append gesture_reload_annabelle { { event 3015 60 "" } }
+
+$GenericReloadFromIdle "reload_annabelle" $Blend_SMD_Annabelle$ "ACT_RELOAD_ANNABELLE" $Blend_Aim_Rifle$ "gesture_reload_annabelle" 20 80 119 60 node $Blend_Node_Rifle$
+$GenericReloadFromIdle "reload_annabelle_low" $Blend_SMD_Annabelle_Crouch$ "ACT_RELOAD_ANNABELLE_LOW" $Blend_Aim_Rifle$ "gesture_reload_annabelle" 20 80 119 60 node $Blend_Node_Rifle$

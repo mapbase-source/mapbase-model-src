@@ -1,0 +1,79 @@
+// ================================================================
+// 
+// Full weapon_citizensuitcase animations
+// 
+// ================================================================
+
+$sequence "layer_luggage_idle" {
+	"..\male_shared_anims\d1_t01_Luggage_Idle.smd"
+	fadein 0.2
+	fadeout 0.2
+	hidden
+	fps 30
+	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 30 30 target 0
+	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 30 30 target 1
+	weightlist "weights_layer_luggage_idle"
+}
+
+$sequence "layer_luggage_drop" {
+	"..\male_shared_anims\d1_t01_Luggage_Drop.smd"
+	fadein 0.2
+	fadeout 0.2
+	hidden
+	fps 30
+	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 30 30 target 0
+	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 30 30 target 1
+	//weightlist "weights_layer_luggage_drop"
+}
+
+$sequence "d1_t01_Luggage_Idle" {
+	"idle_subtle.smd"
+	activity "ACT_IDLE_SUITCASE" 1
+	fadein 0.2
+	fadeout 0.2
+	fps 30
+	loop
+	blendlayer "layer_luggage_idle" 0 0 0 0 local
+	ikrule "lfoot" footstep contact 0 fakeorigin 4.89 7.83 0 fakerotate 0 0 0 floor 0 height 20 radius 2.5 range 0 0 30 30 target 3
+	ikrule "rfoot" footstep contact 0 fakeorigin 5.79 -6.25 0 fakerotate 0 0 0 floor 0 height 20 radius 2.5 range 0 0 30 30 target 2
+	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 30 30 target 0
+	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 30 30 target 1
+}
+
+$sequence "d1_t01_Luggage_Drop" {
+	"idle_subtle.smd"
+	{ event 1003 35 "1" }
+	fadein 0.2
+	fadeout 0.2
+	fps 30
+	numframes 74
+	blendlayer "layer_luggage_idle" 0 0 0 0 local
+	blendlayer "layer_luggage_drop" 0 20 48 74
+	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 74 74 target 0 usesequence 
+	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 74 74 target 1 usesequence 
+	ikrule "rfoot" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 74 74 target 2 usesequence 
+	ikrule "lfoot" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 74 74 target 3 usesequence 
+	walkframe 65 LX LY LZR
+}
+
+$sequence "layer_luggage_walk" {
+	"..\male_shared_anims\layer_luggage_walk.smd"
+	fadein 0.2
+	fadeout 0.2
+	hidden
+	fps 30
+	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 30 30 target 0
+	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 30 30 target 1
+	weightlist "weights_layer_luggage_walk"
+}
+
+$sequence "layer_luggage_run" {
+	"..\male_shared_anims\layer_luggage_walk.smd"
+	fadein 0.2
+	fadeout 0.2
+	hidden
+	fps 30
+	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 30 30 target 0
+	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 30 30 target 1
+	weightlist "weights_layer_luggage_run"
+}

@@ -39,7 +39,7 @@ $append "hunter_cit_tackle_di" {
 //	{ event 1004 21 "npc_citizen.pain03" }
 //	{ event 1004 57 "npc_citizen.pain08" }
 // 
-$MakeDynamicInteraction "hunter_cit_stomp" "female_shared_anims\hunter_cit_stomp.smd" $Blend_SMD_Rifle$ 22 91 91
+$MakeDynamicInteraction "hunter_cit_stomp" "male_shared_anims\hunter_cit_stomp.smd" $Blend_SMD_Rifle$ 22 91 91
 $append "hunter_cit_stomp" {
 	activity "ACT_DI_HUNTER_MELEE" 1
 	{ event 1004 59 "flesh.break" }

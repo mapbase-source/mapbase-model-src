@@ -1,0 +1,270 @@
+// ================================================================
+// 
+// New Police Crouch Movement Animations
+// 
+// ================================================================
+
+$weightlist "WeightsLayerLowCoverAim" {
+	 "ValveBiped.Bip01_Pelvis" 0
+	 "ValveBiped.Bip01_Spine" 0.5
+	 //"ValveBiped.Bip01_L_Clavicle" 0
+	 //"ValveBiped.Bip01_R_Clavicle" 0
+	 //"ValveBiped.Bip01_L_Thigh" 0
+	 //"ValveBiped.Bip01_R_Thigh" 0
+}
+
+$weightlist "weights_layer_crouch_move" {
+	 "ValveBiped.Bip01_Pelvis" 0.1
+	 "ValveBiped.Bip01_Spine" 0.2
+	 "ValveBiped.Bip01_Spine1" 0.4
+	 "ValveBiped.Bip01_Spine2" 0.6
+	 "ValveBiped.Bip01_Spine4" 0.8
+	 "ValveBiped.Bip01_L_Clavicle" 1
+	 "ValveBiped.Bip01_R_Clavicle" 1
+	 "ValveBiped.Bip01_R_Thigh" 0
+	 "ValveBiped.Bip01_L_Thigh" 0
+}
+
+$animation "a_pistol_aim_up_center_corrective_animation" "police_animations_anims\a_pistol_aim_up_center_corrective_animation.smd" {
+}
+
+$animation "a_layer_lowcover_aim_pistol_up" "police_animations_anims\a_pistol_aim_up_center.smd" {
+	fps 30
+	// Crowbar writes this subtract option to prevent jigglebone and poseparameter problems when delta sequences are recompiled.
+	subtract "a_pistol_aim_up_center_corrective_animation" 0
+	weightlist "WeightsLayerLowCoverAim"
+}
+
+$animation "a_pistol_aim_mid_center_corrective_animation" "police_animations_anims\a_pistol_aim_mid_center_corrective_animation.smd" {
+}
+
+$animation "a_layer_lowcover_aim_pistol_mid_center" "police_animations_anims\a_pistol_aim_mid_center.smd" {
+	fps 30
+	// Crowbar writes this subtract option to prevent jigglebone and poseparameter problems when delta sequences are recompiled.
+	subtract "a_pistol_aim_mid_center_corrective_animation" 0
+	weightlist "WeightsLayerLowCoverAim"
+}
+
+$animation "a_pistol_aim_mid_left_corrective_animation" "police_animations_anims\a_pistol_aim_mid_left_corrective_animation.smd" {
+}
+
+$animation "a_layer_lowcover_aim_pistol_mid_left" "police_animations_anims\a_pistol_aim_mid_left.smd" {
+	fps 30
+	// Crowbar writes this subtract option to prevent jigglebone and poseparameter problems when delta sequences are recompiled.
+	subtract "a_pistol_aim_mid_left_corrective_animation" 0
+	weightlist "WeightsLayerLowCoverAim"
+}
+
+$sequence "layer_lowcover_aim_pistol" {
+	"a_layer_lowcover_aim_pistol_mid_center"
+	"a_layer_lowcover_aim_pistol_up"
+	"a_layer_lowcover_aim_pistol_mid_center"
+	blend "move_yaw" -180 180
+	blendwidth 3
+	delta
+	//addlayer "layer_lowcover_aim_pistol"
+}
+
+$sequence "layer_lowcover_aim_pistol_2" {
+	"a_layer_lowcover_aim_pistol_mid_center"
+	"a_layer_lowcover_aim_pistol_mid_left"
+	"a_layer_lowcover_aim_pistol_mid_center"
+	blend "aim_yaw" -60 60
+	blendwidth 3
+	delta
+	//addlayer "layer_lowcover_aim_pistol"
+}
+
+//$sequence "layer_lowcover_aim_pistol" {
+//	"police_animations_anims\lowcover_aim_pistol.smd"
+//	//addlayer "pistol_Aim_all"
+//	weightlist "WeightsLayerLowCoverAim"
+//	subtract "a_PoliceCrouch_walkN" 0
+//	delta
+//	rotate 60
+//	loop
+//}
+
+// ----------------------------------------------------------------
+
+$sequence "layer_crouch_run_aiming_pistol" {
+	"police_animations_anims\layer_run_aiming_pistol.smd"
+	hidden
+	addlayer "WalkN_pistol_Aim_all"
+	fps 30
+	worldspace
+	rotate 90
+	loop
+	weightlist "weights_layer_crouch_move"
+}
+
+$sequence "layer_crouch_run_hold_pistol" {
+	"police_animations_anims\layer_run_hold_pistol.smd"
+	hidden
+	fps 30
+	worldspace
+	rotate 90
+	loop
+	weightlist "weights_layer_crouch_move"
+}
+
+$sequence "Crouch_walk_aim_pistol_all" {
+	"a_PoliceCrouch_walkS"
+	"a_PoliceCrouch_walkSE"
+	"a_PoliceCrouch_walkE"
+	"a_PoliceCrouch_walkNE"
+	"a_PoliceCrouch_walkN"
+	"a_PoliceCrouch_walkNW"
+	"a_PoliceCrouch_walkW"
+	"a_PoliceCrouch_walkSW"
+	"a_PoliceCrouch_walkS"
+	activity "ACT_WALK_CROUCH_AIM_PISTOL" 1
+	blend "move_yaw" -180 180
+	blendwidth 9
+	addlayer "layer_crouch_run_aiming_pistol"
+}
+
+$sequence "Crouch_run_aim_pistol_all" {
+	"a_PoliceRunS"
+	"a_PoliceRunSE"
+	"a_PoliceRunE"
+	"a_PoliceRunNE"
+	"a_PoliceCrouch_runN"
+	"a_PoliceRunNW"
+	"a_PoliceRunW"
+	"a_PoliceRunSW"
+	"a_PoliceRunS"
+	activity "ACT_RUN_CROUCH_AIM_PISTOL" 1
+	blend "move_yaw" -180 180
+	blendwidth 9
+	{ event 6004 6 "NPC_MetroPolice" }
+	{ event 6005 16 "NPC_MetroPolice" }
+	addlayer "layer_crouch_run_aiming_pistol"
+}
+
+$sequence "Crouch_walk_hold_pistol_all" {
+	"a_PoliceCrouch_walkS"
+	"a_PoliceCrouch_walkSE"
+	"a_PoliceCrouch_walkE"
+	"a_PoliceCrouch_walkNE"
+	"a_PoliceCrouch_walkN"
+	"a_PoliceCrouch_walkNW"
+	"a_PoliceCrouch_walkW"
+	"a_PoliceCrouch_walkSW"
+	"a_PoliceCrouch_walkS"
+	activity "ACT_WALK_CROUCH_PISTOL" 1
+	blend "move_yaw" -180 180
+	blendwidth 9
+	addlayer "layer_crouch_run_hold_pistol"
+}
+
+$sequence "Crouch_run_hold_pistol_all" {
+	"a_PoliceCrouch_walkS"
+	"a_PoliceCrouch_walkSE"
+	"a_PoliceCrouch_walkE"
+	"a_PoliceCrouch_walkNE"
+	"a_PoliceCrouch_runN"
+	"a_PoliceCrouch_walkNW"
+	"a_PoliceCrouch_walkW"
+	"a_PoliceCrouch_walkSW"
+	"a_PoliceCrouch_walkS"
+	activity "ACT_RUN_CROUCH_PISTOL" 1
+	blend "move_yaw" -180 180
+	blendwidth 9
+	{ event 6004 6 "NPC_MetroPolice" }
+	{ event 6005 16 "NPC_MetroPolice" }
+	addlayer "layer_crouch_run_hold_pistol"
+}
+
+// ----------------------------------------------------------------
+
+$sequence "layer_crouch_run_aiming_smg1" {
+	"police_animations_anims\layer_run_aiming_smg1.smd"
+	hidden
+	addlayer "WalkN_SMG1_Aim_all"
+	fps 30
+	worldspace
+	rotate 90
+	loop
+	weightlist "weights_layer_crouch_move"
+}
+
+$sequence "layer_crouch_run_hold_smg1" {
+	"police_animations_anims\layer_run_hold_smg1.smd"
+	hidden
+	fps 30
+	worldspace
+	rotate 90
+	loop
+	weightlist "weights_layer_crouch_move"
+}
+
+$sequence "Crouch_walk_aim_smg1_all" {
+	"a_PoliceCrouch_walkS"
+	"a_PoliceCrouch_walkSE"
+	"a_PoliceCrouch_walkE"
+	"a_PoliceCrouch_walkNE"
+	"a_PoliceCrouch_walkN"
+	"a_PoliceCrouch_walkNW"
+	"a_PoliceCrouch_walkW"
+	"a_PoliceCrouch_walkSW"
+	"a_PoliceCrouch_walkS"
+	activity "ACT_WALK_CROUCH_AIM_RIFLE" 1
+	blend "move_yaw" -180 180
+	blendwidth 9
+	addlayer "layer_crouch_run_aiming_smg1"
+}
+
+$sequence "Crouch_run_aim_smg1_all" {
+	"a_PoliceRunS"
+	"a_PoliceRunSE"
+	"a_PoliceRunE"
+	"a_PoliceRunNE"
+	"a_PoliceCrouch_runN"
+	"a_PoliceRunNW"
+	"a_PoliceRunW"
+	"a_PoliceRunSW"
+	"a_PoliceRunS"
+	activity "ACT_RUN_CROUCH_AIM_RIFLE" 1
+	blend "move_yaw" -180 180
+	blendwidth 9
+	{ event 6004 6 "NPC_MetroPolice" }
+	{ event 6005 16 "NPC_MetroPolice" }
+	addlayer "layer_crouch_run_aiming_smg1"
+}
+
+$sequence "Crouch_walk_hold_smg1_all" {
+	"a_PoliceCrouch_walkS"
+	"a_PoliceCrouch_walkSE"
+	"a_PoliceCrouch_walkE"
+	"a_PoliceCrouch_walkNE"
+	"a_PoliceCrouch_walkN"
+	"a_PoliceCrouch_walkNW"
+	"a_PoliceCrouch_walkW"
+	"a_PoliceCrouch_walkSW"
+	"a_PoliceCrouch_walkS"
+	activity "ACT_WALK_CROUCH_RIFLE" 1
+	blend "move_yaw" -180 180
+	blendwidth 9
+	addlayer "layer_crouch_run_hold_smg1"
+}
+
+$sequence "Crouch_run_hold_smg1_all" {
+	"a_PoliceCrouch_walkS"
+	"a_PoliceCrouch_walkSE"
+	"a_PoliceCrouch_walkE"
+	"a_PoliceCrouch_walkNE"
+	"a_PoliceCrouch_runN"
+	"a_PoliceCrouch_walkNW"
+	"a_PoliceCrouch_walkW"
+	"a_PoliceCrouch_walkSW"
+	"a_PoliceCrouch_walkS"
+	activity "ACT_RUN_CROUCH_RIFLE" 1
+	blend "move_yaw" -180 180
+	blendwidth 9
+	{ event 6004 6 "NPC_MetroPolice" }
+	{ event 6005 16 "NPC_MetroPolice" }
+	addlayer "layer_crouch_run_hold_smg1"
+}
+
+// ----------------------------------------------------------------

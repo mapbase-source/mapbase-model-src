@@ -1,0 +1,140 @@
+// ================================================================
+// 
+// Full weapon_citizensuitcase animations
+// 
+// ================================================================
+
+$weightlist "weights_layer_luggage_idle" {
+	 "ValveBiped.Bip01_Pelvis" 0
+	 "ValveBiped.Bip01_Spine" 0.2
+	 "ValveBiped.Bip01_Spine1" 0.4
+	 "ValveBiped.Bip01_Spine2" 0.6
+	 "ValveBiped.Bip01_Spine4" 1
+	 "ValveBiped.Bip01_Neck1" 0.4
+	 "ValveBiped.Bip01_Head1" 0.4
+	 "ValveBiped.Bip01_R_Thigh" 0
+	 "ValveBiped.Bip01_R_Clavicle" 3
+	 "ValveBiped.Bip01_R_UpperArm" 1
+	 "ValveBiped.Bip01_R_Forearm" 1
+	 "ValveBiped.Bip01_R_Hand" 1
+	 "ValveBiped.Bip01_L_Thigh" 0
+	 "ValveBiped.Bip01_L_Clavicle" 0
+	 "ValveBiped.Bip01_L_UpperArm" 0
+	 "ValveBiped.Bip01_L_Forearm" 0
+	 "ValveBiped.Bip01_L_Hand" 0
+}
+
+$weightlist "weights_layer_luggage_drop" {
+	 "ValveBiped.Bip01_Pelvis" 0
+	 "ValveBiped.Bip01_Spine" 0.2
+	 "ValveBiped.Bip01_Neck1" 0.4
+	 "ValveBiped.Bip01_Head1" 0.4
+	 "ValveBiped.Bip01_R_Clavicle" 0.4
+	 "ValveBiped.Bip01_R_UpperArm" 0.6
+	 "ValveBiped.Bip01_R_Forearm" 0.8
+	 "ValveBiped.Bip01_R_Hand" 1
+	 "ValveBiped.Bip01_L_Clavicle" 0
+	 "ValveBiped.Bip01_L_UpperArm" 0
+	 "ValveBiped.Bip01_L_Forearm" 0
+	 "ValveBiped.Bip01_L_Hand" 0
+}
+
+$weightlist "weights_layer_luggage_walk" {
+	 "ValveBiped.Bip01_Pelvis" 0
+	 "ValveBiped.Bip01_Spine" 0.2
+	 "ValveBiped.Bip01_Spine1" 0.4
+	 "ValveBiped.Bip01_Spine2" 0.6
+	 "ValveBiped.Bip01_Spine4" 0.8
+	 "ValveBiped.Bip01_R_Thigh" 0
+	 "ValveBiped.Bip01_R_Clavicle" 0
+	 "ValveBiped.Bip01_R_UpperArm" 1
+	 "ValveBiped.Bip01_R_Forearm" 1
+	 "ValveBiped.Bip01_L_Clavicle" 0
+}
+
+$weightlist "weights_layer_luggage_run" {
+	 "ValveBiped.Bip01_Pelvis" 0
+	 "ValveBiped.Bip01_Spine" 0.2
+	 "ValveBiped.Bip01_Neck1" 0.4
+	 "ValveBiped.Bip01_Head1" 0.4
+	 "ValveBiped.Bip01_R_Clavicle" 0.4
+	 "ValveBiped.Bip01_R_UpperArm" 0.6
+	 "ValveBiped.Bip01_R_Forearm" 0.8
+	 "ValveBiped.Bip01_R_Hand" 1
+	 "ValveBiped.Bip01_L_Clavicle" 0
+	 "ValveBiped.Bip01_L_UpperArm" 0
+	 "ValveBiped.Bip01_L_Forearm" 0
+	 "ValveBiped.Bip01_L_Hand" 0
+}
+
+$include "CitizenSuitcase.qci"
+
+$weightlist "weights_luggage_larm_only" {
+	 "ValveBiped.Bip01_Pelvis" 0
+	 "ValveBiped.Bip01_L_Clavicle" 0.4
+	 "ValveBiped.Bip01_L_UpperArm" 0.6
+	 "ValveBiped.Bip01_L_Forearm" 0.8
+	 "ValveBiped.Bip01_L_Hand" 1
+}
+
+$sequence "layer_luggage_larm" {
+	"..\combine_soldier_anims_anims\Idle_Unarmed.smd"
+	fadein 0.2
+	fadeout 0.2
+	fps 30
+	loop
+	weightlist "weights_luggage_larm_only"
+}
+
+$sequence "luggage_walk_all" {
+	"a_SoldierWalkEasyS"
+	"a_SoldierWalkEasySE"
+	"a_SoldierWalkEasyE"
+	"a_SoldierWalkEasyNE"
+	"a_SoldierWalkEasyN" // a_luggage_walk
+	"a_SoldierWalkEasyNW"
+	"a_SoldierWalkEasyW"
+	"a_SoldierWalkEasySW"
+	"a_SoldierWalkEasyS"
+	activity "ACT_WALK_SUITCASE" 1
+	blend "move_yaw" -180 180
+	blendwidth 9
+	{ event 6004 9 "NPC_CombineS" }
+	{ event 6005 25 "NPC_CombineS" }
+	fadein 0.2
+	fadeout 0.2
+	blendlayer "layer_luggage_walk" 0 0 0 0 local
+	blendlayer "layer_luggage_larm" 0 0 0 0 local
+	node "walking"
+}
+
+$sequence "layer_luggage_run_larm" {
+	"a_RunN.smd"
+	fadein 0.2
+	fadeout 0.2
+	fps 30
+	loop
+	weightlist "weights_luggage_larm_only"
+}
+
+$sequence "luggage_run_all" {
+	"a_SoldierRunS"
+	"a_SoldierRunSE"
+	"a_SoldierRunE"
+	"a_SoldierRunNE"
+	"a_SoldierRunN" // a_luggage_walk
+	"a_SoldierRunNW"
+	"a_SoldierRunW"
+	"a_SoldierRunSW"
+	"a_SoldierRunS"
+	activity "ACT_RUN_SUITCASE" 1
+	blend "move_yaw" -180 180
+	blendwidth 9
+	{ event 6004 7 "NPC_CombineS" }
+	{ event 6005 16 "NPC_CombineS" }
+	fadein 0.2
+	fadeout 0.2
+	blendlayer "layer_luggage_run" 0 0 0 0 local
+	blendlayer "layer_luggage_run_larm" 0 0 0 0 local
+	node "running"
+}

@@ -1,0 +1,27 @@
+// ================================================================
+// 
+// Citizen Activity Fixes
+// 
+// This overwrites existing citizen sequences
+// (note: both male_shared and female_shared include this and should $pushd before including)
+// 
+// ================================================================
+
+// ----------------------------------------------------------------
+// 
+// REPLACEMENTS
+// 
+// ----------------------------------------------------------------
+
+// Crouch_idleD holds a SMG while crouchidlehide holds nothing, but the former used ACT_COVER_LOW instead of ACT_COVER_SMG1_LOW and crouchidlehide
+// did not have an activity at all, despite having its own transitions.
+// This has been changed so that Crouch_idleD uses ACT_COVER_LOW_SMG1 and crouchidlehide uses ACT_COVER_LOW.
+$sequence "Crouch_idleD" { "Crouch_idleD.smd" activity "ACT_COVER_SMG1_LOW" 1 node "crouching" loop cmdlist lockfeetandlefthand }
+$sequence "crouchidlehide" { "crouchidlehide.smd" activity "ACT_COVER_LOW" 1 node "crouchhide" loop cmdlist lockfeet }
+
+// These transitions do not match any existing animations. The "crouching" node contains crouching combat animations, but these transitions make
+// that look weird when they're standing up and down. There's also already a transition for going from crouching to standing in combat, which happen
+// to use the same nodes as these.
+// In order to give that transition precedent, these transitions no longer transition any nodes.
+$sequence "Stand_to_crouch" { "Stand_to_crouch.smd" } // activity "ACT_TRANSITION" 1 transition "standing" "crouching"
+$sequence "Crouch_to_stand" { "Crouch_to_stand.smd" } // activity "ACT_TRANSITION" 1 transition "crouching" "standing"

@@ -1,0 +1,123 @@
+// ================================================================
+// 
+// Citizen AR1 Activities
+// 
+// ================================================================
+
+// New Idles
+
+$GenericIdle "idle_angry_ar1" "custom\idle_angry_ar1.smd" "ACT_IDLE_AR1"
+
+$GenericCombatIdle "idle_ar1_aim" "custom\idle_ar1_aim.smd" "ACT_IDLE_ANGRY_AR1" "soldier_Aim_9_directions"
+
+$GenericShoot "shoot_ar1" "shoot_ar2.smd" "ACT_RANGE_ATTACK_AR1" "soldier_Aim_9_directions" match "idle_ar1_aim"
+
+$GenericReloadNoAim "reload_ar1" "custom\reload_ar1.smd" "ACT_RELOAD_AR1" 60 fps 35
+
+$sequence "gesture_shoot_ar1" "shoot_ar2.smd" subtract "shoot_ar1" 0 delta activity "ACT_GESTURE_RANGE_ATTACK_AR1" 1
+$makeweapongesturep "gesture_reload_ar1" "custom\reload_ar1.smd" 16 90 105
+$append gesture_reload_ar1 { fps 40 activity "ACT_GESTURE_RELOAD_AR1" 1 { event 3015 60 "" } }
+
+// ----------------------------------------------------------------
+
+$sequence "relaxed_ar2_to_ar1" "custom\Idle_AR1_Relaxed.smd" frame 0 0 subtract "layer_relaxed_ar2" 0 delta hidden
+$sequence "relaxed_ar1_full_arms" "custom\Idle_AR1_Relaxed.smd" frame 0 0 weightlist "weapongesture_armsonly" hidden
+
+// ----------------------------------------------------------------
+
+$GenericIdle "Idle_AR1_Relaxed" "custom\Idle_AR1_Relaxed.smd" "ACT_NEUTRAL_AR1_RELAXED"
+
+// ----------------------------------------------------------------
+
+$GenericIdleHands "Idle_Relaxed_AR1_1" "Idle_Relaxed_AR2_1.smd" "ACT_IDLE_AR1_RELAXED" "relaxed_ar2_to_ar1"
+$GenericIdleHands "Idle_Relaxed_AR1_2" "Idle_Relaxed_AR2_2.smd" "ACT_IDLE_AR1_RELAXED" "relaxed_ar2_to_ar1"
+$GenericIdleHands "Idle_Relaxed_AR1_3" "Idle_Relaxed_AR2_3.smd" "ACT_IDLE_AR1_RELAXED" "relaxed_ar2_to_ar1"
+$GenericIdleHands "Idle_Relaxed_AR1_4" "Idle_Relaxed_AR2_4.smd" "ACT_IDLE_AR1_RELAXED" "relaxed_ar2_to_ar1"
+$GenericIdleHands "Idle_Relaxed_AR1_5" "Idle_Relaxed_AR2_5.smd" "ACT_IDLE_AR1_RELAXED" "relaxed_ar2_to_ar1"
+$GenericIdleHands "Idle_Relaxed_AR1_6" "Idle_Relaxed_AR2_6.smd" "ACT_IDLE_AR1_RELAXED" "relaxed_ar2_to_ar1"
+$GenericIdleHands "Idle_Relaxed_AR1_7" "Idle_Relaxed_AR2_7.smd" "ACT_IDLE_AR1_RELAXED" "relaxed_ar2_to_ar1"
+$GenericIdleHands "Idle_Relaxed_AR1_8" "Idle_Relaxed_AR2_8.smd" "ACT_IDLE_AR1_RELAXED" "relaxed_ar2_to_ar1"
+$GenericIdleHands "Idle_Relaxed_AR1_9" "Idle_Relaxed_AR2_9.smd" "ACT_IDLE_AR1_RELAXED" "relaxed_ar1_full_arms"
+
+$GenericIdleHands "Idle_Alert_AR1_1" "Idle_Alert_AR2_1.smd" "ACT_IDLE_AR1_STIMULATED" "relaxed_ar2_to_ar1"
+$GenericIdleHands "Idle_Alert_AR1_2" "Idle_Alert_AR2_2.smd" "ACT_IDLE_AR1_STIMULATED" "relaxed_ar2_to_ar1"
+$GenericIdleHands "Idle_Alert_AR1_3" "Idle_Alert_AR2_3.smd" "ACT_IDLE_AR1_STIMULATED" "relaxed_ar2_to_ar1"
+$GenericIdleHands "Idle_Alert_AR1_4" "Idle_Alert_AR2_4.smd" "ACT_IDLE_AR1_STIMULATED" "relaxed_ar2_to_ar1"
+$GenericIdleHands "Idle_Alert_AR1_5" "Idle_Alert_AR2_5.smd" "ACT_IDLE_AR1_STIMULATED" "relaxed_ar1_full_arms"
+$GenericIdleHands "Idle_Alert_AR1_6" "Idle_Alert_AR2_6.smd" "ACT_IDLE_AR1_STIMULATED" "relaxed_ar2_to_ar1"
+$GenericIdleHands "Idle_Alert_AR1_7" "Idle_Alert_AR2_7.smd" "ACT_IDLE_AR1_STIMULATED" "relaxed_ar2_to_ar1"
+$GenericIdleHands "Idle_Alert_AR1_8" "Idle_Alert_AR2_8.smd" "ACT_IDLE_AR1_STIMULATED" "relaxed_ar1_full_arms"
+$GenericIdleHands "Idle_Alert_AR1_9" "Idle_Alert_AR2_9.smd" "ACT_IDLE_AR1_STIMULATED" "relaxed_ar1_full_arms"
+
+// ----------------------------------------------------------------
+
+$ReadinessMoveLayer "layer_walk_holding_ar1_relaxed" "layer_walk_holding_AR2_Relaxed.smd" blendlayer "relaxed_ar2_to_ar1" 0 0 0 0 local
+$GenericWalkLayered "walk_ar1_relaxed_all" "ACT_WALK_AR1_RELAXED" "layer_walk_holding_ar1_relaxed" "ACT_NEUTRAL_AR1_RELAXED"
+
+// ----------------------------------------------------------------
+
+$ReadinessMoveLayer "layer_run_holding_ar1_relaxed" "layer_run_holding_AR2_Relaxed.smd" blendlayer "relaxed_ar2_to_ar1" 0 0 0 0 local
+$GenericRunLayered "run_ar1_relaxed_all" "ACT_RUN_AR1_RELAXED" "layer_run_holding_ar1_relaxed" "ACT_NEUTRAL_AR1_RELAXED"
+
+// ----------------------------------------------------------------
+
+$ReadinessMoveLayer "layer_walk_holding_ar1" "layer_walk_AR2_holding.smd" blendlayer "relaxed_ar2_to_ar1" 0 0 0 0 local
+$ReadinessMoveLayer "layer_walk_alert_holding_ar1" "layer_walk_alert_holding_AR2.smd" blendlayer "relaxed_ar2_to_ar1" 0 0 0 0 local
+
+$GenericWalkLayered "walk_hold_ar1" "ACT_WALK_AR1" "layer_walk_holding_ar1" "ACT_NEUTRAL_AR1_RELAXED"
+$GenericWalkLayered "walk_alert_hold_ar1" "ACT_WALK_AR1_STIMULATED" "layer_walk_holding_ar1" "ACT_NEUTRAL_AR1_RELAXED"
+
+// ----------------------------------------------------------------
+
+$ReadinessMoveLayer "layer_run_holding_ar1" "layer_run_holding_ar2.smd" blendlayer "relaxed_ar2_to_ar1" 0 0 0 0 local
+$ReadinessMoveLayer "layer_run_alert_holding_ar1" "layer_run_alert_holding_AR2.smd" blendlayer "relaxed_ar2_to_ar1" 0 0 0 0 local
+
+$GenericRunLayered "run_hold_ar1" "ACT_RUN_AR2" "layer_run_holding_ar1" "ACT_NEUTRAL_AR1_RELAXED"
+$GenericRunLayered "run_alert_hold_ar1" "ACT_RUN_AR1_STIMULATED" "layer_run_alert_holding_ar1" "ACT_NEUTRAL_AR1_RELAXED"
+
+// ----------------------------------------------------------------
+// 
+// Nodes for all of the above animations
+// 
+// ----------------------------------------------------------------
+
+$definemacro AddNodeToSequence SeqName NodeName \\
+$append $SeqName$ { node $NodeName$ }
+
+$AddNodeToSequence "Idle_AR1_Relaxed" "standing"
+$AddNodeToSequence "idle_angry_ar1" "standing"
+$AddNodeToSequence "idle_ar1_aim" "shooting"
+$AddNodeToSequence "shoot_ar1" "shooting"
+$AddNodeToSequence "reload_ar1" "standing"
+
+//$AddNodeToSequence "crouch_reload_ar1" "crouching"
+//$AddNodeToSequence "crouch_idle_ar1" "crouching"
+//$AddNodeToSequence "crouch_shoot_ar1" "crouchShooting"
+
+$AddNodeToSequence "walk_ar1_relaxed_all" "walking"
+$AddNodeToSequence "walk_hold_ar1" "walking"
+$AddNodeToSequence "walk_alert_hold_ar1" "walking"
+
+$AddNodeToSequence "run_ar1_relaxed_all" "running"
+$AddNodeToSequence "run_hold_ar1" "running"
+$AddNodeToSequence "run_alert_hold_ar1" "running"
+
+$AddNodeToSequence "Idle_Relaxed_AR1_1" "standing"
+$AddNodeToSequence "Idle_Relaxed_AR1_2" "standing"
+$AddNodeToSequence "Idle_Relaxed_AR1_3" "standing"
+$AddNodeToSequence "Idle_Relaxed_AR1_4" "standing"
+$AddNodeToSequence "Idle_Relaxed_AR1_5" "standing"
+$AddNodeToSequence "Idle_Relaxed_AR1_6" "standing"
+$AddNodeToSequence "Idle_Relaxed_AR1_7" "standing"
+$AddNodeToSequence "Idle_Relaxed_AR1_8" "standing"
+$AddNodeToSequence "Idle_Relaxed_AR1_9" "standing"
+
+$AddNodeToSequence "Idle_Alert_AR1_1" "standing"
+$AddNodeToSequence "Idle_Alert_AR1_2" "standing"
+$AddNodeToSequence "Idle_Alert_AR1_3" "standing"
+$AddNodeToSequence "Idle_Alert_AR1_4" "standing"
+$AddNodeToSequence "Idle_Alert_AR1_5" "standing"
+$AddNodeToSequence "Idle_Alert_AR1_6" "standing"
+$AddNodeToSequence "Idle_Alert_AR1_7" "standing"
+$AddNodeToSequence "Idle_Alert_AR1_8" "standing"
+$AddNodeToSequence "Idle_Alert_AR1_9" "standing"

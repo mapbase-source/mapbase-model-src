@@ -4,37 +4,67 @@ $ModelName "combine_soldier_anims.mdl"
 
 //$includemodel "player/male_anims.mdl"
 
-$includemodel "combine_soldier_anims_original.mdl"
-$include "combine_soldier_anims_DeclareSequence.qci"
-
 // Must be included
 $include "BaseModel.qci"
 $include "hl2mp_ported_anims/commonbones.qci"
-
-
 $include "hl2mp_ported_anims/weaponmacros.qci"
-//$pushd "male_shared_anims"
-//$include "DefaultHolster.qci"
-//$popd
+$include "GenericWeightlists.qci"
+$include "GenericAnimationMacros.qci"
+
+$definebone "ValveBiped.Cod" "ValveBiped.Bip01_Pelvis" -0.044717 2.313936 4.661499 0 0 -2.250005 0 0 0 0 0 0
+
+// Used to compile new movement animations since $declareanimation doesn't work
+$include "SoldierMoveAnims.qci"
+
+$includemodel "combine_soldier_anims_original.mdl"
+$include "combine_soldier_anims_DeclareSequence.qci"
+$include "SoldierActivityFixes.qci"
+$include "SoldierNewWeaponActivities.qci"
+$include "SoldierTransitions.qci"
+
+$include "SoldierReadinessAnims.qci"
+
+$pushd "male_shared_anims"
+$include "DefaultHolster.qci"
+$popd
 
 $definevariable Blend_Idle_Default "CombatIdle1_SMG1"
-$definevariable Blend_Idle_Pistol "CombatIdle1_SMG1"
+$definevariable Blend_Idle_Unarmed "Idle_Unarmed"
+$definevariable Blend_Idle_Panicked "Idle_Unarmed"
+$definevariable Blend_Idle_Pistol "CombatIdle1_Pistol"
 $definevariable Blend_Idle_Rifle "CombatIdle1_SMG1"
+$definevariable Blend_Idle_Rifle_Crouched "crouch_aim_sm1"
 
 $definevariable Blend_SMD_Default "combine_soldier_anims_anims\CombatIdle1_SMG1.smd"
-$definevariable Blend_SMD_Pistol "combine_soldier_anims_anims\CombatIdle1_SMG1.smd"
+$definevariable Blend_SMD_Unarmed "combine_soldier_anims_anims\Idle_Unarmed.smd"
+$definevariable Blend_SMD_Panicked "combine_soldier_anims_anims\Idle_Unarmed.smd"
+$definevariable Blend_SMD_Pistol "combine_soldier_anims_anims\custom\CombatIdle1_Pistol.smd"
+$definevariable Blend_SMD_Pistol_Crouched "combine_soldier_anims_anims\custom\crouch_aim_pistol.smd"
 $definevariable Blend_SMD_Rifle "combine_soldier_anims_anims\CombatIdle1_SMG1.smd"
+$definevariable Blend_SMD_Rifle_Crouched "combine_soldier_anims_anims\crouch_aim_sm1.smd"
+$definevariable Blend_SMD_Annabelle "combine_soldier_anims_anims\CombatIdle1.smd"
+$definevariable Blend_SMD_Annabelle_Crouch "combine_soldier_anims_anims\CrouchIdle.smd"
 
-// Soldiers don't use nodes...
-$definevariable Blend_Node_Default "shooting"
-$definevariable Blend_Node_Pistol "shooting"
-$definevariable Blend_Node_Rifle "shooting"
+$definevariable Blend_Node_Default "shooting_smg1"
+$definevariable Blend_Node_Pistol "shooting_pistol"
+$definevariable Blend_Node_Rifle "shooting_ar2"
+
+$definevariable Blend_Aim_Rifle "Aim_stand_delta_all"
 
 $animation a_AnimMatch_Default "combine_soldier_anims_anims\CombatIdle1_SMG1.smd" frame 0 0
 $definevariable AnimMatch_Default a_AnimMatch_Default
 
 $animation a_AnimMatch_Idle "combine_soldier_anims_anims\Idle1.smd" frame 0 0
 $definevariable AnimMatch_Idle a_AnimMatch_Idle
+
+// ================================================================
+// 
+// Pistol Animations
+// 
+// ================================================================
+$include "NewPistolAnimations_Soldier.qci"
+$include "NewPistolAnimations_357_Soldier.qci"
+// ================================================================
 
 $include "BaseDI.qci"
 
@@ -43,7 +73,6 @@ $include "BaseDI.qci"
 // and makes soldiers susceptible to it.
 //$include "AlyxDI.qci"
 
-$include "GenericAnimationMacros.qci"
 $include "SoldierSignals.qci"
 
 $include "HunterRecvDI.qci"
@@ -147,44 +176,35 @@ $append gunrack {
 	blendlayer pickup_unarmed_layer 0 0 0 13
 }
 
+// ================================================================
 
 // 
-// AR2 Alt-Fire Gesture Experiment
+// Combine animation gestures
 // 
-// Programming not included
-// 
-$weightlist "AR2AltFireWeightlistDelta" {
-	"ValveBiped.Bip01_Pelvis" 1
-	"ValveBiped.Bip01_L_Clavicle" 0
-	"ValveBiped.Bip01_Spine" 1
-	"ValveBiped.Bip01_R_Clavicle" 0
-	"ValveBiped.Bip01_Neck1" 0
+$makeweapongesturep grenThrow_gesture "combine_soldier_anims_anims\grenThrow.smd" 10 35 50
+$append grenThrow_gesture {
+	fps 45
+	activity "ACT_GESTURE_COMBINE_THROW_GRENADE" 1
+	{ event 7 30 "" }
 }
 
-$weightlist "AR2AltFireWeightlist" {
-	"ValveBiped.Bip01_Pelvis" 0
-	"ValveBiped.Bip01_Spine" 0
-	"ValveBiped.Bip01_L_Clavicle" 1
-	"ValveBiped.Bip01_R_Clavicle" 1
-	"ValveBiped.Bip01_L_Thigh" 0
-	"ValveBiped.Bip01_R_Thigh" 0
-	"ValveBiped.Bip01_Neck1" 1
+$makeweapongesturep grenDrop_gesture "combine_soldier_anims_anims\grenDrop.smd" 12 32 43
+$append grenDrop_gesture {
+	fps 35
+	activity "ACT_GESTURE_SPECIAL_ATTACK1" 1
+	{ event 7 26 "" }
 }
 
-$sequence "shootAR2alt_gesture_delta" {
-	"combine_soldier_anims_anims\shootAR2alt.smd"
-	subtract "shootAR2alt_gesture_delta" 0
-	delta
-	hidden
-	weightlist "AR2AltFireWeightlistDelta"
+$makeweapongesturep grenPlace_gesture "combine_soldier_anims_anims\grenPlace.smd" 12 35 45
+$append grenPlace_gesture {
+	fps 35
+	activity "ACT_GESTURE_SPECIAL_ATTACK2" 1
+	{ event 9 25 "" }
 }
 
-$sequence "shootAR2alt_gesture" {
-	"combine_soldier_anims_anims\shootAR2alt.smd"
-	weightlist "AR2AltFireWeightlist"
-	addlayer "shootAR2alt_gesture_delta"
-	addlayer "Aim_stand_delta_all"
-	activity "ACT_GESTURE_AR2_ALTFIRE" 1
+$makeweapongesturep shootAR2alt_gesture "combine_soldier_anims_anims\shootAR2alt.smd" 12 24 36
+$append shootAR2alt_gesture {
+	activity "ACT_GESTURE_COMBINE_AR2_ALTFIRE" 1
 	{ event COMBINE_AE_BEGIN_ALTFIRE 0 "" }
 	{ event COMBINE_AE_ALTFIRE 16 "" }
 }
@@ -200,6 +220,84 @@ $DefaultSignalGestures 36
 // 
 // ================================================================
 
+$pushd "male_shared_anims"
+$include "ArrestAnims.qci"
+
+$include "CitizenPackage_Soldier.qci"
+$include "CitizenSuitcase_Soldier.qci"
+$popd
+
+$pushd "combine_soldier_anims_anims"
+$include "SoldierWallCover.qci"
+$popd
+
+$include "CitizenRPG_Soldier.qci"
+$include "PoliceMelee_Soldier.qci"
+
+$sequence "melee_kick" {
+	"police_ss_anims\adoorkick.smd"
+	activity "ACT_MELEE_ATTACK2" 1
+	frame 0 45
+	fps 40
+	{ event 3 20 "" }
+	blendlayer $Blend_Idle_Default$ 0 0 1 7
+	blendlayer $Blend_Idle_Default$ 30 37 46 46
+}
+
+$sequence "melee_kick_scripted" {
+	"police_ss_anims\adoorkick.smd"
+	frame 0 40
+	fps 30
+	{ event 1003 20 "1" }
+	blendlayer $Blend_Idle_Default$ 0 0 1 7
+	blendlayer $Blend_Idle_Default$ 30 38 38 41 xfade
+}
+
+$makeflinchgesture "gesture_melee_gunhit" "combine_soldier_anims_anims\melee_gunhit.smd" 7 20 27
+$append gesture_melee_gunhit { activity "ACT_GESTURE_MELEE_ATTACK1" 1 { event 3 13 "" } }
+
+$weightlist weapongesture_upperbody_and_rleg "ValveBiped.Bip01_Pelvis" 1.0 "ValveBiped.Bip01_L_Thigh" 0.0 "ValveBiped.Bip01_R_Thigh" 1.0
+
+$definemacro makeflinchgesture_rleg gesturename filename InFrame OutFrame LastFrame \\
+$sequence $gesturename$inDelta $filename$ frame 0 $InFrame$ weightlist weapongesture_upperbody_and_rleg splinedelta delta hidden  \\
+$sequence $gesturename$inFrame $filename$ frame $InFrame$ $InFrame$ weightlist weapongesture_upperbody_and_rleg hidden noautoik \\
+$sequence $gesturename$CoreDelta $filename$ frame $InFrame$ $OutFrame$ weightlist weapongesture_upperbody_and_rleg splinedelta delta hidden  \\
+$sequence $gesturename$OutFrame $filename$ frame $OutFrame$ $OutFrame$ weightlist weapongesture_upperbody_and_rleg hidden noautoik \\
+$sequence $gesturename$outDelta $filename$ frame $OutFrame$ $LastFrame$ weightlist weapongesture_upperbody_and_rleg splinedelta delta hidden  \\
+\\
+$sequence $gesturename$ { \\
+  $filename$ noanimation numframes $LastFrame$ \\
+  blendlayer $gesturename$inFrame 0 $InFrame$ $InFrame$ $OutFrame$ spline xfade \\
+  blendlayer $gesturename$OutFrame $InFrame$ $OutFrame$ $OutFrame$ $LastFrame$ spline \\
+  blendlayer $gesturename$inDelta 0 0 $InFrame$ $InFrame$ \\
+  blendlayer $gesturename$CoreDelta $InFrame$ $InFrame$ $OutFrame$ $OutFrame$ \\
+  blendlayer $gesturename$outDelta $OutFrame$ $OutFrame$ $LastFrame$ $LastFrame$ \\
+} \\
+$continue $gesturename$
+
+$makeflinchgesture_rleg "gesture_melee_kick" "police_ss_anims\adoorkick.smd" 7 32 45
+$append gesture_melee_kick { activity "ACT_GESTURE_MELEE_ATTACK2" 1 { event 3 20 "" } fps 40 }
+
+$include "SoldierCrouchMovement.qci"
+
+$include "l4d1_ported_anims\L4D1_LadderClimb_Male.qci"
+$include "l4d1_ported_anims\L4D1_PistolAnims.qci"
+
+$include "NPCDoorAnims.qci"
+
+$include "AnnabelleAnimations.qci"
+
+// ================================================================
+$include "ProtectedRun.qci"
+
+$sequence "run_protected_all" {
+	$a_RunBlends
+	activity "ACT_RUN_PROTECTED" 1
+	blendlayer "layer_run_protected" 0 0 0 0 local
+	node "running"
+}
+// ================================================================
+
 // Use our DI blending techniques to add a heal animation
 $MakeAdjustedAnimation Heal "male_shared_anims\Heal.smd" $Blend_SMD_Default$ 12 32 50
 //$MakeAdjustedDelta Heal "male_shared_anims\Heal.smd" $Blend_SMD_Default$ 50 30
@@ -207,3 +305,5 @@ $append Heal {
 	activity "ACT_CIT_HEAL" 1
 	{ event AE_CITIZEN_HEAL 31 "" }
 }
+
+$include "SoldierAnimationNodes.qci"

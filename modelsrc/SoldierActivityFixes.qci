@@ -1,0 +1,174 @@
+// ================================================================
+// 
+// Soldier Activity Fixes
+// 
+// This overwrites existing soldier sequences to fix issues with animation events, activity names, etc.
+// 
+// ================================================================
+
+$sequence "layer_relaxed_oldidle" { "combine_soldier_anims_anims\Idle1.smd" frame 0 0 ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" hidden }
+$sequence "layer_relaxed_ar2" { "combine_soldier_anims_anims\custom\Idle1_AR2.smd" frame 0 0 ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" hidden }
+$sequence "layer_relaxed_smg1" { "combine_soldier_anims_anims\custom\Idle1_SMG1.smd" frame 0 0 ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" hidden }
+$sequence "layer_relaxed_shotgun" { "combine_soldier_anims_anims\custom\Idle1_Shotgun.smd" frame 0 0 ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" hidden }
+$sequence "layer_relaxed_pistol" { "combine_soldier_anims_anims\custom\Idle1_Pistol.smd" frame 0 0 ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" hidden }
+
+// TODO: These aren't perfect and could probably be turned into actual animation layer SMDs
+$sequence "ar2_to_smg1" "combine_soldier_anims_anims\custom\Idle1_SMG1.smd" frame 0 0 subtract "layer_relaxed_ar2" 0 delta hidden
+$sequence "ar2_to_shotgun" "combine_soldier_anims_anims\custom\Idle1_Shotgun.smd" frame 0 0 subtract "layer_relaxed_ar2" 0 delta hidden
+$sequence "smg1_to_ar2" "combine_soldier_anims_anims\custom\Idle1_AR2.smd" frame 0 0 subtract "layer_relaxed_smg1" 0 delta hidden
+$sequence "oldidle_to_ar2" "combine_soldier_anims_anims\custom\Idle1_AR2.smd" frame 0 0 subtract "layer_relaxed_oldidle" 0 delta hidden
+$sequence "oldidle_to_smg1" "combine_soldier_anims_anims\custom\Idle1_SMG1.smd" frame 0 0 subtract "layer_relaxed_oldidle" 0 delta hidden
+$sequence "oldidle_to_shotgun" "combine_soldier_anims_anims\custom\Idle1_Shotgun.smd" frame 0 0 subtract "layer_relaxed_oldidle" 0 delta hidden
+$sequence "oldidle_to_pistol" "combine_soldier_anims_anims\custom\Idle1_Pistol.smd" frame 0 0 subtract "layer_relaxed_oldidle" 0 delta hidden
+
+// ----------------------------------------------------------------
+// ----------------------------------------------------------------
+
+$GenericIdle "Idle1" "combine_soldier_anims_anims\Idle1.smd" "ACT_IDLE_AR1" // Activity changed from "ACT_IDLE" to "ACT_IDLE_AR1" since it doesn't fit any weapon in HL2
+
+$GenericCombatIdle "CombatIdle1" "combine_soldier_anims_anims\CombatIdle1.smd" "ACT_IDLE_ANGRY_AR2" "Aim_stand_delta_all" // Activity changed from "ACT_IDLE_ANGRY" to "ACT_IDLE_ANGRY_AR2"
+$GenericCombatIdle "CombatIdle1_SMG1" "combine_soldier_anims_anims\CombatIdle1_SMG1.smd" "ACT_IDLE_ANGRY_SMG1" "Aim_stand_delta_all"
+$GenericCombatIdle "CombatIdle1_SG" "combine_soldier_anims_anims\CombatIdle1_SG.smd" "ACT_IDLE_ANGRY_SHOTGUN" "Aim_stand_delta_all_SG"
+
+$GenericCombatIdle "crouch_aim_ar2" "combine_soldier_anims_anims\CrouchIdle.smd" "ACT_RANGE_AIM_AR2_LOW" "Aim_crouch_delta_all"
+$GenericCombatIdle "crouch_aim_sm1" "combine_soldier_anims_anims\crouch_aim_sm1.smd" "ACT_RANGE_AIM_SMG1_LOW" "Aim_crouch_delta_all"
+
+$sequence "Walk_all" { $a_WalkBlends activity "ACT_WALK_AR1" 1 } // Activity changed from "ACT_WALK" to "ACT_WALK_AR1" since it doesn't fit any weapon in HL2
+$sequence "RunALL" { $a_RunBlends activity "ACT_RUN_AR1" 1 } // Activity changed from "ACT_RUN" to "ACT_RUN_AR1" since it doesn't fit any weapon in HL2
+
+$sequence "Walk_aiming_all" { $a_WalkBlends activity "ACT_WALK_AIM_RIFLE" 1 blendlayer "layer_walk_aiming" 0 0 0 0 local } // Adds previously missing footstep events
+$sequence "Walk_aiming_all_SG" { $a_WalkBlends activity "ACT_WALK_AIM_SHOTGUN" 1 blendlayer "layer_walk_aiming_SG" 0 0 0 0 local } // Adds previously missing footstep events
+
+$sequence "RunAIMALL1" { $a_RunBlends activity "ACT_RUN_AIM_RIFLE" 1 blendlayer "layer_run_aiming" 0 0 0 0 local }
+$sequence "RunAIMALL1_SG" { $a_RunBlends activity "ACT_RUN_AIM_SHOTGUN" 1 blendlayer "layer_run_aiming_SG" 0 0 0 0 local }
+
+$sequence "Crouch_RunALL" { $a_CrouchRunBlends activity "ACT_RUN_CROUCH_RIFLE" 1 }
+$sequence "Crouch_WalkALL" { $a_CrouchWalkBlends activity "ACT_WALK_CROUCH_RIFLE" 1 }
+
+// ----------------------------------------------------------------
+
+$GenericShoot "shootSMG1s" "combine_soldier_anims_anims\shootSMG1s.smd" "ACT_RANGE_ATTACK_SMG1" "Aim_stand_delta_all"
+$GenericShoot "shootSMG1c" "combine_soldier_anims_anims\shootSMG1c.smd" "ACT_RANGE_ATTACK_SMG1_LOW" "Aim_crouch_delta_all"
+$GenericShoot "shootAR2s" "combine_soldier_anims_anims\shootAR2s.smd" "ACT_RANGE_ATTACK_AR2" "Aim_stand_delta_all"
+$GenericShoot "shootAR2c" "combine_soldier_anims_anims\shootAR2c.smd" "ACT_RANGE_ATTACK_AR2_LOW" "Aim_crouch_delta_all"
+$GenericShoot "shootSGs" "combine_soldier_anims_anims\shootSGs.smd" "ACT_RANGE_ATTACK_SHOTGUN" "Aim_stand_delta_all_SG"
+$GenericShoot "shootSGc" "combine_soldier_anims_anims\shootSGc.smd" "ACT_RANGE_ATTACK_SHOTGUN_LOW" "Aim_crouch_delta_all"
+
+$GenericShoot "shootAR2alt" "combine_soldier_anims_anims\shootAR2alt.smd" "ACT_COMBINE_AR2_ALTFIRE" "Aim_stand_delta_all"
+$append shootAR2alt {
+	{ event COMBINE_AE_BEGIN_ALTFIRE 0 "" }
+	{ event COMBINE_AE_ALTFIRE 16 "" }
+}
+
+// NEW -- Shotgun cocking sounds
+// TODO: Is it a little extreme to add a new sound to an animation as frequent as this?
+$append shootSGs { { event AE_CL_PLAYSOUND 11 "Weapon_Alyx_Shotgun.Cock" } }
+$append shootSGc { { event AE_CL_PLAYSOUND 11 "Weapon_Alyx_Shotgun.Cock" } }
+
+// ----------------------------------------------------------------
+
+// These now use the aim layers, so soldiers aim their guns in the right direction
+$definemacro SoldierReload SeqName FileName ActName AimLayer EventFrame \\
+$sequence $SeqName$ { \\
+	$FileName$ \\
+	{ event 2 $EventFrame$ "" } \\
+	addlayer $AimLayer$ \\
+	activity $ActName$ 1 \\
+	ikrule "lfoot" footstep contact 0 height 20 radius 2.5 \\
+	ikrule "rfoot" footstep contact 0 height 20 radius 2.5 \\
+	ikrule "rhand" release \\
+	ikrule "lhand" release \\
+}
+
+$SoldierReload "reload" "combine_soldier_anims_anims\reload.smd" "ACT_RELOAD" "Aim_stand_delta_all" 28
+$SoldierReload "reload_low" "combine_soldier_anims_anims\reload_low.smd" "ACT_RELOAD_LOW" "Aim_crouch_delta_all" 30
+
+// ----------------------------------------------------------------
+
+$definemacro SoldierCover IdleName IdleSeq IdleAct \\
+$sequence $IdleName$ { \\
+	$IdleSeq$ \\
+	activity $IdleAct$ 1 \\
+	loop \\
+	ikrule "lfoot" footstep contact 0 height 20 radius 2.5 \\
+	ikrule "rfoot" footstep contact 0 height 20 radius 2.5 \\
+	ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" \\
+	ikrule "rhand" release \\
+}
+
+$SoldierCover "cover_crouch" "combine_soldier_anims_anims\CrouchIdle.smd" "ACT_COVER"
+$SoldierCover "cover_crouch_low" "combine_soldier_anims_anims\CrouchIdle.smd" "ACT_COVER_LOW"
+$SoldierCover "cover_crouch_med" "combine_soldier_anims_anims\CrouchIdle.smd" "ACT_COVER_MED"
+
+// ----------------------------------------------------------------
+
+$sequence "melee_gunhit" {
+	"combine_soldier_anims_anims\melee_gunhit.smd"
+	activity "ACT_MELEE_ATTACK1" 1
+	{ event 3 13 "" }
+	ikrule "lfoot" footstep contact 0 height 20 radius 2.5
+	ikrule "rfoot" footstep contact 0 height 20 radius 2.5
+	ikrule "lhand" touch "ValveBiped.Bip01_R_Hand"
+	ikrule "rhand" release
+}
+
+// ----------------------------------------------------------------
+
+// These now use the aim layers, so soldiers aim their guns in the right direction
+$definemacro SoldierGrenade SeqName FileName ActName FPS EventID EventFrame \\
+$sequence $SeqName$ { \\
+	$FileName$ \\
+	fps $FPS$ \\
+	activity $ActName$ 1 \\
+	{ event $EventID$ $EventFrame$ "" } \\
+	addlayer "Aim_stand_delta_all" \\
+	ikrule "lfoot" footstep contact 0 height 20 radius 2.5 \\
+	ikrule "rfoot" footstep contact 0 height 20 radius 2.5 \\
+	ikrule "rhand" release \\
+	ikrule "lhand" release \\
+}
+
+$SoldierGrenade "grenThrow" "combine_soldier_anims_anims\grenThrow.smd" "ACT_COMBINE_THROW_GRENADE" 45 7 30
+$SoldierGrenade "grenDrop" "combine_soldier_anims_anims\grenDrop.smd" "ACT_SPECIAL_ATTACK1" 35 7 26
+$SoldierGrenade "grenPlace" "combine_soldier_anims_anims\grenPlace.smd" "ACT_SPECIAL_ATTACK2" 35 9 25
+
+// ----------------------------------------------------------------
+
+// These now use the aim layers, so soldiers aim their guns in the right direction
+$definemacro SoldierSignalSeq SeqName FileName ActName FPS \\
+$sequence $SeqName$ { \\
+	$FileName$ \\
+	fps $FPS$ \\
+	activity $ActName$ 1 \\
+	{ event 4 0 "" } \\
+	addlayer "Aim_stand_delta_all" \\
+	ikrule "lfoot" footstep contact 0 height 20 radius 2.5 \\
+	ikrule "rfoot" footstep contact 0 height 20 radius 2.5 \\
+	ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" \\
+}
+
+$SoldierSignalSeq "signal_advance" "combine_soldier_anims_anims\signal_advance.smd" "ACT_SIGNAL_ADVANCE" 30
+$SoldierSignalSeq "signal_forward" "combine_soldier_anims_anims\signal_forward.smd" "ACT_SIGNAL_FORWARD" 48
+$SoldierSignalSeq "signal_group" "combine_soldier_anims_anims\signal_group.smd" "ACT_SIGNAL_GROUP" 48
+$SoldierSignalSeq "signal_halt" "combine_soldier_anims_anims\signal_halt.smd" "ACT_SIGNAL_HALT" 48
+$SoldierSignalSeq "signal_left" "combine_soldier_anims_anims\signal_left.smd" "ACT_SIGNAL_LEFT" 48
+$SoldierSignalSeq "signal_right" "combine_soldier_anims_anims\signal_right.smd" "ACT_SIGNAL_RIGHT" 48
+$SoldierSignalSeq "signal_takecover" "combine_soldier_anims_anims\signal_takecover.smd" "ACT_SIGNAL_TAKECOVER" 48
+
+// ----------------------------------------------------------------
+
+$sequence "WalkUnarmed_all" {
+	$a_WalkEasyBlends // Adds previously missing footstep events
+	activity "ACT_WALK_UNARMED" 1
+	blendlayer "layer_walk_unarmed" 0 0 0 0 local
+
+	keyvalues
+	{
+		interior ACT_IDLE_UNARMED
+	}
+}
+
+$sequence "WalkEasy_all" {
+	$a_WalkEasyBlends // Adds previously missing footstep events
+	activity "ACT_WALK_EASY" 1
+}

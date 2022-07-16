@@ -1,0 +1,155 @@
+// ================================================================
+// 
+// Citizen Crossbow Activities
+// 
+// ================================================================
+
+// New Idles
+
+$GenericIdle "Idle_Angry_Crossbow" "custom\Idle_Angry_Crossbow.smd" "ACT_IDLE_CROSSBOW"
+
+$GenericCombatIdle "Idle_Crossbow_Aim" "custom\Idle_Crossbow_Aim.smd" "ACT_IDLE_ANGRY_CROSSBOW" "soldier_Aim_9_directions"
+
+$GenericShoot "shoot_crossbow" "custom\shoot_crossbow.smd" "ACT_RANGE_ATTACK_CROSSBOW" "soldier_Aim_9_directions"
+
+$GenericShootFromIdle "crouch_shoot_crossbow" "crouch_shoot_smg1.smd" "ACT_RANGE_ATTACK_CROSSBOW_LOW" "soldier_Aim_9_directions" "gesture_shoot_crossbow" 10
+
+$GenericReloadSoundMatched "reload_crossbow" "custom\reload_crossbow.smd" "ACT_RELOAD_CROSSBOW" "soldier_Aim_9_directions" 10 25 40 20
+$append reload_crossbow { fps 25 { event AE_CL_PLAYSOUND 20 "Weapon_Crossbow.BoltElectrify" } }
+
+$GenericReloadFromIdle "crouch_reload_crossbow" "Crouch_idleD.smd" "ACT_RELOAD_CROSSBOW_LOW" "soldier_Aim_9_directions" "gesture_reload_crossbow" 10 25 40 20 fps 25
+$GenericIdle "crouch_idle_crossbow" "Crouch_idleD.smd" "ACT_COVER_CROSSBOW_LOW" blendlayer "relaxed_smg1_to_crossbow" 0 0 0 0 local
+
+$sequence "gesture_shoot_crossbow" "custom\shoot_crossbow.smd" subtract "gesture_shoot_crossbow" 0 delta activity "ACT_GESTURE_RANGE_ATTACK_CROSSBOW" 1
+$makeweapongesturep "gesture_reload_crossbow" "custom\reload_crossbow.smd" 10 25 40
+$append gesture_reload_crossbow { fps 25 activity "ACT_GESTURE_RELOAD_CROSSBOW" 1 { event 3015 20 "" } { event AE_CL_PLAYSOUND 20 "Weapon_Crossbow.BoltElectrify" } }
+
+$sequence "relaxed_smg1_to_crossbow" "custom\Idle_Crossbow_Relaxed.smd" frame 0 0 subtract "layer_relaxed_smg1" 0 delta hidden
+
+$sequence "relaxed_crossbow_full_arms" "custom\Idle_Crossbow_Relaxed.smd" frame 0 0 weightlist "weapongesture_armsonly" hidden
+
+$GenericIdleHands "Idle_Relaxed_Crossbow_1" "Idle_Relaxed_SMG1_1.smd" "ACT_IDLE_CROSSBOW_RELAXED" "relaxed_crossbow_full_arms"
+$GenericIdleHands "Idle_Relaxed_Crossbow_2" "Idle_Relaxed_SMG1_2.smd" "ACT_IDLE_CROSSBOW_RELAXED" "relaxed_smg1_to_crossbow"
+$GenericIdleHands "Idle_Relaxed_Crossbow_3" "Idle_Relaxed_SMG1_3.smd" "ACT_IDLE_CROSSBOW_RELAXED" "relaxed_crossbow_full_arms"
+$GenericIdleHands "Idle_Relaxed_Crossbow_4" "Idle_Relaxed_SMG1_4.smd" "ACT_IDLE_CROSSBOW_RELAXED" "relaxed_crossbow_full_arms"
+$GenericIdleHands "Idle_Relaxed_Crossbow_5" "Idle_Relaxed_SMG1_5.smd" "ACT_IDLE_CROSSBOW_RELAXED" "relaxed_crossbow_full_arms"
+//$GenericIdleHands "Idle_Relaxed_Crossbow_6" "Idle_Relaxed_SMG1_6.smd" "ACT_IDLE_CROSSBOW_RELAXED" "relaxed_crossbow_full_arms"
+//$GenericIdleHands "Idle_Relaxed_Crossbow_7" "Idle_Relaxed_SMG1_7.smd" "ACT_IDLE_CROSSBOW_RELAXED" "relaxed_crossbow_full_arms"
+//$GenericIdleHands "Idle_Relaxed_Crossbow_8" "Idle_Relaxed_SMG1_8.smd" "ACT_IDLE_CROSSBOW_RELAXED" "relaxed_crossbow_full_arms"
+//$GenericIdleHands "Idle_Relaxed_Crossbow_9" "Idle_Relaxed_SMG1_9.smd" "ACT_IDLE_CROSSBOW_RELAXED" "relaxed_crossbow_full_arms"
+$GenericIdle "Idle_Relaxed_Crossbow_6" "..\male_shared_anims\custom\Idle_Relaxed_Crossbow_1.smd" "ACT_IDLE_CROSSBOW_RELAXED"
+$GenericIdle "Idle_Relaxed_Crossbow_7" "..\male_shared_anims\custom\Idle_Relaxed_Crossbow_2.smd" "ACT_IDLE_CROSSBOW_RELAXED"
+
+$GenericIdleHands "Idle_Alert_Crossbow_1" "Idle_Alert_SMG1_1.smd" "ACT_IDLE_CROSSBOW_STIMULATED" "relaxed_smg1_to_crossbow"
+$GenericIdleHands "Idle_Alert_Crossbow_2" "Idle_Alert_SMG1_2.smd" "ACT_IDLE_CROSSBOW_STIMULATED" "relaxed_smg1_to_crossbow"
+$GenericIdleHands "Idle_Alert_Crossbow_3" "Idle_Alert_SMG1_3.smd" "ACT_IDLE_CROSSBOW_STIMULATED" "relaxed_smg1_to_crossbow"
+$GenericIdleHands "Idle_Alert_Crossbow_4" "Idle_Alert_SMG1_4.smd" "ACT_IDLE_CROSSBOW_STIMULATED" "relaxed_smg1_to_crossbow"
+$GenericIdleHands "Idle_Alert_Crossbow_5" "Idle_Alert_SMG1_5.smd" "ACT_IDLE_CROSSBOW_STIMULATED" "relaxed_smg1_to_crossbow"
+$GenericIdleHands "Idle_Alert_Crossbow_6" "Idle_Alert_SMG1_6.smd" "ACT_IDLE_CROSSBOW_STIMULATED" "relaxed_smg1_to_crossbow"
+//$GenericIdleHands "Idle_Alert_Crossbow_7" "Idle_Alert_SMG1_7.smd" "ACT_IDLE_CROSSBOW_STIMULATED" "relaxed_smg1_to_crossbow"
+//$GenericIdleHands "Idle_Alert_Crossbow_8" "Idle_Alert_SMG1_8.smd" "ACT_IDLE_CROSSBOW_STIMULATED" "relaxed_smg1_to_crossbow"
+//$GenericIdleHands "Idle_Alert_Crossbow_9" "Idle_Alert_SMG1_9.smd" "ACT_IDLE_CROSSBOW_STIMULATED" "relaxed_smg1_to_crossbow"
+$GenericIdle "Idle_Alert_Crossbow_7" "..\male_shared_anims\custom\Idle_Alert_Crossbow_1.smd" "ACT_IDLE_CROSSBOW_STIMULATED"
+$GenericIdle "Idle_Alert_Crossbow_8" "..\male_shared_anims\custom\Idle_Alert_Crossbow_2.smd" "ACT_IDLE_CROSSBOW_STIMULATED"
+
+// ----------------------------------------------------------------
+
+$definemacro ReadinessMoveLayer LayerName FileName \\
+$GenericMoveLayer $LayerName$ $FileName$ "weights_relaxed_1" \\
+
+$weightlist "weights_relaxed_1" {
+	 "ValveBiped.Bip01_Pelvis" 0.1
+	 "ValveBiped.Bip01_Spine" 0.2
+	 "ValveBiped.Bip01_Spine1" 0.4
+	 "ValveBiped.Bip01_Spine2" 0.6
+	 "ValveBiped.Bip01_Spine4" 1
+	 "ValveBiped.Bip01_L_Clavicle" 1
+	 "ValveBiped.Bip01_R_Clavicle" 1
+	 "ValveBiped.Bip01_R_Thigh" 0
+	 "ValveBiped.Bip01_L_Thigh" 0
+}
+
+$GenericIdle "Idle_Crossbow_Relaxed" "custom\Idle_Crossbow_Relaxed.smd" "ACT_NEUTRAL_CROSSBOW_RELAXED"
+
+// ----------------------------------------------------------------
+
+$ReadinessMoveLayer "layer_walk_holding_crossbow_relaxed" "layer_walk_holding_SMG1_Relaxed.smd" blendlayer "relaxed_smg1_to_crossbow" 0 0 0 0 local
+$GenericWalkLayered "walk_crossbow_relaxed_all" "ACT_WALK_CROSSBOW_RELAXED" "layer_walk_holding_crossbow_relaxed" "ACT_NEUTRAL_CROSSBOW_RELAXED"
+
+// ----------------------------------------------------------------
+
+$ReadinessMoveLayer "layer_run_holding_crossbow_relaxed" "layer_run_holding_SMG1_Relaxed.smd" blendlayer "relaxed_smg1_to_crossbow" 0 0 0 0 local
+$GenericRunLayered "run_crossbow_relaxed_all" "ACT_RUN_CROSSBOW_RELAXED" "layer_run_holding_crossbow_relaxed" "ACT_NEUTRAL_CROSSBOW_RELAXED"
+
+// ----------------------------------------------------------------
+
+$ReadinessMoveLayer "layer_walk_holding_crossbow" "layer_walk_holding.smd" blendlayer "relaxed_smg1_to_crossbow" 0 0 0 0 local
+$ReadinessMoveLayer "layer_walk_alert_holding_crossbow" "layer_walk_alert_holding.smd" blendlayer "relaxed_smg1_to_crossbow" 0 0 0 0 local
+
+$GenericWalkLayered "walk_hold_crossbow" "ACT_WALK_CROSSBOW" "layer_walk_holding_crossbow" "ACT_NEUTRAL_CROSSBOW_RELAXED"
+$GenericWalkLayered "walk_alert_hold_crossbow" "ACT_WALK_CROSSBOW_STIMULATED" "layer_walk_holding_crossbow" "ACT_NEUTRAL_CROSSBOW_RELAXED"
+
+// ----------------------------------------------------------------
+
+$ReadinessMoveLayer "layer_run_holding_crossbow" "layer_run_holding.smd" blendlayer "relaxed_smg1_to_crossbow" 0 0 0 0 local
+$ReadinessMoveLayer "layer_run_alert_holding_crossbow" "layer_run_alert_holding.smd" blendlayer "relaxed_smg1_to_crossbow" 0 0 0 0 local
+
+$GenericRunLayered "run_hold_crossbow" "ACT_RUN_CROSSBOW" "layer_run_holding_crossbow" "ACT_NEUTRAL_CROSSBOW_RELAXED"
+$GenericRunLayered "run_alert_hold_crossbow" "ACT_RUN_CROSSBOW_STIMULATED" "layer_run_alert_holding_crossbow" "ACT_NEUTRAL_CROSSBOW_RELAXED"
+
+// ----------------------------------------------------------------
+
+$sequence "layer_walk_aim_crossbow" { "custom\Idle_Crossbow_Aim.smd" weightlist "weights_stimulated_aim_3" addlayer "soldier_Aim_9_directions" addlayer "layer_walk_alert_aim_noise" ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" worldspace hidden }
+
+$sequence "layer_stimulated_aim_crossbow" { "custom\Idle_Crossbow_Aim.smd" weightlist "weights_stimulated_aim" addlayer "soldier_Aim_9_directions" ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" worldspace hidden }
+$sequence "layer_walk_alert_aim_crossbow" { "custom\Idle_Crossbow_Aim.smd" weightlist "weights_stimulated_aim" addlayer "soldier_Aim_9_directions" addlayer "layer_walk_alert_aim_noise" ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" worldspace hidden }
+
+$GenericCombatIdle_NoHandIK "Idle_Crossbow_Aim_Alert" "Idle_SMG1_Aim_Alert.smd" "ACT_IDLE_AIM_CROSSBOW_STIMULATED" "soldier_Aim_9_directions" blendlayer "layer_stimulated_aim_crossbow" 0 0 0 0 local
+
+$sequence "walk_aiming_crossbow_all" { $a_WalkBlends activity "ACT_WALK_AIM_CROSSBOW" 1 addlayer "layer_walk_aim_crossbow" node "walking" }
+$sequence "run_aiming_crossbow_all" { $a_RunBlends activity "ACT_RUN_AIM_CROSSBOW" 1 addlayer "layer_walk_aim_crossbow" node "running" }
+
+$sequence "walk_aiming_crossbow_alert_all" { $a_WalkBlends activity "ACT_WALK_AIM_CROSSBOW_STIMULATED" 1 addlayer "layer_walk_alert_aim_crossbow" node "walking" }
+$sequence "run_aiming_crossbow_alert_all" { $a_RunBlends activity "ACT_RUN_AIM_CROSSBOW_STIMULATED" 1 addlayer "layer_walk_alert_aim_crossbow" node "running" }
+
+// ----------------------------------------------------------------
+// 
+// Nodes for all of the above animations
+// 
+// ----------------------------------------------------------------
+
+$definemacro AddNodeToSequence SeqName NodeName \\
+$append $SeqName$ { node $NodeName$ }
+
+$AddNodeToSequence "Idle_Crossbow_Relaxed" "standing"
+$AddNodeToSequence "Idle_Angry_Crossbow" "standing"
+$AddNodeToSequence "Idle_Crossbow_Aim" "shooting"
+$AddNodeToSequence "shoot_crossbow" "shooting"
+$AddNodeToSequence "reload_crossbow" "shooting"
+
+$AddNodeToSequence "crouch_reload_crossbow" "crouching"
+$AddNodeToSequence "crouch_idle_crossbow" "crouching"
+$AddNodeToSequence "crouch_shoot_crossbow" "crouchShooting"
+
+$AddNodeToSequence "walk_crossbow_relaxed_all" "walking"
+$AddNodeToSequence "walk_hold_crossbow" "walking"
+$AddNodeToSequence "walk_alert_hold_crossbow" "walking"
+
+$AddNodeToSequence "run_crossbow_relaxed_all" "running"
+$AddNodeToSequence "run_hold_crossbow" "running"
+$AddNodeToSequence "run_alert_hold_crossbow" "running"
+
+//$AddNodeToSequence "Idle_Crossbow_Aim_Alert" "shooting"
+
+$AddNodeToSequence "Idle_Relaxed_Crossbow_1" "standing"
+$AddNodeToSequence "Idle_Relaxed_Crossbow_2" "standing"
+$AddNodeToSequence "Idle_Relaxed_Crossbow_3" "standing"
+$AddNodeToSequence "Idle_Relaxed_Crossbow_4" "standing"
+$AddNodeToSequence "Idle_Relaxed_Crossbow_5" "standing"
+
+$AddNodeToSequence "Idle_Alert_Crossbow_1" "standing"
+$AddNodeToSequence "Idle_Alert_Crossbow_2" "standing"
+$AddNodeToSequence "Idle_Alert_Crossbow_3" "standing"
+$AddNodeToSequence "Idle_Alert_Crossbow_4" "standing"
+$AddNodeToSequence "Idle_Alert_Crossbow_5" "standing"
+$AddNodeToSequence "Idle_Alert_Crossbow_6" "standing"

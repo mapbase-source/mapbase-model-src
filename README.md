@@ -7,13 +7,13 @@ they were used during development and there may be a few areas which are messy o
 
 As with the rest of Mapbase, **leaked content was NOT involved with the creation of these models or animations**.
 
-This repository accepts pull requests for contributing models to Mapbase.
+This repository accepts pull requests for contributing models or animations to Mapbase.
 
 ---
 
-Most of these source files are derived from decompiled Half-Life 2, Half-Life 2: Episode One, Half-Life 2: Episode Two, or Half-Life 2: Deathmatch content.
+Most of these source files are derived from decompiled Half-Life 2, Half-Life 2: Episode One, Half-Life 2: Episode Two, Half-Life 2: Deathmatch, or Left 4 Dead 1 content. Crowbar was used to decompile the content involved.
 
-Crowbar was used to decompile those models.
+SMDs under `custom` subfolders (i.e. `combine_soldier_anims_anims/custom/Idle1_Pistol.smd`) are custom animations or modifications of decompiled animations created by Blixibon.
 
 The following model sources or directories are from other external sources:
 

@@ -1,0 +1,185 @@
+// ================================================================
+// 
+// Soldier New Weapon Activities
+// 
+// This adds new animation variants for different weapons, fixing most problems involving incorrect hand positioning.
+// 
+// ================================================================
+
+// New Idles
+
+// Hand-corrected custom idle animations
+$GenericIdle "Idle1_SMG1" "combine_soldier_anims_anims\custom\Idle1_SMG1.smd" "ACT_IDLE_SMG1"
+$GenericIdle "Idle1_AR2" "combine_soldier_anims_anims\custom\Idle1_AR2.smd" "ACT_IDLE_AR2"
+$GenericIdle "Idle1_SG" "combine_soldier_anims_anims\custom\Idle1_Shotgun.smd" "ACT_IDLE_SHOTGUN"
+
+$GenericCombatIdle "crouch_aim_sg" "combine_soldier_anims_anims\custom\crouch_aim_sg_fromshoot.smd" "ACT_RANGE_AIM_SHOTGUN_LOW" "Aim_crouch_delta_all"
+//$GenericCombatIdle "crouch_aim_ar1" "combine_soldier_anims_anims\custom\crouch_aim_ar1.smd" "ACT_RANGE_AIM_AR1_LOW" "Aim_crouch_delta_all"
+
+// New activities from existing SMDs
+$SoldierCover "cover_crouch_low_ar2" "combine_soldier_anims_anims\CrouchIdle.smd" "ACT_COVER_AR2_LOW"
+$SoldierCover "cover_crouch_low_smg1" "combine_soldier_anims_anims\crouch_aim_sm1.smd" "ACT_COVER_SMG1_LOW"
+$SoldierCover "cover_crouch_low_sg" "combine_soldier_anims_anims\CrouchIdle.smd" "ACT_COVER_SHOTGUN_LOW"
+
+// ----------------------------------------------------------------
+
+// NEW -- Weapon-specific reload animations
+// TODO: Do something more than just changing the hands?
+$GenericReload "reload_ar2" "combine_soldier_anims_anims\reload.smd" "ACT_RELOAD_AR2" "Aim_stand_delta_all" 13 48 65 28
+$append "reload_ar2" { blendlayer "CombatIdle1" 0 0 0 4 blendlayer "CombatIdle1" 61 67 67 67 xfade }
+$GenericReload "reload_ar2_low" "combine_soldier_anims_anims\reload_low.smd" "ACT_RELOAD_AR2_LOW" "Aim_crouch_delta_all" 13 48 65 30
+$append "reload_ar2_low" { blendlayer "crouch_aim_ar2" 0 0 0 4 blendlayer "crouch_aim_ar2" 61 67 67 67 xfade }
+
+$makeweapongesture "gesture_reload_ar2" "combine_soldier_anims_anims\reload.smd" 10 50 59
+$append "gesture_reload_ar2" {
+	activity "ACT_GESTURE_RELOAD_AR2" 1
+	{ event 2 28 "" }
+	ikrule "lhand" touch "ValveBiped.Bip01_Spine" contact 14 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 9 14 22 25 target 1 usesequence
+	ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" contact 30 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 22 30 48 1 target 1 usesequence
+}
+
+$GenericReload "reload_smg1" "combine_soldier_anims_anims\reload.smd" "ACT_RELOAD_SMG1" "Aim_stand_delta_all" 13 48 65 28
+$append "reload_smg1" { blendlayer "CombatIdle1_SMG1" 0 0 0 4 blendlayer "CombatIdle1_SMG1" 61 67 67 67 xfade }
+$GenericReload "reload_smg1_low" "combine_soldier_anims_anims\reload_low.smd" "ACT_RELOAD_SMG1_LOW" "Aim_crouch_delta_all" 13 48 65 30
+$append "reload_smg1_low" { blendlayer "crouch_aim_sm1" 0 0 0 4 blendlayer "crouch_aim_sm1" 61 67 67 67 xfade }
+
+$makeweapongesture "gesture_reload_shotgun" "male_shared_anims\reload_shotgun1.smd" 14 35 75
+$append "gesture_reload_shotgun" {
+	activity "ACT_GESTURE_RELOAD_SHOTGUN" 1
+	{ event 3015 29 "" }
+	{ event AE_CL_PLAYSOUND 57 "Weapon_Shotgun.Special1" }
+	fps 38.1 // Needs to be the same duration as the existing soldier gesture reload
+}
+
+$GenericReloadFromIdle "reload_shotgun1" "combine_soldier_anims_anims\reload.smd" "ACT_RELOAD_SHOTGUN" "Aim_stand_delta_all" "gesture_reload_shotgun" 10 55 65 22
+$GenericReloadFromIdle "reload_shotgun1_low" "combine_soldier_anims_anims\reload_low.smd" "ACT_RELOAD_SHOTGUN_LOW" "Aim_crouch_delta_all" "gesture_reload_shotgun" 10 55 65 22
+$append "reload_shotgun1" { { event AE_CL_PLAYSOUND 57 "Weapon_Shotgun.Special1" } }
+$append "reload_shotgun1_low" { { event AE_CL_PLAYSOUND 57 "Weapon_Shotgun.Special1" } }
+
+//$weightlist "weights_reload_shotgun1_legs" { "ValveBiped.Bip01_Pelvis" 1 "ValveBiped.Bip01_Spine" 0 }
+//
+//$sequence "reload_shotgun1_legs" "combine_soldier_anims_anims\reload.smd" weightlist "weights_reload_shotgun1_legs" hidden
+//$sequence "reload_shotgun1" {
+//	"combine_soldier_anims_anims\CombatIdle1_SG.smd"
+//	numframes 65 // In sync with the existing soldier reload
+//	activity "ACT_RELOAD_SHOTGUN" 1
+//	{ event 3015 22 "" } { event AE_CL_PLAYSOUND 50 "Weapon_Shotgun.Special1" }
+//	addlayer "gesture_reload_shotgun" addlayer "reload_shotgun1_legs"
+//	addlayer "Aim_stand_delta_all"
+//	ikrule "lfoot" footstep ikrule "rfoot" footstep ikrule "rhand" release ikrule "lhand" release
+//}
+//
+//$sequence "reload_shotgun1_low" {
+//	"combine_soldier_anims_anims\CrouchIdle.smd"
+//	numframes 65 // In sync with the existing soldier reload
+//	activity "ACT_RELOAD_SHOTGUN_LOW" 1
+//	{ event 3015 22 "" } { event AE_CL_PLAYSOUND 50 "Weapon_Shotgun.Special1" }
+//	addlayer "gesture_reload_shotgun"
+//	addlayer "Aim_crouch_delta_all"
+//	ikrule "lfoot" footstep ikrule "rfoot" footstep ikrule "rhand" release ikrule "lhand" release
+//}
+
+// ----------------------------------------------------------------
+
+// NEW -- Weapon-specific walking animations
+$sequence "Walk_all_AR2" { $a_WalkBlends activity "ACT_WALK_AR2" 1 blendlayer "oldidle_to_ar2" 0 0 0 0 local }
+$sequence "Walk_all_SMG1" { $a_WalkBlends activity "ACT_WALK_RIFLE" 1 blendlayer "oldidle_to_smg1" 0 0 0 0 local }
+$sequence "Walk_all_SG" { $a_WalkBlends activity "ACT_WALK_SHOTGUN" 1 blendlayer "oldidle_to_shotgun" 0 0 0 0 local }
+
+// ----------------------------------------------------------------
+
+// NEW -- Weapon-specific running animations
+$sequence "RunALL_AR2" { $a_RunBlends activity "ACT_RUN_AR2" 1 blendlayer "oldidle_to_ar2" 0 0 0 0 local }
+$sequence "RunALL_SMG1" { $a_RunBlends activity "ACT_RUN_RIFLE" 1 blendlayer "oldidle_to_smg1" 0 0 0 0 local }
+$sequence "RunALL_SG" { $a_RunBlends activity "ACT_RUN_SHOTGUN" 1 blendlayer "oldidle_to_shotgun" 0 0 0 0 local }
+
+// ----------------------------------------------------------------
+
+// NEW -- Weapon-specific running aim animations
+$sequence "RunAIMALL1_AR2" { $a_RunBlends activity "ACT_RUN_AIM_AR2" 1 blendlayer "layer_run_aiming" 0 0 0 0 local blendlayer "smg1_to_ar2" 0 0 0 0 local }
+$sequence "Walk_aiming_all_AR2" { $a_WalkBlends activity "ACT_WALK_AIM_AR2" 1 blendlayer "layer_walk_aiming" 0 0 0 0 local blendlayer "smg1_to_ar2" 0 0 0 0 local }
+
+// ----------------------------------------------------------------
+
+// NEW -- Idle_Unarmed as simple ACT_IDLE (which soldiers previously lacked)
+$sequence "Idle_Unarmed_ACT_IDLE" {
+	"combine_soldier_anims_anims\Idle_Unarmed.smd"
+	activity "ACT_IDLE" 1
+	loop
+	ikrule "lfoot" footstep
+	ikrule "rfoot" footstep
+	
+	hidden	// For now, hide this and allow the original animation to continue to be used (for simplicity)
+}
+
+// NEW -- WalkUnarmed_all as simple ACT_WALK (which soldiers previously lacked)
+$sequence "WalkUnarmed_all_ACT_WALK" {
+	$a_WalkEasyBlends
+	activity "ACT_WALK" 1
+	blendlayer "layer_walk_unarmed" 0 0 0 0 local
+
+	keyvalues
+	{
+		interior ACT_IDLE
+	}
+	
+	hidden	// For now, hide this and allow the original animation to continue to be used (for simplicity)
+}
+
+$weightlist "weights_layer_run_unarmed" {
+	 "ValveBiped.Bip01_Pelvis" 0
+	 "ValveBiped.Bip01_L_Clavicle" 1
+	 "ValveBiped.Bip01_L_UpperArm" 0.8
+	 "ValveBiped.Bip01_L_Forearm" 0.8
+	 "ValveBiped.Bip01_L_Thigh" 0
+	 "ValveBiped.Bip01_R_Clavicle" 1
+	 "ValveBiped.Bip01_R_UpperArm" 0.8
+	 "ValveBiped.Bip01_R_Forearm" 0.8
+	 "ValveBiped.Bip01_R_Thigh" 0
+	 "ValveBiped.Bip01_Spine" 0.2
+	 "ValveBiped.Bip01_Spine1" 0.4
+	 "ValveBiped.Bip01_Spine2" 0.6
+	 "ValveBiped.Bip01_Spine4" 0.8
+	 "ValveBiped.Bip01_Neck1" 0
+	 //"ValveBiped.Cod" 0.1
+}
+
+//$sequence "layer_run_unarmed" {
+//	//"combine_soldier_anims_anims\layer_walk_unarmed.smd"
+//	"male_shared_anims\a_RunN.smd"
+//	hidden
+//	//worldspace
+//	loop
+//	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 30 30 target 0
+//	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 30 30 target 1
+//	weightlist "weights_layer_run_unarmed"
+//	subtract "layer_run_unarmed" 0
+//	delta
+//}
+
+$sequence "layer_run_unarmed" {
+	"male_shared_anims\a_RunN.smd"
+	hidden
+	//worldspace
+	loop
+	weightlist "weights_layer_run_unarmed"
+}
+
+// NEW -- Unarmed running animation
+$sequence "RunUnarmed_all" {
+	$a_RunBlends
+	activity "ACT_RUN" 1 // There shall be no ACT_RUN_UNARMED
+	blendlayer "layer_walk_unarmed" 0 0 0 0 local
+	blendlayer "layer_run_unarmed" 0 0 0 0 local
+
+	keyvalues
+	{
+		interior ACT_IDLE
+	}
+}
+
+// ----------------------------------------------------------------
+
+$include "SoldierNewWeaponActivities_AR1.qci"
+$include "SoldierNewWeaponActivities_SMG2.qci"
+$include "SoldierNewWeaponActivities_SniperRifle.qci"

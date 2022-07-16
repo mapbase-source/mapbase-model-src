@@ -1,80 +1,28 @@
 // Created by Crowbar 0.56
 
-$include "hl2mp_ported_anims/weaponmacros.qci"
-
 $modelname "Police_animations.mdl"
 
 //$includemodel "player/male_anims.mdl"
 
-$includemodel "police_animations_original.mdl"
-$include "police_animations_DeclareSequence.qci"
-
 // Must be included
 $include "BaseModel.qci"
 $include "hl2mp_ported_anims/commonbones.qci"
+$include "hl2mp_ported_anims/weaponmacros.qci"
+$include "hl2mp_ported_anims/player_macros.qci"
+$include "GenericWeightlists.qci"
+$include "GenericAnimationMacros.qci"
 
-$weightlist "HolsterWeightlist" {
-	"ValveBiped.Bip01_Pelvis" 0
-	"ValveBiped.Bip01_R_Clavicle" 1
-	"ValveBiped.Bip01_Spine" 0.35
-	"ValveBiped.Bip01_Spine2" 0.75
-	"ValveBiped.Bip01_Spine2" 1
-	"ValveBiped.Bip01_L_Clavicle" 0.35
-	"ValveBiped.Bip01_Neck1" 0.2
-}
+// Used to compile new movement animations since $declareanimation doesn't work
+$include "PoliceMoveAnims.qci"
 
-//$makeweapongesturep weapon_draw_gesture "police_animations_anims\weapon_draw_gesture.smd" 10 20 35
-//$append weapon_draw_gesture {
-//	fps 30
-//	activity "ACT_ARM" 1
-//	{ event AE_NPC_DRAW 11 "" }
-//}
-//$append weapon_draw_gesturearms {
-//	// This is needed for some reason
-//	//rotateto -90
-//}
-//
-//$makeweapongesturep weapon_holster_gesture "police_animations_anims\weapon_holster_gesture.smd" 15 25 40
-//$append weapon_holster_gesture {
-//	fps 30
-//	activity "ACT_DISARM" 1
-//	{ event AE_NPC_HOLSTER 24 "" }
-//}
-//$append weapon_holster_gesturearms {
-//	// This is needed for some reason
-//	//rotateto -90
-//}
+$includemodel "police_animations_original.mdl"
+$include "police_animations_DeclareSequence.qci"
+$include "PoliceActivityFixes.qci"
+$include "PoliceReadinessAnims.qci"
 
-$sequence "weapon_draw_layer" hidden {
-	"police_animations_anims\weapon_draw_gesture.smd"
-	fps 30
-	weightlist "HolsterWeightlist"
-}
-$sequence "weapon_draw_gesture" {
-	"police_animations_anims\weapon_draw_gesture.smd"
-	activity "ACT_ARM" 1
-	noanimation numframes 40 // 35
-	blendlayer weapon_draw_layer 0 15 20 40 spline
-	{ event AE_NPC_DRAW 11 "" }
-	ikrule lhand attachment L_hand radius 10
-	ikrule rhand attachment R_hand radius 10
-}
-
-$sequence "weapon_holster_layer" hidden {
-	"police_animations_anims\weapon_holster_gesture.smd"
-	fps 30
-	weightlist "HolsterWeightlist"
-}
-$sequence "weapon_holster_gesture" {
-	"police_animations_anims\weapon_holster_gesture.smd"
-	activity "ACT_DISARM" 1
-	noanimation numframes 40 // 35
-	blendlayer weapon_holster_layer 0 15 20 40 spline
-	{ event AE_NPC_HOLSTER 24 "" }
-	ikrule lhand attachment L_hand radius 10
-	ikrule rhand attachment R_hand radius 10
-}
-
+$pushd "male_shared_anims"
+$include "DefaultHolster.qci"
+$popd
 
 // ================================================================
 // 
@@ -85,54 +33,6 @@ $sequence "weapon_holster_gesture" {
 // ================================================================
 $include "PoliceHarassGestures.qci"
 
-// ================================================================
-// ================================================================
-$weightlist "NoHeadMovement" {
-	"ValveBiped.Bip01_Head1" 0
-	"ValveBiped.Bip01_Neck1" 0.25
-	"ValveBiped.Bip01_Pelvis" 1
-}
-
-$sequence "gesture_shoot_shotgun" {
-	"combine_soldier_anims_anims\a_shootShotgun"
-	activity "ACT_GESTURE_RANGE_ATTACK_SHOTGUN" 1
-	weightlist "NoHeadMovement"
-	delta
-}
-
-$sequence "shoot_shotgun" {
-	"police_animations_anims\smg1angryidle1.smd"
-	{ event AE_CL_PLAYSOUND 11 "Weapon_Alyx_Shotgun.Cock" }
-	numframes 45
-	activity "ACT_RANGE_ATTACK_SHOTGUN" 1
-	addlayer "gesture_shoot_shotgun"
-	addlayer "SMG1_Aim_all"
-	node "shooting_smg"
-}
-
-$makeweapongesture "gesture_reload_shotgun" "male_shared_anims\reload_shotgun1.smd" 10 60 75
-$append "gesture_reload_shotgun" {
-	activity "ACT_GESTURE_RELOAD_SHOTGUN" 1
-	{ event 3015 29 "" }
-	{ event AE_CL_PLAYSOUND 57 "Weapon_Shotgun.Special1" }
-}
-
-$sequence "reload_shotgun1_legs" "male_shared_anims\reload_shotgun1.smd" subtract "shoot_shotgun" 0 delta weightlist "weapongesture_legsonly" hidden
-$sequence "reload_shotgun1" {
-	"police_animations_anims\smg1angryidle1.smd"
-	numframes 75
-	activity "ACT_RELOAD_SHOTGUN" 1
-	{ event 3015 29 "" }
-	{ event AE_CL_PLAYSOUND 57 "Weapon_Shotgun.Special1" }
-	addlayer "gesture_reload_shotgun"
-	addlayer "reload_shotgun1_legs"
-	//blendlayer "Idle_Angry_Shotgun" 59 75 75 75 spline
-	node "standing_smg"
-	ikrule "lfoot" footstep
-	ikrule "rfoot" footstep
-	ikrule "rhand" release
-	ikrule "lhand" release
-}
 // ================================================================
 // ================================================================
 // 
@@ -202,16 +102,26 @@ $sequence "shootAR2alt" {
 // ================================================================
 
 $definevariable Blend_Idle_Default "pistolangryidle2"
+$definevariable Blend_Idle_Unarmed "batonidle1"
+$definevariable Blend_Idle_Panicked "batonidle1"
 $definevariable Blend_Idle_Pistol "pistolangryidle2"
 $definevariable Blend_Idle_Rifle "smg1angryidle1"
+$definevariable Blend_Idle_Rifle_Crouched "lowcover_aim_pistol"
 
 $definevariable Blend_SMD_Default "police_animations_anims\pistolangryidle2.smd"
+$definevariable Blend_SMD_Unarmed "police_animations_anims\batonidle1.smd"
+$definevariable Blend_SMD_Panicked "police_animations_anims\batonidle1.smd"
 $definevariable Blend_SMD_Pistol "police_animations_anims\pistolangryidle2.smd"
 $definevariable Blend_SMD_Rifle "police_animations_anims\smg1angryidle1.smd"
+$definevariable Blend_SMD_Rifle_Crouched "police_animations_anims\lowcover_aim_pistol.smd"
+$definevariable Blend_SMD_Annabelle "police_animations_anims\custom\ar2angryidle2.smd"
+$definevariable Blend_SMD_Annabelle_Crouch "police_animations_anims\custom\crouch_aim_ar2.smd"
 
 $definevariable Blend_Node_Default "shooting_pistol"
 $definevariable Blend_Node_Pistol "shooting_pistol"
 $definevariable Blend_Node_Rifle "shooting_smg"
+
+$definevariable Blend_Aim_Rifle "soldier_Aim_9_directions"
 
 $include "BaseDI.qci"
 $include "AlyxDI.qci"
@@ -221,7 +131,6 @@ $include "HunterRecvDI.qci"
 
 $include "AlyxBlindfire.qci"
 
-$include "GenericAnimationMacros.qci"
 $include "SoldierSignals.qci"
 
 // Soldiers' original signals had a FPS of 48
@@ -243,6 +152,66 @@ $MakeManhackDeployGesture "police_animations_anims\smg1angryidle1.smd"
 // 
 // ================================================================
 $include "SoldierEP1Rappel.qci"
+
+$pushd "male_shared_anims"
+$include "ArrestAnims.qci"
+
+$include "CitizenPackage_Police.qci"
+$include "CitizenSuitcase_Police.qci"
+$popd
+
+$pushd "combine_soldier_anims_anims"
+
+$definevariable PistolIdleLayer "Idle_Pistol_Layer2a"
+$definevariable PistolIdleLowLayer "Idle_Pistol_Layer2a"
+$include "SoldierWallCover.qci"
+$popd
+
+$include "CitizenRPG_Police.qci"
+
+$animation "@gesture_shoot_pistol_corrective_animation" "police_animations_anims\@gesture_shoot_pistol_corrective_animation.smd" {
+}
+
+$include "NewPistolAnimations_357_Metrocop.qci"
+$include "PoliceCrouchMovement.qci"
+
+$MakeAdjustedAnimation "melee_gunhit" "combine_soldier_anims_anims\melee_gunhit.smd" "police_animations_anims\smg1angryidle1.smd" 7 20 27
+$append melee_gunhit { activity "ACT_MELEE_ATTACK1" 1 { event 3 13 "" } }
+
+$makeflinchgesture "gesture_melee_gunhit" "combine_soldier_anims_anims\melee_gunhit.smd" 7 20 27
+$append gesture_melee_gunhit { activity "ACT_GESTURE_MELEE_ATTACK1" 1 { event 3 13 "" } }
+
+$include "l4d1_ported_anims\L4D1_LadderClimb_Male.qci"
+$include "l4d1_ported_anims\L4D1_PistolAnims.qci" // Metrocops technically have their own pistol draw animation, but that's harder to turn into a gesture which works well
+
+$include "NPCDoorAnims.qci"
+
+$include "AnnabelleAnimations.qci"
+
+// ================================================================
+$include "ProtectedRun.qci"
+
+$sequence "run_protected_all" {
+	"a_PoliceRunS"
+	"a_PoliceRunSE"
+	"a_PoliceRunE"
+	"a_PoliceRunNE"
+	"a_PoliceRunN"
+	"a_PoliceRunNW"
+	"a_PoliceRunW"
+	"a_PoliceRunSW"
+	"a_PoliceRunS"
+	activity "ACT_RUN_PROTECTED" 1
+	blend "move_yaw" -180 180
+	blendwidth 9
+	{ event 6004 6 "NPC_MetroPolice" }
+	{ event 6005 15 "NPC_MetroPolice" }
+	fadein 0.2
+	fadeout 0.2
+	blendlayer "layer_run_protected" 0 0 0 0 local
+	node "running"
+}
+// ================================================================
 
 // Add a heal animation
 $MakeAdjustedAnimation Heal "male_shared_anims\Heal.smd" $Blend_SMD_Rifle$ 12 32 50

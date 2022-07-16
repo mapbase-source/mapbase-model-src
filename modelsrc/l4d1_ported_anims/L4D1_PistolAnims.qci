@@ -1,0 +1,80 @@
+// ================================================================
+// 
+// L4D1 pistol animations experiment
+// 
+// ================================================================
+
+$weightlist "weights_unholster_layer" {
+	 "ValveBiped.Bip01_Pelvis" 0
+	 "ValveBiped.Bip01_Spine" 0.2
+	 "ValveBiped.Bip01_Spine1" 0.4
+	 "ValveBiped.Bip01_Spine2" 0.6
+	 "ValveBiped.Bip01_Spine4" 0.8
+	 "ValveBiped.Bip01_L_Clavicle" 0.5
+	 "ValveBiped.Bip01_R_Clavicle" 1
+	 
+	 "ValveBiped.Bip01_Neck1" 0
+}
+
+$weightlist "weights_holster_layer" {
+	 "ValveBiped.Bip01_Pelvis" 0
+	 "ValveBiped.Bip01_Spine" 0.2
+	 "ValveBiped.Bip01_Spine1" 0.4
+	 "ValveBiped.Bip01_Spine2" 0.6
+	 "ValveBiped.Bip01_Spine4" 0.8
+	 "ValveBiped.Bip01_L_Clavicle" 1
+	 "ValveBiped.Bip01_L_UpperArm" 0.5
+	 "ValveBiped.Bip01_R_Clavicle" 1
+	 
+	 "ValveBiped.Bip01_Neck1" 0
+}
+
+// TODO: Female?
+$pushd "l4d1_ported_anims\male"
+
+$sequence "Unholster_Standing_Pistol_layer" {
+	"Unholster_Standing_Pistol_layer.smd"
+	fadein 0.2
+	fadeout 0.2
+	hidden
+	fps 30
+	ikrule "rhand" release
+	ikrule "lhand" release
+	weightlist "weights_unholster_layer"
+}
+
+$sequence "weapon_draw_gesture" { // Unholster_Standing_Pistol
+	"Unholster_Standing_Pistol.smd"
+	activity "ACT_ARM" 1
+	{ event AE_NPC_DRAW 10 "" }
+	fadein 0.2
+	fadeout 0.2
+	blendlayer "Unholster_Standing_Pistol_layer" 0 5 13 36 spline // 0 5 23 36
+	ikrule "rhand" touch "ValveBiped.Bip01_Spine" contact 10 range 0 10 15 30 usesequence
+	fps 30
+	noanimation numframes 36
+}
+
+$sequence "Holster_Standing_Pistol_layer" {
+	"Holster_Standing_Pistol_layer.smd"
+	fadein 0.2
+	fadeout 0.2
+	hidden
+	fps 30
+	ikrule "rhand" release
+	ikrule "lhand" release
+	weightlist "weights_holster_layer"
+}
+
+$sequence "weapon_holster_gesture" { // Holster_Standing_Pistol
+	"Unholster_Standing_Pistol.smd"
+	activity "ACT_DISARM" 1
+	{ event AE_NPC_HOLSTER 16 "" }
+	fadein 0.2
+	fadeout 0.2
+	blendlayer "Holster_Standing_Pistol_layer" 0 10 16 36 spline // 0 5 23 36
+	fps 30
+	noanimation numframes 36
+}
+
+$popd

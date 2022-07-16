@@ -1,0 +1,86 @@
+// ================================================================
+// 
+// New Soldier Crouch Movement Animations
+// 
+// ================================================================
+
+$weightlist "WeightsLayerLowCoverAim" {
+	 "ValveBiped.Bip01_Pelvis" 0
+	 "ValveBiped.Bip01_Spine" 0.5
+	 //"ValveBiped.Bip01_L_Clavicle" 0
+	 //"ValveBiped.Bip01_R_Clavicle" 0
+	 //"ValveBiped.Bip01_L_Thigh" 0
+	 //"ValveBiped.Bip01_R_Thigh" 0
+}
+
+$weightlist "weights_layer_crouch_move" {
+	 "ValveBiped.Bip01_Pelvis" 0.1
+	 "ValveBiped.Bip01_Spine" 0.1
+	 "ValveBiped.Bip01_Spine1" 0.2
+	 "ValveBiped.Bip01_Spine2" 0.3
+	 "ValveBiped.Bip01_Spine4" 0.4
+	 "ValveBiped.Bip01_L_Clavicle" 1
+	 "ValveBiped.Bip01_R_Clavicle" 1
+	 "ValveBiped.Bip01_R_Thigh" 0
+	 "ValveBiped.Bip01_L_Thigh" 0
+}
+
+$sequence "Crouch_RunAim_ALL" {
+	$a_CrouchRunBlends
+	activity "ACT_RUN_CROUCH_AIM_RIFLE" 1
+	blendlayer "layer_run_aiming" 0 0 0 0 local
+	addlayer "Aim_crouch_delta_all"
+}
+
+$sequence "Crouch_WalkAim_ALL" {
+	$a_CrouchWalkBlends
+	activity "ACT_WALK_CROUCH_AIM_RIFLE" 1
+	blendlayer "layer_walk_aiming" 0 0 0 0 local
+	addlayer "Aim_crouch_delta_all"
+}
+
+// ----------------------------------------------------------------
+
+$sequence "layer_pistolangryidle2_crouch" {
+	"police_animations_anims\pistolangryidle2.smd" // TODO: For now, this looks better than the new soldier variant
+	weightlist "weights_layer_crouch_move"
+	ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" usesource
+	worldspace
+	hidden
+}
+
+$sequence "Crouch_RunAim_pistol_ALL" {
+	$a_CrouchRunBlends
+	activity "ACT_RUN_CROUCH_AIM_PISTOL" 1
+	blendlayer "layer_pistolangryidle2_crouch" 0 0 0 0 local
+	addlayer "Aim_crouch_delta_all"
+}
+
+$sequence "Crouch_WalkAim_pistol_ALL" {
+	$a_CrouchWalkBlends
+	activity "ACT_WALK_CROUCH_AIM_PISTOL" 1
+	blendlayer "layer_pistolangryidle2_crouch" 0 0 0 0 local
+	addlayer "Aim_crouch_delta_all"
+}
+
+$sequence "layer_pistol_idle_crouch" {
+	"police_animations_anims\Crouch_idle_pistol.smd"
+	weightlist "weights_layer_crouch_move"
+	ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" usesource
+	worldspace
+	hidden
+}
+
+$sequence "Crouch_Run_pistol_ALL" {
+	$a_CrouchRunBlends
+	activity "ACT_RUN_CROUCH_PISTOL" 1
+	blendlayer "layer_pistol_idle_crouch" 0 0 0 0 local
+}
+
+$sequence "Crouch_Walk_pistol_ALL" {
+	$a_CrouchWalkBlends
+	activity "ACT_WALK_CROUCH_PISTOL" 1
+	blendlayer "layer_pistol_idle_crouch" 0 0 0 0 local
+}
+
+// ----------------------------------------------------------------

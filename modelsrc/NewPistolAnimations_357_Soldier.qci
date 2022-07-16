@@ -1,0 +1,93 @@
+// ================================================================
+// 
+// 357 Animations for Soldiers
+// 
+// ================================================================
+
+$definemacro 357ReloadSounds \\
+	{ event AE_CL_PLAYSOUND 10 "Weapon_357.OpenLoader" } \\
+	{ event AE_CL_PLAYSOUND 17 "Weapon_357.RemoveLoader" } \\
+	{ event AE_CL_PLAYSOUND 37 "Weapon_357.ReplaceLoader" } \\
+	{ event AE_CL_PLAYSOUND 47 "Weapon_357.Spin" } \\ // TODO: Not really a spin
+
+$weightlist "weights_357_shoot" {
+	 "ValveBiped.Bip01_Pelvis" 3
+	 "ValveBiped.Bip01_R_Clavicle" 3
+	 "ValveBiped.Bip01_R_UpperArm" 1.6
+	 "ValveBiped.Bip01_R_Forearm" 3
+	 "ValveBiped.Bip01_R_Hand" 3
+	 "ValveBiped.Bip01_L_Clavicle" 3
+	 "ValveBiped.Bip01_L_UpperArm" 2
+	 "ValveBiped.Bip01_L_Forearm" 5
+	 "ValveBiped.Bip01_L_Hand" 5
+	 "ValveBiped.Cod" 0
+}
+
+$sequence "gesture_shoot_357_layer" {
+	"combine_soldier_anims_anims\custom\shootp1.smd"
+	subtract "shootp1" 4
+	activity "ACT_GESTURE_RANGE_ATTACK_REVOLVER" 1
+	frame 0 0
+	delta
+	// Crowbar writes this subtract option to prevent jigglebone and poseparameter problems when delta sequences are recompiled.
+	subtract "@gesture_shoot_pistol_corrective_animation" 0
+	weightlist "weights_357_shoot"
+	hidden
+}
+
+$sequence "gesture_shoot_357" {
+	"combine_soldier_anims_anims\custom\shootp1.smd"
+	noanimation
+	blendlayer "gesture_shoot_357_layer" 0 4 6 16 spline
+	numframes 16
+	
+	activity "ACT_GESTURE_RANGE_ATTACK_REVOLVER" 1
+	{ event 3014 1 "" }
+}
+
+$sequence "shootp2" {
+	$Blend_SMD_Pistol$
+	activity "ACT_RANGE_ATTACK_REVOLVER" 1
+	numframes 16
+	{ event 3014 1 "" }
+	addlayer "Aim_stand_delta_all"
+	blendlayer "gesture_shoot_357" 0 0 0 0 local
+	cmdlist lockfeet
+}
+
+$sequence "shootp2c" {
+	$Blend_SMD_Pistol_Crouched$
+	numframes 16
+	addlayer "gesture_shoot_357" //blendlayer "layer_shootp1" 0 2 4 4
+	addlayer "Aim_stand_delta_all" //addlayer "Aim_crouch_delta_all"
+	activity "ACT_RANGE_ATTACK_REVOLVER_LOW" 1
+	{ event 3014 1 "" }
+	cmdlist lockfeet
+}
+
+// ----------------------------------------------------------------
+
+//$makeaimlayer soldier_Aim_9_directions			"hl2mp_ported_anims\Aim_9_directions"
+
+$makeweapongesturep "gesture_reload_357" "police_animations_anims\custom\reload_357.smd" 15 51 62
+
+$append "gesture_reload_357" {
+	$357ReloadSounds
+	activity "ACT_GESTURE_RELOAD_REVOLVER" 1
+	{ event 3017 0 "" }
+	{ event 3018 41 "" }
+}
+
+$GenericReloadFromIdle "reload_357" $Blend_SMD_Pistol$ "ACT_RELOAD_REVOLVER" "Aim_stand_delta_all" "gesture_reload_357" 15 51 62 41
+
+$append "reload_357" {
+	$357ReloadSounds
+	fps 30
+}
+
+$GenericReloadFromIdle "reload_357_low" $Blend_SMD_Pistol_Crouched$ "ACT_RELOAD_REVOLVER_LOW" "Aim_crouch_delta_all" "gesture_reload_357" 15 51 62 41
+
+$append "reload_357" {
+	$357ReloadSounds
+	fps 30
+}
