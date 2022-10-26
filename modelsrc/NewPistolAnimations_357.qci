@@ -1,0 +1,23 @@
+// ================================================================
+// 
+// Shared 357 Animations
+// 
+// ================================================================
+
+$definemacro 357ReloadSounds \\
+	{ event AE_CL_PLAYSOUND 10 "Weapon_357.OpenLoader" } \\
+	{ event AE_CL_PLAYSOUND 17 "Weapon_357.RemoveLoader" } \\
+	{ event AE_CL_PLAYSOUND 37 "Weapon_357.ReplaceLoader" } \\
+	{ event AE_CL_PLAYSOUND 47 "Weapon_357.Spin" } \\ // TODO: Not really a spin
+
+$weightlist "weights_357_shoot" {
+	 "ValveBiped.Bip01_Pelvis" 3
+	 "ValveBiped.Bip01_R_Clavicle" 3
+	 "ValveBiped.Bip01_R_UpperArm" 1.6
+	 "ValveBiped.Bip01_R_Forearm" 3
+	 "ValveBiped.Bip01_R_Hand" 3
+	 "ValveBiped.Bip01_L_Clavicle" 3
+	 "ValveBiped.Bip01_L_UpperArm" 2
+	 "ValveBiped.Bip01_L_Forearm" 5
+	 "ValveBiped.Bip01_L_Hand" 5
+}

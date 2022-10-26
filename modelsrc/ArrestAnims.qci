@@ -1,7 +1,8 @@
-
+// ================================================================
 // 
 // Arrest animations experiment
 // 
+// ================================================================
 
 $sequence "arrest_act_floor" {
 	"arrestidle.smd"
@@ -13,15 +14,13 @@ $sequence "arrest_act_floor_curious" {
 	activity "ACT_ARREST_FLOOR_CURIOUS" 1
 }
 
-$weightlist "ArmsOnly" { "ValveBiped.Bip01_Pelvis" 0 "ValveBiped.Bip01_R_Clavicle" 1 "ValveBiped.Bip01_L_Clavicle" 1 }
-
 $sequence "arrest_act_standing_gesture" {
 	"apcarrestidle.smd"
 	activity "ACT_ARREST_STANDING_GESTURE" 1
 	fadein 0.2
 	fadeout 0.2
 	fps 20
-	weightlist "ArmsOnly"
+	weightlist "weapongesture_armsonly"
 	loop
 }
 
@@ -32,14 +31,12 @@ $sequence "arrest_act_standing_gesture" {
 //	loop
 //}
 
-$weightlist "NoHands" { "ValveBiped.Bip01_Pelvis" 1 "ValveBiped.Bip01_R_Hand" 0 "ValveBiped.Bip01_L_Hand" 0 }
-
 $sequence "arrest_act_floor_enter" {
 	"slumpenter_b.smd"
 	frame 5 97
 	activity "ACT_ARREST_FLOOR_ENTER" 1
 	weightlist "NoHands"
-	blendlayer "idle_subtle" 0 0 1 26 // arrest_act_standing
+	blendlayer $Blend_Idle_Unarmed$ 0 0 1 26 // arrest_act_standing
 	blendlayer "arrest_act_floor" 71 96 102 102 spline
 	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 68 68 target 0 usesequence 
 	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 68 68 target 1 usesequence 
@@ -53,7 +50,7 @@ $sequence "arrest_act_floor_enter_panicked" {
 	frame 5 97
 	activity "ACT_ARREST_FLOOR_ENTER_PANICKED" 1
 	weightlist "NoHands"
-	blendlayer $PanickedIdle$ 0 0 5 26 // arrest_act_standing
+	blendlayer $Blend_Idle_Panicked$ 0 0 5 26 // arrest_act_standing
 	blendlayer "arrest_act_floor" 71 96 102 102 spline
 	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 68 68 target 0 usesequence 
 	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 68 68 target 1 usesequence 
@@ -68,7 +65,7 @@ $sequence "arrest_act_floor_exit" {
 	activity "ACT_ARREST_FLOOR_EXIT" 1
 	weightlist "NoHands"
 	blendlayer "arrest_act_floor" 0 0 9 28
-	blendlayer "idle_subtle" 69 88 102 102 xfade
+	blendlayer $Blend_Idle_Unarmed$ 69 88 102 102 xfade
 	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 68 68 target 0 usesequence 
 	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 68 68 target 1 usesequence 
 	ikrule "rfoot" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 68 68 target 2 usesequence 

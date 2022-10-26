@@ -1,0 +1,106 @@
+// ================================================================
+// 
+// Full weapon_citizensuitcase animations
+// 
+// ================================================================
+
+$weightlist "weights_layer_luggage_idle" {
+	 "ValveBiped.Bip01_Pelvis" 0
+	 "ValveBiped.Bip01_Spine" 0.2
+	 "ValveBiped.Bip01_Neck1" 0.4
+	 "ValveBiped.Bip01_Head1" 0.4
+	 "ValveBiped.Bip01_R_Clavicle" 0.4
+	 "ValveBiped.Bip01_R_UpperArm" 0.6
+	 "ValveBiped.Bip01_R_Forearm" 0.8
+	 "ValveBiped.Bip01_R_Hand" 1
+	 "ValveBiped.Bip01_L_Clavicle" 0
+	 "ValveBiped.Bip01_L_UpperArm" 0
+	 "ValveBiped.Bip01_L_Forearm" 0
+	 "ValveBiped.Bip01_L_Hand" 0
+}
+
+$weightlist "weights_layer_luggage_drop" {
+	 "ValveBiped.Bip01_Pelvis" 0
+	 "ValveBiped.Bip01_Spine" 0.2
+	 "ValveBiped.Bip01_Neck1" 0.4
+	 "ValveBiped.Bip01_Head1" 0.4
+	 "ValveBiped.Bip01_R_Clavicle" 0.4
+	 "ValveBiped.Bip01_R_UpperArm" 0.6
+	 "ValveBiped.Bip01_R_Forearm" 0.8
+	 "ValveBiped.Bip01_R_Hand" 1
+	 "ValveBiped.Bip01_L_Clavicle" 0
+	 "ValveBiped.Bip01_L_UpperArm" 0
+	 "ValveBiped.Bip01_L_Forearm" 0
+	 "ValveBiped.Bip01_L_Hand" 0
+}
+
+$weightlist "weights_layer_luggage_walk" {
+	 "ValveBiped.Bip01_Pelvis" 0
+	 "ValveBiped.Bip01_Spine" 0.2
+	 "ValveBiped.Bip01_Spine1" 0.4
+	 "ValveBiped.Bip01_Spine2" 0.6
+	 "ValveBiped.Bip01_Spine4" 0.8
+	 "ValveBiped.Bip01_R_Clavicle" 0.5
+	 "ValveBiped.Bip01_R_UpperArm" 0.5
+	 "ValveBiped.Bip01_R_Forearm" 1
+	 "ValveBiped.Bip01_L_Clavicle" 0
+}
+
+$weightlist "weights_layer_luggage_run" {
+	 "ValveBiped.Bip01_Pelvis" 0
+	 "ValveBiped.Bip01_Spine" 0.2
+	 "ValveBiped.Bip01_Neck1" 0.4
+	 "ValveBiped.Bip01_Head1" 0.4
+	 "ValveBiped.Bip01_R_Clavicle" 0.4
+	 "ValveBiped.Bip01_R_UpperArm" 0.6
+	 "ValveBiped.Bip01_R_Forearm" 0.8
+	 "ValveBiped.Bip01_R_Hand" 1
+	 "ValveBiped.Bip01_L_Clavicle" 0
+	 "ValveBiped.Bip01_L_UpperArm" 0
+	 "ValveBiped.Bip01_L_Forearm" 0
+	 "ValveBiped.Bip01_L_Hand" 0
+}
+
+$include "CitizenSuitcase.qci"
+
+$sequence "luggage_walk_all" {
+	"a_CitizenWalkS"
+	"a_CitizenWalkSE"
+	"a_CitizenWalkE"
+	"a_CitizenWalkNE"
+	"a_CitizenWalkN" // a_luggage_walk
+	"a_CitizenWalkNW"
+	"a_CitizenWalkW"
+	"a_CitizenWalkSW"
+	"a_CitizenWalkS"
+	activity "ACT_WALK_SUITCASE" 1
+	blend "move_yaw" -180 180
+	blendwidth 9
+	{ event 6006 8 "NPC_Citizen" }
+	{ event 6007 23 "NPC_Citizen" }
+	fadein 0.2
+	fadeout 0.2
+	blendlayer "layer_luggage_walk" 0 0 0 0 local
+	node "walking"
+}
+
+$sequence "luggage_run_all" {
+	"a_CitizenRunS"
+	"a_CitizenRunSE"
+	"a_CitizenRunE"
+	"a_CitizenRunNE"
+	"a_CitizenRunN" // a_luggage_walk
+	"a_CitizenRunNW"
+	"a_CitizenRunW"
+	"a_CitizenRunSW"
+	"a_CitizenRunS"
+	activity "ACT_RUN_SUITCASE" 1
+	blend "move_yaw" -180 180
+	blendwidth 9
+	{ event 6004 6 "NPC_Citizen" }
+	{ event 6005 15 "NPC_Citizen" }
+	fadein 0.2
+	fadeout 0.2
+	blendlayer "layer_luggage_run" 0 0 0 0 local
+	node "running"
+}

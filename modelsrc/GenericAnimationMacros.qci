@@ -1,3 +1,236 @@
+// ================================================================
+// 
+// Generic Animation Macros
+// 
+// ================================================================
+
+$definemacro GenericIdle IdleName IdleSeq IdleAct \\
+$sequence $IdleName$ { $IdleSeq$ activity $IdleAct$ 1 loop \\
+	cmdlist lockfeetandlefthand \\
+} \\
+$continue $IdleName$
+
+$definemacro GenericIdleWeight IdleName IdleSeq IdleAct ActWeight \\
+$sequence $IdleName$ { $IdleSeq$ activity $IdleAct$ $ActWeight$ loop \\
+	cmdlist lockfeetandlefthand \\
+} \\
+$continue $IdleName$
+
+$definemacro GenericIdleHands IdleName IdleSeq IdleAct HandsLayer \\
+$sequence $IdleName$ { $IdleSeq$ activity $IdleAct$ 1 loop \\
+	cmdlist lockfeet \\
+	blendlayer $HandsLayer$ 0 0 0 0 local \\
+} \\
+$continue $IdleName$
+
+$definemacro GenericCombatIdle IdleName IdleSeq IdleAct AimLayer \\
+$sequence $IdleName$ { \\
+	$IdleSeq$ \\
+	activity $IdleAct$ 1 \\
+	addlayer $AimLayer$ \\
+	loop \\
+	cmdlist lockfeetandlefthand \\
+} \\
+$continue $IdleName$
+
+$definemacro GenericCombatIdle_NoHandIK IdleName IdleSeq IdleAct AimLayer \\
+$sequence $IdleName$ { \\
+	$IdleSeq$ \\
+	activity $IdleAct$ 1 \\
+	addlayer $AimLayer$ \\
+	loop \\
+	cmdlist lockfeet \\
+} \\
+$continue $IdleName$
+
+$definemacro GenericShoot SeqName FileName ActName AimLayer \\
+$sequence $SeqName$ { \\
+	$FileName$ \\
+	{ event 3014 0 "" } \\ // { event 3014 1 "" }?
+	addlayer $AimLayer$ \\
+	activity $ActName$ 1 \\
+	cmdlist lockfeetandlefthand \\
+} \\
+$continue $SeqName$
+
+$definemacro GenericReload SeqName FileName ActName AimLayer AimFadeOut AimFadeIn NumFrames EventFrame \\
+$sequence $SeqName$ { \\
+	$FileName$ \\
+	{ event 3017 0 "" } \\
+	{ event 3018 $EventFrame$ "" } \\
+	blendlayer $AimLayer$ 0 0 0 $AimFadeOut$ spline \\
+	blendlayer $AimLayer$ $AimFadeIn$ $NumFrames$ $NumFrames$ $NumFrames$ spline \\
+	activity $ActName$ 1 \\
+	cmdlist lockfeet \\
+	ikrule "rhand" release \\
+	ikrule "lhand" release \\
+} \\
+$continue $SeqName$
+
+$definemacro GenericReloadSoundMatched SeqName FileName ActName AimLayer AimFadeOut AimFadeIn NumFrames EventFrame \\
+$sequence $SeqName$ { \\
+	$FileName$ \\
+	{ event 3015 $EventFrame$ "" } \\
+	blendlayer $AimLayer$ 0 0 0 $AimFadeOut$ spline \\
+	blendlayer $AimLayer$ $AimFadeIn$ $NumFrames$ $NumFrames$ $NumFrames$ spline \\
+	activity $ActName$ 1 \\
+	cmdlist lockfeet \\
+	ikrule "rhand" release \\
+	ikrule "lhand" release \\
+} \\
+$continue $SeqName$
+
+$definemacro GenericReloadNoAim SeqName FileName ActName EventFrame \\
+$sequence $SeqName$ { \\
+	$FileName$ \\
+	{ event 3017 0 "" } \\
+	{ event 3018 $EventFrame$ "" } \\
+	activity $ActName$ 1 \\
+	cmdlist lockfeet \\
+	ikrule "rhand" release \\
+	ikrule "lhand" release \\
+} \\
+$continue $SeqName$
+
+$definemacro GenericAimMoveLayer SeqName FileName HandsLayer AimLayer \\
+$sequence $SeqName$ { $FileName$ hidden addlayer $AimLayer$ loop \\
+	ikrule "rhand" release \\
+	ikrule "lhand" release \\
+	blendlayer $HandsLayer$ 0 0 0 0 local \\
+	weightlist "weights_layer_walk_ar2" \\
+} \\
+$continue $SeqName$
+
+$definemacro GenericMoveLayer LayerName FileName WeightList \\
+$sequence $LayerName$ { \\
+	$FileName$ \\
+	hidden \\
+	worldspace \\
+	ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" \\
+	ikrule "rhand" release \\
+	weightlist $WeightList$ \\
+} \\
+$continue $LayerName$
+
+// ----------------------------------------------------------------
+
+$definemacro GenericWalkLayered SeqName ActivityName LayerName InteriorAct \\
+$sequence $SeqName$ { \\
+	$a_WalkBlends \\
+	activity $ActivityName$ 1 \\
+	keyvalues \\
+	{ \\
+		interior $InteriorAct$ \\
+	} \\
+	addlayer $LayerName$ \\ // "blendlayer $LayerName$ 0 0 0 0 local" apparently doesn't keep IK
+} \\
+$continue $SeqName$
+
+$definemacro GenericRunLayered SeqName ActivityName LayerName InteriorAct \\
+$sequence $SeqName$ { \\
+	$a_RunBlends \\
+	activity $ActivityName$ 1 \\
+	keyvalues \\
+	{ \\
+		interior $InteriorAct$ \\
+	} \\
+	addlayer $LayerName$ \\ // "blendlayer $LayerName$ 0 0 0 0 local" apparently doesn't keep IK
+} \\
+$continue $SeqName$
+
+// ----------------------------------------------------------------
+
+$definemacro GenericShootFromIdle SeqName FileName ActName AimLayer GestureLayer NumFrames \\
+$sequence $SeqName$ { \\
+	$FileName$ \\
+	numframes $NumFrames$ \\
+	{ event 3014 1 "" } \\
+	blendlayer $GestureLayer$ 0 0 0 0 local \\
+	addlayer $AimLayer$ \\
+	activity $ActName$ 1 \\
+	cmdlist lockfeetandlefthand \\
+} \\
+$continue $SeqName$
+
+$definemacro GenericShootFromIdle_NoHandIK SeqName FileName ActName AimLayer GestureLayer NumFrames \\
+$sequence $SeqName$ { \\
+	$FileName$ \\
+	numframes $NumFrames$ \\
+	{ event 3014 1 "" } \\
+	blendlayer $GestureLayer$ 0 0 0 0 local \\
+	addlayer $AimLayer$ \\
+	activity $ActName$ 1 \\
+	cmdlist lockfeet \\
+} \\
+$continue $SeqName$
+
+$definemacro GenericReloadFromIdle SeqName FileName ActName AimLayer GestureLayer AimFadeOut AimFadeIn NumFrames EventFrame \\
+$sequence $SeqName$legs $FileName$ weightlist "LegsAndPelvis" hidden \\
+$sequence $SeqName$ { \\
+	$FileName$ \\
+	numframes $NumFrames$ \\
+	{ event 3015 $EventFrame$ "" } \\
+	blendlayer $GestureLayer$ 0 0 0 0 local \\
+	blendlayer $AimLayer$ 0 0 0 $AimFadeOut$ spline \\
+	blendlayer $AimLayer$ $AimFadeIn$ $NumFrames$ $NumFrames$ $NumFrames$ spline \\
+	activity $ActName$ 1 \\
+	cmdlist lockfeet \\
+	ikrule "rhand" release \\
+	ikrule "lhand" release \\
+} \\
+$continue $SeqName$
+
+$definemacro GenericReloadFromIdle_NoAim SeqName FileName ActName GestureLayer NumFrames EventFrame \\
+$sequence $SeqName$legs $FileName$ weightlist "LegsAndPelvis" hidden \\
+$sequence $SeqName$ { \\
+	$FileName$ \\
+	numframes $NumFrames$ \\
+	{ event 3015 $EventFrame$ "" } \\
+	blendlayer $GestureLayer$ 0 0 0 0 local \\
+	activity $ActName$ 1 \\
+	cmdlist lockfeet \\
+	ikrule "rhand" release \\
+	ikrule "lhand" release \\
+} \\
+$continue $SeqName$
+
+// ================================================================
+
+$definemacro makenpcmatchrun runname filename frame aimlayer runn blendweights walkframe \\
+$animation a_$runname$_base $filename$ frame $frame$ $frame$ \\
+$sequence $runname$_mod $runn$ { \\
+	walkframe $walkframe$ LX LY rotateto 0 \\
+	weightlist $blendweights$ \\
+	worldspaceblend a_$runname$_base \\
+	weightlist HipsUpperbodyReplace \\
+	hidden \\
+	iklock lfoot 1 0 iklock rfoot 1 0 \\
+	} \\
+$sequence $runname$ { \\
+	$a_RunBlends \\
+	addlayer $runname$_mod \\
+	addlayer $aimlayer$ \\
+	} \\
+$continue $runname$
+
+$definemacro makenpcmatchwalk walkname filename frame aimlayer walkn blendweights walkframe \\
+$animation a_$walkname$_base $filename$ frame $frame$ $frame$ \\
+$sequence $walkname$_mod $walkn$ { \\
+	walkframe $walkframe$ LX LY rotateto 0 \\
+	weightlist $blendweights$ \\
+	worldspaceblend a_$walkname$_base \\
+	weightlist HipsUpperbodyReplace \\
+	hidden \\
+	iklock lfoot 1 0 iklock rfoot 1 0 \\
+	} \\
+$sequence $walkname$ { \\
+	$a_WalkBlends \\
+	addlayer $walkname$_mod \\
+	addlayer $aimlayer$ \\
+	} \\
+$continue $walkname$
+
+// =============================================================================================
 
 // 
 // Generic macros for overlaying animations.

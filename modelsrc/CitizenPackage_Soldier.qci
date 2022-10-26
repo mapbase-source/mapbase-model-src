@@ -1,0 +1,94 @@
+// ================================================================
+// 
+// weapon_citizenpackage animations for soldiers
+// 
+// ================================================================
+
+$weightlist "weights_layer_package_walk" {
+	 "ValveBiped.Bip01_Pelvis" 0
+	 "ValveBiped.Bip01_Spine" 0.2
+	 "ValveBiped.Bip01_Spine1" 0.4
+	 "ValveBiped.Bip01_Spine2" 0.6
+	 "ValveBiped.Bip01_Spine4" 0.8
+	 "ValveBiped.Bip01_R_Clavicle" 1
+	 "ValveBiped.Bip01_L_Clavicle" 1
+}
+
+$sequence "layer_walk_holding_package" {
+	"layer_walk_holding_package.smd"
+	fadein 0.2
+	fadeout 0.2
+	hidden
+	//worldspace
+	fps 30
+	ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 35 35 target 1
+	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 35 35 target 0
+	weightlist "weights_layer_package_walk"
+}
+
+$sequence "walk_holding_package_all" {
+	"a_SoldierWalkEasyS"
+	"a_SoldierWalkEasySE"
+	"a_SoldierWalkEasyE"
+	"a_SoldierWalkEasyNE"
+	"a_SoldierWalkEasyN" // a_WalkN_package
+	"a_SoldierWalkEasyNW"
+	"a_SoldierWalkEasyW"
+	"a_SoldierWalkEasySW"
+	"a_SoldierWalkEasyS"
+	activity "ACT_WALK_PACKAGE" 1
+	blend "move_yaw" -180 180
+	blendwidth 9
+	fadein 0.2
+	fadeout 0.2
+	{ event 6004 9 "NPC_CombineS" }
+	{ event 6005 25 "NPC_CombineS" }
+
+	keyvalues
+	{
+		interior ACT_IDLE_PACKAGE
+	}
+	blendlayer "layer_walk_holding_package" 0 0 0 0 local
+	node "walking"
+}
+
+$sequence "idlepackage" {
+	"idlepackage.smd"
+	activity "ACT_IDLE_PACKAGE" 1
+	fadein 0.2
+	fadeout 0.2
+	fps 30
+	loop
+	ikrule "lfoot" footstep contact 0 fakeorigin 0.48 4.44 0 fakerotate 0 0 0 floor 0 height 20 radius 2.5 range 0 0 5 5 target 3
+	ikrule "rfoot" footstep contact 0 fakeorigin 1.76 -4.89 0 fakerotate 0 0 0 floor 0 height 20 radius 2.5 range 0 0 5 5 target 2
+	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 5 5 target 0
+	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 5 5 target 1
+}
+
+$include "CitizenPackageRun.qci"
+
+$sequence "run_holding_package_all" {
+	"a_SoldierRunS"
+	"a_SoldierRunSE"
+	"a_SoldierRunE"
+	"a_SoldierRunNE"
+	"a_SoldierRunN" // a_WalkN_package
+	"a_SoldierRunNW"
+	"a_SoldierRunW"
+	"a_SoldierRunSW"
+	"a_SoldierRunS"
+	activity "ACT_RUN_PACKAGE" 1
+	blend "move_yaw" -180 180
+	blendwidth 9
+	fadein 0.2
+	fadeout 0.2
+	{ event 6004 7 "NPC_CombineS" }
+	{ event 6005 16 "NPC_CombineS" }
+
+	keyvalues
+	{
+		interior ACT_IDLE_PACKAGE
+	}
+	blendlayer "layer_run_holding_package" 0 0 0 0 local
+	node "walking"
+}

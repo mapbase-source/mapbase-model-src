@@ -1,0 +1,59 @@
+// ================================================================
+// 
+// Protected Run Animation
+// 
+// ================================================================
+
+$weightlist "weights_layer_protected" {
+	 "ValveBiped.Bip01_Pelvis" 0
+	 "ValveBiped.Bip01_Spine" 1
+	 "ValveBiped.Bip01_Spine1" 1
+	 "ValveBiped.Bip01_Spine2" 1
+	 "ValveBiped.Bip01_Spine4" 1
+	 "ValveBiped.Bip01_Neck1" 1
+	 "ValveBiped.Bip01_Head1" 1
+	 "ValveBiped.forward" 1
+	 "ValveBiped.Bip01_R_Clavicle" 1
+	 "ValveBiped.Bip01_R_UpperArm" 1
+	 "ValveBiped.Bip01_R_Forearm" 1
+	 "ValveBiped.Bip01_R_Hand" 1
+	 "ValveBiped.Anim_Attachment_RH" 1
+	 "ValveBiped.Bip01_L_Clavicle" 1
+	 "ValveBiped.Bip01_L_UpperArm" 1
+	 "ValveBiped.Bip01_L_Forearm" 1
+	 "ValveBiped.Bip01_L_Hand" 1
+	 "ValveBiped.Anim_Attachment_LH" 1
+}
+
+$sequence "layer_run_protected" {
+	"male_shared_anims\layer_run_protected.smd"
+	fadein 0.2
+	fadeout 0.2
+	hidden
+	fps 30
+	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 18 18 target 0
+	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 18 18 target 1
+	weightlist "weights_layer_protected"
+}
+
+// Declare this in whatever QC is overriding the animation
+//$sequence "run_protected_all" {
+//	"a_RunS"
+//	"a_RunSE"
+//	"a_RunE"
+//	"a_RunNE"
+//	"a_RunN"
+//	"a_RunNW"
+//	"a_RunW"
+//	"a_RunSW"
+//	"a_RunS"
+//	activity "ACT_RUN_PROTECTED" 1
+//	blend "move_yaw" -180 180
+//	blendwidth 9
+//	{ event 6004 6 "NPC_Citizen" }
+//	{ event 6005 15 "NPC_Citizen" }
+//	fadein 0.2
+//	fadeout 0.2
+//	blendlayer "layer_run_protected" 0 0 0 0 local
+//	node "running"
+//}

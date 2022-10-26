@@ -1,0 +1,184 @@
+// ================================================================
+// 
+// L4D1 climb animations experiment
+// 
+// ================================================================
+
+$weightlist "LadderWeights" {
+	"ValveBiped.Bip01_Pelvis" 1
+	"ValveBiped.Bip01_Neck1" 0
+}
+
+$weightlist "weights_Idlenoise" {
+	 "ValveBiped.Bip01_Pelvis" 0.4
+	 "ValveBiped.Bip01_L_Thigh" 0
+	 "ValveBiped.Bip01_R_Thigh" 0
+	 "ValveBiped.Bip01_Spine" 0.2
+	 "ValveBiped.Bip01_Spine1" 0.2
+	 "ValveBiped.Bip01_Spine2" 0.2
+	 "ValveBiped.Bip01_Spine4" 0.2
+	 "ValveBiped.Bip01_Neck1" 0.2
+	 "ValveBiped.Bip01_Head1" 0.2
+	 "ValveBiped.Bip01_L_Clavicle" 0
+	 "ValveBiped.Bip01_R_Clavicle" 0
+}
+
+$animation "a_Ladder_Ascend" "a_Ladder_Ascend.smd" {
+	fps 30
+	loop
+	weightlist "LadderWeights"
+	walkframe 56 LZ
+}
+
+$animation "a_Ladder_Ascend_Slow" "a_Ladder_Ascend.smd" {
+	fps 15
+	loop
+	weightlist "LadderWeights"
+	walkframe 56 LZ
+}
+
+$animation "a_Ladder_Neutral" "a_Ladder_Descend.smd" {
+	fps 30
+	loop
+	weightlist "LadderWeights"
+	frame 0 0
+}
+
+$animation "a_Ladder_Descend" "a_Ladder_Descend.smd" {
+	fps 30
+	loop
+	weightlist "LadderWeights"
+	walkframe 27 LZ
+}
+
+$animation "a_Ladder_Descend_Slow" "a_Ladder_Descend.smd" {
+	fps 15
+	loop
+	weightlist "LadderWeights"
+	walkframe 27 LZ
+}
+
+$animation "@Ladder_Idlenoise_corrective_animation" "@Ladder_Idlenoise_corrective_animation.smd" {
+}
+
+$sequence "Ladder_Dismount_1" "a_Ladder_Dismount_1.smd" hidden
+$sequence "Ladder_Dismount_2" "a_Ladder_Dismount_2.smd" hidden
+$sequence "Ladder_Dismount_3" "a_Ladder_Dismount_3.smd" hidden
+$sequence "Ladder_Dismount_4" "a_Ladder_Dismount_4.smd" hidden
+
+$sequence "Ladder_Idlenoise" {
+	"Ladder_Idlenoise.smd"
+	delta
+	realtime
+	// Crowbar writes this subtract option to prevent jigglebone and poseparameter problems when delta sequences are recompiled.
+	subtract "@Ladder_Idlenoise_corrective_animation" 0
+	fps 40
+	loop
+	weightlist "weights_Idlenoise"
+}
+
+$sequence "Ladder_Ascend" {
+	"a_Ladder_Ascend"
+	activity "ACT_CLIMB_UP" -1
+}
+
+$sequence "Ladder_Descend" {
+	"a_Ladder_Descend"
+	activity "ACT_CLIMB_DOWN" -1
+}
+
+$sequence "Ladder_idle" {
+	"a_Ladder_Neutral"
+	activity "ACT_CLIMB_IDLE" 1
+	addlayer "Ladder_Idlenoise"
+}
+
+$sequence "Ladder_updown" {
+	"a_Ladder_Ascend"
+	"a_Ladder_Ascend_Slow"
+	"a_Ladder_Neutral"
+	"a_Ladder_Descend_Slow"
+	"a_Ladder_Descend"
+	activity "ACT_CLIMB_ALL" -1
+	blend "move_yaw" -180 180
+	blendwidth 5
+}
+
+$sequence "Ladder_Dismount_idle" {
+	"a_Ladder_Dismount_idle"
+	hidden
+	realtime
+}
+
+$sequence "Ladder_Mount_Top" {
+	"Ladder_Mount.smd"
+	activity "ACT_CLIMB_MOUNT_TOP" -1
+	fadein 0.2
+	fadeout 0.5
+	fps 30
+	ikrule "lfoot" touch "" contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 60 60 target 3 usesequence 
+	ikrule "rfoot" touch "" contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 60 60 target 2 usesequence 
+	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 60 60 target 0 usesequence 
+	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 60 60 target 1 usesequence 
+	weightlist "LadderWeights"
+	
+	blendlayer "Ladder_Dismount_idle" 0 0 0 10 local
+	origin 0 -32 64
+	//walkframe 60 LX LY
+	walkframe 30 LX LY
+	//walkframe 60 LZ
+	walkalignto 60 "Ladder_Descend" LZ
+}
+
+//$sequence "Ladder_Mount_Bottom" {
+//	"a_Ladder_Neutral"
+//	activity "ACT_CLIMB_MOUNT_BOTTOM" -1
+//	fadein 0.2
+//	fadeout 0.5
+//	fps 30
+//	//ikrule "lfoot" touch "" contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 60 60 target 3 usesequence 
+//	//ikrule "rfoot" touch "" contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 60 60 target 2 usesequence 
+//	//ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 60 60 target 0 usesequence 
+//	//ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 60 60 target 1 usesequence 
+//	
+//	numframes 20
+//	blendlayer "Ladder_Dismount_idle" 0 0 0 10 local
+//	blendlayer "Ladder_Dismount_1" 0 10 10 20 spline local
+//}
+
+$sequence "Ladder_Dismount_Top" {
+	"Ladder_Dismount.smd"
+	activity "ACT_CLIMB_DISMOUNT" -1
+	fadein 0.2
+	fadeout 0.5
+	fps 30
+	ikrule "lfoot" touch "" contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 60 60 target 3 usesequence 
+	ikrule "rfoot" touch "" contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 60 60 target 2 usesequence 
+	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 60 60 target 0 usesequence 
+	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 60 60 target 1 usesequence 
+	weightlist "LadderWeights"
+	
+	// For now, align movement to the reversed animation so that movement is a right angle
+	walkalign 30 "Ladder_Mount_Top" LZ 30 30
+	//walkframe 30 LZ
+	walkframe 60 LX LY
+	
+	// Extra frames are needed for the cycle
+	numframes 80
+}
+
+//$sequence "Ladder_Dismount_Bottom" {
+//	"a_Ladder_Neutral"
+//	activity "ACT_CLIMB_DISMOUNT_BOTTOM" -1
+//	fadein 0.2
+//	fadeout 0.5
+//	fps 30
+//	//ikrule "lfoot" touch "" contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 60 60 target 3 usesequence 
+//	//ikrule "rfoot" touch "" contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 60 60 target 2 usesequence 
+//	//ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 60 60 target 0 usesequence 
+//	//ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 60 60 target 1 usesequence 
+//	
+//	numframes 20
+//	blendlayer "Ladder_Dismount_1" 0 10 10 20 spline local
+//	blendlayer "Ladder_Dismount_idle" 10 20 20 20 local
+//}

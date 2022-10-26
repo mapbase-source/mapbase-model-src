@@ -1,0 +1,45 @@
+// ================================================================
+// 
+// 357 Animations for Male Citizens
+// 
+// ================================================================
+
+$include "NewPistolAnimations_357_NPC.qci"
+
+$GenericShootFromIdle "shootp2" "male_shared_anims\custom\Idle_Pistol_Aim.smd" "ACT_RANGE_ATTACK_REVOLVER" "soldier_Aim_9_directions" "gesture_shoot_357" 16
+$append shootp2 { node "shooting_pistol" }
+
+$GenericShootFromIdle "crouch_shoot_357" "male_shared_anims\custom\crouch_aim_pistol.smd" "ACT_RANGE_ATTACK_REVOLVER_LOW" "soldier_Aim_9_directions" "gesture_shoot_357" 16
+$append crouch_shoot_357 { node "crouchShooting_pistol" }
+
+
+
+$sequence "Crouch_idle_357" {
+	"police_animations_anims\Crouch_idle_pistol.smd"
+	activity "ACT_COVER_REVOLVER_LOW" 1
+	fadein 0.2
+	fadeout 0.2
+	node "crouching_pistol"
+	fps 30
+	loop
+	ikrule "lfoot" footstep contact 0 fakeorigin 5.77 8.81 0 fakerotate 0 0 0 floor 0 height 20 radius 2.5 range 0 0 80 80 target 3
+	ikrule "rfoot" footstep contact 0 fakeorigin -11.36 9.68 0 fakerotate 0 0 0 floor 0 height 20 radius 2.5 range 0 0 80 80 target 2
+}
+
+// ----------------------------------------------------------------
+
+// HACKHACK: Need soldier_Aim_9_directions instead of pistol_Aim_all to get past IK issues
+$GenericReload "reload_357" "police_animations_anims\custom\reload_357.smd" "ACT_RELOAD_REVOLVER" "soldier_Aim_9_directions" 15 51 62 41
+
+$append "reload_357" {
+	$357ReloadSounds
+	node "shooting_pistol"
+	fps 30
+}
+
+$GenericReloadFromIdle_NoAim "crouch_reload_357" "police_animations_anims\crouch_reload_pistol.smd" "ACT_RELOAD_REVOLVER_LOW" "gesture_reload_357" 62 41
+
+$append "crouch_reload_357" {
+	$357ReloadSounds
+	node "crouching_pistol"
+}

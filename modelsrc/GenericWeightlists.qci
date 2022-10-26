@@ -1,0 +1,14 @@
+// ================================================================
+// 
+// Generic Weightlists
+// 
+// ================================================================
+
+$weightlist "NoHands" { "ValveBiped.Bip01_Pelvis" 1 "ValveBiped.Bip01_R_Hand" 0 "ValveBiped.Bip01_L_Hand" 0 }
+$weightlist "LegsAndPelvis" { "ValveBiped.Bip01_Pelvis" 1 "ValveBiped.Bip01_Spine" 0 }
+
+$weightlist "weights_layer_walk_ar2" {
+	 "ValveBiped.Bip01_Pelvis" 0
+	 "ValveBiped.Bip01_Spine" 1
+	 "ValveBiped.Bip01_Neck1" 0
+}

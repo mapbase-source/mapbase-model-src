@@ -1,0 +1,125 @@
+// ================================================================
+// 
+// New Soldier Transition Animations
+// 
+// Node graph:
+// 
+// - Unarmed_Idle									standing
+// - Idle1_AR2, Idle1_SMG1, etc.					standing_ar2, standing_smg1, etc.
+// - CombatIdle1_AR2, etc.							shooting_ar2, etc.
+// - crouch_aim_ar2, etc.							crouching_ar2, etc.
+// - cover_crouch_low								cover
+// 
+// For now, walk/run use "standing_" and "shooting_" nodes
+// 
+// ================================================================
+
+$pushd "combine_soldier_anims_anims"
+
+$definemacro GenericTransitionBlend SeqName BaseFile StartSeq EndSeq StartNode EndNode NumFrames \\
+$sequence $SeqName$ { \\
+	$BaseFile$ \\
+	numframes $NumFrames$ \\
+	blendlayer $StartSeq$ 0 0 0 $NumFrames$ spline \\
+	blendlayer $EndSeq$ 0 $NumFrames$ $NumFrames$ $NumFrames$ xfade spline \\
+	activity "ACT_TRANSITION" 1 \\
+	transition $StartNode$ $EndNode$ \\
+}
+
+$definemacro GenericTransitionBlendFromSMD SeqName StartSeq EndSeq StartNode EndNode NumFrames \\
+$sequence $SeqName$ { \\
+	$StartSeq$ \\
+	numframes $NumFrames$ \\
+	blendlayer $EndSeq$ 0 $NumFrames$ $NumFrames$ $NumFrames$ xfade spline \\
+	activity "ACT_TRANSITION" 1 \\
+	transition $StartNode$ $EndNode$ \\
+}
+
+$definemacro GenericTransitionBlendToSMD SeqName StartSeq EndSeq StartNode EndNode NumFrames \\
+$sequence $SeqName$ { \\
+	$EndSeq$ \\
+	numframes $NumFrames$ \\
+	blendlayer $StartSeq$ 0 0 0 $NumFrames$ spline \\
+	activity "ACT_TRANSITION" 1 \\
+	transition $StartNode$ $EndNode$ \\
+}
+
+// ----------------------------------------------------------------
+
+$definemacro CombatStandCrouchTransition SeqName BaseFile StartNode EndNode \\
+$sequence $SeqName$ { \\
+	$BaseFile$ \\
+	activity "ACT_TRANSITION" 1 \\
+	blendlayer "Aim_stand_delta_all" 0 0 0 16 local \\
+	blendlayer "Aim_crouch_delta_all" 0 16 16 16 local \\
+	transition $StartNode$ $EndNode$ \\
+	walkframe 7 LX \\
+	cmdlist lockfeet \\
+}
+
+$definemacro CombatCrouchStandTransition SeqName BaseFile StartNode EndNode \\
+$sequence $SeqName$ { \\
+	$BaseFile$ \\
+	activity "ACT_TRANSITION" 1 \\
+	blendlayer "Aim_crouch_delta_all" 0 0 0 16 local \\
+	blendlayer "Aim_stand_delta_all" 0 16 16 16 local \\
+	transition $StartNode$ $EndNode$ \\
+	walkframe 7 LX \\
+	cmdlist lockfeet \\
+}
+
+// ----------------------------------------------------------------
+
+//$CombatStandCrouchTransition "Combat_stand_to_crouch" "Combat_stand_to_crouch.smd" "shooting_ar2_old" "crouching_ar2_old"
+//$CombatCrouchStandTransition "Crouch_to_combat_stand" "Crouch_to_combat_stand.smd" "crouching_ar2_old" "shooting_ar2_old"
+
+// AR2 to crouch
+$CombatStandCrouchTransition "Combat_stand_to_crouch_ar2" "Combat_stand_to_crouch.smd" "shooting_ar2" "crouching_ar2"
+$append "Combat_stand_to_crouch_ar2" { blendlayer "oldidle_to_ar2" 0 0 0 0 local }
+$CombatCrouchStandTransition "Crouch_to_combat_stand_ar2" "Crouch_to_combat_stand.smd" "crouching_ar2" "shooting_ar2"
+$append "Crouch_to_combat_stand_ar2" { blendlayer "oldidle_to_ar2" 0 0 0 0 local }
+
+// SMG1 to crouch
+$CombatStandCrouchTransition "Combat_stand_to_crouch_smg1" "Combat_stand_to_crouch.smd" "shooting_smg1" "crouching_smg1"
+$append "Combat_stand_to_crouch_smg1" { blendlayer "oldidle_to_smg1" 0 0 0 0 local }
+$CombatCrouchStandTransition "Crouch_to_combat_stand_smg1" "Crouch_to_combat_stand.smd" "crouching_smg1" "shooting_smg1"
+$append "Crouch_to_combat_stand_smg1" { blendlayer "oldidle_to_smg1" 0 0 0 0 local }
+
+// Shotgun to crouch
+$GenericTransitionBlendToSMD "Combat_stand_to_crouch_sg" "CombatIdle1_SG" "Combat_stand_to_crouch.smd" "shooting_sg" "crouching_sg" 16
+$GenericTransitionBlendFromSMD "Crouch_to_combat_stand_sg" "Crouch_to_combat_stand.smd" "CombatIdle1_SG" "crouching_sg" "shooting_sg" 15
+
+// Pistol to crouch
+$GenericTransitionBlend "Combat_stand_to_crouch_pistol" "Combat_stand_to_crouch.smd" "CombatIdle1_Pistol" "crouch_aim_pistol" "shooting_pistol" "crouching_pistol" 16
+$GenericTransitionBlend "Crouch_to_combat_stand_pistol" "Crouch_to_combat_stand.smd" "crouch_aim_pistol" "CombatIdle1_Pistol" "crouching_pistol" "shooting_pistol" 15
+
+// ----------------------------------------------------------------
+
+// AR2 to cover
+$GenericTransitionBlendFromSMD "crouch_to_cover_crouch_low_ar2" "CrouchIdle.smd" "cover_crouch_low" "crouching_ar2" "cover" 15
+$GenericTransitionBlendFromSMD "combat_stand_to_cover_crouch_low_ar2" "Combat_stand_to_crouch.smd" "cover_crouch_low" "shooting_ar2" "cover" 16
+$append "combat_stand_to_cover_crouch_low_ar2" { walkframe 7 LX }
+
+// SMG1 to cover
+$GenericTransitionBlendFromSMD "crouch_to_cover_crouch_low_smg1" "crouch_aim_sm1.smd" "cover_crouch_low" "crouching_smg1" "cover" 15
+$GenericTransitionBlendFromSMD "combat_stand_to_cover_crouch_low_smg1" "Combat_stand_to_crouch.smd" "cover_crouch_low" "shooting_smg1" "cover" 16
+$append "combat_stand_to_cover_crouch_low_smg1" { blendlayer "oldidle_to_smg1" 0 0 0 0 local walkframe 7 LX }
+
+// Cover to AR2
+$GenericTransitionBlendToSMD "cover_crouch_low_to_crouch_ar2" "cover_crouch_low" "CrouchIdle.smd" "cover" "crouching_ar2" 15
+$GenericTransitionBlendToSMD "cover_crouch_low_to_combat_stand_ar2" "cover_crouch_low" "Crouch_to_combat_stand.smd" "cover" "shooting_ar2" 16
+$append "cover_crouch_low_to_combat_stand_ar2" { walkframe 7 LX }
+
+// Cover to SMG1
+$GenericTransitionBlendToSMD "cover_crouch_low_to_crouch_smg1" "cover_crouch_low" "crouch_aim_sm1.smd" "cover" "crouching_smg1" 15
+$GenericTransitionBlendToSMD "cover_crouch_low_to_combat_stand_smg1" "cover_crouch_low" "Crouch_to_combat_stand.smd" "cover" "shooting_smg1" 16
+$append "cover_crouch_low_to_combat_stand_smg1" { blendlayer "oldidle_to_smg1" 0 0 0 0 local walkframe 7 LX }
+
+// ----------------------------------------------------------------
+
+// No longer used due to interference with existing behavior
+//$include "SoldierTransitions_IdleToCombat.qci"
+
+// ----------------------------------------------------------------
+
+$popd

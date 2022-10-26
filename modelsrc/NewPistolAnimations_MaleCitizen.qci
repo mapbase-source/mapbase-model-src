@@ -1,0 +1,1142 @@
+// ================================================================
+// 
+// New Pistol Animations for Male Citizens
+// 
+// Author: Blixibon
+// 
+// Metrocop animations were decompiled by Crowbar 0.71
+// 
+// ================================================================
+// 
+// This QCI file implements the following:
+// 
+//    1. Full pistol idle, walk, run, aim, and crouch animations based on decompiled metrocop animations.
+//       These are combined with other citizen animations to help make them fit in with the citizen's
+//       existing posture/animation set and differentiate them from metrocops.
+//       They also use citizen walk/run blends and "NPC_Citizen" footstep animation events.
+// 
+//    2. A complete set of pistol readiness activities. "Readiness" is a feature on citizens and
+//       other companions which changes their posture based on how "ready" they are for combat.
+//       For example, a "relaxed" citizen will stand up straight, but a "stimulated" citizen will be
+//       slightly ducked down and alert. This is purely visual and has no effect on gameplay.
+// 
+//       Note that many of the existing readiness activities in this QCI file just use regular metrocop
+//       animations without the citizen combat layers.
+// 
+//    3. Consistent nodes with accompanying transition animations. This means citizens will properly raise and lower their pistols.
+// 
+// Due to the limitations of my animation skills, this uses no custom SMD animations.
+// Instead, most of these sequences involve complex QC commands applied on directly decompiled
+// animations. This can produce surprisingly good results, but it's still very crude and has a few caveats which require
+// a lot of work to iron out. As a result, this technique didn't always turn out perfectly and there are a few flaws in these
+// sequences if you look hard enough. Fortunately, the animations are mostly passable otherwise.
+// 
+// If you would like to contribute actual animatons to replace some of these sequences, please contact Blixibon.
+// 
+// ================================================================
+
+// ================================================================
+// Metrocop Base Animations
+// ================================================================
+$include "NewPistolAnimations_MetrocopBase.qci"
+
+// ================================================================
+// New Weightlists
+// ================================================================
+
+// Replaces weights_layer_walk_hold_baton_angry on movement animations
+$weightlist "weights_move_hold_pistol" {
+	 "ValveBiped.Bip01_Pelvis" 0
+	 "ValveBiped.Bip01_Spine" 0.2
+	 "ValveBiped.Bip01_Spine1" 0.4
+	 "ValveBiped.Bip01_Spine2" 0.6
+	 "ValveBiped.Bip01_Spine4" 0.8
+	 "ValveBiped.Bip01_R_Clavicle" 1
+	 "ValveBiped.Bip01_L_Clavicle" 1
+}
+
+$weightlist "weights_move_hold_pistol_angry_posture" {
+	 "ValveBiped.Bip01_Pelvis" 0
+	 "ValveBiped.Bip01_Spine" 1
+	 "ValveBiped.Bip01_Spine1" 1
+	 "ValveBiped.Bip01_Spine2" 1
+	 "ValveBiped.Bip01_Spine4" 1
+	 "ValveBiped.Bip01_R_Clavicle" 0
+	 "ValveBiped.Bip01_L_Clavicle" 0
+}
+
+$weightlist "weights_move_hold_pistol_police_posture" {
+	 "ValveBiped.Bip01_Pelvis" 0
+	 "ValveBiped.Bip01_Spine" 0.2
+	 "ValveBiped.Bip01_Spine1" 0.4
+	 "ValveBiped.Bip01_Spine2" 0.6
+	 "ValveBiped.Bip01_Spine4" 1
+	 "ValveBiped.Bip01_R_Clavicle" 1
+	 "ValveBiped.Bip01_L_Clavicle" 1
+}
+
+$Weightlist PistolRelaxedAimUpperbodyBlend {
+	"valvebiped.Bip01_Pelvis" 0.1 
+	"ValveBiped.Bip01_L_Thigh" 0.0 
+	"ValveBiped.Bip01_R_Thigh" 0.0 
+	"ValveBiped.Bip01_Spine" 0.2 
+	"ValveBiped.Bip01_Spine1" 0.4 
+	"ValveBiped.Bip01_Spine2" 0.6 
+	"ValveBiped.Bip01_Spine4" 0.8
+	"ValveBiped.Bip01_Neck1" 0.5
+	"ValveBiped.Bip01_R_Clavicle" 1.0
+	"ValveBiped.Bip01_L_Clavicle" 0.25
+}
+
+// ================================================================
+// 
+// The layers below are combined with existing citizen or metrocop animations to create believable-looking pistol animations.
+// 
+// Due to weightlists and the citizen combat stance differing from metrocops, many existing citizen animations do not align the layer
+// with the citizen's actual forward direction. As a result, we have to have "nudged" versions of this layer which use aiming animations
+// to slightly offset the direction to a point where the aiming animations are facing properly.
+// 
+// This should be phased out if full pistol animation SMDs are added.
+// 
+// ================================================================
+$definemacro MakeNudgeLayer SeqName SeqFile WeightlistName CorrectiveAnim \\
+$sequence $SeqName$ $SeqFile$ weightlist $WeightlistName$ subtract $CorrectiveAnim$ 0 delta hidden
+
+$weightlist "weights_layer_pistolangryidle2_up_left" { "ValveBiped.Bip01_Pelvis" 0 "ValveBiped.Bip01_Spine" 0.2 }
+$weightlist "weights_layer_pistolangryidle2_up_right" { "ValveBiped.Bip01_Pelvis" 0 "ValveBiped.Bip01_Spine" 1 }
+$weightlist "weights_layer_pistolangryidle2_mid_right" { "ValveBiped.Bip01_Pelvis" 0 "ValveBiped.Bip01_Spine" 1 }
+$MakeNudgeLayer "layer_pistolangryidle2_up_left" "police_animations_anims\a_pistol_aim_up_left.smd" "weights_layer_pistolangryidle2_up_left" "a_pistol_aim_up_left_corrective_animation"
+$MakeNudgeLayer "layer_pistolangryidle2_up_right" "police_animations_anims\a_pistol_aim_up_right.smd" "weights_layer_pistolangryidle2_up_right" "a_pistol_aim_up_right_corrective_animation"
+$MakeNudgeLayer "layer_pistolangryidle2_mid_right" "police_animations_anims\a_pistol_aim_mid_right.smd" "weights_layer_pistolangryidle2_mid_right" "a_pistol_aim_mid_right_corrective_animation"
+
+$sequence "layer_aim_pistol_posture" "police_animations_anims\pistolangryidle2.smd" weightlist "weights_move_hold_pistol_police_posture" hidden addlayer "layer_pistolangryidle2_up_left" loop
+
+$weightlist "weights_layer_pistol_run_aim_mid_left" { "ValveBiped.Bip01_Pelvis" 0 "ValveBiped.Bip01_Spine" 0.6 }
+$weightlist "weights_layer_pistol_run_aim_mid_right" { "ValveBiped.Bip01_Pelvis" 0 "ValveBiped.Bip01_Spine" 0.3 }
+$weightlist "weights_layer_pistol_run_aim_up_center" { "ValveBiped.Bip01_Pelvis" 0 "ValveBiped.Bip01_Spine" 0.3 }
+$weightlist "weights_layer_pistol_run_aim_up_right" { "ValveBiped.Bip01_Pelvis" 0 "ValveBiped.Bip01_Spine" 0.8 }
+$MakeNudgeLayer "layer_pistol_run_aim_mid_left" "police_animations_anims\a_WalkN_pistol_aim_mid_left.smd" "weights_layer_pistol_run_aim_mid_left" "a_WalkN_pistol_aim_mid_left_corrective_animation"
+$MakeNudgeLayer "layer_pistol_run_aim_mid_right" "police_animations_anims\a_WalkN_pistol_aim_mid_right.smd" "weights_layer_pistol_run_aim_mid_right" "a_WalkN_pistol_aim_mid_right_corrective_animation"
+$MakeNudgeLayer "layer_pistol_run_aim_up_center" "police_animations_anims\a_WalkN_pistol_aim_up_center.smd" "weights_layer_pistol_run_aim_up_center" "a_WalkN_pistol_aim_up_center_corrective_animation"
+$MakeNudgeLayer "layer_pistol_run_aim_up_right" "police_animations_anims\a_WalkN_pistol_aim_up_right.smd" "weights_layer_pistol_run_aim_up_right" "a_WalkN_pistol_aim_up_right_corrective_animation"
+
+$sequence "layer_walk_aiming_pistol_combat_posture" "male_shared_anims\layer_walk_aiming.smd" weightlist "weights_move_hold_pistol_angry_posture" hidden
+
+$sequence "layer_walk_aiming_pistol_posture" {
+	"police_animations_anims\layer_run_aiming_pistol.smd"
+	frame 0 0
+	hidden
+	loop
+	weightlist "weights_move_hold_pistol_police_posture"
+}
+
+$sequence "layer_run_aiming_pistol_combat_posture" "male_shared_anims\layer_run_aiming.smd" weightlist "weights_move_hold_pistol_angry_posture" hidden
+
+$sequence "layer_run_aiming_pistol_posture" {
+	"police_animations_anims\layer_run_aiming_pistol.smd"
+	frame 0 0
+	hidden
+	addlayer "layer_pistol_run_aim_mid_left"
+	addlayer "layer_pistol_run_aim_up_center"
+	loop
+	weightlist "weights_move_hold_pistol_police_posture"
+}
+
+// ================================================================
+// Combat Animations
+// ================================================================
+
+// Re-use the regular metrocop animation as a readiness activity
+$GenericCombatIdle "pistolangryidle2" "police_animations_anims\pistolangryidle2.smd" "ACT_IDLE_AIM_PISTOL_STIMULATED" "pistol_Aim_all"
+$append pistolangryidle2 {
+	node "shooting_pistol"
+	fps 4
+}
+
+$GenericCombatIdle "Idle_Pistol_Aim_Relaxed" "male_shared_anims\custom\Idle_Pistol_Aim_Relaxed.smd" "ACT_IDLE_AIM_PISTOL_RELAXED" "soldier_Aim_9_directions" node "shooting_pistol"
+
+$GenericCombatIdle "Idle_Pistol_Aim" "male_shared_anims\custom\Idle_Pistol_Aim.smd" "ACT_IDLE_ANGRY_PISTOL" "soldier_Aim_9_directions"
+$append Idle_Pistol_Aim {
+	node "shooting_pistol"
+	fps 4
+}
+
+$GenericIdle "Crouch_idle_pistol" "police_animations_anims\Crouch_idle_pistol.smd" "ACT_COVER_PISTOL_LOW"
+$append Crouch_idle_pistol { node "crouching_pistol" }
+
+$sequence "gesture_shoot_pistol" {
+	"police_animations_anims\gesture_shoot_pistol.smd"
+	activity "ACT_GESTURE_RANGE_ATTACK_PISTOL" 1
+	delta
+	// Crowbar writes this subtract option to prevent jigglebone and poseparameter problems when delta sequences are recompiled.
+	subtract "@gesture_shoot_pistol_corrective_animation" 0
+	fadein 0.2
+	fadeout 0.2
+	fps 30
+}
+
+$GenericShootFromIdle "shootp1" "male_shared_anims\custom\Idle_Pistol_Aim.smd" "ACT_RANGE_ATTACK_PISTOL" "soldier_Aim_9_directions" "gesture_shoot_pistol" 5
+
+$sequence "reload_pistol" {
+	"police_animations_anims\reload_pistol.smd"
+	activity "ACT_RELOAD_PISTOL" 1
+	{ event 3017 0 "" }
+	{ event 3018 34 "" }
+	fadein 0.2
+	fadeout 0.2
+	blendlayer "pistol_Aim_all" 0 0 0 15 spline
+	blendlayer "pistol_Aim_all" 30 41 41 41 spline
+	node "shooting_pistol"
+	fps 30
+	ikrule "lfoot" footstep contact 0 fakeorigin 11.95 7.22 0 fakerotate 0 0 0 floor 0 height 20 radius 2.5 range 0 0 40 40 target 3
+	ikrule "rfoot" footstep contact 0 fakeorigin -9.2 -3.23 0 fakerotate 0 0 0 floor 0 height 20 radius 2.5 range 0 0 40 40 target 2
+	ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" contact 29 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 26 29 30 31 target 1
+	ikrule "lhand" touch "ValveBiped.Bip01_Spine" contact 13 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 10 13 16 18 target 1
+	ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" contact 40 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 38 40 10 10 target 1 usesequence 
+	ikrule "rhand" release
+}
+
+$sequence "gesture_reload_pistolspine" {
+	"police_animations_anims\gesture_reload_pistolspine.smd"
+	delta
+	// Crowbar writes this subtract option to prevent jigglebone and poseparameter problems when delta sequences are recompiled.
+	subtract "@gesture_reload_pistolspine_corrective_animation" 0
+	fadein 0.2
+	fadeout 0.2
+	hidden
+	fps 30
+	weightlist "weights_neck_trans_x"
+}
+
+$sequence "gesture_reload_pistolarms" {
+	"police_animations_anims\gesture_reload_pistolarms.smd"
+	fadein 0.2
+	fadeout 0.2
+	hidden
+	fps 30
+	weightlist "weights_gesture_reload_pistolarms"
+}
+
+$sequence "gesture_reload_pistol" {
+	"police_animations_anims\gesture_reload_pistol.smd"
+	activity "ACT_GESTURE_RELOAD_PISTOL" 1
+	{ event 3017 0 "" }
+	{ event 3018 37 "" }
+	fadein 0.2
+	fadeout 0.2
+	iklock "rfoot" 1 0
+	iklock "lfoot" 1 0
+	blendlayer "gesture_reload_pistolarms" 0 5 32 40 spline
+	blendlayer "gesture_reload_pistolspine" 0 5 32 40 spline
+	node "standing" // standing_pistol
+	fps 30
+	ikrule "lhand" touch "ValveBiped.Bip01_Pelvis" contact 8 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 1 8 16 20 target 1 usesequence 
+	ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" contact 22 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 18 22 38 39 target 1 usesequence 
+	weightlist "weights_gesture_reload_pistol"
+}
+
+// ================================================================
+// Low Cover Animations
+// ================================================================
+$weightlist "weights_pistol_crouch_layer" {
+	 "ValveBiped.Bip01_Pelvis" 0.1
+	 "ValveBiped.Bip01_Spine" 0.2
+	 "ValveBiped.Bip01_Spine1" 0.3
+	 "ValveBiped.Bip01_Spine2" 0.4
+	 "ValveBiped.Bip01_Spine4" 0.5
+	 "ValveBiped.Bip01_Neck1" 0.25
+	 "ValveBiped.Bip01_L_Clavicle" 1
+	 "ValveBiped.Bip01_L_UpperArm" 1
+	 "ValveBiped.Bip01_L_Forearm" 1
+	 "ValveBiped.Bip01_L_Hand" 1
+	 "ValveBiped.Bip01_R_Clavicle" 1
+	 "ValveBiped.Bip01_R_UpperArm" 1
+	 "ValveBiped.Bip01_R_Forearm" 1
+	 "ValveBiped.Bip01_R_Hand" 1
+}
+
+$sequence "Crouch_Pistol_Layer" {
+	"male_shared_anims\custom\crouch_aim_pistol.smd"
+	frame 0 0
+	numframes 30
+	worldspace
+	weightlist "weights_pistol_crouch_layer"
+	loop
+	hidden
+	ikrule lhand touch "ValveBiped.Bip01_R_Hand"
+}
+
+$GenericReloadNoAim "crouch_reload_pistol" "police_animations_anims\crouch_reload_pistol.smd" "ACT_RELOAD_PISTOL_LOW" 56
+$append crouch_reload_pistol { node "crouching_pistol" }
+
+$GenericCombatIdle "crouch_aim_pistol" "male_shared_anims\custom\crouch_aim_pistol.smd" "ACT_RANGE_AIM_PISTOL_LOW" "soldier_Aim_9_directions"
+$append crouch_aim_pistol { node "crouchShooting_pistol" }
+
+$GenericShootFromIdle "crouch_shoot_pistol" "male_shared_anims\custom\crouch_aim_pistol.smd" "ACT_RANGE_ATTACK_PISTOL_LOW" "soldier_Aim_9_directions" "gesture_shoot_pistol" 4
+$append crouch_shoot_pistol { node "crouchShooting_pistol" }
+
+// ================================================================
+// Aim Animations
+// ================================================================
+//$sequence "pistol_Aim_all" {
+//	"a_pistol_aim_straight_up"
+//	"a_pistol_aim_straight_up"
+//	"a_pistol_aim_straight_up"
+//	"a_pistol_aim_up_right"
+//	"a_pistol_aim_up_center"
+//	"a_pistol_aim_up_left"
+//	"a_pistol_aim_mid_right"
+//	"a_pistol_aim_mid_center"
+//	"a_pistol_aim_mid_left"
+//	"a_pistol_aim_down_right"
+//	"a_pistol_aim_down_center"
+//	"a_pistol_aim_down_left"
+//	blend "aim_yaw" -43.47391 45.51665
+//	blend "aim_pitch" -82.85746 45.59517
+//	blendwidth 3
+//	delta
+//	fadein 0.2
+//	fadeout 0.2
+//	hidden
+//	iklock "rfoot" 1 0
+//	iklock "lfoot" 1 0
+//}
+
+// 
+// Crowbar appears to have had issues decompiling parts of pistol_Aim_all, leading to citizens not turning towards their target enough.
+// Fortunately, however, the Source SDK happens to come with the original SMD for the metrocop pistol aim layer as  part of the HL2:DM sample pack.
+// By using the $makeaimlayer macro, which also came from the Source SDK (and can be found in this repository under hl2mp_ported_anims\player_macros.qci),
+// we can recreate that blend in its original source form without the aforementioned decompiling issues.
+// 
+$animation a_pistol_Aim_all_neutral "hl2mp_ported_anims\Pistol_aim_matrix" frame 4 4 weightlist "weights_pistol_Aim_all" ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" usesource
+$animation a_pistol_Aim_all_down_left "hl2mp_ported_anims\Pistol_aim_matrix" frame 0 0 subtract a_pistol_Aim_all_neutral 0 ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" usesource weightlist "weights_pistol_Aim_all"
+$animation a_pistol_Aim_all_down_center "hl2mp_ported_anims\Pistol_aim_matrix" frame 1 1 subtract a_pistol_Aim_all_neutral 0 ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" usesource weightlist "weights_pistol_Aim_all"
+$animation a_pistol_Aim_all_down_right "hl2mp_ported_anims\Pistol_aim_matrix" frame 2 2 subtract a_pistol_Aim_all_neutral 0 ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" usesource weightlist "weights_pistol_Aim_all"
+$animation a_pistol_Aim_all_mid_left "hl2mp_ported_anims\Pistol_aim_matrix" frame 3 3 subtract a_pistol_Aim_all_neutral 0 ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" usesource weightlist "weights_pistol_Aim_all"
+$animation a_pistol_Aim_all_mid_center "hl2mp_ported_anims\Pistol_aim_matrix" frame 4 4 subtract a_pistol_Aim_all_neutral 0 ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" usesource weightlist "weights_pistol_Aim_all"
+$animation a_pistol_Aim_all_mid_right "hl2mp_ported_anims\Pistol_aim_matrix" frame 5 5 subtract a_pistol_Aim_all_neutral 0 ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" usesource weightlist "weights_pistol_Aim_all"
+$animation a_pistol_Aim_all_up_left "hl2mp_ported_anims\Pistol_aim_matrix" frame 6 6 subtract a_pistol_Aim_all_neutral 0 ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" usesource weightlist "weights_pistol_Aim_all"
+$animation a_pistol_Aim_all_up_center "hl2mp_ported_anims\Pistol_aim_matrix" frame 7 7 subtract a_pistol_Aim_all_neutral 0 ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" usesource weightlist "weights_pistol_Aim_all"
+$animation a_pistol_Aim_all_up_right "hl2mp_ported_anims\Pistol_aim_matrix" frame 8 8 subtract a_pistol_Aim_all_neutral 0 ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" usesource weightlist "weights_pistol_Aim_all"
+$sequence pistol_Aim_all {
+	a_pistol_aim_straight_up a_pistol_aim_straight_up a_pistol_aim_straight_up
+	a_pistol_Aim_all_up_right a_pistol_Aim_all_up_center a_pistol_Aim_all_up_left
+	a_pistol_Aim_all_mid_right a_pistol_Aim_all_mid_center a_pistol_Aim_all_mid_left
+	a_pistol_Aim_all_down_right a_pistol_Aim_all_down_center a_pistol_Aim_all_down_left
+	blend "aim_yaw" -43.47391 45.51665
+	blend "aim_pitch" -82.85746 45.59517
+	blendref a_pistol_Aim_all_neutral
+	blendcenter a_pistol_Aim_all_mid_center
+	blendwidth 3 calcblend aim_yaw "anim_attachment_RH" ZR calcblend aim_pitch "anim_attachment_RH" YR
+	delta
+	iklock rfoot 1 0 iklock lfoot 1 0
+	hidden
+}
+
+$sequence "WalkN_pistol_Aim_all" {
+	"a_WalkN_pistol_aim_straight_up"
+	"a_WalkN_pistol_aim_straight_up"
+	"a_WalkN_pistol_aim_straight_up"
+	"a_WalkN_pistol_aim_up_right"
+	"a_WalkN_pistol_aim_up_center"
+	"a_WalkN_pistol_aim_up_left"
+	"a_WalkN_pistol_aim_mid_right"
+	"a_WalkN_pistol_aim_mid_center"
+	"a_WalkN_pistol_aim_mid_left"
+	"a_WalkN_pistol_aim_down_right"
+	"a_WalkN_pistol_aim_down_center"
+	"a_WalkN_pistol_aim_down_left"
+	blend "aim_yaw" -45.59397 44.46127
+	blend "aim_pitch" -78.71045 43.57745
+	blendwidth 3
+	delta
+	fadein 0.2
+	fadeout 0.2
+	hidden
+	//iklock "rfoot" 1 0
+	//iklock "lfoot" 1 0
+}
+
+// We need this instead of pistol_Aim_all in some animations
+$makeaimlayer soldier_Aim_9_directions			"hl2mp_ported_anims\Aim_9_directions"
+
+// ================================================================
+// Walk Animations
+// ================================================================
+$sequence "Pistol_aim_walk_all_delta" {
+	"a_walkS_pistol_aim_delta"
+	"a_walkSE_pistol_aim_delta"
+	"a_walkE_pistol_aim_delta"
+	"a_walkNE_pistol_aim_delta"
+	"a_walkN_pistol_aim_delta"
+	"a_walkNW_pistol_aim_delta"
+	"a_walkW_pistol_aim_delta"
+	"a_walkSW_pistol_aim_delta"
+	"a_walkS_pistol_aim_delta"
+	blend "move_yaw" -180 180
+	blendwidth 9
+	delta
+	fadein 0.2
+	fadeout 0.2
+	hidden
+	iklock "lfoot" 1 1
+	iklock "rfoot" 1 1
+}
+
+$sequence "layer_walk_aiming_pistol" {
+	"police_animations_anims\layer_walk_aiming_pistol.smd"
+	fadein 0.2
+	fadeout 0.2
+	hidden
+	addlayer "WalkN_pistol_Aim_all"
+	fps 30
+	loop
+	weightlist "weights_layer_walk_hold_baton_angry"
+}
+
+// Re-use the regular metrocop animation as a readiness activity
+$sequence "walk_aiming_pistol_alert_all" {
+	"a_CitizenWalkS"
+	"a_CitizenWalkSE"
+	"a_CitizenWalkE"
+	"a_CitizenWalkNE"
+	"a_WalkN_aim_pistol"
+	"a_CitizenWalkNW"
+	"a_CitizenWalkW"
+	"a_CitizenWalkSW"
+	"a_CitizenWalkS"
+	activity "ACT_WALK_AIM_PISTOL_STIMULATED" 1 // ACT_WALK_AIM_PISTOL
+	blend "move_yaw" -180 180
+	blendwidth 9
+	{ event 6004 9 "NPC_Citizen" }
+	{ event 6005 25 "NPC_Citizen" }
+	fadein 0.2
+	fadeout 0.2
+	addlayer "layer_walk_aiming_pistol"
+}
+
+$makenpcmatchwalk	walk_aiming_pistol_relaxed_all		"male_shared_anims\custom\Idle_Pistol_Aim_Relaxed.smd" 0 soldier_Aim_9_directions "male_shared_anims\a_WalkN.smd" PistolRelaxedAimUpperbodyBlend 30 ACT_WALK_AIM_PISTOL_RELAXED 1
+
+$sequence "walk_aiming_pistol_all" {
+	"a_CitizenWalkS"
+	"a_CitizenWalkSE"
+	"a_CitizenWalkE"
+	"a_CitizenWalkNE"
+	"a_CitizenWalkN" // a_WalkN_aim_pistol
+	"a_CitizenWalkNW"
+	"a_CitizenWalkW"
+	"a_CitizenWalkSW"
+	"a_CitizenWalkS"
+	activity "ACT_WALK_AIM_PISTOL" 1
+	blend "move_yaw" -180 180
+	blendwidth 9
+	{ event 6004 9 "NPC_Citizen" }
+	{ event 6005 25 "NPC_Citizen" }
+	fadein 0.2
+	fadeout 0.2
+	addlayer "WalkN_pistol_Aim_all"
+	blendlayer "layer_walk_aiming_pistol_posture" 0 0 0 0 local
+	blendlayer "layer_walk_aiming_pistol_combat_posture" 0 0 0 0 local
+}
+
+// Overlays the lower posture citizens use for alert animations
+$sequence "layer_walk_hold_pistol_alert_posture" {
+	"male_shared_anims\layer_walk_alert_holding.smd"
+	fadein 0.2
+	fadeout 0.2
+	hidden
+	fps 30
+	loop
+	weightlist "weights_move_hold_pistol_angry_posture"
+}
+
+// Overlays the lower posture citizens use for combat animations
+$sequence "layer_walk_hold_pistol_angry_posture" {
+	"male_shared_anims\layer_walk_holding.smd"
+	fadein 0.2
+	fadeout 0.2
+	hidden
+	fps 30
+	loop
+	weightlist "weights_move_hold_pistol_angry_posture"
+}
+
+$sequence "layer_walk_hold_pistol" {
+	"police_animations_anims\layer_walk_hold_pistol.smd"
+	fadein 0.2
+	fadeout 0.2
+	hidden
+	addlayer "WalkN_pistol_Aim_all"
+	fps 30
+	loop
+	weightlist "weights_move_hold_pistol"
+}
+
+$sequence "walk_alert_hold_pistol" {
+	"a_CitizenWalkS"
+	"a_CitizenWalkSE"
+	"a_CitizenWalkE"
+	"a_CitizenWalkNE"
+	"a_CitizenWalkN" // a_walkN_hold_pistol
+	"a_CitizenWalkNW"
+	"a_CitizenWalkW"
+	"a_CitizenWalkSW"
+	"a_CitizenWalkS"
+	activity "ACT_WALK_PISTOL_STIMULATED" 1 // ACT_WALK_PISTOL
+	blend "move_yaw" -180 180
+	blendwidth 9
+	{ event 6004 9 "NPC_Citizen" }
+	{ event 6005 25 "NPC_Citizen" }
+	fadein 0.2
+	fadeout 0.2
+	addlayer "layer_walk_hold_pistol"
+	addlayer "layer_walk_hold_pistol_alert_posture"
+	node "standing" // standing_pistol
+}
+
+$sequence "walk_hold_pistol" {
+	"a_CitizenWalkS"
+	"a_CitizenWalkSE"
+	"a_CitizenWalkE"
+	"a_CitizenWalkNE"
+	"a_CitizenWalkN" // a_walkN_hold_pistol
+	"a_CitizenWalkNW"
+	"a_CitizenWalkW"
+	"a_CitizenWalkSW"
+	"a_CitizenWalkS"
+	activity "ACT_WALK_PISTOL" 1
+	blend "move_yaw" -180 180
+	blendwidth 9
+	{ event 6004 9 "NPC_Citizen" }
+	{ event 6005 25 "NPC_Citizen" }
+	fadein 0.2
+	fadeout 0.2
+	addlayer "layer_walk_hold_pistol"
+	addlayer "layer_walk_hold_pistol_angry_posture"
+	node "standing" // standing_pistol
+}
+
+$weightlist "weights_layer_walk_hold_pistol_relaxed" {
+	 "ValveBiped.Bip01_Pelvis" 0
+	 "ValveBiped.Bip01_R_Clavicle" 0
+	 "ValveBiped.Bip01_R_UpperArm" 0.5
+	 "ValveBiped.Bip01_R_Forearm" 1
+	 "ValveBiped.Bip01_R_Hand" 1
+	 "ValveBiped.Bip01_L_Clavicle" 0
+}
+
+$sequence "layer_walk_hold_pistol_relaxed" {
+	"police_animations_anims\layer_walk_hold_pistol.smd"
+	frame 0 0
+	numframes 30
+	fadein 0.2
+	fadeout 0.2
+	hidden
+	fps 30
+	loop
+	weightlist "weights_layer_walk_hold_pistol_relaxed"
+}
+
+$sequence "walk_hold_pistol_relaxed" {
+	"a_CitizenWalkS"
+	"a_CitizenWalkSE"
+	"a_CitizenWalkE"
+	"a_CitizenWalkNE"
+	"a_CitizenWalkN" // a_walkN_hold_pistol
+	"a_CitizenWalkNW"
+	"a_CitizenWalkW"
+	"a_CitizenWalkSW"
+	"a_CitizenWalkS"
+	activity "ACT_WALK_PISTOL_RELAXED" 1 // ACT_WALK_PISTOL
+	blend "move_yaw" -180 180
+	blendwidth 9
+	{ event 6004 9 "NPC_Citizen" }
+	{ event 6005 25 "NPC_Citizen" }
+	fadein 0.2
+	fadeout 0.2
+	keyvalues
+	{
+		interior ACT_NEUTRAL_PISTOL_RELAXED
+	}
+	addlayer "layer_walk_hold_pistol_relaxed"
+	node "standing" // standing_pistol
+}
+
+// ================================================================
+// Run Animations
+// ================================================================
+$sequence "Pistol_aim_run_all_delta" {
+	"a_runS_pistol_aim_delta"
+	"a_runSE_pistol_aim_delta"
+	"a_runE_pistol_aim_delta"
+	"a_runNE_pistol_aim_delta"
+	"a_runN_pistol_aim_delta"
+	"a_runNW_pistol_aim_delta"
+	"a_runW_pistol_aim_delta"
+	"a_runSW_pistol_aim_delta"
+	"a_runS_pistol_aim_delta"
+	blend "move_yaw" -180 180
+	blendwidth 9
+	delta
+	fadein 0.2
+	fadeout 0.2
+	hidden
+	iklock "lfoot" 1 1
+	iklock "rfoot" 1 1
+}
+
+// Overlays the lower posture citizens use for alert animations
+$sequence "layer_run_hold_pistol_alert_posture" {
+	"male_shared_anims\layer_run_alert_holding.smd"
+	fadein 0.2
+	fadeout 0.2
+	hidden
+	fps 30
+	loop
+	weightlist "weights_move_hold_pistol_angry_posture"
+}
+
+// Overlays the lower posture citizens use for combat animations
+$sequence "layer_run_hold_pistol_angry_posture" {
+	"male_shared_anims\layer_run_holding.smd"
+	fadein 0.2
+	fadeout 0.2
+	hidden
+	fps 30
+	loop
+	weightlist "weights_move_hold_pistol_angry_posture"
+}
+
+$sequence "layer_run_hold_pistol" {
+	"police_animations_anims\layer_run_hold_pistol.smd"
+	fadein 0.2
+	fadeout 0.2
+	hidden
+	addlayer "WalkN_pistol_Aim_all"
+	fps 30
+	loop
+	weightlist "weights_move_hold_pistol"
+}
+
+$sequence "run_alert_hold_pistol" {
+	"a_CitizenRunS"
+	"a_CitizenRunSE"
+	"a_CitizenRunE"
+	"a_CitizenRunNE"
+	"a_CitizenRunN" // a_runN_hold_pistol
+	"a_CitizenRunNW"
+	"a_CitizenRunW"
+	"a_CitizenRunSW"
+	"a_CitizenRunS"
+	activity "ACT_RUN_PISTOL_STIMULATED" 1 // ACT_RUN_PISTOL
+	blend "move_yaw" -180 180
+	blendwidth 9
+	{ event 6004 7 "NPC_Citizen" }
+	{ event 6005 16 "NPC_Citizen" }
+	fadein 0.2
+	fadeout 0.2
+	addlayer "layer_run_hold_pistol"
+	addlayer "layer_run_hold_pistol_alert_posture"
+	node "standing" // standing_pistol
+}
+
+$sequence "run_hold_pistol" {
+	"a_CitizenRunS"
+	"a_CitizenRunSE"
+	"a_CitizenRunE"
+	"a_CitizenRunNE"
+	"a_CitizenRunN" // a_runN_hold_pistol
+	"a_CitizenRunNW"
+	"a_CitizenRunW"
+	"a_CitizenRunSW"
+	"a_CitizenRunS"
+	activity "ACT_RUN_PISTOL" 1
+	blend "move_yaw" -180 180
+	blendwidth 9
+	{ event 6004 7 "NPC_Citizen" }
+	{ event 6005 16 "NPC_Citizen" }
+	fadein 0.2
+	fadeout 0.2
+	addlayer "layer_run_hold_pistol"
+	addlayer "layer_run_hold_pistol_angry_posture"
+	node "standing" // standing_pistol
+}
+
+$sequence "layer_run_hold_pistol_relaxed" {
+	"police_animations_anims\layer_run_hold_pistol.smd"
+	frame 0 0
+	numframes 30
+	fadein 0.2
+	fadeout 0.2
+	hidden
+	fps 30
+	loop
+	weightlist "weights_layer_walk_hold_pistol_relaxed"
+}
+
+$sequence "run_hold_pistol_relaxed" {
+	"a_CitizenRunS"
+	"a_CitizenRunSE"
+	"a_CitizenRunE"
+	"a_CitizenRunNE"
+	"a_CitizenRunN" // a_runN_hold_pistol
+	"a_CitizenRunNW"
+	"a_CitizenRunW"
+	"a_CitizenRunSW"
+	"a_CitizenRunS"
+	activity "ACT_RUN_PISTOL_RELAXED" 1 // ACT_RUN_PISTOL
+	blend "move_yaw" -180 180
+	blendwidth 9
+	{ event 6004 7 "NPC_Citizen" }
+	{ event 6005 16 "NPC_Citizen" }
+	fadein 0.2
+	fadeout 0.2
+	keyvalues
+	{
+		interior ACT_NEUTRAL_PISTOL_RELAXED
+	}
+	addlayer "layer_run_hold_pistol_relaxed"
+	node "standing" // standing_pistol
+}
+
+$sequence "layer_run_aiming_pistol" {
+	"police_animations_anims\layer_run_aiming_pistol.smd"
+	fadein 0.2
+	fadeout 0.2
+	hidden
+	addlayer "WalkN_pistol_Aim_all"
+	fps 30
+	loop
+	//ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" usesource
+	weightlist "weights_layer_walk_hold_baton_angry"
+}
+
+// Re-use the regular metrocop animation as a readiness activity
+$sequence "run_aiming_pistol_alert_all" {
+	"a_CitizenRunS"
+	"a_CitizenRunSE"
+	"a_CitizenRunE"
+	"a_CitizenRunNE"
+	"a_runN_aim_pistol"
+	"a_CitizenRunNW"
+	"a_CitizenRunW"
+	"a_CitizenRunSW"
+	"a_CitizenRunS"
+	activity "ACT_RUN_AIM_PISTOL_STIMULATED" 1 // ACT_RUN_AIM_PISTOL
+	blend "move_yaw" -180 180
+	blendwidth 9
+	{ event 6004 7 "NPC_Citizen" }
+	{ event 6005 16 "NPC_Citizen" }
+	fadein 0.2
+	fadeout 0.2
+	blendlayer "layer_run_aiming_pistol" 0 0 0 0 local
+}
+
+$makenpcmatchrun	run_aiming_pistol_relaxed_all		"male_shared_anims\custom\Idle_Pistol_Aim_Relaxed.smd" 0 soldier_Aim_9_directions "male_shared_anims\a_RunN.smd" PistolRelaxedAimUpperbodyBlend 18 ACT_RUN_AIM_PISTOL_RELAXED 1
+
+$sequence "run_aiming_pistol_all" {
+	"a_CitizenRunS"
+	"a_CitizenRunSE"
+	"a_CitizenRunE"
+	"a_CitizenRunNE"
+	"a_CitizenRunN" // a_runN_aim_pistol
+	"a_CitizenRunNW"
+	"a_CitizenRunW"
+	"a_CitizenRunSW"
+	"a_CitizenRunS"
+	activity "ACT_RUN_AIM_PISTOL" 1
+	blend "move_yaw" -180 180
+	blendwidth 9
+	{ event 6004 7 "NPC_Citizen" }
+	{ event 6005 16 "NPC_Citizen" }
+	fadein 0.2
+	fadeout 0.2
+	addlayer "WalkN_pistol_Aim_all"
+	blendlayer "layer_run_aiming_pistol_posture" 0 0 0 0 local
+	blendlayer "layer_run_aiming_pistol_combat_posture" 0 0 0 0 local
+}
+
+
+// ================================================================
+// Idle Animations
+// ================================================================
+$weightlist "weights_pistol_idle_layer" {
+	 "ValveBiped.Bip01_Pelvis" 0
+	 "ValveBiped.Bip01_Spine" 0.2
+	 "ValveBiped.Bip01_Spine1" 0.3
+	 "ValveBiped.Bip01_Spine2" 0.4
+	 "ValveBiped.Bip01_Spine4" 0.5
+	 "ValveBiped.Bip01_Neck1" 0
+	 "ValveBiped.Bip01_L_Clavicle" 1
+	 "ValveBiped.Bip01_L_UpperArm" 1
+	 "ValveBiped.Bip01_L_Forearm" 1
+	 "ValveBiped.Bip01_L_Hand" 1
+	 "ValveBiped.Bip01_R_Clavicle" 1
+	 "ValveBiped.Bip01_R_UpperArm" 1
+	 "ValveBiped.Bip01_R_Forearm" 1
+	 "ValveBiped.Bip01_R_Hand" 1
+}
+
+$sequence "Idle_Pistol_Layer" {
+	"police_animations_anims\a_walkN_hold_pistol.smd"
+	frame 0 0
+	numframes 30
+	weightlist "weights_pistol_idle_layer"
+	loop
+	ikrule "lfoot" footstep contact 7 fakeorigin 13.65 6.55 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 29 7 21 29 target 3
+	ikrule "rfoot" footstep contact 22 fakeorigin 13.7 -1.18 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 14 22 6 14 target 2
+	hidden
+}
+
+$weightlist "weights_pistol_idle_layer2" {
+	 "ValveBiped.Bip01_Pelvis" 0
+	 "ValveBiped.Bip01_Spine4" 0.5
+	 "ValveBiped.Bip01_Neck1" 0
+	 "ValveBiped.Bip01_L_Clavicle" 0.0
+	 "ValveBiped.Bip01_L_UpperArm" 1
+	 "ValveBiped.Bip01_L_Forearm" 1
+	 "ValveBiped.Bip01_L_Hand" 1
+	 "ValveBiped.Bip01_R_Clavicle" 0.0
+	 "ValveBiped.Bip01_R_UpperArm" 0.0
+	 "ValveBiped.Bip01_R_Forearm" 0.5
+	 "ValveBiped.Bip01_R_Hand" 1
+}
+
+$sequence "Idle_Pistol_Layer2" {
+	"alyx_animations_ep2\Idle_p_stimulated.smd"
+	frame 0 0
+	numframes 30
+	weightlist "weights_pistol_idle_layer2"
+	loop
+	hidden
+}
+
+$sequence "Idle_Pistol_Layer3" {
+	"alyx_animations_ep2\Idle_p_stimulated_fidget01.smd"
+	frame 50 50
+	numframes 30
+	weightlist "weights_pistol_idle_layer2"
+	loop
+	hidden
+}
+
+$weightlist "weights_pistol_idle_layer4a" {
+	 "ValveBiped.Bip01_Pelvis" 0
+	 "ValveBiped.Bip01_L_UpperArm" 0.6
+	 "ValveBiped.Bip01_L_Forearm" 0.25
+	 "ValveBiped.Bip01_L_Hand" 1
+	 "ValveBiped.Bip01_R_UpperArm" 0.5
+	 "ValveBiped.Bip01_R_Forearm" 0
+}
+
+$sequence "Idle_Pistol_Layer4a" {
+	"police_animations_anims\a_walkN_hold_pistol.smd"
+	frame 0 0
+	numframes 30
+	weightlist "weights_pistol_idle_layer4a"
+	loop
+	hidden
+}
+
+$weightlist "weights_pistol_idle_layer4" {
+	 "ValveBiped.Bip01_Pelvis" 0
+	 "ValveBiped.Bip01_Spine4" 0.5
+	 "ValveBiped.Bip01_Neck1" 0
+	 "ValveBiped.Bip01_L_Clavicle" 1
+	 "ValveBiped.Bip01_L_UpperArm" 1
+	 "ValveBiped.Bip01_L_Forearm" 1
+	 "ValveBiped.Bip01_L_Hand" 1
+	 "ValveBiped.Bip01_R_Clavicle" 1
+	 "ValveBiped.Bip01_R_UpperArm" 1
+	 "ValveBiped.Bip01_R_Forearm" 1
+	 "ValveBiped.Bip01_R_Hand" 1
+	 "ValveBiped.Bip01_R_Finger0" 0
+	 "ValveBiped.Bip01_R_Finger1" 0
+	 "ValveBiped.Bip01_R_Finger2" 0
+	 "ValveBiped.Bip01_R_Finger3" 0
+	 "ValveBiped.Bip01_R_Finger4" 0
+}
+
+$sequence "Idle_Pistol_Layer4" {
+	"police_animations_anims\Crouch_idle_pistol.smd"
+	frame 0 0
+	numframes 30
+	addlayer "Idle_Pistol_Layer4a"
+	weightlist "weights_pistol_idle_layer4"
+	loop
+	hidden
+}
+
+// The actual pistol-holding layer
+$weightlist "weights_pistol_idle_layer_relaxed_1" {
+	 "ValveBiped.Bip01_Pelvis" 0
+	 "ValveBiped.Bip01_Spine4" 0.5
+	 "ValveBiped.Bip01_Neck1" 0
+	 "ValveBiped.Bip01_L_Clavicle" 0
+	 "ValveBiped.Bip01_L_UpperArm" 0
+	 "ValveBiped.Bip01_L_Forearm" 0
+	 "ValveBiped.Bip01_L_Hand" 0
+	 "ValveBiped.Bip01_R_Clavicle" 1
+	 "ValveBiped.Bip01_R_UpperArm" 0.5
+	 "ValveBiped.Bip01_R_Forearm" 0.5
+	 "ValveBiped.Bip01_R_Hand" 1
+}
+
+$sequence "Idle_Pistol_Layer_Relaxed_1" {
+	"police_animations_anims\a_walkN_hold_pistol.smd"
+	frame 0 0
+	numframes 30
+	weightlist "weights_pistol_idle_layer_relaxed_1"
+	loop
+	ikrule "lfoot" footstep contact 7 fakeorigin 13.65 6.55 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 29 7 21 29 target 3
+	ikrule "rfoot" footstep contact 22 fakeorigin 13.7 -1.18 0 fakerotate 0 0 0 floor 0 height 18 radius 2.5 range 14 22 6 14 target 2
+	hidden
+}
+
+// The unarmed idle layer
+$weightlist "weights_pistol_idle_layer_relaxed_2" {
+	 "ValveBiped.Bip01_Pelvis" 0
+	 "ValveBiped.Bip01_Spine4" 0
+	 "ValveBiped.Bip01_Neck1" 0
+	 "ValveBiped.Bip01_L_Clavicle" 0.5
+	 "ValveBiped.Bip01_L_UpperArm" 0.75
+	 "ValveBiped.Bip01_L_Forearm" 1
+	 "ValveBiped.Bip01_L_Hand" 1
+	 "ValveBiped.Bip01_R_Clavicle" 1
+	 "ValveBiped.Bip01_R_UpperArm" 0.5
+	 "ValveBiped.Bip01_R_Forearm" 0
+	 "ValveBiped.Bip01_R_Hand" 0
+}
+
+$sequence "Idle_Pistol_Layer_Relaxed_2" {
+	"male_shared_anims\idle_subtle.smd"
+	frame 0 0
+	numframes 30
+	weightlist "weights_pistol_idle_layer_relaxed_2"
+	loop
+	hidden
+}
+
+// The composite of the two layers
+$sequence "Idle_Pistol_Layer_Relaxed" {
+	"police_animations_anims\a_walkN_hold_pistol.smd"
+	frame 0 0
+	numframes 30
+	noanimation
+	addlayer "Idle_Pistol_Layer_Relaxed_1"
+	addlayer "Idle_Pistol_Layer_Relaxed_2"
+	loop
+	hidden
+}
+
+//$sequence "Idle_Pistol" "male_shared_anims\idle_subtle.smd" {
+//	blendlayer "Idle_Pistol_Layer" 0 0 0 0 local
+//	activity "ACT_IDLE_PISTOL" 1
+//	cmdlist lockfeet
+//}
+
+$definemacro MakePistolIdle SeqName IdleAnim IdleLayer ActivityName ActivityWeight \\
+$sequence $SeqName$ $IdleAnim$ { \\
+	blendlayer $IdleLayer$ 0 0 0 0 local \\
+	activity $ActivityName$ $ActivityWeight$ \\
+	node "standing" \\
+	cmdlist lockfeet \\
+	ikrule "lfoot" footstep contact 0 fakeorigin 9.42 6.98 0 fakerotate 0 0 0 floor 0 height 20 radius 2.5 range 0 0 149 149 target 3 usesequence \\
+	ikrule "rfoot" footstep contact 0 fakeorigin -5.12 -3.28 0 fakerotate 0 0 0 floor 0 height 20 radius 2.5 range 0 0 149 149 target 2 usesequence \\
+	ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 149 149 target 1 usesequence \\
+	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 149 149 target 0 usesequence \\
+}
+
+$definemacro MakePistolAngry SeqName IdleAnim IdleLayer ActivityName ActivityWeight \\
+$sequence $SeqName$ $IdleAnim$ { \\
+	blendlayer $IdleLayer$ 0 0 0 0 local \\
+	activity $ActivityName$ $ActivityWeight$ \\
+	node "standing" \\
+	cmdlist lockfeet \\
+	ikrule "lfoot" footstep contact 0 fakeorigin 12.34 5.11 0 fakerotate 0 0 0 floor 0 height 20 radius 2.5 range 0 0 60 60 target 3 \\
+	ikrule "rfoot" footstep contact 0 fakeorigin -6.44 -2.08 0 fakerotate 0 0 0 floor 0 height 20 radius 2.5 range 0 0 60 60 target 2 \\
+	//ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 60 60 target 1 \\
+	//ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 60 60 target 0 \\
+}
+
+$MakePistolIdle "Idle_Relaxed_Pistol_1" "male_shared_anims\Idle_Relaxed_SMG1_1.smd" "Idle_Pistol_Layer4" "ACT_IDLE_PISTOL_RELAXED" -1 // Looks better when not relaxed
+$MakePistolIdle "Idle_Relaxed_Pistol_2" "male_shared_anims\Idle_Relaxed_SMG1_2.smd" "Idle_Pistol_Layer_Relaxed" "ACT_IDLE_PISTOL_RELAXED" -1
+$MakePistolIdle "Idle_Relaxed_Pistol_3" "male_shared_anims\Idle_Relaxed_SMG1_3.smd" "Idle_Pistol_Layer_Relaxed" "ACT_IDLE_PISTOL_RELAXED" -1
+$MakePistolIdle "Idle_Relaxed_Pistol_4" "male_shared_anims\Idle_Relaxed_SMG1_4.smd" "Idle_Pistol_Layer_Relaxed" "ACT_IDLE_PISTOL_RELAXED" -1
+$MakePistolIdle "Idle_Relaxed_Pistol_5" "male_shared_anims\Idle_Relaxed_SMG1_5.smd" "Idle_Pistol_Layer_Relaxed" "ACT_IDLE_PISTOL_RELAXED" -1
+$MakePistolIdle "Idle_Relaxed_Pistol_6" "male_shared_anims\Idle_Relaxed_SMG1_6.smd" "Idle_Pistol_Layer4" "ACT_IDLE_PISTOL_RELAXED" -1 // Looks better when not relaxed
+$MakePistolIdle "Idle_Relaxed_Pistol_7" "male_shared_anims\Idle_Relaxed_SMG1_7.smd" "Idle_Pistol_Layer_Relaxed" "ACT_IDLE_PISTOL_RELAXED" -1
+$MakePistolIdle "Idle_Relaxed_Pistol_8" "male_shared_anims\Idle_Relaxed_SMG1_8.smd" "Idle_Pistol_Layer_Relaxed" "ACT_IDLE_PISTOL_RELAXED" -1
+$MakePistolIdle "Idle_Relaxed_Pistol_9" "male_shared_anims\Idle_Relaxed_SMG1_9.smd" "Idle_Pistol_Layer_Relaxed" "ACT_IDLE_PISTOL_RELAXED" -1
+
+$MakePistolIdle "Idle_Alert_Pistol_1" "male_shared_anims\Idle_Alert_SMG1_1.smd" "Idle_Pistol_Layer4" "ACT_IDLE_PISTOL_STIMULATED" -1
+$MakePistolIdle "Idle_Alert_Pistol_2" "male_shared_anims\Idle_Alert_SMG1_2.smd" "Idle_Pistol_Layer" "ACT_IDLE_PISTOL_STIMULATED" -1
+$MakePistolIdle "Idle_Alert_Pistol_3" "male_shared_anims\Idle_Alert_SMG1_3.smd" "Idle_Pistol_Layer" "ACT_IDLE_PISTOL_STIMULATED" -1
+$MakePistolIdle "Idle_Alert_Pistol_4" "male_shared_anims\Idle_Alert_SMG1_4.smd" "Idle_Pistol_Layer" "ACT_IDLE_PISTOL_STIMULATED" -1
+$MakePistolIdle "Idle_Alert_Pistol_5" "male_shared_anims\Idle_Alert_SMG1_5.smd" "Idle_Pistol_Layer" "ACT_IDLE_PISTOL_STIMULATED" -1
+$MakePistolIdle "Idle_Alert_Pistol_6" "male_shared_anims\Idle_Alert_SMG1_6.smd" "Idle_Pistol_Layer4" "ACT_IDLE_PISTOL_STIMULATED" -1
+$MakePistolIdle "Idle_Alert_Pistol_7" "male_shared_anims\Idle_Alert_SMG1_7.smd" "Idle_Pistol_Layer4" "ACT_IDLE_PISTOL_STIMULATED" -1
+$MakePistolIdle "Idle_Alert_Pistol_8" "male_shared_anims\Idle_Alert_SMG1_8.smd" "Idle_Pistol_Layer4" "ACT_IDLE_PISTOL_STIMULATED" -1
+$MakePistolIdle "Idle_Alert_Pistol_9" "male_shared_anims\Idle_Alert_SMG1_9.smd" "Idle_Pistol_Layer" "ACT_IDLE_PISTOL_STIMULATED" -1
+
+$MakePistolIdle "Idle_Pistol_Relaxed" "male_shared_anims\Idle_SMG1_Relaxed.smd" "Idle_Pistol_Layer_Relaxed" "ACT_NEUTRAL_PISTOL_RELAXED" -1
+$MakePistolAngry "Idle_Angry_Pistol" "male_shared_anims\Idle_Angry_SMG1.smd" "Idle_Pistol_Layer4" "ACT_IDLE_PISTOL" 1
+
+// ================================================================
+// Transition Animations
+// ================================================================
+$sequence "Stand_to_crouchpistol" {
+	"police_animations_anims\Stand_to_crouchpistol.smd"
+	activity "ACT_TRANSITION" 1
+	fadein 0.2
+	fadeout 0.2
+	transition "standing" "crouching_pistol" // standing_pistol
+	fps 30
+	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 17 17 target 0 usesequence 
+	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 17 17 target 1 usesequence 
+	ikrule "rfoot" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 17 17 target 2 usesequence 
+	ikrule "lfoot" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 17 17 target 3 usesequence 
+	walkframe 17 LX LY
+}
+
+$sequence "Crouch_to_standpistol" {
+	"police_animations_anims\Crouch_to_standpistol.smd"
+	activity "ACT_TRANSITION" 1
+	fadein 0.2
+	fadeout 0.2
+	transition "crouching_pistol" "standing" // standing_pistol
+	fps 30
+	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 20 20 target 0 usesequence 
+	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 20 20 target 1 usesequence 
+	ikrule "rfoot" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 20 20 target 2 usesequence 
+	ikrule "lfoot" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 20 20 target 3 usesequence 
+	walkframe 20 LX LY
+}
+
+$sequence "Shoot_to_crouchpistol" {
+	"police_animations_anims\Shoot_to_crouchpistol.smd"
+	activity "ACT_TRANSITION" 1
+	fadein 0.2
+	fadeout 0.2
+	transition "shooting_pistol" "crouching_pistol"
+	fps 30
+	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 17 17 target 0 usesequence 
+	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 17 17 target 1 usesequence 
+	ikrule "rfoot" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 17 17 target 2 usesequence 
+	ikrule "lfoot" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 17 17 target 3 usesequence 
+	walkframe 17 LX LY
+}
+
+$sequence "Crouch_to_shootpistol" {
+	"police_animations_anims\Crouch_to_shootpistol.smd"
+	activity "ACT_TRANSITION" 1
+	fadein 0.2
+	fadeout 0.2
+	blendlayer "Idle_Pistol_Aim" 14 20 26 26
+	transition "crouching_pistol" "shooting_pistol"
+	fps 40
+	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 25 25 target 0 usesequence 
+	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 25 25 target 1 usesequence 
+	ikrule "rfoot" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 25 25 target 2 usesequence 
+	ikrule "lfoot" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 25 25 target 3 usesequence 
+	walkframe 20 LX LY
+}
+
+// ================================================================
+// New Transition Animations
+// ================================================================
+$sequence "IdleAngryToShootPistol" {
+	"male_shared_anims\IdleAngryToShoot.smd"
+	activity "ACT_TRANSITION" 1
+	fadein 0.2
+	fadeout 0.2
+	blendlayer "Idle_Angry_Pistol" 0 0 0 15 xfade spline
+	blendlayer "Idle_Pistol_Aim" 0 15 15 15 spline
+	blendlayer "IdleAngryToShootDelta" 0 0 15 15
+	transition "standing" "shooting_pistol"
+	fps 30
+	noanimation //weightlist "weights_turnleft"
+	ikrule "rfoot" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 15 15 target 2 usesequence
+	ikrule "lfoot" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 15 15 target 3 usesequence
+	numframes 15
+}
+
+$sequence "ShootToIdleAngryPistol" {
+	"male_shared_anims\ShootToIdleAngry.smd"
+	activity "ACT_TRANSITION" 1
+	fadein 0.2
+	fadeout 0.2
+	blendlayer "Idle_Pistol_Aim" 0 0 0 25 spline
+	blendlayer "Idle_Angry_Pistol" 0 20 20 20 spline
+	//blendlayer "ShootToIdleAngryDelta" 0 0 20 20
+	transition "shooting_pistol" "standing"
+	fps 30
+	noanimation //weightlist "weights_turnleft"
+	ikrule "rfoot" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 20 20 target 2 usesequence
+	ikrule "lfoot" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 20 20 target 3 usesequence
+	numframes 20
+}
+
+$sequence "CrouchPistolToCrouchShoot" {
+	"male_shared_anims\CrouchDToCrouchShoot.smd"
+	activity "ACT_TRANSITION" 1
+	fadein 0.2
+	fadeout 0.2
+	numframes 21
+	//noanimation
+	blendlayer "Crouch_idle_pistol" 0 0 2 15 spline
+	blendlayer "crouch_aim_pistol" 4 21 21 21 spline
+	transition "crouching_pistol" "crouchShooting_pistol"
+	fps 30
+	ikrule "lfoot" footstep contact 0 fakeorigin 11.07 8.78 0 fakerotate 0 0 0 floor 0 height 20 radius 2.5 range 0 0 20 20 target 3
+	ikrule "rfoot" footstep contact 0 fakeorigin -5.36 0.26 0 fakerotate 0 0 0 floor 0 height 20 radius 2.5 range 0 0 20 20 target 2
+	//ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 20 20 target 1
+	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 20 20 target 1
+	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 20 20 target 0
+}
+
+$sequence "CrouchShootToCrouchPistol" {
+	"male_shared_anims\CrouchShootToCrouchD.smd"
+	activity "ACT_TRANSITION" 1
+	fadein 0.2
+	fadeout 0.2
+	blendlayer "crouch_aim_pistol" 0 0 2 15 spline
+	blendlayer "Crouch_idle_pistol" 4 21 21 21 spline
+	transition "crouchShooting_pistol" "crouching_pistol"
+	fps 30
+	ikrule "lfoot" footstep contact 0 fakeorigin 11.07 8.78 0 fakerotate 0 0 0 floor 0 height 20 radius 2.5 range 0 0 20 20 target 3
+	ikrule "rfoot" footstep contact 0 fakeorigin -5.22 0.2 0 fakerotate 0 0 0 floor 0 height 20 radius 2.5 range 0 0 20 20 target 2
+	//ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 20 20 target 1
+	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 20 20 target 1
+	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 20 20 target 0
+}
+
+$sequence "Stand_to_crouchshootpistol" {
+	"police_animations_anims\Stand_to_crouchpistol.smd"
+	activity "ACT_TRANSITION" 1
+	fadein 0.2
+	fadeout 0.2
+	transition "standing" "crouchShooting_pistol" // standing_pistol
+	blendlayer "crouch_aim_pistol" 8 18 18 18 spline
+	fps 30
+	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 17 17 target 0 usesequence 
+	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 17 17 target 1 usesequence 
+	ikrule "rfoot" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 17 17 target 2 usesequence 
+	ikrule "lfoot" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 17 17 target 3 usesequence 
+	walkframe 17 LX LY
+}
+
+$sequence "CrouchShoot_to_standpistol" {
+	"police_animations_anims\Crouch_to_standpistol.smd"
+	activity "ACT_TRANSITION" 1
+	fadein 0.2
+	fadeout 0.2
+	transition "crouchShooting_pistol" "standing" // standing_pistol
+	blendlayer "crouch_aim_pistol" 0 0 0 10 spline
+	fps 30
+	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 20 20 target 0 usesequence 
+	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 20 20 target 1 usesequence 
+	ikrule "rfoot" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 20 20 target 2 usesequence 
+	ikrule "lfoot" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 20 20 target 3 usesequence 
+	walkframe 20 LX LY
+}

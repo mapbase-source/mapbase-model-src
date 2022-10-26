@@ -1,0 +1,115 @@
+// ================================================================
+// 
+// 357 Animations for Female Citizens
+// 
+// ================================================================
+
+$definemacro 357ReloadSounds \\
+	{ event AE_CL_PLAYSOUND 10 "Weapon_357.OpenLoader" } \\
+	{ event AE_CL_PLAYSOUND 17 "Weapon_357.RemoveLoader" } \\
+	{ event AE_CL_PLAYSOUND 37 "Weapon_357.ReplaceLoader" } \\
+	{ event AE_CL_PLAYSOUND 47 "Weapon_357.Spin" } \\ // TODO: Not really a spin
+
+$weightlist "weights_357_shoot" {
+	 "ValveBiped.Bip01_Pelvis" 4
+	 "ValveBiped.Bip01_R_Clavicle" 4
+	 "ValveBiped.Bip01_R_UpperArm" 1.6
+	 "ValveBiped.Bip01_R_Forearm" 4
+	 "ValveBiped.Bip01_R_Hand" 4
+	 "ValveBiped.Bip01_L_Clavicle" 4
+	 "ValveBiped.Bip01_L_UpperArm" 1
+	 "ValveBiped.Bip01_L_Forearm" 8
+	 "ValveBiped.Bip01_L_Hand" 4
+}
+
+$animation "@gesture_shootp1_corrective_animation" "female_shared_anims\@gesture_shootp1_corrective_animation.smd" {
+}
+
+$sequence "gesture_shoot_357_layer" {
+	"female_shared_anims\gesture_shootp1.smd"
+	activity "ACT_GESTURE_RANGE_ATTACK_REVOLVER" 1
+	frame 2 2
+	delta
+	// Crowbar writes this subtract option to prevent jigglebone and poseparameter problems when delta sequences are recompiled.
+	subtract "@gesture_shootp1_corrective_animation" 0
+	weightlist "weights_357_shoot"
+	hidden
+}
+
+$sequence "gesture_shoot_357" {
+	"female_shared_anims\gesture_shootp1.smd"
+	fps 30
+	noanimation
+	blendlayer "gesture_shoot_357_layer" 0 4 6 16 spline
+	numframes 16
+	{ event 3014 1 "" }
+	
+	activity "ACT_GESTURE_RANGE_ATTACK_REVOLVER" 1
+	fadein 0.2
+	fadeout 0.2
+}
+
+$sequence "shootp2" {
+	"female_shared_anims\shootp1.smd"
+	activity "ACT_RANGE_ATTACK_REVOLVER" 1
+	numframes 16
+	fadein 0.2
+	fadeout 0.2
+	addlayer "layer_Aim_p_all"
+	node "shooting_pistol"
+	blendlayer "gesture_shoot_357" 0 0 0 0 local
+	//weightlist "weights_357_shoot"
+	{ event 3014 1 "" }
+	fps 30
+	ikrule "lfoot" footstep contact 0 fakeorigin 11.95 7.22 0 fakerotate 0 0 0 floor 0 height 20 radius 2.5 range 0 0 15 15 target 3
+	ikrule "rfoot" footstep contact 0 fakeorigin -9.2 -3.23 0 fakerotate 0 0 0 floor 0 height 20 radius 2.5 range 0 0 15 15 target 2
+	ikrule "lhand" touch "ValveBiped.Bip01_R_Hand"
+}
+
+$sequence "crouch_shoot_357" {
+	"alyx_animations_ep2\crouch_aim_pistol.smd"
+	activity "ACT_RANGE_ATTACK_REVOLVER_LOW" 1
+	//numframes 16
+	fadein 0.2
+	fadeout 0.2
+	addlayer "layer_Aim_p_all"
+	node "crouchShooting_pistol"
+	blendlayer "gesture_shoot_357" 0 0 0 0 local
+	//weightlist "weights_357_shoot"
+	{ event 3014 1 "" }
+	fps 30
+	ikrule "lfoot" footstep contact 0 fakeorigin 4.85 1.29 0 fakerotate 0 0 0 floor 0 height 20 radius 2.5 range 0 0 16 16 target 3
+	ikrule "rfoot" footstep contact 0 fakeorigin -8.15 -4.51 0 fakerotate 0 0 0 floor 0 height 20 radius 2.5 range 0 0 16 16 target 2
+	ikrule "lhand" touch "ValveBiped.Bip01_R_Hand"
+}
+
+$sequence "idle_357_crouch" {
+	"alyx_animations_ep2\idle_p_crouch.smd"
+	activity "ACT_COVER_REVOLVER_LOW" 1
+	fadein 0.2
+	fadeout 0.2
+	node "crouching_pistol"
+	loop
+	ikrule "lfoot" footstep contact 0 fakeorigin 4.85 1.29 0 fakerotate 0 0 0 floor 0 height 20 radius 2.5 range 0 0 40 40 target 3
+	ikrule "rfoot" footstep contact 0 fakeorigin -8.09 -4.55 0 fakerotate 0 0 0 floor 0 height 20 radius 2.5 range 0 0 40 40 target 2
+}
+
+// ----------------------------------------------------------------
+
+$makeaimlayer soldier_Aim_9_directions			"hl2mp_ported_anims\Aim_9_directions"
+
+$makeweapongesturep "gesture_reload_357" "police_animations_anims\custom\reload_357.smd" 15 51 62
+
+$append "gesture_reload_357" {
+	$357ReloadSounds
+	activity "ACT_GESTURE_RELOAD_REVOLVER" 1
+}
+
+// HACKHACK: Need soldier_Aim_9_directions instead of pistol_Aim_all to get past IK issues
+$GenericReloadFromIdle "reload_357" "female_shared_anims\reloadpistol.smd" "ACT_RELOAD_REVOLVER" "soldier_Aim_9_directions" "gesture_reload_357" 15 51 62 41
+
+$append "reload_357" {
+	$357ReloadSounds
+	node "shooting_pistol"
+	fps 30
+}

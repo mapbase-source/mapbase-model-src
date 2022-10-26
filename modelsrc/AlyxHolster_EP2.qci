@@ -1,0 +1,105 @@
+
+$weightlist "weights_weapon_holster_gesturespine" {
+	 "ValveBiped.Bip01_Pelvis" 0.9
+	 "ValveBiped.Bip01_Spine" 0.8
+	 "ValveBiped.Bip01_Spine1" 0.6
+	 "ValveBiped.Bip01_Spine2" 0.4
+	 "ValveBiped.Bip01_Spine4" 0
+	 "ValveBiped.Bip01_L_Thigh" 0
+	 "ValveBiped.Bip01_R_Thigh" 0
+}
+
+$weightlist "weights_layer_run_holding_Shotgun_Relaxed" {
+	 "ValveBiped.Bip01_Pelvis" 0.1
+	 "ValveBiped.Bip01_Spine" 0.2
+	 "ValveBiped.Bip01_Spine1" 0.4
+	 "ValveBiped.Bip01_Spine2" 0.6
+	 "ValveBiped.Bip01_Spine4" 1
+	 "ValveBiped.Bip01_L_Thigh" 0
+	 "ValveBiped.Bip01_R_Thigh" 0
+}
+
+$animation "@weapon_draw_gesturespine_corrective_animation" "alyx_animations_ep2\@weapon_draw_gesturespine_corrective_animation.smd" {
+}
+
+$animation "@weapon_holster_gesturespine_corrective_animation" "alyx_animations_ep2\@weapon_holster_gesturespine_corrective_animation.smd" {
+}
+
+$sequence "weapon_draw_gesturespine" {
+	"alyx_animations_ep2\weapon_draw_gesturespine.smd"
+	delta
+	// Crowbar writes this subtract option to prevent jigglebone and poseparameter problems when delta sequences are recompiled.
+	subtract "@weapon_draw_gesturespine_corrective_animation" 0
+	fadein 0.2
+	fadeout 0.2
+	hidden
+	fps 30
+	weightlist "weapongesture_justspine"
+}
+
+$sequence "weapon_draw_gesturearms" {
+	"alyx_animations_ep2\weapon_draw_gesturearms.smd"
+	fadein 0.2
+	fadeout 0.2
+	hidden
+	fps 30
+	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 45 45 target 0
+	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 45 45 target 1
+	weightlist "weapongesture_armsonly"
+}
+
+$sequence "weapon_draw_gesture" {
+	"alyx_animations_ep2\weapon_draw_gesture.smd"
+	activity "ACT_ARM" 1
+	{ event AE_NPC_DRAW 32 "" }
+	fadein 0.2
+	fadeout 0.2
+	iklock "rfoot" 1 0
+	iklock "lfoot" 1 0
+	blendlayer "weapon_draw_gesturearms" 0 10 26 45 spline
+	blendlayer "weapon_draw_gesturespine" 0 10 26 45 spline
+	fps 30
+	ikrule "rhand" touch "ValveBiped.Bip01_Spine" contact 10 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 10 26 40 target 0 usesequence 
+	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 44 44 target 1 usesequence 
+	noanimation
+}
+
+$sequence "weapon_holster_gesturespine" {
+	"alyx_animations_ep2\weapon_holster_gesturespine.smd"
+	delta
+	// Crowbar writes this subtract option to prevent jigglebone and poseparameter problems when delta sequences are recompiled.
+	subtract "@weapon_holster_gesturespine_corrective_animation" 0
+	fadein 0.2
+	fadeout 0.2
+	hidden
+	fps 30
+	weightlist "weights_weapon_holster_gesturespine"
+}
+
+$sequence "weapon_holster_gestureworld" {
+	"alyx_animations_ep2\weapon_holster_gestureworld.smd"
+	fadein 0.2
+	fadeout 0.2
+	hidden
+	worldspace
+	fps 30
+	ikrule "rhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 45 45 target 0
+	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 45 45 target 1
+	weightlist "weights_layer_run_holding_Shotgun_Relaxed"
+}
+
+$sequence "weapon_holster_gesture" {
+	"alyx_animations_ep2\weapon_holster_gesture.smd"
+	activity "ACT_DISARM" 1
+	{ event AE_NPC_HOLSTER 22 "" }
+	fadein 0.2
+	fadeout 0.2
+	iklock "rfoot" 1 0
+	iklock "lfoot" 1 0
+	blendlayer "weapon_holster_gestureworld" 0 15 30 45 spline
+	blendlayer "weapon_holster_gesturespine" 0 0 30 45
+	fps 30
+	ikrule "rhand" touch "ValveBiped.Bip01_Spine" contact 15 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 15 30 1 target 0 usesequence 
+	ikrule "lhand" release contact 0 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 0 44 44 target 1 usesequence 
+	noanimation
+}

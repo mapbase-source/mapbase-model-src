@@ -1,0 +1,78 @@
+
+$animation "@weapon_draw_spine_corrective_animation" "alyx_animations_hl2\@weapon_draw_spine_corrective_animation.smd" {
+}
+
+$animation "@weapon_holster_spine_corrective_animation" "alyx_animations_hl2\@weapon_holster_spine_corrective_animation.smd" {
+}
+
+$sequence "weapon_draw_spine" {
+	"alyx_animations_hl2\weapon_draw_spine.smd"
+	delta
+	// Crowbar writes this subtract option to prevent jigglebone and poseparameter problems when delta sequences are recompiled.
+	subtract "@weapon_draw_spine_corrective_animation" 0
+	fadein 0.2
+	fadeout 0.2
+	hidden
+	fps 30
+	weightlist "weapongesture_justspine"
+}
+
+$sequence "weapon_draw_arms" {
+	"alyx_animations_hl2\weapon_draw_arms.smd"
+	fadein 0.2
+	fadeout 0.2
+	hidden
+	fps 30
+	weightlist "weapongesture_armsonly"
+}
+
+$sequence "weapon_draw_gesture" {
+	"alyx_animations_hl2\weapon_draw_gesture.smd"
+	activity "ACT_ARM" 1
+	{ event AE_NPC_DRAW 10 "" }
+	fadein 0.2
+	fadeout 0.2
+	iklock "rfoot" 1 0
+	iklock "lfoot" 1 0
+	blendlayer "weapon_draw_arms" 0 10 26 40 spline
+	blendlayer "weapon_draw_spine" 0 10 26 40 spline
+	fps 30
+	ikrule "rhand" touch "ValveBiped.Bip01_Spine" contact 10 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 10 26 1 target 0 usesequence 
+	noanimation numframes 40
+}
+
+$sequence "weapon_holster_spine" {
+	"alyx_animations_hl2\weapon_holster_spine.smd"
+	delta
+	// Crowbar writes this subtract option to prevent jigglebone and poseparameter problems when delta sequences are recompiled.
+	subtract "@weapon_holster_spine_corrective_animation" 0
+	fadein 0.2
+	fadeout 0.2
+	hidden
+	fps 30
+	weightlist "weapongesture_justspine"
+}
+
+$sequence "weapon_holster_arms" {
+	"alyx_animations_hl2\weapon_holster_arms.smd"
+	fadein 0.2
+	fadeout 0.2
+	hidden
+	fps 30
+	weightlist "weapongesture_armsonly"
+}
+
+$sequence "weapon_holster_gesture" {
+	"alyx_animations_hl2\weapon_holster_gesture.smd"
+	activity "ACT_DISARM" 1
+	{ event AE_NPC_HOLSTER 33 "" }
+	fadein 0.2
+	fadeout 0.2
+	iklock "rfoot" 1 0
+	iklock "lfoot" 1 0
+	blendlayer "weapon_holster_arms" 0 21 40 45 spline
+	blendlayer "weapon_holster_spine" 0 21 30 45 spline
+	fps 30
+	ikrule "rhand" touch "ValveBiped.Bip01_Spine" contact 21 fakeorigin 0 0 0 fakerotate 0 0 0 floor 0 height 0 radius 0 range 0 21 40 1 target 0 usesequence 
+	noanimation numframes 45
+}
