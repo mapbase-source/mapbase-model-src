@@ -72,8 +72,8 @@ $makematchrun_9way	run_crossbow	"custom\Idle_Crossbow_Aim" 0 soldier_Aim_9_direc
 $makematchrun_9way	run_melee		"..\hl2mp_ported_anims\HL2DM_MeleeAttack" 0 soldier_Aim_9_directions "..\hl2mp_ported_anims\HL2DM_MeleeAttack" 0 ACT_HL2MP_RUN_MELEE 1
 $makematchrun_9way	run_slam		"..\hl2mp_ported_anims\HL2DM_Idle_Slam" 0 soldier_Aim_9_directions "..\hl2mp_ported_anims\HL2DM_Idle_Slam" 0 ACT_HL2MP_RUN_SLAM 1
 
-$makerun_9way		run_smg1		"..\hl2mp_ported_anims\RunN_Alert_SMG1_Aim" 0 weapons_RunN_SMG1_Aim_9_directions "Idle_SMG2_Aim" 0 ACT_HL2MP_RUN_SMG2 1
-$makematchrun_9way	run_ar2			"custom\idle_ar1_aim" 0 soldier_Aim_9_directions "custom\idle_ar1_aim" 0 ACT_HL2MP_RUN_AR1 1
+$makerun_9way		run_smg2		"..\hl2mp_ported_anims\RunN_Alert_SMG1_Aim" 0 weapons_RunN_SMG1_Aim_9_directions "custom\Idle_SMG2_Aim" 0 ACT_HL2MP_RUN_SMG2 1
+$makematchrun_9way	run_ar1			"custom\idle_ar1_aim" 0 soldier_Aim_9_directions "custom\idle_ar1_aim" 0 ACT_HL2MP_RUN_AR1 1
 
 // ---------------------------------------------------
 // Crouch Idle

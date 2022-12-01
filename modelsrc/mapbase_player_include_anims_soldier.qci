@@ -118,8 +118,8 @@ $makecwalk_9way	cwalk_crossbow	"..\male_shared_anims\custom\Idle_Crossbow_Aim" 0
 $makecwalk_9way	cwalk_melee		"..\police_animations_anims\batonangryidle1" 0 soldier_Aim_9_directions "..\police_animations_anims\batonangryidle1" 0 ACT_HL2MP_WALK_CROUCH_MELEE 1
 $makecwalk_9way	cwalk_slam		"..\hl2mp_ported_anims\HL2DM_Idle_Slam" 0 soldier_Aim_9_directions "..\hl2mp_ported_anims\HL2DM_Idle_Slam" 0 ACT_HL2MP_WALK_CROUCH_SLAM 1
 
-$makecwalk_9way	cwalk_smg2		"custom\CombatIdle1_SMG2" 0 soldier_Crouch_aim_9_directions "..\combine_soldier_anims_anims\shootSMG2c" 0 ACT_HL2MP_WALK_CROUCH_SMG2 1
-$makecwalk_9way	cwalk_ar1		"custom\CombatIdle1_AR1" 0 soldier_Crouch_aim_9_directions "..\combine_soldier_anims_anims\shootAR1c" 0 ACT_HL2MP_WALK_CROUCH_AR1 1
+$makecwalk_9way	cwalk_smg2		"custom\CombatIdle1_SMG2" 0 soldier_Crouch_aim_9_directions "..\combine_soldier_anims_anims\shootSMG1c" 0 ACT_HL2MP_WALK_CROUCH_SMG2 1
+$makecwalk_9way	cwalk_ar1		"custom\CombatIdle1_AR1" 0 soldier_Crouch_aim_9_directions "..\combine_soldier_anims_anims\shootAR2c" 0 ACT_HL2MP_WALK_CROUCH_AR1 1
 
 // ---------------------------------------------------
 // Attack
@@ -136,8 +136,8 @@ $makerange				range_crossbow	"..\male_shared_anims\custom\shoot_crossbow" 0 ACT_
 $makerange				range_melee		"..\police_animations_anims\custom\hl2dm_metrocop_swing" 0 ACT_HL2MP_GESTURE_RANGE_ATTACK_MELEE 1 looping fps 45
 $makerange				range_slam		"..\hl2mp_ported_anims\HL2DM_deploy_SLAM" 0 ACT_HL2MP_GESTURE_RANGE_ATTACK_SLAM 1
 
-$makerange				range_smg2		"..\combine_soldier_anims_anims\shootSMG2s" 0 ACT_HL2MP_GESTURE_RANGE_ATTACK_SMG2 1
-$makerange				range_ar1		"..\combine_soldier_anims_anims\shootAR1s" 0 ACT_HL2MP_GESTURE_RANGE_ATTACK_AR1 1
+$makerange				range_smg2		"..\combine_soldier_anims_anims\shootSMG1s" 0 ACT_HL2MP_GESTURE_RANGE_ATTACK_SMG2 1
+$makerange				range_ar1		"..\combine_soldier_anims_anims\shootAR2s" 0 ACT_HL2MP_GESTURE_RANGE_ATTACK_AR1 1
 
 // ---------------------------------------------------
 // Jump
@@ -193,7 +193,7 @@ $makematchwalk_9way	walk_crossbow	"..\male_shared_anims\custom\Idle_Crossbow_Aim
 $makematchwalk_9way	walk_melee		"..\police_animations_anims\batonangryidle1" 0 soldier_Aim_9_directions "..\police_animations_anims\batonangryidle1" 0 ACT_HL2MP_WALK_MELEE 1
 $makematchwalk_9way	walk_slam		"..\hl2mp_ported_anims\HL2DM_Idle_Slam" 0 soldier_Aim_9_directions "..\hl2mp_ported_anims\HL2DM_Idle_Slam" 0 ACT_HL2MP_WALK_SLAM 1
 
-$makematchwalk_9way	walk_smg2		"custom\CombatIdle1_SMG2" 0 weapons_RunN_SMG2_Aim_9_directions "custom\CombatIdle1_SMG2" 0 ACT_HL2MP_WALK_SMG2 1
+$makematchwalk_9way	walk_smg2		"custom\CombatIdle1_SMG2" 0 weapons_RunN_SMG1_Aim_9_directions "custom\CombatIdle1_SMG2" 0 ACT_HL2MP_WALK_SMG2 1
 $makematchwalk_9way	walk_ar1		"custom\CombatIdle1_AR1" 0 soldier_Aim_9_directions "custom\CombatIdle1_AR1" 0 ACT_HL2MP_WALK_AR1 1
 
 // ---------------------------------------------------
