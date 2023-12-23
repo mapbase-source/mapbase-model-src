@@ -25,6 +25,7 @@ $weightlist "weights_357_shoot" {
 
 $sequence "gesture_shoot_357_layer" {
 	"combine_soldier_anims_anims\custom\shootp1.smd"
+	match "shootp1"
 	subtract "shootp1" 4
 	activity "ACT_GESTURE_RANGE_ATTACK_REVOLVER" 1
 	frame 0 0
