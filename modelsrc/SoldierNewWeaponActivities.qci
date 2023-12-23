@@ -112,6 +112,15 @@ $sequence "Idle_Unarmed_ACT_IDLE" {
 	hidden	// For now, hide this and allow the original animation to continue to be used (for simplicity)
 }
 
+// NEW -- Idle_Unarmed as ACT_IDLE_ANGRY
+$sequence "Idle_Unarmed_Angry" {
+	"combine_soldier_anims_anims\Idle_Unarmed.smd"
+	activity "ACT_IDLE_ANGRY" 1
+	loop
+	ikrule "lfoot" footstep
+	ikrule "rfoot" footstep
+}
+
 // NEW -- WalkUnarmed_all as simple ACT_WALK (which soldiers previously lacked)
 $sequence "WalkUnarmed_all_ACT_WALK" {
 	$a_WalkEasyBlends
