@@ -5,8 +5,6 @@
 // In Mapbase's Episodic content, "vortigaunt_anims_original.mdl" is the EP2 animations.
 // 
 
-$modelname "vortigaunt_anims.mdl"
-
 $includemodel "vortigaunt_anims_original.mdl"
 
 $definebone "ValveBiped.hips" "" 0.000002 6.868948 40.376724 -14.999978 -89.999927 0 0 0 0 0 0 0
