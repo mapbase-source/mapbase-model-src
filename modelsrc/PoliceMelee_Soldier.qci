@@ -17,41 +17,13 @@ $sequence "batonidle1" {
 }
 
 $sequence "walk_hold_baton_angry" {
-	"a_SoldierWalkEasyS"
-	"a_SoldierWalkEasySE"
-	"a_SoldierWalkEasyE"
-	"a_SoldierWalkEasyNE"
-	"a_SoldierWalkEasyN"
-	"a_SoldierWalkEasyNW"
-	"a_SoldierWalkEasyW"
-	"a_SoldierWalkEasySW"
-	"a_SoldierWalkEasyS"
+	$a_WalkEasyBlends
 	activity "ACT_WALK_MELEE" 1 // ACT_WALK_ANGRY
-	blend "move_yaw" -180 180
-	blendwidth 9
-	{ event 6004 9 "NPC_CombineS" }
-	{ event 6005 25 "NPC_CombineS" }
-	fadein 0.2
-	fadeout 0.2
 	blendlayer "layer_walk_hold_baton_angry" 0 0 0 0 local
 }
 
 $sequence "run_hold_baton_angry" {
-	"a_SoldierRunS"
-	"a_SoldierRunSE"
-	"a_SoldierRunE"
-	"a_SoldierRunNE"
-	"a_SoldierRunN"
-	"a_SoldierRunNW"
-	"a_SoldierRunW"
-	"a_SoldierRunSW"
-	"a_SoldierRunS"
+	$a_RunBlends
 	activity "ACT_RUN_MELEE" 1 // ACT_WALK_ANGRY
-	blend "move_yaw" -180 180
-	blendwidth 9
-	{ event 6004 7 "NPC_CombineS" }
-	{ event 6005 16 "NPC_CombineS" }
-	fadein 0.2
-	fadeout 0.2
 	blendlayer "layer_run_hold_baton_angry" 0 0 0 0 local
 }

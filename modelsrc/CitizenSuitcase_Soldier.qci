@@ -87,22 +87,8 @@ $sequence "layer_luggage_larm" {
 }
 
 $sequence "luggage_walk_all" {
-	"a_SoldierWalkEasyS"
-	"a_SoldierWalkEasySE"
-	"a_SoldierWalkEasyE"
-	"a_SoldierWalkEasyNE"
-	"a_SoldierWalkEasyN" // a_luggage_walk
-	"a_SoldierWalkEasyNW"
-	"a_SoldierWalkEasyW"
-	"a_SoldierWalkEasySW"
-	"a_SoldierWalkEasyS"
+	$a_WalkEasyBlends
 	activity "ACT_WALK_SUITCASE" 1
-	blend "move_yaw" -180 180
-	blendwidth 9
-	{ event 6004 9 "NPC_CombineS" }
-	{ event 6005 25 "NPC_CombineS" }
-	fadein 0.2
-	fadeout 0.2
 	blendlayer "layer_luggage_walk" 0 0 0 0 local
 	blendlayer "layer_luggage_larm" 0 0 0 0 local
 	node "walking"
@@ -118,22 +104,8 @@ $sequence "layer_luggage_run_larm" {
 }
 
 $sequence "luggage_run_all" {
-	"a_SoldierRunS"
-	"a_SoldierRunSE"
-	"a_SoldierRunE"
-	"a_SoldierRunNE"
-	"a_SoldierRunN" // a_luggage_walk
-	"a_SoldierRunNW"
-	"a_SoldierRunW"
-	"a_SoldierRunSW"
-	"a_SoldierRunS"
+	$a_RunBlends
 	activity "ACT_RUN_SUITCASE" 1
-	blend "move_yaw" -180 180
-	blendwidth 9
-	{ event 6004 7 "NPC_CombineS" }
-	{ event 6005 16 "NPC_CombineS" }
-	fadein 0.2
-	fadeout 0.2
 	blendlayer "layer_luggage_run" 0 0 0 0 local
 	blendlayer "layer_luggage_run_larm" 0 0 0 0 local
 	node "running"

@@ -97,42 +97,14 @@ $sequence "Run_turretCarry_Upperbody_idle" {
 }
 
 $sequence "Run_turretCarry_ALL" {
-	"a_SoldierRunS"
-	"a_SoldierRunSE"
-	"a_SoldierRunE"
-	"a_SoldierRunNE"
-	"a_SoldierRunN"
-	"a_SoldierRunNW"
-	"a_SoldierRunW"
-	"a_SoldierRunSW"
-	"a_SoldierRunS"
+	$a_RunBlends
 	activity "ACT_TURRET_CARRY_RUN" 1
-	blend "move_yaw" -180 180
-	blendwidth 9
-	{ event 6004 7 "NPC_CombineS" }
-	{ event 6005 16 "NPC_CombineS" }
-	fadein 0.2
-	fadeout 0.2
 	addlayer "Run_turretCarry_Upperbody"
 }
 
 $sequence "Walk_turretCarry_all" {
-	"a_SoldierWalkS"
-	"a_SoldierWalkSE"
-	"a_SoldierWalkE"
-	"a_SoldierWalkNE"
-	"a_SoldierWalkN"
-	"a_SoldierWalkNW"
-	"a_SoldierWalkW"
-	"a_SoldierWalkSW"
-	"a_SoldierWalkS"
+	$a_WalkBlends
 	activity "ACT_TURRET_CARRY_WALK" 1
-	blend "move_yaw" -180 180
-	blendwidth 9
-	{ event 6004 9 "NPC_CombineS" }
-	{ event 6005 25 "NPC_CombineS" }
-	fadein 0.2
-	fadeout 0.2
 	blendlayer "Run_turretCarry_Upperbody" 0 0 0 0 local
 }
 

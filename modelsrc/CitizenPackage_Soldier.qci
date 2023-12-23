@@ -27,22 +27,8 @@ $sequence "layer_walk_holding_package" {
 }
 
 $sequence "walk_holding_package_all" {
-	"a_SoldierWalkEasyS"
-	"a_SoldierWalkEasySE"
-	"a_SoldierWalkEasyE"
-	"a_SoldierWalkEasyNE"
-	"a_SoldierWalkEasyN" // a_WalkN_package
-	"a_SoldierWalkEasyNW"
-	"a_SoldierWalkEasyW"
-	"a_SoldierWalkEasySW"
-	"a_SoldierWalkEasyS"
+	$a_WalkEasyBlends
 	activity "ACT_WALK_PACKAGE" 1
-	blend "move_yaw" -180 180
-	blendwidth 9
-	fadein 0.2
-	fadeout 0.2
-	{ event 6004 9 "NPC_CombineS" }
-	{ event 6005 25 "NPC_CombineS" }
 
 	keyvalues
 	{
@@ -68,22 +54,8 @@ $sequence "idlepackage" {
 $include "CitizenPackageRun.qci"
 
 $sequence "run_holding_package_all" {
-	"a_SoldierRunS"
-	"a_SoldierRunSE"
-	"a_SoldierRunE"
-	"a_SoldierRunNE"
-	"a_SoldierRunN" // a_WalkN_package
-	"a_SoldierRunNW"
-	"a_SoldierRunW"
-	"a_SoldierRunSW"
-	"a_SoldierRunS"
+	$a_RunBlends
 	activity "ACT_RUN_PACKAGE" 1
-	blend "move_yaw" -180 180
-	blendwidth 9
-	fadein 0.2
-	fadeout 0.2
-	{ event 6004 7 "NPC_CombineS" }
-	{ event 6005 16 "NPC_CombineS" }
 
 	keyvalues
 	{
