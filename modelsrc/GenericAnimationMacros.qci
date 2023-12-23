@@ -46,7 +46,7 @@ $continue $IdleName$
 $definemacro GenericShoot SeqName FileName ActName AimLayer \\
 $sequence $SeqName$ { \\
 	$FileName$ \\
-	{ event 3014 0 "" } \\ // { event 3014 1 "" }?
+	//{ event 3014 0 "" } \\ // { event 3014 1 "" }?
 	addlayer $AimLayer$ \\
 	activity $ActName$ 1 \\
 	cmdlist lockfeetandlefthand \\
@@ -144,7 +144,7 @@ $definemacro GenericShootFromIdle SeqName FileName ActName AimLayer GestureLayer
 $sequence $SeqName$ { \\
 	$FileName$ \\
 	numframes $NumFrames$ \\
-	{ event 3014 1 "" } \\
+	//{ event 3014 1 "" } \\
 	blendlayer $GestureLayer$ 0 0 0 0 local \\
 	addlayer $AimLayer$ \\
 	activity $ActName$ 1 \\
@@ -156,7 +156,7 @@ $definemacro GenericShootFromIdle_NoHandIK SeqName FileName ActName AimLayer Ges
 $sequence $SeqName$ { \\
 	$FileName$ \\
 	numframes $NumFrames$ \\
-	{ event 3014 1 "" } \\
+	//{ event 3014 1 "" } \\
 	blendlayer $GestureLayer$ 0 0 0 0 local \\
 	addlayer $AimLayer$ \\
 	activity $ActName$ 1 \\
