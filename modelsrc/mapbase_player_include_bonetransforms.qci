@@ -1,0 +1,53 @@
+// 
+// Default player bone transforms
+// 
+	spine
+	{
+		//"ValveBiped.Bip01_Spine1"			"0.0"
+		"ValveBiped.Bip01_Spine2"			"0.5"
+		"ValveBiped.Bip01_Spine4"			"0.0"
+		"ValveBiped.Bip01_Neck1"			"0.0"
+		"ValveBiped.Bip01_L_Clavicle"		"0.0"
+		"ValveBiped.Bip01_R_Clavicle"		"0.0"
+	}
+	arms
+	{
+		"ValveBiped.Bip01_L_UpperArm"		"0.0"
+		"ValveBiped.Bip01_L_Forearm"		"0.0"
+		"ValveBiped.Bip01_L_Hand"			"0.0"
+		"ValveBiped.Bip01_L_Finger0"		"0.0"
+		"ValveBiped.Bip01_L_Finger01"		"0.0"
+		"ValveBiped.Bip01_L_Finger02"		"0.0"
+		"ValveBiped.Bip01_L_Finger1"		"0.0"
+		"ValveBiped.Bip01_L_Finger11"		"0.0"
+		"ValveBiped.Bip01_L_Finger12"		"0.0"
+		"ValveBiped.Bip01_L_Finger2"		"0.0"
+		"ValveBiped.Bip01_L_Finger21"		"0.0"
+		"ValveBiped.Bip01_L_Finger22"		"0.0"
+		"ValveBiped.Bip01_L_Finger3"		"0.0"
+		"ValveBiped.Bip01_L_Finger31"		"0.0"
+		"ValveBiped.Bip01_L_Finger32"		"0.0"
+		"ValveBiped.Bip01_L_Finger4"		"0.0"
+		"ValveBiped.Bip01_L_Finger41"		"0.0"
+		"ValveBiped.Bip01_L_Finger42"		"0.0"
+		
+		"ValveBiped.Bip01_R_UpperArm"		"0.0"
+		"ValveBiped.Bip01_R_Forearm"		"0.0"
+		"ValveBiped.Bip01_R_Hand"			"0.0"
+		"ValveBiped.Bip01_R_Finger0"		"0.0"
+		"ValveBiped.Bip01_R_Finger01"		"0.0"
+		"ValveBiped.Bip01_R_Finger02"		"0.0"
+		"ValveBiped.Bip01_R_Finger1"		"0.0"
+		"ValveBiped.Bip01_R_Finger11"		"0.0"
+		"ValveBiped.Bip01_R_Finger12"		"0.0"
+		"ValveBiped.Bip01_R_Finger2"		"0.0"
+		"ValveBiped.Bip01_R_Finger21"		"0.0"
+		"ValveBiped.Bip01_R_Finger22"		"0.0"
+		"ValveBiped.Bip01_R_Finger3"		"0.0"
+		"ValveBiped.Bip01_R_Finger31"		"0.0"
+		"ValveBiped.Bip01_R_Finger32"		"0.0"
+		"ValveBiped.Bip01_R_Finger4"		"0.0"
+		"ValveBiped.Bip01_R_Finger41"		"0.0"
+		"ValveBiped.Bip01_R_Finger42"		"0.0"
+	}
+	

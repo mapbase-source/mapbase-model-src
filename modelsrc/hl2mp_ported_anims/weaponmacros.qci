@@ -79,15 +79,15 @@ $definemacro makeidlenoise idleNoiseName fileName \\
 	realtime \\ 
 }
 
-$definemacro makeidle idleName fileName frame idleNoiseName newLength \\ 
-	$sequence $idleName$ {\\
-	$fileName$ \\
- 	frame $frame$ $frame$ \\
-	numframes $newLength$ \\ 
-	loop \\
-	addlayer $idleNoiseName$ \\
-} \\
-$continue $idleName$
+//$definemacro makeidle idleName fileName frame idleNoiseName newLength \\ 
+//	$sequence $idleName$ {\\
+//	$fileName$ \\
+// 	frame $frame$ $frame$ \\
+//	numframes $newLength$ \\ 
+//	loop \\
+//	addlayer $idleNoiseName$ \\
+//} \\
+//$continue $idleName$
 
 
 

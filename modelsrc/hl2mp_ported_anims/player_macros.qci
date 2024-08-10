@@ -280,9 +280,10 @@ $sequence $runname$_mod "..\hl2mp_ported_anims\RunN" { \\
 	weightlist UpperbodyReplace \\
 	hidden \\
 	iklock lfoot 1 0 iklock rfoot 1 0 \\
+	ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" \\
 	} \\
 $sequence $runname$_static $idlefile$ frame $idleframe$ $idleframe$ alignto reference weightlist UpperbodyReplace hidden \\
-$animation a_$runname$C $idlefile$ frame $idleframe$ $idleframe$ loop rotateto -180 alignto reference cmdlist lockfeet \\
+$animation a_$runname$C $idlefile$ frame $idleframe$ $idleframe$ loop rotateto -180 alignto reference \\
 $sequence $runname$ { \\
 	a_runSW a_runS a_runSE \\
 	a_runW a_$runname$C a_runE \\
@@ -307,7 +308,7 @@ $sequence $runname$_mod $filename$ { \\
 	loop \\
 	} \\
 $sequence $runname$_static $idlefile$ frame $idleframe$ $idleframe$ alignto reference weightlist UpperbodyReplace hidden \\
-$animation a_$runname$C $idlefile$ frame $idleframe$ $idleframe$ loop rotateto -180 alignto reference cmdlist lockfeet \\
+$animation a_$runname$C $idlefile$ frame $idleframe$ $idleframe$ loop rotateto -180 alignto reference \\
 $sequence $runname$ { \\
 	a_runSW a_runS a_runSE \\
 	a_runW a_$runname$C a_runE \\
@@ -334,7 +335,7 @@ $sequence $crouch_walkname$_mod "..\hl2mp_ported_anims\crouch_walkN" { \\
 	hidden \\
 	iklock lfoot 1 0 iklock rfoot 1 0 \\
 	} \\
-$animation a_$crouch_walkname$C $idlefile$ frame $idleframe$ $idleframe$ loop rotateto -180 alignto reference cmdlist lockfeet \\
+$animation a_$crouch_walkname$C $idlefile$ frame $idleframe$ $idleframe$ loop rotateto -180 alignto reference \\
 $sequence $crouch_walkname$ { \\
 	a_crouch_walkSW a_crouch_walkS a_crouch_walkSE \\
 	a_crouch_walkW a_$crouch_walkname$C a_crouch_walkE \\
@@ -360,9 +361,10 @@ $sequence $walkname$_mod "..\male_shared_anims\a_WalkN" { \\
 	weightlist UpperbodyReplace \\
 	hidden \\
 	iklock lfoot 1 0 iklock rfoot 1 0 \\
+	ikrule "lhand" touch "ValveBiped.Bip01_R_Hand" \\
 	} \\
 $sequence $walkname$_static $idlefile$ frame $idleframe$ $idleframe$ alignto reference weightlist UpperbodyReplace hidden \\
-$animation a_$walkname$C $idlefile$ frame $idleframe$ $idleframe$ loop rotateto -180 alignto reference cmdlist lockfeet \\
+$animation a_$walkname$C $idlefile$ frame $idleframe$ $idleframe$ loop rotateto -180 alignto reference \\
 $sequence $walkname$ { \\
 	a_walkSW a_walkS a_walkSE \\
 	a_walkW a_$walkname$C a_walkE \\
@@ -387,7 +389,7 @@ $sequence $walkname$_mod $filename$ { \\
 	loop \\
 	} \\
 $sequence $walkname$_static $filename$ frame 0 0 alignto reference weightlist UpperbodyReplace hidden \\
-$animation a_$walkname$C $idlefile$ frame $idleframe$ $idleframe$ loop rotateto -180 alignto reference cmdlist lockfeet \\
+$animation a_$walkname$C $idlefile$ frame $idleframe$ $idleframe$ loop rotateto -180 alignto reference \\
 $sequence $walkname$ { \\
 	a_walkSW a_walkS a_walkSE \\
 	a_walkW a_$walkname$C a_walkE \\

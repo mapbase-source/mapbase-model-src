@@ -5,38 +5,12 @@
 // Shared misc. stuff
 // 
 // ================================================================
-	
-// 
-// Combine animation gestures
-// 
-$makeweapongesturep grenThrow_gesture "..\combine_soldier_anims_anims\grenThrow.smd" 10 35 50
-$append grenThrow_gesture {
-	fps 45
-	activity "ACT_GESTURE_COMBINE_THROW_GRENADE" 1
-	{ event 7 30 "" }
-}
 
-$makeweapongesturep grenDrop_gesture "..\combine_soldier_anims_anims\grenDrop.smd" 12 32 43
-$append grenDrop_gesture {
-	fps 35
-	activity "ACT_GESTURE_SPECIAL_ATTACK1" 1
-	{ event 7 26 "" }
-}
+$makerange	mp_range2_shotgun	"..\male_shared_anims\shoot_shotgun" 0 ACT_HL2MP_GESTURE_RANGE_ATTACK2_SHOTGUN 1	// Temporary?
+$makerange	mp_range2_grenade	"..\hl2mp_ported_anims\HL2DM_Throw_Grenade" 0 ACT_HL2MP_GESTURE_RANGE_ATTACK2_GRENADE 1
 
-$makeweapongesturep grenPlace_gesture "..\combine_soldier_anims_anims\grenPlace.smd" 12 35 45
-$append grenPlace_gesture {
-	fps 35
-	activity "ACT_GESTURE_SPECIAL_ATTACK2" 1
-	{ event 9 25 "" }
-}
-
-// ---------------------------------------------------
-
-$makerange	range2_shotgun	"..\male_shared_anims\shoot_shotgun" 0 ACT_HL2MP_GESTURE_RANGE_ATTACK2_SHOTGUN 1	// Temporary?
-$makerange	range2_grenade	"..\hl2mp_ported_anims\HL2DM_Throw_Grenade" 0 ACT_HL2MP_GESTURE_RANGE_ATTACK2_GRENADE 1
-
-$makeweapongesturep range2_smg1 "..\male_shared_anims\custom\shoot_smg1_alt.smd" 4 8 16 ACT_HL2MP_GESTURE_RANGE_ATTACK2_SMG1 1
-$makeweapongesturep range2_ar2 "..\combine_soldier_anims_anims\shootAR2alt.smd" 12 24 36 ACT_HL2MP_GESTURE_RANGE_ATTACK2_AR2 1
+$makeweapongesturep mp_range2_smg1 "..\male_shared_anims\custom\shoot_smg1_alt.smd" 4 8 16 ACT_HL2MP_GESTURE_RANGE_ATTACK2_SMG1 1
+$makeweapongesturep mp_range2_ar2 "..\combine_soldier_anims_anims\shootAR2alt.smd" 12 24 36 ACT_HL2MP_GESTURE_RANGE_ATTACK2_AR2 1
 
 // ---------------------------------------------------
 
@@ -53,39 +27,18 @@ $cmdlist IK_BothHands {
 	ikrule "rhand" attachment "R_hand"
 }
 
-$makeidle			idle_use		"..\male_shared_anims\custom\hl2dm_use_light" 0 soldier_Aim_9_directions ACT_HL2MP_IDLE_USE 1 cmdlist IK_LHand
-$makematchrun_9way	run_use			"..\male_shared_anims\custom\hl2dm_use_light" 0 soldier_Aim_9_directions "..\male_shared_anims\custom\hl2dm_use_light" 0 ACT_HL2MP_RUN_USE 1
-$makecidleB			cidle_use		"..\male_shared_anims\custom\hl2dm_use_light" 0 "..\hl2mp_ported_anims\HL2DM_crouch_aim_gravgun" 4 soldier_Crouch_aim_9_directions ACT_HL2MP_IDLE_CROUCH_USE 1 cmdlist IK_LHand
-$makecwalk_9way		cwalk_use		"..\male_shared_anims\custom\hl2dm_use_light" 0 soldier_Crouch_aim_9_directions "..\male_shared_anims\custom\hl2dm_use_light" 0 ACT_HL2MP_WALK_CROUCH_USE 1
-$makejump			jump_use		"..\male_shared_anims\custom\hl2dm_use_light" 0 ACT_HL2MP_JUMP_USE 1 cmdlist IK_LHand
-$makematchwalk_9way	walk_use		"..\male_shared_anims\custom\hl2dm_use_light" 0 soldier_Aim_9_directions "..\male_shared_anims\custom\hl2dm_use_light" 0 ACT_HL2MP_WALK_USE 1
+$makeidle_noik		mp_idle_use		"..\male_shared_anims\custom\hl2dm_use_light" 0 soldier_Aim_9_directions ACT_HL2MP_IDLE_USE 1 cmdlist IK_LHand
+$makematchrun_9way	mp_run_use		"..\male_shared_anims\custom\hl2dm_use_light" 0 soldier_Aim_9_directions "..\male_shared_anims\custom\hl2dm_use_light" 0 ACT_HL2MP_RUN_USE 1
+$makecidleB_noik	mp_cidle_use	"..\male_shared_anims\custom\hl2dm_use_light" 0 "..\hl2mp_ported_anims\HL2DM_crouch_aim_gravgun" 4 soldier_Crouch_aim_9_directions ACT_HL2MP_IDLE_CROUCH_USE 1 cmdlist IK_LHand
+$makecwalk_9way		mp_cwalk_use		"..\male_shared_anims\custom\hl2dm_use_light" 0 soldier_Crouch_aim_9_directions "..\male_shared_anims\custom\hl2dm_use_light" 0 ACT_HL2MP_WALK_CROUCH_USE 1
+$makejump			mp_jump_use		"..\male_shared_anims\custom\hl2dm_use_light" 0 ACT_HL2MP_JUMP_USE 1 cmdlist IK_LHand
+$makematchwalk_9way	mp_walk_use		"..\male_shared_anims\custom\hl2dm_use_light" 0 soldier_Aim_9_directions "..\male_shared_anims\custom\hl2dm_use_light" 0 ACT_HL2MP_WALK_USE 1
 
-$makeidle			idle_use_heavy		"..\male_shared_anims\custom\hl2dm_use_heavy" 0 soldier_Aim_9_directions ACT_HL2MP_IDLE_USE_HEAVY 1 cmdlist IK_BothHands
-$makematchrun_9way	run_use_heavy		"..\male_shared_anims\custom\hl2dm_use_heavy" 0 soldier_Aim_9_directions "..\male_shared_anims\custom\hl2dm_use_heavy" 0 ACT_HL2MP_RUN_USE_HEAVY 1
-$makecidleB			cidle_use_heavy		"..\male_shared_anims\custom\hl2dm_use_heavy" 0 "..\hl2mp_ported_anims\HL2DM_crouch_aim_gravgun" 4 soldier_Crouch_aim_9_directions ACT_HL2MP_IDLE_CROUCH_USE_HEAVY 1 cmdlist IK_BothHands
-$makecwalk_9way		cwalk_use_heavy		"..\male_shared_anims\custom\hl2dm_use_heavy" 0 soldier_Crouch_aim_9_directions "..\male_shared_anims\custom\hl2dm_use_heavy" 0 ACT_HL2MP_WALK_CROUCH_USE_HEAVY 1
-$makejump			jump_use_heavy		"..\male_shared_anims\custom\hl2dm_use_heavy" 0 ACT_HL2MP_JUMP_USE_HEAVY 1 cmdlist IK_BothHands
-$makematchwalk_9way	walk_use_heavy		"..\male_shared_anims\custom\hl2dm_use_heavy" 0 soldier_Aim_9_directions "..\male_shared_anims\custom\hl2dm_use_heavy" 0 ACT_HL2MP_WALK_USE_HEAVY 1
-
-// ---------------------------------------------------
-
-$pushd "../male_shared_anims"
-$include "DefaultHolster.qci"
-$popd
-
-// ---------------------------------------------------
-
-$pushd "../"
-
-$include "l4d1_ported_anims/L4D1_PistolAnims.qci"
-
-// Soldier Signals
-$include "SoldierSignals.qci"
-
-// Soldiers' original signals had a FPS of 48
-$definevariable SignalFPS 36 //32
-$DefaultSignalGestures $SignalFPS$
-
-$popd
+$makeidle_noik		mp_idle_use_heavy		"..\male_shared_anims\custom\hl2dm_use_heavy" 0 soldier_Aim_9_directions ACT_HL2MP_IDLE_USE_HEAVY 1 cmdlist IK_BothHands
+$makematchrun_9way	mp_run_use_heavy		"..\male_shared_anims\custom\hl2dm_use_heavy" 0 soldier_Aim_9_directions "..\male_shared_anims\custom\hl2dm_use_heavy" 0 ACT_HL2MP_RUN_USE_HEAVY 1
+$makecidleB_noik	mp_cidle_use_heavy		"..\male_shared_anims\custom\hl2dm_use_heavy" 0 "..\hl2mp_ported_anims\HL2DM_crouch_aim_gravgun" 4 soldier_Crouch_aim_9_directions ACT_HL2MP_IDLE_CROUCH_USE_HEAVY 1 cmdlist IK_BothHands
+$makecwalk_9way		mp_cwalk_use_heavy		"..\male_shared_anims\custom\hl2dm_use_heavy" 0 soldier_Crouch_aim_9_directions "..\male_shared_anims\custom\hl2dm_use_heavy" 0 ACT_HL2MP_WALK_CROUCH_USE_HEAVY 1
+$makejump			mp_jump_use_heavy		"..\male_shared_anims\custom\hl2dm_use_heavy" 0 ACT_HL2MP_JUMP_USE_HEAVY 1 cmdlist IK_BothHands
+$makematchwalk_9way	mp_walk_use_heavy		"..\male_shared_anims\custom\hl2dm_use_heavy" 0 soldier_Aim_9_directions "..\male_shared_anims\custom\hl2dm_use_heavy" 0 ACT_HL2MP_WALK_USE_HEAVY 1
 
 // ---------------------------------------------------

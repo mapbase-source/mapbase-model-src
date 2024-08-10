@@ -2,8 +2,6 @@
 
 $modelname "Police_animations.mdl"
 
-//$includemodel "player/male_anims.mdl"
-
 // Must be included
 $include "BaseModel.qci"
 $include "hl2mp_ported_anims/commonbones.qci"
@@ -181,6 +179,28 @@ $append melee_gunhit { activity "ACT_MELEE_ATTACK1" 1 { event 3 13 "" } }
 $makeflinchgesture "gesture_melee_gunhit" "combine_soldier_anims_anims\melee_gunhit.smd" 7 20 27
 $append gesture_melee_gunhit { activity "ACT_GESTURE_MELEE_ATTACK1" 1 { event 3 13 "" } }
 
+$weightlist weapongesture_upperbody_and_rleg "ValveBiped.Bip01_Pelvis" 1.0 "ValveBiped.Bip01_L_Thigh" 0.0 "ValveBiped.Bip01_R_Thigh" 1.0
+
+$definemacro makeflinchgesture_rleg gesturename filename InFrame OutFrame LastFrame \\
+$sequence $gesturename$inDelta $filename$ frame 0 $InFrame$ weightlist weapongesture_upperbody_and_rleg splinedelta delta hidden  \\
+$sequence $gesturename$inFrame $filename$ frame $InFrame$ $InFrame$ weightlist weapongesture_upperbody_and_rleg hidden noautoik \\
+$sequence $gesturename$CoreDelta $filename$ frame $InFrame$ $OutFrame$ weightlist weapongesture_upperbody_and_rleg splinedelta delta hidden  \\
+$sequence $gesturename$OutFrame $filename$ frame $OutFrame$ $OutFrame$ weightlist weapongesture_upperbody_and_rleg hidden noautoik \\
+$sequence $gesturename$outDelta $filename$ frame $OutFrame$ $LastFrame$ weightlist weapongesture_upperbody_and_rleg splinedelta delta hidden  \\
+\\
+$sequence $gesturename$ { \\
+  $filename$ noanimation numframes $LastFrame$ \\
+  blendlayer $gesturename$inFrame 0 $InFrame$ $InFrame$ $OutFrame$ spline xfade \\
+  blendlayer $gesturename$OutFrame $InFrame$ $OutFrame$ $OutFrame$ $LastFrame$ spline \\
+  blendlayer $gesturename$inDelta 0 0 $InFrame$ $InFrame$ \\
+  blendlayer $gesturename$CoreDelta $InFrame$ $InFrame$ $OutFrame$ $OutFrame$ \\
+  blendlayer $gesturename$outDelta $OutFrame$ $OutFrame$ $LastFrame$ $LastFrame$ \\
+} \\
+$continue $gesturename$
+
+$makeflinchgesture_rleg "gesture_melee_kick" "police_ss_anims\adoorkick.smd" 7 32 45
+$append gesture_melee_kick { activity "ACT_GESTURE_MELEE_ATTACK2" 1 { event 3 20 "" } fps 55 iklock lfoot 1 0 }
+
 $include "l4d1_ported_anims\L4D1_LadderClimb_Male.qci"
 $include "l4d1_ported_anims\L4D1_PistolAnims.qci" // Metrocops technically have their own pistol draw animation, but that's harder to turn into a gesture which works well
 
@@ -220,10 +240,34 @@ $append Heal {
 	{ event AE_CITIZEN_HEAL 31 "" }
 }
 
+// ================================================================
+
+$sequence reference "hl2mp_ported_anims\ragdoll_pose"
+$include "HL2MPMoveAnims.qci"
+
+$pushd "police_animations_anims"
+$include "mapbase_player_include_anims_police.qci"
+$popd
+
+// ================================================================
+
 $KeyValues
 {
 	dynamic_interactions 
 	{
 		$DIKV_Alyx
+	}
+	
+	playermodel_data
+	{
+		neck_pivot_up			"12"
+		neck_pivot_fwd			"-4"
+		neck_pivot_duck_up		"12"
+		neck_pivot_duck_fwd		"16"
+		
+		bone_transforms
+		{
+			$include "mapbase_player_include_bonetransforms.qci"
+		}
 	}
 }
