@@ -47,6 +47,7 @@ $makeidle_noik	mp_idle_slam		"..\hl2mp_ported_anims\HL2DM_Idle_Slam" 0 soldier_A
 
 $makeidle		mp_idle_smg2		"custom\Idle_SMG2_Aim" 0 soldier_Aim_9_directions ACT_HL2MP_IDLE_SMG2 1
 $makeidle		mp_idle_ar1		"custom\idle_ar1_aim" 0 soldier_Aim_9_directions ACT_HL2MP_IDLE_AR1 1
+$makeidle		mp_idle_dualpistol		"..\css_ported_anims\idle_elites.smd" 0 soldier_Aim_9_directions ACT_HL2MP_IDLE_DUAL_PISTOLS 1
 
 // ---------------------------------------------------
 // Run
@@ -73,6 +74,7 @@ $makematchrun_9way	mp_run_slam		"..\hl2mp_ported_anims\HL2DM_Idle_Slam" 0 soldie
 
 $makerun_9way		mp_run_smg2		"..\hl2mp_ported_anims\RunN_Alert_SMG1_Aim" 0 weapons_RunN_SMG1_Aim_9_directions "custom\Idle_SMG2_Aim" 0 ACT_HL2MP_RUN_SMG2 1
 $makematchrun_9way	mp_run_ar1			"custom\idle_ar1_aim" 0 soldier_Aim_9_directions "custom\idle_ar1_aim" 0 ACT_HL2MP_RUN_AR1 1
+$makematchrun_9way	mp_run_dualpistol			"..\css_ported_anims\idle_elites.smd" 0 soldier_Aim_9_directions "..\css_ported_anims\idle_elites.smd" 0 ACT_HL2MP_DUAL_PISTOLS 1
 
 // ---------------------------------------------------
 // Crouch Idle
@@ -93,6 +95,7 @@ $makecidleB_noik	mp_cidle_slam		"..\hl2mp_ported_anims\HL2DM_Idle_Slam" 0 "..\hl
 
 $makecidleB			mp_cidle_smg2		"custom\Idle_SMG2_Aim" 0 "..\hl2mp_ported_anims\HL2DM_crouch_aim_gravgun" 4 soldier_Crouch_aim_9_directions ACT_HL2MP_IDLE_CROUCH_SMG2 1
 $makecidleB			mp_cidle_ar1		"custom\idle_ar1_aim" 0 "..\hl2mp_ported_anims\HL2DM_crouch_aim_gravgun" 4 soldier_Crouch_aim_9_directions ACT_HL2MP_IDLE_CROUCH_AR1 1
+$makecidleB			mp_cidle_dualpistol		"..\css_ported_anims\crouch_idle_elites.smd" 0 "..\css_ported_anims\crouch_idle_elites.smd" 4 soldier_Crouch_aim_9_directions ACT_HL2MP_IDLE_CROUCH_DUAL_PISTOLS 1
 
 // ---------------------------------------------------
 // Crouch Walk
@@ -119,6 +122,7 @@ $makecwalk_9way	mp_cwalk_slam		"..\hl2mp_ported_anims\HL2DM_Idle_Slam" 0 soldier
 
 $makecwalk_9way	mp_cwalk_smg2		"custom\Idle_SMG2_Aim" 0 soldier_Crouch_aim_9_directions "..\combine_soldier_anims_anims\shootSMG1c" 0 ACT_HL2MP_WALK_CROUCH_SMG2 1
 $makecwalk_9way	mp_cwalk_ar1		"custom\idle_ar1_aim" 0 soldier_Crouch_aim_9_directions "..\combine_soldier_anims_anims\shootAR2c" 0 ACT_HL2MP_WALK_CROUCH_AR1 1
+$makecwalk_9way	mp_cwalk_dualpistol		"..\css_ported_anims\crouch_idle_elites.smd" 0 soldier_Crouch_aim_9_directions "..\css_ported_anims\crouch_idle_elites.smd" 0 ACT_HL2MP_WALK_CROUCH_DUAL_PISTOLS 1
 
 // ---------------------------------------------------
 // Attack
@@ -137,6 +141,7 @@ $makerange				mp_range_slam		"..\hl2mp_ported_anims\HL2DM_deploy_SLAM" 0 ACT_HL2
 
 $makerange				mp_range_smg2		"..\combine_soldier_anims_anims\shootSMG1s" 0 ACT_HL2MP_GESTURE_RANGE_ATTACK_SMG2 1
 $makerange				mp_range_ar1		"..\combine_soldier_anims_anims\shootAR2s" 0 ACT_HL2MP_GESTURE_RANGE_ATTACK_AR1 1
+$makerange				mp_range_dualpistol		"..\hl2mp_ported_anims\Pistol_shoot_1" 0 ACT_HL2MP_GESTURE_RANGE_ATTACK_DUAL_PISTOLS 1
 
 // ---------------------------------------------------
 // Jump
@@ -157,6 +162,7 @@ $makejump	mp_jump_slam		"..\hl2mp_ported_anims\HL2DM_Idle_SLAM" 0 ACT_HL2MP_JUMP
 
 $makejump	mp_jump_smg2		"custom\Idle_SMG2_Aim" 0 ACT_HL2MP_JUMP_SMG2 1
 $makejump	mp_jump_ar1		"custom\idle_ar1_aim" 0 ACT_HL2MP_JUMP_AR1 1
+$makejump	mp_jump_dualpistol		"..\css_ported_anims\idle_elites.smd" 0 ACT_HL2MP_JUMP_DUAL_PISTOLS 1
 
 // ---------------------------------------------------
 // Reload
@@ -170,6 +176,7 @@ $makeweapongesturep mp_reload_crossbow	"custom\reload_crossbow" 10 25 40 fps 20 
 $makeweapongesturep mp_reload_357		"..\police_animations_anims\custom\reload_357" 15 51 62 ACT_HL2MP_GESTURE_RELOAD_REVOLVER 1
 
 $makeweapongesturep mp_reload_ar1		"..\male_shared_anims\custom\reload_ar1" 10 30 50 ACT_HL2MP_GESTURE_RELOAD_AR1 1
+$makeweapongesturep mp_reload_dualpistol		"..\css_ported_anims\Walk_Reload_ELITES_Layer.smd" 10 65 90 ACT_HL2MP_GESTURE_RELOAD_DUAL_PISTOLS 1
 
 // ---------------------------------------------------
 // Walk
@@ -196,6 +203,7 @@ $makematchwalk_9way	mp_walk_slam		"..\hl2mp_ported_anims\HL2DM_Idle_Slam" 0 sold
 
 $makematchwalk_9way	mp_walk_smg2		"custom\Idle_SMG2_Aim" 0 weapons_RunN_SMG1_Aim_9_directions "custom\Idle_SMG2_Aim" 0 ACT_HL2MP_WALK_SMG2 1
 $makematchwalk_9way	mp_walk_ar1		"custom\idle_ar1_aim" 0 soldier_Aim_9_directions "custom\idle_ar1_aim" 0 ACT_HL2MP_WALK_AR1 1
+$makematchwalk_9way	mp_walk_dualpistol		"..\css_ported_anims\idle_elites.smd" 0 soldier_Aim_9_directions "..\css_ported_anims\idle_elites.smd" 0 ACT_HL2MP_WALK_DUAL_PISTOLS 1
 
 // ---------------------------------------------------
 // Lower
