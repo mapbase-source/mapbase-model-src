@@ -2,8 +2,6 @@
 
 $modelname "Humans\female_shared.mdl"
 
-//$includemodel "player/female_anims.mdl"
-
 // Automatically tries to convert any non-female animations to the female skeleton
 $lockbonelengths
 
@@ -203,10 +201,36 @@ $include "NPCDoorAnims.qci"
 
 $include "AnnabelleAnimations.qci"
 
+// ================================================================
+
+$sequence reference "female_shared_anims\ragdoll"
+$include "HL2MPMoveAnims_Female.qci"
+
+$pushd "female_shared_anims"
+$animation "@gesture_shoot_pistol_corrective_animation" "..\police_animations_anims\@gesture_shoot_pistol_corrective_animation.smd"
+
+$include "mapbase_player_include_anims_citizen.qci"
+$popd
+
+// ================================================================
+
 $KeyValues
 {
 	dynamic_interactions 
 	{
 		$DIKV_Alyx
+	}
+	
+	playermodel_data
+	{
+		neck_pivot_up			"12"
+		neck_pivot_fwd			"-4"
+		neck_pivot_duck_up		"12"
+		neck_pivot_duck_fwd		"16"
+		
+		bone_transforms
+		{
+			$include "mapbase_player_include_bonetransforms.qci"
+		}
 	}
 }

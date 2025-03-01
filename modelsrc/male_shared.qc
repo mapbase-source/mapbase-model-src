@@ -2,8 +2,6 @@
 
 $modelname "Humans\male_shared.mdl"
 
-//$includemodel "player/male_anims.mdl"
-
 // Must be included
 $include "BaseModel.qci"
 $include "hl2mp_ported_anims/commonbones.qci"
@@ -257,10 +255,33 @@ $sequence "luggage_run_all" {
 	node "running"
 }
 
+// ================================================================
+
+$include "HL2MPMoveAnims.qci"
+
+$pushd "male_shared_anims"
+$include "mapbase_player_include_anims_citizen.qci"
+$popd
+
+// ================================================================
+
 $KeyValues
 {
 	dynamic_interactions 
 	{
 		$DIKV_Alyx
+	}
+	
+	playermodel_data
+	{
+		neck_pivot_up			"12"
+		neck_pivot_fwd			"-4"
+		neck_pivot_duck_up		"12"
+		neck_pivot_duck_fwd		"16"
+		
+		bone_transforms
+		{
+			$include "mapbase_player_include_bonetransforms.qci"
+		}
 	}
 }

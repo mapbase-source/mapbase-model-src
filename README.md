@@ -11,7 +11,7 @@ This repository accepts pull requests for contributing models or animations to M
 
 ---
 
-Most of these source files are derived from decompiled Half-Life 2, Half-Life 2: Episode One, Half-Life 2: Episode Two, Half-Life 2: Deathmatch, or Left 4 Dead 1 content. Crowbar was used to decompile the content involved.
+Most of these source files are derived from decompiled Half-Life 2, Half-Life 2: Episode One, Half-Life 2: Episode Two, Half-Life 2: Deathmatch, Counter-Strike: Source, or Left 4 Dead 1 content. Crowbar was used to decompile the content involved.
 
 SMDs under `custom` subfolders (i.e. `combine_soldier_anims_anims/custom/Idle1_Pistol.smd`) are custom animations or modifications of decompiled animations created by Blixibon.
 
