@@ -25,7 +25,7 @@ $sequence "relaxed_ar1_full_arms" "custom\Idle_AR1_Relaxed.smd" frame 0 0 weight
 
 // ----------------------------------------------------------------
 
-$GenericIdle "Idle_AR1_Relaxed" "custom\Idle_AR1_Relaxed.smd" "ACT_NEUTRAL_AR1_RELAXED"
+$GenericIdle "Idle_AR1_Relaxed" "custom\Idle_AR1_Relaxed.smd" "ACT_NEUTRAL_AR1_RELAXED" frame 2 2 numframes 30
 
 // ----------------------------------------------------------------
 

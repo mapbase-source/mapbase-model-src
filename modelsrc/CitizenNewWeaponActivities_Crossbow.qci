@@ -69,7 +69,7 @@ $weightlist "weights_relaxed_1" {
 	 "ValveBiped.Bip01_L_Thigh" 0
 }
 
-$GenericIdle "Idle_Crossbow_Relaxed" "custom\Idle_Crossbow_Relaxed.smd" "ACT_NEUTRAL_CROSSBOW_RELAXED"
+$GenericIdle "Idle_Crossbow_Relaxed" "custom\Idle_Crossbow_Relaxed.smd" "ACT_NEUTRAL_CROSSBOW_RELAXED" numframes 60
 
 // ----------------------------------------------------------------
 
